@@ -510,25 +510,25 @@ In modalità CBR, imposta il bitrate in uscita specifico.</translation>
             <translation>Incorpora nei file audio</translation>
         </message>
         <message>
-            <source>Insert &quot;Artist&quot;</source>
-            <translation>Inserisci &quot;Artista&quot;</translation>
+            <source>Insert "Artist"</source>
+            <translation>Inserisci "Artista"</translation>
         </message>
         <message>
-            <source>Insert &quot;Album title&quot;</source>
-            <translation>Inserisci &quot;Titolo dell'album&quot;</translation>
+            <source>Insert "Album title"</source>
+            <translation>Inserisci "Titolo dell'album"</translation>
         </message>
         <message>
-            <source>Insert &quot;Year&quot;</source>
-            <translation>Inserisci &quot;Anno&quot;</translation>
+            <source>Insert "Year"</source>
+            <translation>Inserisci "Anno"</translation>
         </message>
         <message>
-            <source>Insert &quot;Genre&quot;</source>
-            <translation>Inserisci &quot;Genere&quot;</translation>
+            <source>Insert "Genre"</source>
+            <translation>Inserisci "Genere"</translation>
         </message>
         <message>
-            <source>Use &quot;%1&quot;</source>
-            <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
-            <translation>Usa &quot;%1&quot;</translation>
+            <source>Use "%1"</source>
+            <comment>Predefined CUE file name, string like 'Use "%a/%A/%n - %t.cue"'</comment>
+            <translation>Usa "%1"</translation>
         </message>
         <message>
             <source>Extract to separate file</source>
@@ -599,9 +599,9 @@ Questa impostazione modifica la dimensione. Tutte le impostazioni verranno perse
             <translation>CUE tags</translation>
         </message>
         <message>
-            <source>If the &quot;TITLE&quot; tag contains the artist's and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
+            <source>If the "TITLE" tag contains the artist's and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
             <extracomment>Checkbox tooltip on preferences dialog</extracomment>
-            <translation>Se il tag &quot;TITLE&quot; contiene il nome dell'artista e il titolo della traccia combinati da un carattere separatore, il programma cercherà di assegnare i tag appropriati.</translation>
+            <translation>Se il tag "TITLE" contiene il nome dell'artista e il titolo della traccia combinati da un carattere separatore, il programma cercherà di assegnare i tag appropriati.</translation>
         </message>
         <message>
             <source>Use heuristic definition of track performer</source>
@@ -679,52 +679,52 @@ Questa impostazione modifica la dimensione. Tutte le impostazioni verranno perse
         <message>
             <source>You can browse to the destination directory. You can also input it manually.
 
-If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
-            <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
+If the path is left empty or starts with "." (dot), the result files will be placed in the same directory as the source.</source>
+            <comment>Main form tooltip for "Directory" edit</comment>
             <translation>Puoi sfogliare la cartella di destinazione. Puoi altresì selezionarla manualmente.
 
-Se lasci il percorso vuoto o che inizia con &quot;.&quot; (punto), i file risultanti saranno posti nella stessa cartella di origine.</translation>
+Se lasci il percorso vuoto o che inizia con "." (punto), i file risultanti saranno posti nella stessa cartella di origine.</translation>
         </message>
         <message>
             <source>Pattern:</source>
             <translation>Modello:</translation>
         </message>
         <message>
-            <source>&lt;style type=&quot;text/css&quot;&gt;
+            <source>&lt;style type="text/css"&gt;
 .term {font-weight: bold;}
 .def  { white-space: nowrap; }
 &lt;/style&gt;
 Tokens start with %. You can use the following tokens:
 &lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%n&lt;/td&gt; &lt;td class="def"&gt; - Track number  &lt;/td&gt;
+        &lt;td class="term"&gt;%N&lt;/td&gt; &lt;td class="def"&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%a&lt;/td&gt; &lt;td class="def"&gt; - Artist&lt;/td&gt;
+        &lt;td class="term"&gt;%A&lt;/td&gt; &lt;td class="def"&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%t&lt;/td&gt; &lt;td class="def"&gt; - Track title&lt;/td&gt;
+        &lt;td class="term"&gt;%y&lt;/td&gt; &lt;td class="def"&gt; - Year&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%g&lt;/td&gt; &lt;td class="def"&gt; - Genre&lt;/td&gt;
+        &lt;td class="term"&gt;%C&lt;/td&gt; &lt;td class="def"&gt; - Catalog number&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 &lt;br&gt;&lt;br&gt;
 If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
-            <comment>Main form tooltip for &quot;Pattern&quot; edit</comment>
-            <translation>&lt;style type=&quot;text/css&quot;&gt;
+            <comment>Main form tooltip for "Pattern" edit</comment>
+            <translation>&lt;style type="text/css"&gt;
 .term {font-weight: bold;}
 .def  { white-space: nowrap; }
 &lt;/style&gt;
-I simboli cominciano con %. Puoi usare i seguenti simboli:
+Tokens start with %. You can use the following tokens:
 &lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Numero traccia  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Numero totale delle tracce&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artista&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Titolo dell'album&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Titolo della traccia&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Anno&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genere&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%n&lt;/td&gt; &lt;td class="def"&gt; - Track number  &lt;/td&gt;
+        &lt;td class="term"&gt;%N&lt;/td&gt; &lt;td class="def"&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%a&lt;/td&gt; &lt;td class="def"&gt; - Artist&lt;/td&gt;
+        &lt;td class="term"&gt;%A&lt;/td&gt; &lt;td class="def"&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%t&lt;/td&gt; &lt;td class="def"&gt; - Track title&lt;/td&gt;
+        &lt;td class="term"&gt;%y&lt;/td&gt; &lt;td class="def"&gt; - Year&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%g&lt;/td&gt; &lt;td class="def"&gt; - Genre&lt;/td&gt;
+        &lt;td class="term"&gt;%C&lt;/td&gt; &lt;td class="def"&gt; - Catalog number&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
-&lt;br&gt;&lt;/br&gt;
-Se evidenzi parti di testo che contengono un simbolo tra parentesi graffe, queste sezioni saranno nascoste se il simbolo è vuoto.</translation>
+&lt;br&gt;&lt;br&gt;
+If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</translation>
         </message>
         <message>
             <source>Format:</source>
@@ -732,7 +732,7 @@ Se evidenzi parti di testo che contengono un simbolo tra parentesi graffe, quest
         </message>
         <message>
             <source>Output format</source>
-            <comment>Main form tooltip for &quot;Format&quot; edit</comment>
+            <comment>Main form tooltip for "Format" edit</comment>
             <translation>Formato di output</translation>
         </message>
         <message>
@@ -985,7 +985,7 @@ Vuoi continuare?</translation>
         </message>
         <message>
             <source>%1 files</source>
-            <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
+            <comment>OpenFile dialog filter line, like "WAV files"</comment>
             <translation>%1 files</translation>
         </message>
         <message>
@@ -995,7 +995,7 @@ Vuoi continuare?</translation>
         </message>
         <message>
             <source>All files</source>
-            <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
+            <comment>OpenFile dialog filter line like "All files"</comment>
             <translation>Tutti i files</translation>
         </message>
         <message>
@@ -1009,9 +1009,9 @@ Vuoi continuare?</translation>
             <translation>Seleziona un file audio</translation>
         </message>
         <message>
-            <source>&quot;%1&quot; was not set.</source>
+            <source>"%1" was not set.</source>
             <comment>Error message, %1 is an filename.</comment>
-            <translation>&quot;%1&quot; non è stato impostato.</translation>
+            <translation>"%1" non è stato impostato.</translation>
         </message>
         <message>
             <source>Select directory</source>
@@ -1053,9 +1053,9 @@ Vuoi continuare?</translation>
             <translation>I seguenti file saranno spostati nel cestino. Rimuovo i seguenti file?</translation>
         </message>
         <message>
-            <source>Disk %1 &quot;%2 - %3&quot;</source>
+            <source>Disk %1 "%2 - %3"</source>
             <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-            <translation>Disco %1 &quot;%2 - %3&quot;</translation>
+            <translation>Disco %1 "%2 - %3"</translation>
         </message>
         <message>
             <source>Disk %1</source>
@@ -1146,45 +1146,49 @@ Vuoi continuare?</translation>
     <context>
         <name>OutPatternButton</name>
         <message>
-            <source>Insert &quot;Track number&quot;</source>
-            <translation>Inserisci &quot;Numero traccia&quot;</translation>
+            <source>Insert "Track number"</source>
+            <translation>Inserisci "Numero traccia"</translation>
         </message>
         <message>
-            <source>Insert &quot;Total number of tracks&quot;</source>
-            <translation>Inserisci &quot;Numero totale di tracce&quot;</translation>
+            <source>Insert "Total number of tracks"</source>
+            <translation>Inserisci "Numero totale di tracce"</translation>
         </message>
         <message>
-            <source>Insert &quot;Album performer&quot;</source>
-            <translation>Insert &quot;Album performer&quot;</translation>
+            <source>Insert "Album performer"</source>
+            <translation>Insert "Album performer"</translation>
         </message>
         <message>
-            <source>Insert &quot;Album title&quot;</source>
-            <translation>Inserisci &quot;Titolo album&quot;</translation>
+            <source>Insert "Album title"</source>
+            <translation>Inserisci "Titolo album"</translation>
         </message>
         <message>
-            <source>Insert &quot;Track title&quot;</source>
-            <translation>Inserisci &quot;Titolo traccia&quot;</translation>
+            <source>Insert "Track title"</source>
+            <translation>Inserisci "Titolo traccia"</translation>
         </message>
         <message>
-            <source>Insert &quot;Year&quot;</source>
-            <translation>Inserisci &quot;Anno&quot;</translation>
+            <source>Insert "Year"</source>
+            <translation>Inserisci "Anno"</translation>
         </message>
         <message>
-            <source>Insert &quot;Genre&quot;</source>
-            <translation>Inserisci &quot;Genere&quot;</translation>
+            <source>Insert "Genre"</source>
+            <translation>Inserisci "Genere"</translation>
         </message>
         <message>
-            <source>Insert &quot;Disc number&quot;</source>
-            <translation>Inserisci &quot;Disco numero&quot;</translation>
+            <source>Insert "Disc number"</source>
+            <translation>Inserisci "Disco numero"</translation>
         </message>
         <message>
-            <source>Insert &quot;Total number of discs&quot;</source>
-            <translation>Inserisci &quot;Numero totale dei dischi&quot;</translation>
+            <source>Insert "Total number of discs"</source>
+            <translation>Inserisci "Numero totale dei dischi"</translation>
         </message>
         <message>
-            <source>Use &quot;%1&quot;</source>
-            <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
-            <translation>Usa &quot;%1&quot;</translation>
+            <source>Insert "Catalog number"</source>
+            <translation>Insert "Catalog number"</translation>
+        </message>
+        <message>
+            <source>Use "%1"</source>
+            <comment>Predefined out file pattern, string like 'Use "%a/%A/%n - %t"'</comment>
+            <translation>Usa "%1"</translation>
         </message>
     </context>
     <context>
@@ -1256,11 +1260,11 @@ Vuoi continuare?</translation>
         <message>
             <source>You can browse to the destination directory. You can also input it manually.
 
-If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
-            <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
+If the path is left empty or starts with "." (dot), the result files will be placed in the same directory as the source.</source>
+            <comment>Preferences form tooltip for "Directory" edit</comment>
             <translation>Puoi sfogliare la cartella di destinazione. Puoi altresì selezionarla manualmente.
 
-Se lasci il percorso vuoto o che inizia con &quot;.&quot; (punto), i file risultanti saranno posti nella stessa cartella di origine.</translation>
+Se lasci il percorso vuoto o che inizia con "." (punto), i file risultanti saranno posti nella stessa cartella di origine.</translation>
         </message>
         <message>
             <source>Pattern:</source>
@@ -1268,38 +1272,38 @@ Se lasci il percorso vuoto o che inizia con &quot;.&quot; (punto), i file risult
             <translation>Modello:</translation>
         </message>
         <message>
-            <source>&lt;style type=&quot;text/css&quot;&gt;
+            <source>&lt;style type="text/css"&gt;
 .term {font-weight: bold;}
 .def  { white-space: nowrap; }
 &lt;/style&gt;
 Tokens start with %. You can use the following tokens:
 &lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%n&lt;/td&gt; &lt;td class="def"&gt; - Track number  &lt;/td&gt;
+        &lt;td class="term"&gt;%N&lt;/td&gt; &lt;td class="def"&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%a&lt;/td&gt; &lt;td class="def"&gt; - Artist&lt;/td&gt;
+        &lt;td class="term"&gt;%A&lt;/td&gt; &lt;td class="def"&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%t&lt;/td&gt; &lt;td class="def"&gt; - Track title&lt;/td&gt;
+        &lt;td class="term"&gt;%y&lt;/td&gt; &lt;td class="def"&gt; - Year&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%g&lt;/td&gt; &lt;td class="def"&gt; - Genre&lt;/td&gt;
+        &lt;td class="term"&gt;&lt;/td&gt; &lt;td class="def"&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 &lt;br&gt;&lt;br&gt;
 If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
-            <comment>Preferences form tooltip for &quot;Pattern&quot; edit</comment>
-            <translation>&lt;style type=&quot;text/css&quot;&gt;
+            <comment>Preferences form tooltip for "Pattern" edit</comment>
+            <translation>&lt;style type="text/css"&gt;
 .term {font-weight: bold;}
 .def  { white-space: nowrap; }
 &lt;/style&gt;
 I simboli cominciano con %. Puoi usare i seguenti simboli:
 &lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Numero traccia  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Numero totale delle tracce&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artista&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Titolo dell'album&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Titolo della traccia&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Anno&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genere&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%n&lt;/td&gt; &lt;td class="def"&gt; - Numero traccia  &lt;/td&gt;
+        &lt;td class="term"&gt;%N&lt;/td&gt; &lt;td class="def"&gt; - Numero totale delle tracce&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%a&lt;/td&gt; &lt;td class="def"&gt; - Artista&lt;/td&gt;
+        &lt;td class="term"&gt;%A&lt;/td&gt; &lt;td class="def"&gt; - Titolo dell'album&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%t&lt;/td&gt; &lt;td class="def"&gt; - Titolo della traccia&lt;/td&gt;
+        &lt;td class="term"&gt;%y&lt;/td&gt; &lt;td class="def"&gt; - Anno&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%g&lt;/td&gt; &lt;td class="def"&gt; - Genere&lt;/td&gt;
+        &lt;td class="term"&gt;&lt;/td&gt; &lt;td class="def"&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 &lt;br&gt;&lt;/br&gt;
 Se evidenzi parti di testo che contengono un simbolo tra parentesi graffe, queste sezioni saranno nascoste se il simbolo è vuoto.</translation>
@@ -1435,9 +1439,9 @@ Usando l'analisi sull'album si eliminano le differenze di volume per tutto l'alb
             <translation>-</translation>
         </message>
         <message>
-            <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
+            <source>Are you sure you want to delete the profile "%1"?</source>
             <comment>Message box text</comment>
-            <translation>Sei sicuro di voler eliminare il profilo &quot;%1&quot;?</translation>
+            <translation>Sei sicuro di voler eliminare il profilo "%1"?</translation>
         </message>
         <message>
             <source>Delete the profile</source>
@@ -1500,12 +1504,12 @@ Usando l'analisi sull'album si eliminano le differenze di volume per tutto l'alb
             <translation>Impossibile scrivere il file CUE &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
         </message>
         <message>
-            <source>I can't create directory &quot;%1&quot;.</source>
-            <translation>Impossibile creare la cartella &quot;%1&quot;.</translation>
+            <source>I can't create directory "%1".</source>
+            <translation>Impossibile creare la cartella "%1".</translation>
         </message>
         <message>
-            <source>I can't write to directory &quot;%1&quot;.</source>
-            <translation>Impossibile scrivere nella cartella &quot;%1&quot;.</translation>
+            <source>I can't write to directory "%1".</source>
+            <translation>Impossibile scrivere nella cartella "%1".</translation>
         </message>
         <message>
             <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
@@ -1517,8 +1521,8 @@ Usando l'analisi sull'album si eliminano le differenze di volume per tutto l'alb
             <translation>Incorporato in %1</translation>
         </message>
         <message>
-            <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-            <translation>Il file &lt;b&gt;&quot;%1&quot;&lt;/b&gt; non esiste</translation>
+            <source>File &lt;b&gt;"%1"&lt;/b&gt; does not exist</source>
+            <translation>Il file &lt;b&gt;"%1"&lt;/b&gt; non esiste</translation>
         </message>
         <message>
             <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</source>
@@ -1607,6 +1611,12 @@ Usando l'analisi sull'album si eliminano le differenze di volume per tutto l'alb
         <message>
             <source>Comment:</source>
             <translation>Commento:</translation>
+        </message>
+        <message>
+            <source>Catalog number:</source>
+            <comment>Music tag name</comment>
+            <extracomment>Music tag name</extracomment>
+            <translation>Catalog number:</translation>
         </message>
     </context>
     <context>
@@ -1762,6 +1772,11 @@ Usando l'analisi sull'album si eliminano le differenze di volume per tutto l'alb
             <translation>Song writer</translation>
         </message>
         <message>
+            <source>Catalog number</source>
+            <comment>Table header.</comment>
+            <translation>Catalog number</translation>
+        </message>
+        <message>
             <source>Multiple values</source>
             <translation>Valori multipli</translation>
         </message>
@@ -1838,21 +1853,21 @@ Usando l'analisi sull'album si eliminano le differenze di volume per tutto l'alb
             <translation>Lo stesso file audio è utilizzato per tracce differenti.</translation>
         </message>
         <message>
-            <source>Disk %1 &quot;%2 - %3&quot; will overwrite its own files.</source>
+            <source>Disk %1 "%2 - %3" will overwrite its own files.</source>
             <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-            <translation>Il disco %1 &quot;%2 - %3&quot; sovrascriverà i propri file.</translation>
+            <translation>Il disco %1 "%2 - %3" sovrascriverà i propri file.</translation>
         </message>
         <message>
-            <source>Disk %1 &quot;%2 - %3&quot; will overwrite the files of this disk.</source>
+            <source>Disk %1 "%2 - %3" will overwrite the files of this disk.</source>
             <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-            <translation>Il disco %1 &quot;%2 - %3&quot; sovrascriverà i file di questo disco.</translation>
+            <translation>Il disco %1 "%2 - %3" sovrascriverà i file di questo disco.</translation>
         </message>
         <message>
             <source>The output files of the disc are mixed with the files of disc %1.
-You could change the &quot;Start num&quot; for one of them.</source>
+You could change the "Start num" for one of them.</source>
             <comment>Error message, %1 is the disk description, artist and album for the disc, respectively</comment>
             <translation>I file in uscita del disco sono mescolati con i file del disco %1.
-È possibile modificare il &quot;numero iniziale&quot; per uno di questi.</translation>
+È possibile modificare il "numero iniziale" per uno di questi.</translation>
         </message>
         <message>
             <source>Disk %1 uses the same CUE file.</source>

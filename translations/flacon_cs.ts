@@ -510,25 +510,25 @@ V režimu vynuceného datového toku nastavuje určitý výstupní datový tok.<
             <translation>Embed to audio files</translation>
         </message>
         <message>
-            <source>Insert &quot;Artist&quot;</source>
-            <translation>Vložit &quot;Umělec&quot;</translation>
+            <source>Insert "Artist"</source>
+            <translation>Vložit "Umělec"</translation>
         </message>
         <message>
-            <source>Insert &quot;Album title&quot;</source>
-            <translation>Vložit &quot;Název alba&quot;</translation>
+            <source>Insert "Album title"</source>
+            <translation>Vložit "Název alba"</translation>
         </message>
         <message>
-            <source>Insert &quot;Year&quot;</source>
-            <translation>Vložit &quot;Rok&quot;</translation>
+            <source>Insert "Year"</source>
+            <translation>Vložit "Rok"</translation>
         </message>
         <message>
-            <source>Insert &quot;Genre&quot;</source>
-            <translation>Vložit &quot;Žánr&quot;</translation>
+            <source>Insert "Genre"</source>
+            <translation>Vložit "Žánr"</translation>
         </message>
         <message>
-            <source>Use &quot;%1&quot;</source>
-            <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
-            <translation>Použít &quot;%1&quot;</translation>
+            <source>Use "%1"</source>
+            <comment>Predefined CUE file name, string like 'Use "%a/%A/%n - %t.cue"'</comment>
+            <translation>Použít "%1"</translation>
         </message>
         <message>
             <source>Extract to separate file</source>
@@ -599,9 +599,9 @@ Ovlivní to jenom velikost souboru. Všechna nastavení jsou bezztrátová.</tra
             <translation>CUE tags</translation>
         </message>
         <message>
-            <source>If the &quot;TITLE&quot; tag contains the artist's and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
+            <source>If the "TITLE" tag contains the artist's and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
             <extracomment>Checkbox tooltip on preferences dialog</extracomment>
-            <translation>If the &quot;TITLE&quot; tag contains the artist's and the track names combined by a separator character, the program will try to assign the appropriate tags.</translation>
+            <translation>If the "TITLE" tag contains the artist's and the track names combined by a separator character, the program will try to assign the appropriate tags.</translation>
         </message>
         <message>
             <source>Use heuristic definition of track performer</source>
@@ -679,49 +679,49 @@ Ovlivní to jenom velikost souboru. Všechna nastavení jsou bezztrátová.</tra
         <message>
             <source>You can browse to the destination directory. You can also input it manually.
 
-If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
-            <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
+If the path is left empty or starts with "." (dot), the result files will be placed in the same directory as the source.</source>
+            <comment>Main form tooltip for "Directory" edit</comment>
             <translation>Můžete procházet adresáři do cílového adresáře. Také jej můžete zadat ručně.
 
-Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výsledné soubory budou umístěny ve stejném adresáři jako zdroj.</translation>
+Pokud je cesta ponechána prázdná nebo začíná "." (tečkou), výsledné soubory budou umístěny ve stejném adresáři jako zdroj.</translation>
         </message>
         <message>
             <source>Pattern:</source>
             <translation>Vzor:</translation>
         </message>
         <message>
-            <source>&lt;style type=&quot;text/css&quot;&gt;
+            <source>&lt;style type="text/css"&gt;
 .term {font-weight: bold;}
 .def  { white-space: nowrap; }
 &lt;/style&gt;
 Tokens start with %. You can use the following tokens:
 &lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%n&lt;/td&gt; &lt;td class="def"&gt; - Track number  &lt;/td&gt;
+        &lt;td class="term"&gt;%N&lt;/td&gt; &lt;td class="def"&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%a&lt;/td&gt; &lt;td class="def"&gt; - Artist&lt;/td&gt;
+        &lt;td class="term"&gt;%A&lt;/td&gt; &lt;td class="def"&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%t&lt;/td&gt; &lt;td class="def"&gt; - Track title&lt;/td&gt;
+        &lt;td class="term"&gt;%y&lt;/td&gt; &lt;td class="def"&gt; - Year&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%g&lt;/td&gt; &lt;td class="def"&gt; - Genre&lt;/td&gt;
+        &lt;td class="term"&gt;%C&lt;/td&gt; &lt;td class="def"&gt; - Catalog number&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 &lt;br&gt;&lt;br&gt;
 If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
-            <comment>Main form tooltip for &quot;Pattern&quot; edit</comment>
-            <translation>&lt;style type=&quot;text/css&quot;&gt;
+            <comment>Main form tooltip for "Pattern" edit</comment>
+            <translation>&lt;style type="text/css"&gt;
 .term {font-weight: bold;}
 .def  { white-space: nowrap; }
 &lt;/style&gt;
-Symboly začínají %. Můžete použít následující symboly:
+Tokens start with %. You can use the following tokens:
 &lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Číslo skladby  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Celkový počet skladeb&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Umělec&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Název alba&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Název skladby&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Rok&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Žánr&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%n&lt;/td&gt; &lt;td class="def"&gt; - Track number  &lt;/td&gt;
+        &lt;td class="term"&gt;%N&lt;/td&gt; &lt;td class="def"&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%a&lt;/td&gt; &lt;td class="def"&gt; - Artist&lt;/td&gt;
+        &lt;td class="term"&gt;%A&lt;/td&gt; &lt;td class="def"&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%t&lt;/td&gt; &lt;td class="def"&gt; - Track title&lt;/td&gt;
+        &lt;td class="term"&gt;%y&lt;/td&gt; &lt;td class="def"&gt; - Year&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%g&lt;/td&gt; &lt;td class="def"&gt; - Genre&lt;/td&gt;
+        &lt;td class="term"&gt;%C&lt;/td&gt; &lt;td class="def"&gt; - Catalog number&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 &lt;br&gt;&lt;br&gt;
 If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</translation>
@@ -732,7 +732,7 @@ If you surround sections of text that contain a token with braces, these section
         </message>
         <message>
             <source>Output format</source>
-            <comment>Main form tooltip for &quot;Format&quot; edit</comment>
+            <comment>Main form tooltip for "Format" edit</comment>
             <translation>Výstupní formát</translation>
         </message>
         <message>
@@ -985,7 +985,7 @@ Chcete pokračovat?</translation>
         </message>
         <message>
             <source>%1 files</source>
-            <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
+            <comment>OpenFile dialog filter line, like "WAV files"</comment>
             <translation>Soubory %1</translation>
         </message>
         <message>
@@ -995,7 +995,7 @@ Chcete pokračovat?</translation>
         </message>
         <message>
             <source>All files</source>
-            <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
+            <comment>OpenFile dialog filter line like "All files"</comment>
             <translation>Všechny soubory</translation>
         </message>
         <message>
@@ -1009,9 +1009,9 @@ Chcete pokračovat?</translation>
             <translation>Vybrat zvukový soubor</translation>
         </message>
         <message>
-            <source>&quot;%1&quot; was not set.</source>
+            <source>"%1" was not set.</source>
             <comment>Error message, %1 is an filename.</comment>
-            <translation>&quot;%1&quot; was not set.</translation>
+            <translation>"%1" was not set.</translation>
         </message>
         <message>
             <source>Select directory</source>
@@ -1053,9 +1053,9 @@ Chcete pokračovat?</translation>
             <translation>The following files will be moved to the trash. Remove the following files?</translation>
         </message>
         <message>
-            <source>Disk %1 &quot;%2 - %3&quot;</source>
+            <source>Disk %1 "%2 - %3"</source>
             <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-            <translation>Disk %1 &quot;%2 - %3&quot;</translation>
+            <translation>Disk %1 "%2 - %3"</translation>
         </message>
         <message>
             <source>Disk %1</source>
@@ -1146,45 +1146,49 @@ Chcete pokračovat?</translation>
     <context>
         <name>OutPatternButton</name>
         <message>
-            <source>Insert &quot;Track number&quot;</source>
-            <translation>Vložit &quot;Číslo skladby&quot;</translation>
+            <source>Insert "Track number"</source>
+            <translation>Vložit "Číslo skladby"</translation>
         </message>
         <message>
-            <source>Insert &quot;Total number of tracks&quot;</source>
-            <translation>Vložit &quot;Celkový počet skladeb&quot;</translation>
+            <source>Insert "Total number of tracks"</source>
+            <translation>Vložit "Celkový počet skladeb"</translation>
         </message>
         <message>
-            <source>Insert &quot;Album performer&quot;</source>
-            <translation>Insert &quot;Album performer&quot;</translation>
+            <source>Insert "Album performer"</source>
+            <translation>Insert "Album performer"</translation>
         </message>
         <message>
-            <source>Insert &quot;Album title&quot;</source>
-            <translation>Vložit &quot;Název alba&quot;</translation>
+            <source>Insert "Album title"</source>
+            <translation>Vložit "Název alba"</translation>
         </message>
         <message>
-            <source>Insert &quot;Track title&quot;</source>
-            <translation>Vložit &quot;Název skladby&quot;</translation>
+            <source>Insert "Track title"</source>
+            <translation>Vložit "Název skladby"</translation>
         </message>
         <message>
-            <source>Insert &quot;Year&quot;</source>
-            <translation>Vložit &quot;Rok&quot;</translation>
+            <source>Insert "Year"</source>
+            <translation>Vložit "Rok"</translation>
         </message>
         <message>
-            <source>Insert &quot;Genre&quot;</source>
-            <translation>Vložit &quot;Žánr&quot;</translation>
+            <source>Insert "Genre"</source>
+            <translation>Vložit "Žánr"</translation>
         </message>
         <message>
-            <source>Insert &quot;Disc number&quot;</source>
-            <translation>Vložit &quot;Číslo disku&quot;</translation>
+            <source>Insert "Disc number"</source>
+            <translation>Vložit "Číslo disku"</translation>
         </message>
         <message>
-            <source>Insert &quot;Total number of discs&quot;</source>
-            <translation>Vložit &quot;Celkový počet disků&quot;</translation>
+            <source>Insert "Total number of discs"</source>
+            <translation>Vložit "Celkový počet disků"</translation>
         </message>
         <message>
-            <source>Use &quot;%1&quot;</source>
-            <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
-            <translation>Použít &quot;%1&quot;</translation>
+            <source>Insert "Catalog number"</source>
+            <translation>Insert "Catalog number"</translation>
+        </message>
+        <message>
+            <source>Use "%1"</source>
+            <comment>Predefined out file pattern, string like 'Use "%a/%A/%n - %t"'</comment>
+            <translation>Použít "%1"</translation>
         </message>
     </context>
     <context>
@@ -1256,11 +1260,11 @@ Chcete pokračovat?</translation>
         <message>
             <source>You can browse to the destination directory. You can also input it manually.
 
-If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
-            <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
+If the path is left empty or starts with "." (dot), the result files will be placed in the same directory as the source.</source>
+            <comment>Preferences form tooltip for "Directory" edit</comment>
             <translation>Můžete procházet adresáři do cílového adresáře. Také jej můžete zadat ručně.
 
-Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výsledné soubory budou umístěny ve stejném adresáři jako zdroj.</translation>
+Pokud je cesta ponechána prázdná nebo začíná "." (tečkou), výsledné soubory budou umístěny ve stejném adresáři jako zdroj.</translation>
         </message>
         <message>
             <source>Pattern:</source>
@@ -1268,38 +1272,38 @@ Pokud je cesta ponechána prázdná nebo začíná &quot;.&quot; (tečkou), výs
             <translation>Vzor:</translation>
         </message>
         <message>
-            <source>&lt;style type=&quot;text/css&quot;&gt;
+            <source>&lt;style type="text/css"&gt;
 .term {font-weight: bold;}
 .def  { white-space: nowrap; }
 &lt;/style&gt;
 Tokens start with %. You can use the following tokens:
 &lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%n&lt;/td&gt; &lt;td class="def"&gt; - Track number  &lt;/td&gt;
+        &lt;td class="term"&gt;%N&lt;/td&gt; &lt;td class="def"&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%a&lt;/td&gt; &lt;td class="def"&gt; - Artist&lt;/td&gt;
+        &lt;td class="term"&gt;%A&lt;/td&gt; &lt;td class="def"&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%t&lt;/td&gt; &lt;td class="def"&gt; - Track title&lt;/td&gt;
+        &lt;td class="term"&gt;%y&lt;/td&gt; &lt;td class="def"&gt; - Year&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%g&lt;/td&gt; &lt;td class="def"&gt; - Genre&lt;/td&gt;
+        &lt;td class="term"&gt;&lt;/td&gt; &lt;td class="def"&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 &lt;br&gt;&lt;br&gt;
 If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
-            <comment>Preferences form tooltip for &quot;Pattern&quot; edit</comment>
-            <translation>&lt;style type=&quot;text/css&quot;&gt;
+            <comment>Preferences form tooltip for "Pattern" edit</comment>
+            <translation>&lt;style type="text/css"&gt;
 .term {font-weight: bold;}
 .def  { white-space: nowrap; }
 &lt;/style&gt;
 Symboly začínají %. Můžete použít následující symboly:
 &lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Číslo skladby  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Celkový počet skladeb&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Umělec&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Název alba&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Název skladby&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Rok&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Žánr&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%n&lt;/td&gt; &lt;td class="def"&gt; - Číslo skladby  &lt;/td&gt;
+        &lt;td class="term"&gt;%N&lt;/td&gt; &lt;td class="def"&gt; - Celkový počet skladeb&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%a&lt;/td&gt; &lt;td class="def"&gt; - Umělec&lt;/td&gt;
+        &lt;td class="term"&gt;%A&lt;/td&gt; &lt;td class="def"&gt; - Název alba&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%t&lt;/td&gt; &lt;td class="def"&gt; - Název skladby&lt;/td&gt;
+        &lt;td class="term"&gt;%y&lt;/td&gt; &lt;td class="def"&gt; - Rok&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%g&lt;/td&gt; &lt;td class="def"&gt; - Žánr&lt;/td&gt;
+        &lt;td class="term"&gt;&lt;/td&gt; &lt;td class="def"&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 &lt;br&gt;&lt;br&gt;
 If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</translation>
@@ -1435,9 +1439,9 @@ Použití zpracování zesílení u alba zachová rozdíly v hlasitosti v rámci
             <translation>-</translation>
         </message>
         <message>
-            <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
+            <source>Are you sure you want to delete the profile "%1"?</source>
             <comment>Message box text</comment>
-            <translation>Opravdu chcete smazat profil &quot;%1&quot;?</translation>
+            <translation>Opravdu chcete smazat profil "%1"?</translation>
         </message>
         <message>
             <source>Delete the profile</source>
@@ -1500,12 +1504,12 @@ Použití zpracování zesílení u alba zachová rozdíly v hlasitosti v rámci
             <translation>Nelze zapsat soubor CUE &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
         </message>
         <message>
-            <source>I can't create directory &quot;%1&quot;.</source>
-            <translation>Nelze vytvořit adresář &quot;%1&quot;.</translation>
+            <source>I can't create directory "%1".</source>
+            <translation>Nelze vytvořit adresář "%1".</translation>
         </message>
         <message>
-            <source>I can't write to directory &quot;%1&quot;.</source>
-            <translation>Nelze zapisovat do adresáře &quot;%1&quot;.</translation>
+            <source>I can't write to directory "%1".</source>
+            <translation>Nelze zapisovat do adresáře "%1".</translation>
         </message>
         <message>
             <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
@@ -1517,8 +1521,8 @@ Použití zpracování zesílení u alba zachová rozdíly v hlasitosti v rámci
             <translation>Embedded on %1</translation>
         </message>
         <message>
-            <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-            <translation>Soubor &lt;b&gt;&quot;%1&quot;&lt;/b&gt; neexistuje</translation>
+            <source>File &lt;b&gt;"%1"&lt;/b&gt; does not exist</source>
+            <translation>Soubor &lt;b&gt;"%1"&lt;/b&gt; neexistuje</translation>
         </message>
         <message>
             <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</source>
@@ -1607,6 +1611,12 @@ Použití zpracování zesílení u alba zachová rozdíly v hlasitosti v rámci
         <message>
             <source>Comment:</source>
             <translation>Poznámka:</translation>
+        </message>
+        <message>
+            <source>Catalog number:</source>
+            <comment>Music tag name</comment>
+            <extracomment>Music tag name</extracomment>
+            <translation>Catalog number:</translation>
         </message>
     </context>
     <context>
@@ -1762,6 +1772,11 @@ Použití zpracování zesílení u alba zachová rozdíly v hlasitosti v rámci
             <translation>Song writer</translation>
         </message>
         <message>
+            <source>Catalog number</source>
+            <comment>Table header.</comment>
+            <translation>Catalog number</translation>
+        </message>
+        <message>
             <source>Multiple values</source>
             <translation>Více hodnot</translation>
         </message>
@@ -1838,21 +1853,21 @@ Použití zpracování zesílení u alba zachová rozdíly v hlasitosti v rámci
             <translation>The same audio file is used for different tracks.</translation>
         </message>
         <message>
-            <source>Disk %1 &quot;%2 - %3&quot; will overwrite its own files.</source>
+            <source>Disk %1 "%2 - %3" will overwrite its own files.</source>
             <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-            <translation>Disk %1 &quot;%2 - %3&quot; will overwrite its own files.</translation>
+            <translation>Disk %1 "%2 - %3" will overwrite its own files.</translation>
         </message>
         <message>
-            <source>Disk %1 &quot;%2 - %3&quot; will overwrite the files of this disk.</source>
+            <source>Disk %1 "%2 - %3" will overwrite the files of this disk.</source>
             <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-            <translation>Disk %1 &quot;%2 - %3&quot; will overwrite the files of this disk.</translation>
+            <translation>Disk %1 "%2 - %3" will overwrite the files of this disk.</translation>
         </message>
         <message>
             <source>The output files of the disc are mixed with the files of disc %1.
-You could change the &quot;Start num&quot; for one of them.</source>
+You could change the "Start num" for one of them.</source>
             <comment>Error message, %1 is the disk description, artist and album for the disc, respectively</comment>
             <translation>The output files of the disc are mixed with the files of disc %1.
-You could change the &quot;Start num&quot; for one of them.</translation>
+You could change the "Start num" for one of them.</translation>
         </message>
         <message>
             <source>Disk %1 uses the same CUE file.</source>

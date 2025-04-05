@@ -511,24 +511,24 @@ CBR veiksenoje tai nustato konkretų išvesties pralaidumą.
             <translation>Įterpti į garso failus</translation>
         </message>
         <message>
-            <source>Insert &quot;Artist&quot;</source>
+            <source>Insert "Artist"</source>
             <translation>Įterpti „Atlikėją“</translation>
         </message>
         <message>
-            <source>Insert &quot;Album title&quot;</source>
+            <source>Insert "Album title"</source>
             <translation>Įterpti „Albumo pavadinimą“</translation>
         </message>
         <message>
-            <source>Insert &quot;Year&quot;</source>
+            <source>Insert "Year"</source>
             <translation>Įterpti „Metus“</translation>
         </message>
         <message>
-            <source>Insert &quot;Genre&quot;</source>
+            <source>Insert "Genre"</source>
             <translation>Įterpti „Žanrą“</translation>
         </message>
         <message>
-            <source>Use &quot;%1&quot;</source>
-            <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
+            <source>Use "%1"</source>
+            <comment>Predefined CUE file name, string like 'Use "%a/%A/%n - %t.cue"'</comment>
             <translation>Naudoti „%1“</translation>
         </message>
         <message>
@@ -600,7 +600,7 @@ Tai įtakoja tik failo dydį. Visi nustatymai yra nenuostolingieji.</translation
             <translation>CUE žymės</translation>
         </message>
         <message>
-            <source>If the &quot;TITLE&quot; tag contains the artist's and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
+            <source>If the "TITLE" tag contains the artist's and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
             <extracomment>Checkbox tooltip on preferences dialog</extracomment>
             <translation>Jei „PAVADINIMO“ žymėje yra atlikėjo ir takelio pavadinimai, sujungti skirtuko simboliu, tuomet programa bandys priskirti atitinkamas žymes.</translation>
         </message>
@@ -680,8 +680,8 @@ Tai įtakoja tik failo dydį. Visi nustatymai yra nenuostolingieji.</translation
         <message>
             <source>You can browse to the destination directory. You can also input it manually.
 
-If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
-            <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
+If the path is left empty or starts with "." (dot), the result files will be placed in the same directory as the source.</source>
+            <comment>Main form tooltip for "Directory" edit</comment>
             <translation>Galite naršyti paskirties katalogą. Taip pat galite įvesti jį rankiniu būdu.
 
 Jeigu kelias yra paliekamas tuščias arba prasideda nuo „.“ (taško), tuomet, galutiniai failai bus patalpinti į tą patį katalogą kaip ir pradiniai failai.</translation>
@@ -691,41 +691,41 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo „.“ (taško), tuome
             <translation>Šablonas:</translation>
         </message>
         <message>
-            <source>&lt;style type=&quot;text/css&quot;&gt;
+            <source>&lt;style type="text/css"&gt;
 .term {font-weight: bold;}
 .def  { white-space: nowrap; }
 &lt;/style&gt;
 Tokens start with %. You can use the following tokens:
 &lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%n&lt;/td&gt; &lt;td class="def"&gt; - Track number  &lt;/td&gt;
+        &lt;td class="term"&gt;%N&lt;/td&gt; &lt;td class="def"&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%a&lt;/td&gt; &lt;td class="def"&gt; - Artist&lt;/td&gt;
+        &lt;td class="term"&gt;%A&lt;/td&gt; &lt;td class="def"&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%t&lt;/td&gt; &lt;td class="def"&gt; - Track title&lt;/td&gt;
+        &lt;td class="term"&gt;%y&lt;/td&gt; &lt;td class="def"&gt; - Year&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%g&lt;/td&gt; &lt;td class="def"&gt; - Genre&lt;/td&gt;
+        &lt;td class="term"&gt;%C&lt;/td&gt; &lt;td class="def"&gt; - Catalog number&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 &lt;br&gt;&lt;br&gt;
 If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
-            <comment>Main form tooltip for &quot;Pattern&quot; edit</comment>
-            <translation>&lt;style type=&quot;text/css&quot;&gt;
+            <comment>Main form tooltip for "Pattern" edit</comment>
+            <translation>&lt;style type="text/css"&gt;
 .term {font-weight: bold;}
 .def  { white-space: nowrap; }
 &lt;/style&gt;
-Ženklai prasideda nuo %. Galite naudoti sekančius ženklus:
+Tokens start with %. You can use the following tokens:
 &lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Takelio numeris  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Bendras takelių skaičius&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Atlikėjas&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Albumo pavadinimas&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Takelio pavadinimas&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Metai&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Žanras&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%n&lt;/td&gt; &lt;td class="def"&gt; - Track number  &lt;/td&gt;
+        &lt;td class="term"&gt;%N&lt;/td&gt; &lt;td class="def"&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%a&lt;/td&gt; &lt;td class="def"&gt; - Artist&lt;/td&gt;
+        &lt;td class="term"&gt;%A&lt;/td&gt; &lt;td class="def"&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%t&lt;/td&gt; &lt;td class="def"&gt; - Track title&lt;/td&gt;
+        &lt;td class="term"&gt;%y&lt;/td&gt; &lt;td class="def"&gt; - Year&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%g&lt;/td&gt; &lt;td class="def"&gt; - Genre&lt;/td&gt;
+        &lt;td class="term"&gt;%C&lt;/td&gt; &lt;td class="def"&gt; - Catalog number&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 &lt;br&gt;&lt;br&gt;
-Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, tuomet, jei ženklas yra tuščias, tos sekcijos bus paslėptos.</translation>
+If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</translation>
         </message>
         <message>
             <source>Format:</source>
@@ -733,7 +733,7 @@ Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, 
         </message>
         <message>
             <source>Output format</source>
-            <comment>Main form tooltip for &quot;Format&quot; edit</comment>
+            <comment>Main form tooltip for "Format" edit</comment>
             <translation>Išvesties formatas</translation>
         </message>
         <message>
@@ -986,7 +986,7 @@ Ar norite tęsti?</translation>
         </message>
         <message>
             <source>%1 files</source>
-            <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
+            <comment>OpenFile dialog filter line, like "WAV files"</comment>
             <translation>%1 failai</translation>
         </message>
         <message>
@@ -996,7 +996,7 @@ Ar norite tęsti?</translation>
         </message>
         <message>
             <source>All files</source>
-            <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
+            <comment>OpenFile dialog filter line like "All files"</comment>
             <translation>Visi failai</translation>
         </message>
         <message>
@@ -1010,7 +1010,7 @@ Ar norite tęsti?</translation>
             <translation>Pasirinkite garso failą</translation>
         </message>
         <message>
-            <source>&quot;%1&quot; was not set.</source>
+            <source>"%1" was not set.</source>
             <comment>Error message, %1 is an filename.</comment>
             <translation>„%1“ nebuvo nustatyta.</translation>
         </message>
@@ -1054,7 +1054,7 @@ Ar norite tęsti?</translation>
             <translation>Sekantys failai bus perkelti į šiukšlinę. Pašalinti šiuos failus?</translation>
         </message>
         <message>
-            <source>Disk %1 &quot;%2 - %3&quot;</source>
+            <source>Disk %1 "%2 - %3"</source>
             <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
             <translation>Diskas %1 „%2 - %3“</translation>
         </message>
@@ -1147,44 +1147,48 @@ Ar norite tęsti?</translation>
     <context>
         <name>OutPatternButton</name>
         <message>
-            <source>Insert &quot;Track number&quot;</source>
+            <source>Insert "Track number"</source>
             <translation>Įterpti „Takelio numerį“</translation>
         </message>
         <message>
-            <source>Insert &quot;Total number of tracks&quot;</source>
+            <source>Insert "Total number of tracks"</source>
             <translation>Įterpti „Bendrą takelių skaičių“</translation>
         </message>
         <message>
-            <source>Insert &quot;Album performer&quot;</source>
+            <source>Insert "Album performer"</source>
             <translation>Įterpti „Albumo atlikėją“</translation>
         </message>
         <message>
-            <source>Insert &quot;Album title&quot;</source>
+            <source>Insert "Album title"</source>
             <translation>Įterpti „Albumo pavadinimą“</translation>
         </message>
         <message>
-            <source>Insert &quot;Track title&quot;</source>
+            <source>Insert "Track title"</source>
             <translation>Įterpti „Takelio pavadinimą“</translation>
         </message>
         <message>
-            <source>Insert &quot;Year&quot;</source>
+            <source>Insert "Year"</source>
             <translation>Įterpti „Metus“</translation>
         </message>
         <message>
-            <source>Insert &quot;Genre&quot;</source>
+            <source>Insert "Genre"</source>
             <translation>Įterpti „Žanrą“</translation>
         </message>
         <message>
-            <source>Insert &quot;Disc number&quot;</source>
+            <source>Insert "Disc number"</source>
             <translation>Įterpti „Disko numerį“</translation>
         </message>
         <message>
-            <source>Insert &quot;Total number of discs&quot;</source>
+            <source>Insert "Total number of discs"</source>
             <translation>Įterpti „Bendrą diskų skaičių“</translation>
         </message>
         <message>
-            <source>Use &quot;%1&quot;</source>
-            <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
+            <source>Insert "Catalog number"</source>
+            <translation>Insert "Catalog number"</translation>
+        </message>
+        <message>
+            <source>Use "%1"</source>
+            <comment>Predefined out file pattern, string like 'Use "%a/%A/%n - %t"'</comment>
             <translation>Naudoti „%1“</translation>
         </message>
     </context>
@@ -1257,8 +1261,8 @@ Ar norite tęsti?</translation>
         <message>
             <source>You can browse to the destination directory. You can also input it manually.
 
-If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
-            <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
+If the path is left empty or starts with "." (dot), the result files will be placed in the same directory as the source.</source>
+            <comment>Preferences form tooltip for "Directory" edit</comment>
             <translation>Galite naršyti paskirties katalogą. Taip pat galite įvesti jį rankiniu būdu.
 
 Jeigu kelias yra paliekamas tuščias arba prasideda nuo „.“ (taško), tuomet, galutiniai failai bus patalpinti į tą patį katalogą kaip ir pradiniai failai.</translation>
@@ -1269,38 +1273,38 @@ Jeigu kelias yra paliekamas tuščias arba prasideda nuo „.“ (taško), tuome
             <translation>Šablonas:</translation>
         </message>
         <message>
-            <source>&lt;style type=&quot;text/css&quot;&gt;
+            <source>&lt;style type="text/css"&gt;
 .term {font-weight: bold;}
 .def  { white-space: nowrap; }
 &lt;/style&gt;
 Tokens start with %. You can use the following tokens:
 &lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%n&lt;/td&gt; &lt;td class="def"&gt; - Track number  &lt;/td&gt;
+        &lt;td class="term"&gt;%N&lt;/td&gt; &lt;td class="def"&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%a&lt;/td&gt; &lt;td class="def"&gt; - Artist&lt;/td&gt;
+        &lt;td class="term"&gt;%A&lt;/td&gt; &lt;td class="def"&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%t&lt;/td&gt; &lt;td class="def"&gt; - Track title&lt;/td&gt;
+        &lt;td class="term"&gt;%y&lt;/td&gt; &lt;td class="def"&gt; - Year&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%g&lt;/td&gt; &lt;td class="def"&gt; - Genre&lt;/td&gt;
+        &lt;td class="term"&gt;&lt;/td&gt; &lt;td class="def"&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 &lt;br&gt;&lt;br&gt;
 If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
-            <comment>Preferences form tooltip for &quot;Pattern&quot; edit</comment>
-            <translation>&lt;style type=&quot;text/css&quot;&gt;
+            <comment>Preferences form tooltip for "Pattern" edit</comment>
+            <translation>&lt;style type="text/css"&gt;
 .term {font-weight: bold;}
 .def  { white-space: nowrap; }
 &lt;/style&gt;
 Ženklai prasideda nuo %. Galite naudoti sekančius ženklus:
 &lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Takelio numeris  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Bendras takelių skaičius&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Atlikėjas&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Albumo pavadinimas&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Takelio pavadinimas&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Metai&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Žanras&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%n&lt;/td&gt; &lt;td class="def"&gt; - Takelio numeris  &lt;/td&gt;
+        &lt;td class="term"&gt;%N&lt;/td&gt; &lt;td class="def"&gt; - Bendras takelių skaičius&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%a&lt;/td&gt; &lt;td class="def"&gt; - Atlikėjas&lt;/td&gt;
+        &lt;td class="term"&gt;%A&lt;/td&gt; &lt;td class="def"&gt; - Albumo pavadinimas&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%t&lt;/td&gt; &lt;td class="def"&gt; - Takelio pavadinimas&lt;/td&gt;
+        &lt;td class="term"&gt;%y&lt;/td&gt; &lt;td class="def"&gt; - Metai&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%g&lt;/td&gt; &lt;td class="def"&gt; - Žanras&lt;/td&gt;
+        &lt;td class="term"&gt;&lt;/td&gt; &lt;td class="def"&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 &lt;br&gt;&lt;br&gt;
 Jeigu teksto sekcijas, kuriose yra ženklai, apsupsite riestiniais skliaustais, tuomet, jei ženklas yra tuščias, tos sekcijos bus paslėptos.</translation>
@@ -1436,7 +1440,7 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
             <translation>-</translation>
         </message>
         <message>
-            <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
+            <source>Are you sure you want to delete the profile "%1"?</source>
             <comment>Message box text</comment>
             <translation>Ar tikrai norite ištrinti profilį „%1“?</translation>
         </message>
@@ -1501,11 +1505,11 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
             <translation>Nepavyksta įrašyti CUE failo &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
         </message>
         <message>
-            <source>I can't create directory &quot;%1&quot;.</source>
+            <source>I can't create directory "%1".</source>
             <translation>Nepavyksta sukurti katalogo „%1“.</translation>
         </message>
         <message>
-            <source>I can't write to directory &quot;%1&quot;.</source>
+            <source>I can't write to directory "%1".</source>
             <translation>Nepavyksta rašyti į katalogą „%1“.</translation>
         </message>
         <message>
@@ -1518,7 +1522,7 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
             <translation>Įterpta ties %1</translation>
         </message>
         <message>
-            <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
+            <source>File &lt;b&gt;"%1"&lt;/b&gt; does not exist</source>
             <translation>Failo &lt;b&gt;„%1“&lt;/b&gt; nėra</translation>
         </message>
         <message>
@@ -1608,6 +1612,12 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
         <message>
             <source>Comment:</source>
             <translation>Komentaras:</translation>
+        </message>
+        <message>
+            <source>Catalog number:</source>
+            <comment>Music tag name</comment>
+            <extracomment>Music tag name</extracomment>
+            <translation>Catalog number:</translation>
         </message>
     </context>
     <context>
@@ -1763,6 +1773,11 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
             <translation>Dainos autorius</translation>
         </message>
         <message>
+            <source>Catalog number</source>
+            <comment>Table header.</comment>
+            <translation>Catalog number</translation>
+        </message>
+        <message>
             <source>Multiple values</source>
             <translation>Kelios reikšmės</translation>
         </message>
@@ -1839,18 +1854,18 @@ Naudojant albumo stiprinimo analizę, albume bus išlaikyti garsio skirtumai.</t
             <translation>Tas pats garso įrašo failas yra naudojamas skirtingiems takeliams.</translation>
         </message>
         <message>
-            <source>Disk %1 &quot;%2 - %3&quot; will overwrite its own files.</source>
+            <source>Disk %1 "%2 - %3" will overwrite its own files.</source>
             <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
             <translation>Diskas %1 „%2 - %3“ perrašys savo failus.</translation>
         </message>
         <message>
-            <source>Disk %1 &quot;%2 - %3&quot; will overwrite the files of this disk.</source>
+            <source>Disk %1 "%2 - %3" will overwrite the files of this disk.</source>
             <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
             <translation>Diskas %1 „%2 - %3“ perrašys šio disko failus.</translation>
         </message>
         <message>
             <source>The output files of the disc are mixed with the files of disc %1.
-You could change the &quot;Start num&quot; for one of them.</source>
+You could change the "Start num" for one of them.</source>
             <comment>Error message, %1 is the disk description, artist and album for the disc, respectively</comment>
             <translation>Disko išvesties failai yra sumaišyti su disko %1 failais.
 Kažkuriam iš jų galite pakeisti „Numeruoti nuo“ reikšmę.</translation>

@@ -74,7 +74,7 @@
         <message>
             <source>Flacon account on github.com</source>
             <comment>Thanks on the about page</comment>
-            <translation>Обліковий запис &quot;Flacon&quot; на github.com.</translation>
+            <translation>Обліковий запис "Flacon" на github.com.</translation>
         </message>
         <message>
             <source>Icon for application</source>
@@ -438,7 +438,7 @@ In CBR mode, it sets the specific output bitrate.
         <message>
             <source>I can't read %1 file</source>
             <comment>Encoder error. %1 is a file name.</comment>
-            <translation>Не вдається прочитати &quot;%1&quot;</translation>
+            <translation>Не вдається прочитати "%1"</translation>
         </message>
         <message>
             <source>I can't rename file:
@@ -511,25 +511,25 @@ In CBR mode, it sets the specific output bitrate.
             <translation>Embed to audio files</translation>
         </message>
         <message>
-            <source>Insert &quot;Artist&quot;</source>
+            <source>Insert "Artist"</source>
             <translation>Вставити ім’я виконавця</translation>
         </message>
         <message>
-            <source>Insert &quot;Album title&quot;</source>
+            <source>Insert "Album title"</source>
             <translation>Вставити назву альбому</translation>
         </message>
         <message>
-            <source>Insert &quot;Year&quot;</source>
+            <source>Insert "Year"</source>
             <translation>Вставити рік</translation>
         </message>
         <message>
-            <source>Insert &quot;Genre&quot;</source>
+            <source>Insert "Genre"</source>
             <translation>Вставити жанр</translation>
         </message>
         <message>
-            <source>Use &quot;%1&quot;</source>
-            <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
-            <translation>Використовувати &quot;%1&quot;</translation>
+            <source>Use "%1"</source>
+            <comment>Predefined CUE file name, string like 'Use "%a/%A/%n - %t.cue"'</comment>
+            <translation>Використовувати "%1"</translation>
         </message>
         <message>
             <source>Extract to separate file</source>
@@ -600,9 +600,9 @@ This only affects the file size. All settings are lossless.</source>
             <translation>CUE tags</translation>
         </message>
         <message>
-            <source>If the &quot;TITLE&quot; tag contains the artist's and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
+            <source>If the "TITLE" tag contains the artist's and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
             <extracomment>Checkbox tooltip on preferences dialog</extracomment>
-            <translation>If the &quot;TITLE&quot; tag contains the artist's and the track names combined by a separator character, the program will try to assign the appropriate tags.</translation>
+            <translation>If the "TITLE" tag contains the artist's and the track names combined by a separator character, the program will try to assign the appropriate tags.</translation>
         </message>
         <message>
             <source>Use heuristic definition of track performer</source>
@@ -680,52 +680,52 @@ This only affects the file size. All settings are lossless.</source>
         <message>
             <source>You can browse to the destination directory. You can also input it manually.
 
-If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
-            <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
+If the path is left empty or starts with "." (dot), the result files will be placed in the same directory as the source.</source>
+            <comment>Main form tooltip for "Directory" edit</comment>
             <translation>Ви можете вибрати директорію для вихідних файлів, або вказати її руками.
  
-Якщо залишити поле порожнім, або вказати &quot;.&quot; (крапку), то файли результатів будуть створюватися у тій самій директорії, що й сирці. </translation>
+Якщо залишити поле порожнім, або вказати "." (крапку), то файли результатів будуть створюватися у тій самій директорії, що й сирці. </translation>
         </message>
         <message>
             <source>Pattern:</source>
             <translation>Шаблон:</translation>
         </message>
         <message>
-            <source>&lt;style type=&quot;text/css&quot;&gt;
+            <source>&lt;style type="text/css"&gt;
 .term {font-weight: bold;}
 .def  { white-space: nowrap; }
 &lt;/style&gt;
 Tokens start with %. You can use the following tokens:
 &lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%n&lt;/td&gt; &lt;td class="def"&gt; - Track number  &lt;/td&gt;
+        &lt;td class="term"&gt;%N&lt;/td&gt; &lt;td class="def"&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%a&lt;/td&gt; &lt;td class="def"&gt; - Artist&lt;/td&gt;
+        &lt;td class="term"&gt;%A&lt;/td&gt; &lt;td class="def"&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%t&lt;/td&gt; &lt;td class="def"&gt; - Track title&lt;/td&gt;
+        &lt;td class="term"&gt;%y&lt;/td&gt; &lt;td class="def"&gt; - Year&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%g&lt;/td&gt; &lt;td class="def"&gt; - Genre&lt;/td&gt;
+        &lt;td class="term"&gt;%C&lt;/td&gt; &lt;td class="def"&gt; - Catalog number&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 &lt;br&gt;&lt;br&gt;
 If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
-            <comment>Main form tooltip for &quot;Pattern&quot; edit</comment>
-            <translation>&lt;style type=&quot;text/css&quot;&gt;
+            <comment>Main form tooltip for "Pattern" edit</comment>
+            <translation>&lt;style type="text/css"&gt;
 .term {font-weight: bold;}
 .def  { white-space: nowrap; }
 &lt;/style&gt;
-Поля починаються зі знаку %. Ви можете використовувати такі поля:
+Tokens start with %. You can use the following tokens:
 &lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Номер доріжки  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Кількість доріжок&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Виконавець&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Назва альбому&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Назва доріжки&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Рік&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Жанр&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%n&lt;/td&gt; &lt;td class="def"&gt; - Track number  &lt;/td&gt;
+        &lt;td class="term"&gt;%N&lt;/td&gt; &lt;td class="def"&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%a&lt;/td&gt; &lt;td class="def"&gt; - Artist&lt;/td&gt;
+        &lt;td class="term"&gt;%A&lt;/td&gt; &lt;td class="def"&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%t&lt;/td&gt; &lt;td class="def"&gt; - Track title&lt;/td&gt;
+        &lt;td class="term"&gt;%y&lt;/td&gt; &lt;td class="def"&gt; - Year&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%g&lt;/td&gt; &lt;td class="def"&gt; - Genre&lt;/td&gt;
+        &lt;td class="term"&gt;%C&lt;/td&gt; &lt;td class="def"&gt; - Catalog number&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 &lt;br&gt;&lt;br&gt;
-Якщо Ви оточили частину тексту фігурними дужками, то цієї частини не буде видко, якщо значення полів будуть порожніми.</translation>
+If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</translation>
         </message>
         <message>
             <source>Format:</source>
@@ -733,7 +733,7 @@ If you surround sections of text that contain a token with braces, these section
         </message>
         <message>
             <source>Output format</source>
-            <comment>Main form tooltip for &quot;Format&quot; edit</comment>
+            <comment>Main form tooltip for "Format" edit</comment>
             <translation>Формат файлів результату</translation>
         </message>
         <message>
@@ -986,7 +986,7 @@ Do you want to continue?</source>
         </message>
         <message>
             <source>%1 files</source>
-            <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
+            <comment>OpenFile dialog filter line, like "WAV files"</comment>
             <translation>%1 файли</translation>
         </message>
         <message>
@@ -996,7 +996,7 @@ Do you want to continue?</source>
         </message>
         <message>
             <source>All files</source>
-            <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
+            <comment>OpenFile dialog filter line like "All files"</comment>
             <translation>Усі файли</translation>
         </message>
         <message>
@@ -1010,9 +1010,9 @@ Do you want to continue?</source>
             <translation>Обрати авдіофайл</translation>
         </message>
         <message>
-            <source>&quot;%1&quot; was not set.</source>
+            <source>"%1" was not set.</source>
             <comment>Error message, %1 is an filename.</comment>
-            <translation>&quot;%1&quot; не вдалося встановити.</translation>
+            <translation>"%1" не вдалося встановити.</translation>
         </message>
         <message>
             <source>Select directory</source>
@@ -1054,9 +1054,9 @@ Do you want to continue?</source>
             <translation>The following files will be moved to the trash. Remove the following files?</translation>
         </message>
         <message>
-            <source>Disk %1 &quot;%2 - %3&quot;</source>
+            <source>Disk %1 "%2 - %3"</source>
             <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-            <translation>Disk %1 &quot;%2 - %3&quot;</translation>
+            <translation>Disk %1 "%2 - %3"</translation>
         </message>
         <message>
             <source>Disk %1</source>
@@ -1147,45 +1147,49 @@ Do you want to continue?</source>
     <context>
         <name>OutPatternButton</name>
         <message>
-            <source>Insert &quot;Track number&quot;</source>
+            <source>Insert "Track number"</source>
             <translation>Вставити номер доріжки</translation>
         </message>
         <message>
-            <source>Insert &quot;Total number of tracks&quot;</source>
+            <source>Insert "Total number of tracks"</source>
             <translation>Вставити кількість доріжок</translation>
         </message>
         <message>
-            <source>Insert &quot;Album performer&quot;</source>
-            <translation>Insert &quot;Album performer&quot;</translation>
+            <source>Insert "Album performer"</source>
+            <translation>Insert "Album performer"</translation>
         </message>
         <message>
-            <source>Insert &quot;Album title&quot;</source>
+            <source>Insert "Album title"</source>
             <translation>Вставити назву альбому</translation>
         </message>
         <message>
-            <source>Insert &quot;Track title&quot;</source>
+            <source>Insert "Track title"</source>
             <translation>Вставити назву доріжки</translation>
         </message>
         <message>
-            <source>Insert &quot;Year&quot;</source>
+            <source>Insert "Year"</source>
             <translation>Вставити рік</translation>
         </message>
         <message>
-            <source>Insert &quot;Genre&quot;</source>
+            <source>Insert "Genre"</source>
             <translation>Вставити жанр</translation>
         </message>
         <message>
-            <source>Insert &quot;Disc number&quot;</source>
+            <source>Insert "Disc number"</source>
             <translation>Вставити номер диска</translation>
         </message>
         <message>
-            <source>Insert &quot;Total number of discs&quot;</source>
+            <source>Insert "Total number of discs"</source>
             <translation>Вставити кількість дисків</translation>
         </message>
         <message>
-            <source>Use &quot;%1&quot;</source>
-            <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
-            <translation>Використовувати &quot;%1&quot;</translation>
+            <source>Insert "Catalog number"</source>
+            <translation>Insert "Catalog number"</translation>
+        </message>
+        <message>
+            <source>Use "%1"</source>
+            <comment>Predefined out file pattern, string like 'Use "%a/%A/%n - %t"'</comment>
+            <translation>Використовувати "%1"</translation>
         </message>
     </context>
     <context>
@@ -1257,11 +1261,11 @@ Do you want to continue?</source>
         <message>
             <source>You can browse to the destination directory. You can also input it manually.
 
-If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
-            <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
+If the path is left empty or starts with "." (dot), the result files will be placed in the same directory as the source.</source>
+            <comment>Preferences form tooltip for "Directory" edit</comment>
             <translation>Ви можете вибрати директорію для вихідних файлів, або вказати її руками.
  
-Якщо залишити поле порожнім, або вказати &quot;.&quot; (крапку), то файли результатів будуть створюватися у тій самій директорії, що й сирці. </translation>
+Якщо залишити поле порожнім, або вказати "." (крапку), то файли результатів будуть створюватися у тій самій директорії, що й сирці. </translation>
         </message>
         <message>
             <source>Pattern:</source>
@@ -1269,38 +1273,38 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
             <translation>Шаблон:</translation>
         </message>
         <message>
-            <source>&lt;style type=&quot;text/css&quot;&gt;
+            <source>&lt;style type="text/css"&gt;
 .term {font-weight: bold;}
 .def  { white-space: nowrap; }
 &lt;/style&gt;
 Tokens start with %. You can use the following tokens:
 &lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%n&lt;/td&gt; &lt;td class="def"&gt; - Track number  &lt;/td&gt;
+        &lt;td class="term"&gt;%N&lt;/td&gt; &lt;td class="def"&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%a&lt;/td&gt; &lt;td class="def"&gt; - Artist&lt;/td&gt;
+        &lt;td class="term"&gt;%A&lt;/td&gt; &lt;td class="def"&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%t&lt;/td&gt; &lt;td class="def"&gt; - Track title&lt;/td&gt;
+        &lt;td class="term"&gt;%y&lt;/td&gt; &lt;td class="def"&gt; - Year&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%g&lt;/td&gt; &lt;td class="def"&gt; - Genre&lt;/td&gt;
+        &lt;td class="term"&gt;&lt;/td&gt; &lt;td class="def"&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 &lt;br&gt;&lt;br&gt;
 If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
-            <comment>Preferences form tooltip for &quot;Pattern&quot; edit</comment>
-            <translation>&lt;style type=&quot;text/css&quot;&gt;
+            <comment>Preferences form tooltip for "Pattern" edit</comment>
+            <translation>&lt;style type="text/css"&gt;
 .term {font-weight: bold;}
 .def  { white-space: nowrap; }
 &lt;/style&gt;
 Поля починаються зі знаку %. Ви можете використовувати такі поля:
 &lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Номер доріжки  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Кількість доріжок&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Виконавець&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Назва альбому&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Назва доріжки&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Рік&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Жанр&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%n&lt;/td&gt; &lt;td class="def"&gt; - Номер доріжки  &lt;/td&gt;
+        &lt;td class="term"&gt;%N&lt;/td&gt; &lt;td class="def"&gt; - Кількість доріжок&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%a&lt;/td&gt; &lt;td class="def"&gt; - Виконавець&lt;/td&gt;
+        &lt;td class="term"&gt;%A&lt;/td&gt; &lt;td class="def"&gt; - Назва альбому&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%t&lt;/td&gt; &lt;td class="def"&gt; - Назва доріжки&lt;/td&gt;
+        &lt;td class="term"&gt;%y&lt;/td&gt; &lt;td class="def"&gt; - Рік&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%g&lt;/td&gt; &lt;td class="def"&gt; - Жанр&lt;/td&gt;
+        &lt;td class="term"&gt;&lt;/td&gt; &lt;td class="def"&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 &lt;br&gt;&lt;br&gt;
 Якщо Ви оточили частину тексту фігурними дужками, то цієї частини не буде видко, якщо значення полів будуть порожніми.</translation>
@@ -1436,7 +1440,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
             <translation>-</translation>
         </message>
         <message>
-            <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
+            <source>Are you sure you want to delete the profile "%1"?</source>
             <comment>Message box text</comment>
             <translation>Ви впевнені, що бажаєте вилучити профіль %1?</translation>
         </message>
@@ -1501,12 +1505,12 @@ Using the album-gain analysis will preserve the volume differences within an alb
             <translation>Не вдається записати CUE файл &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
         </message>
         <message>
-            <source>I can't create directory &quot;%1&quot;.</source>
-            <translation>Не виходить створити директорію &quot;%1&quot;.</translation>
+            <source>I can't create directory "%1".</source>
+            <translation>Не виходить створити директорію "%1".</translation>
         </message>
         <message>
-            <source>I can't write to directory &quot;%1&quot;.</source>
-            <translation>Не виходить писати в директорію &quot;%1&quot;.</translation>
+            <source>I can't write to directory "%1".</source>
+            <translation>Не виходить писати в директорію "%1".</translation>
         </message>
         <message>
             <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
@@ -1518,7 +1522,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
             <translation>Embedded on %1</translation>
         </message>
         <message>
-            <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
+            <source>File &lt;b&gt;"%1"&lt;/b&gt; does not exist</source>
             <translation>Файлу &lt;b&gt;%1&lt;/b&gt; не існує.</translation>
         </message>
         <message>
@@ -1608,6 +1612,12 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <message>
             <source>Comment:</source>
             <translation>Коментар:</translation>
+        </message>
+        <message>
+            <source>Catalog number:</source>
+            <comment>Music tag name</comment>
+            <extracomment>Music tag name</extracomment>
+            <translation>Catalog number:</translation>
         </message>
     </context>
     <context>
@@ -1763,6 +1773,11 @@ Using the album-gain analysis will preserve the volume differences within an alb
             <translation>Song writer</translation>
         </message>
         <message>
+            <source>Catalog number</source>
+            <comment>Table header.</comment>
+            <translation>Catalog number</translation>
+        </message>
+        <message>
             <source>Multiple values</source>
             <translation>Кілька значень</translation>
         </message>
@@ -1839,21 +1854,21 @@ Using the album-gain analysis will preserve the volume differences within an alb
             <translation>The same audio file is used for different tracks.</translation>
         </message>
         <message>
-            <source>Disk %1 &quot;%2 - %3&quot; will overwrite its own files.</source>
+            <source>Disk %1 "%2 - %3" will overwrite its own files.</source>
             <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-            <translation>Disk %1 &quot;%2 - %3&quot; will overwrite its own files.</translation>
+            <translation>Disk %1 "%2 - %3" will overwrite its own files.</translation>
         </message>
         <message>
-            <source>Disk %1 &quot;%2 - %3&quot; will overwrite the files of this disk.</source>
+            <source>Disk %1 "%2 - %3" will overwrite the files of this disk.</source>
             <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-            <translation>Disk %1 &quot;%2 - %3&quot; will overwrite the files of this disk.</translation>
+            <translation>Disk %1 "%2 - %3" will overwrite the files of this disk.</translation>
         </message>
         <message>
             <source>The output files of the disc are mixed with the files of disc %1.
-You could change the &quot;Start num&quot; for one of them.</source>
+You could change the "Start num" for one of them.</source>
             <comment>Error message, %1 is the disk description, artist and album for the disc, respectively</comment>
             <translation>The output files of the disc are mixed with the files of disc %1.
-You could change the &quot;Start num&quot; for one of them.</translation>
+You could change the "Start num" for one of them.</translation>
         </message>
         <message>
             <source>Disk %1 uses the same CUE file.</source>

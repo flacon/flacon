@@ -1,94 +1,94 @@
 <?xml version="1.0" ?>
 <!DOCTYPE TS>
-<TS version="2.1" language="hu">
+<TS version="2.1" language="ie">
     <context>
         <name>AboutDialog</name>
         <message>
             <source>About Flacon</source>
-            <translation>Flacon névjegye</translation>
+            <translation>Pri Flacon</translation>
         </message>
         <message>
             <source>About</source>
-            <translation>About</translation>
+            <translation>Pri</translation>
         </message>
         <message>
             <source>Author</source>
-            <translation>Szerző</translation>
+            <translation>Autor</translation>
         </message>
         <message>
             <source>Thanks</source>
-            <translation>Köszönet</translation>
+            <translation>Mersís</translation>
         </message>
         <message>
             <source>Translations</source>
-            <translation>Fordítások</translation>
+            <translation>Traductiones</translation>
         </message>
         <message>
             <source>External programs</source>
-            <translation>Külső alkalmazások</translation>
+            <translation>Programmas extern</translation>
         </message>
         <message>
             <source>Homepage: %1</source>
-            <translation>Honlap: %1</translation>
+            <translation>Hem-págine: %1</translation>
         </message>
         <message>
             <source>Bug tracker %1</source>
             <comment>About dialog, About tab</comment>
-            <translation>Hibakövetés %1</translation>
+            <translation>Bug tracker %1</translation>
         </message>
         <message>
             <source>License: %1</source>
-            <translation>Licenc: %1</translation>
+            <translation>Licentie: %1</translation>
         </message>
         <message>
             <source>Special thanks to:</source>
-            <translation>Különleges köszönet neki(k):</translation>
+            <translation>Un special mersí a:</translation>
         </message>
         <message>
             <source>Flacon uses external programs. Many thanks to their authors!</source>
-            <translation>A Flacon külső programokat használ. Ezer köszönet a szerzőknek!</translation>
+            <translation>Flacon uses external programs. Many thanks to their authors!</translation>
         </message>
         <message>
             <source>Extracts individual tracks from one big audio file containing the entire album.</source>
-            <translation>Egyéni sávok kibontása egy nagy hangfájlból, amely tartalmazza a teljes albumot.</translation>
+            <translation>Extrae distint tracks ex un singul audiofile quel contene li tot album.</translation>
         </message>
         <message>
             <source>Copyright: %1-%2 %3</source>
-            <translation>%1 %2 használata - Copyright (C) %3</translation>
+            <translation>Jure editorial: %1-%2 %3</translation>
         </message>
         <message>
             <source>WavPack support patch</source>
             <comment>Thanks on the about page</comment>
-            <translation>Wavpack támogató folt</translation>
+            <translation>WavPack support patch</translation>
         </message>
         <message>
             <source>Packaging, testing</source>
             <comment>Thanks on the about page</comment>
-            <translation>Csomagolás, tesztelés</translation>
+            <translation>Packaging, testing</translation>
         </message>
         <message>
             <source>Improvements in the UI</source>
             <comment>Thanks on the about page</comment>
-            <translation>Felületi fejlesztések</translation>
+            <translation>Improvements in the UI</translation>
         </message>
         <message>
             <source>Flacon account on github.com</source>
             <comment>Thanks on the about page</comment>
-            <translation>Flacon fiók a github.com-on</translation>
+            <translation>Flacon account on github.com</translation>
         </message>
         <message>
             <source>Icon for application</source>
             <comment>Thanks on the about page</comment>
-            <translation>Ikon az alkalmazáshoz</translation>
+            <translation>Icon for application</translation>
         </message>
         <message>
             <source>Icons for application</source>
             <comment>Thanks on the about page</comment>
-            <translation>Ikonok az alkalmazáshoz</translation>
+            <translation>Icons for application</translation>
         </message>
         <message>
             <source>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href='%1'&gt;Transifex&lt;/a&gt;.</source>
-            <translation>A flakon több nyelvre is le lett lefordítva, köszönhetően a Falcon fordító csapat munkájának a &lt;a href='%1'&gt;Transifex&lt;/a&gt;-en.</translation>
+            <translation>Flacon is translated into many languages thanks to the work of the Flacon translation teams on &lt;a href='%1'&gt;Transifex&lt;/a&gt;.</translation>
         </message>
     </context>
     <context>
@@ -96,7 +96,7 @@
         <message>
             <source>Create a profile</source>
             <extracomment>Add profile dialog title</extracomment>
-            <translation>Create a profile</translation>
+            <translation>Crear un profil</translation>
         </message>
         <message>
             <source>To create a profile, fill out the following information:</source>
@@ -111,19 +111,19 @@
         <message>
             <source>Audio format:</source>
             <extracomment>Add profile dialog, audio format label</extracomment>
-            <translation>Audio format:</translation>
+            <translation>Formate de audio:</translation>
         </message>
         <message>
             <source>Create a profile</source>
             <comment>Button caption</comment>
-            <translation>Create a profile</translation>
+            <translation>Crear un profil</translation>
         </message>
     </context>
     <context>
         <name>AlacConfigPage</name>
         <message>
             <source>Compression:</source>
-            <translation>Tömörítő:</translation>
+            <translation>Compression:</translation>
         </message>
     </context>
     <context>
@@ -143,7 +143,7 @@
         <message>
             <source>Auto detect</source>
             <comment>Codepage auto detection</comment>
-            <translation>Automatikus detektálás</translation>
+            <translation>Detecter automaticmen</translation>
         </message>
         <message>
             <source>Unicode (UTF-8)</source>
@@ -159,11 +159,11 @@
         </message>
         <message>
             <source>Cyrillic (Win-1251)</source>
-            <translation>Cyrillic (Win-1251)</translation>
+            <translation>Cirillic (Win-1251)</translation>
         </message>
         <message>
             <source>Cyrillic (CP-866)</source>
-            <translation>Cyrillic (CP-866)</translation>
+            <translation>Cirillic (CP-866)</translation>
         </message>
         <message>
             <source>Latin-1 (ISO-8859-1)</source>
@@ -255,38 +255,38 @@
         </message>
         <message>
             <source>Simplified Chinese (GB18030)</source>
-            <translation>Simplified Chinese (GB18030)</translation>
+            <translation>Chinesi simplificat (GB18030)</translation>
         </message>
         <message>
             <source>Traditional Chinese (BIG5)</source>
-            <translation>Traditional Chinese (BIG5)</translation>
+            <translation>Chinesi traditional (BIG5)</translation>
         </message>
         <message>
             <source>Japanese (CP932)</source>
-            <translation>Japanese (CP932)</translation>
+            <translation>Japanesi (CP932)</translation>
         </message>
     </context>
     <context>
         <name>ConfigPage_Mp3</name>
         <message>
             <source>VBR medium</source>
-            <translation>Közepes VBR</translation>
+            <translation>VBR medium</translation>
         </message>
         <message>
             <source>VBR standard</source>
-            <translation>Általános VBR</translation>
+            <translation>VBR standard</translation>
         </message>
         <message>
             <source>VBR extreme</source>
-            <translation>Extrém VBR</translation>
+            <translation>VBR extreme</translation>
         </message>
         <message>
             <source>VBR quality</source>
-            <translation>VBR minőség</translation>
+            <translation>VBR quality</translation>
         </message>
         <message>
             <source>CBR insane</source>
-            <translation>Őrült CBR</translation>
+            <translation>CBR insane</translation>
         </message>
         <message>
             <source>CBR kbps</source>
@@ -344,7 +344,7 @@
         <name>ConfigPage_Opus</name>
         <message>
             <source>Bitrate type:</source>
-            <translation>Bitráta típusa:</translation>
+            <translation>Bitrate type:</translation>
         </message>
         <message>
             <source>&lt;dt&gt;VBR - variable bitrate&lt;/dt&gt;
@@ -360,7 +360,7 @@
         </message>
         <message>
             <source>Bitrate:</source>
-            <translation>Bitráta:</translation>
+            <translation>Bitrate:</translation>
         </message>
         <message>
             <source>Sets the target bitrate in kb/s (6-256 per channel).
@@ -369,18 +369,17 @@ In VBR mode, this sets the average rate for a large and diverse collection of au
 &lt;p&gt;
 In CBR mode, it sets the specific output bitrate.
 </source>
-            <translation>Beállítja a cél bitrátákat kb/mp-ben (6-256 csatornánként).
+            <translation>Sets the target bitrate in kb/s (6-256 per channel).
 &lt;p&gt;
-VBR módban ez az érték egy nagy és változatos hanggyűjtemény átlagos értékét állítja be.
+In VBR mode, this sets the average rate for a large and diverse collection of audio.
 &lt;p&gt;
-CBR módban beállítja az adott kimeneti bitrátát.
-.
+In CBR mode, it sets the specific output bitrate.
 </translation>
         </message>
         <message>
             <source>VBR - variable bitrate</source>
             <comment>Opus encoding mode</comment>
-            <translation>VBR - változó bitráta</translation>
+            <translation>VBR - variable bitrate</translation>
         </message>
         <message>
             <source>CVBR - constrained variable bitrate</source>
@@ -392,7 +391,7 @@ CBR módban beállítja az adott kimeneti bitrátát.
         <name>Conv::Converter</name>
         <message>
             <source>Conversion is not possible:</source>
-            <translation>Átalakítása nem lehetséges:</translation>
+            <translation>Li conversion es impossibil:</translation>
         </message>
     </context>
     <context>
@@ -415,7 +414,7 @@ CBR módban beállítja az adott kimeneti bitrátát.
         <message>
             <source>I can't write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
             <comment>Error string, %1 is a filename, %2 error message</comment>
-            <translation>Nem lehetett írni az &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2 fájlt</translation>
+            <translation>I can't write file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
         </message>
     </context>
     <context>
@@ -424,8 +423,8 @@ CBR módban beállítja az adott kimeneti bitrátát.
             <source>I can't rename file:
 %1 to %2
 %3</source>
-            <translation>Nem tudtam átnevezni:
-%1 erre %2
+            <translation>I can't rename file:
+%1 to %2
 %3</translation>
         </message>
     </context>
@@ -439,14 +438,14 @@ CBR módban beállítja az adott kimeneti bitrátát.
         <message>
             <source>I can't read %1 file</source>
             <comment>Encoder error. %1 is a file name.</comment>
-            <translation>Nem tudtam olvasni a %1 fájlt</translation>
+            <translation>I can't read %1 file</translation>
         </message>
         <message>
             <source>I can't rename file:
 %1 to %2
 %3</source>
-            <translation>Nem tudtam átnevezni:
-%1 erre %2
+            <translation>I can't rename file:
+%1 to %2
 %3</translation>
         </message>
     </context>
@@ -455,18 +454,18 @@ CBR módban beállítja az adott kimeneti bitrátát.
         <message>
             <source>I can't read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
             <comment>Splitter error. %1 is a file name, %2 is a system error text.</comment>
-            <translation>Nem lehetett olvasni  &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+            <translation>I can't read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
         </message>
     </context>
     <context>
         <name>CoverDialog</name>
         <message>
             <source>Select cover image</source>
-            <translation>Borítókép kiválasztása</translation>
+            <translation>Select cover image</translation>
         </message>
         <message>
             <source>Without cover image</source>
-            <translation>Borítókép nélkül</translation>
+            <translation>Without cover image</translation>
         </message>
     </context>
     <context>
@@ -474,32 +473,32 @@ CBR módban beállítja az adott kimeneti bitrátát.
         <message>
             <source>Keep original image size</source>
             <comment>Cover image option on the preferences dialog</comment>
-            <translation>Tartsa meg az eredeti képfájl méretet</translation>
+            <translation>Keep original image size</translation>
         </message>
         <message>
             <source> px</source>
-            <translation>px</translation>
+            <translation> px</translation>
         </message>
         <message>
             <source>Resize if image size greater than</source>
             <comment>Cover image option on the preferences dialog</comment>
-            <translation>Átméretezés, ha a képfájl mérete nagyobb, mint</translation>
+            <translation>Resize if image size greater than</translation>
         </message>
     </context>
     <context>
         <name>CueGroupBox</name>
         <message>
             <source>Create per track CUE sheet</source>
-            <translation>CUE mező létrehozása sávonként</translation>
+            <translation>Create per track CUE sheet</translation>
         </message>
         <message>
             <source>File name format</source>
             <comment>Preferences dialog edit tooltip</comment>
-            <translation>File name format</translation>
+            <translation>Formate del nómine de file</translation>
         </message>
         <message>
             <source>First track pregap:</source>
-            <translation>Első pregap sáv:</translation>
+            <translation>First track pregap:</translation>
         </message>
         <message>
             <source>Write to file</source>
@@ -513,53 +512,53 @@ CBR módban beállítja az adott kimeneti bitrátát.
         </message>
         <message>
             <source>Insert "Artist"</source>
-            <translation>"Előadó" beszúrása</translation>
+            <translation>Insert "Artist"</translation>
         </message>
         <message>
             <source>Insert "Album title"</source>
-            <translation>"Albumcím" beszúrása</translation>
+            <translation>Insert "Album title"</translation>
         </message>
         <message>
             <source>Insert "Year"</source>
-            <translation>"Év" beszúrása</translation>
+            <translation>Inserter «Annu»</translation>
         </message>
         <message>
             <source>Insert "Genre"</source>
-            <translation>"Műfaj" beszúrása</translation>
+            <translation>Insert "Genre"</translation>
         </message>
         <message>
             <source>Use "%1"</source>
             <comment>Predefined CUE file name, string like 'Use "%a/%A/%n - %t.cue"'</comment>
-            <translation>"%1" használata</translation>
+            <translation>Usar «%1»</translation>
         </message>
         <message>
             <source>Extract to separate file</source>
-            <translation>Kibontás különálló fájlba</translation>
+            <translation>Extract to separate file</translation>
         </message>
         <message>
             <source>Add to first track</source>
-            <translation>Adja az első sávhoz</translation>
+            <translation>Add to first track</translation>
         </message>
     </context>
     <context>
         <name>EncoderConfigPage</name>
         <message>
             <source>Sets encoding quality, between %1 (lowest) and %2 (highest).</source>
-            <translation>Átalakítási minőség beállítása %1 (alacsonyabb) és %2 (magasabb) között.</translation>
+            <translation>Sets encoding quality, between %1 (lowest) and %2 (highest).</translation>
         </message>
         <message>
             <source>Sets compression level, between %1 (fastest) and %2 (highest compression).
 This only affects the file size. All settings are lossless.</source>
-            <translation>Tömörítési szint beállítása %1 (gyorsabb) és %2 (nagyobb tömörítés) között.
-Ez csak a fájl méretet befolyásolja. Minden beállítás veszteségmentes.</translation>
+            <translation>Sets compression level, between %1 (fastest) and %2 (highest compression).
+This only affects the file size. All settings are lossless.</translation>
         </message>
         <message>
             <source>%1 kbps</source>
-            <translation>%1 kbit/s</translation>
+            <translation>%1 kbps</translation>
         </message>
         <message>
             <source>Default</source>
-            <translation>Alapértelmezés</translation>
+            <translation>Predefinit</translation>
         </message>
     </context>
     <context>
@@ -584,21 +583,21 @@ Ez csak a fájl méretet befolyásolja. Minden beállítás veszteségmentes.</t
         <name>GeneralPage</name>
         <message>
             <source>Thread count:</source>
-            <translation>Szálnak száma:</translation>
+            <translation>Thread count:</translation>
         </message>
         <message>
             <source>The number of threads in the conversion process.</source>
-            <translation>A szálak száma a konvertálási folyamatban.</translation>
+            <translation>The number of threads in the conversion process.</translation>
         </message>
         <message>
             <source>Temporary directory:</source>
-            <translation>Ideiglenes könyvtár:</translation>
+            <translation>Temporary directory:</translation>
         </message>
         <message>
             <source>CUE tags</source>
             <comment>Groupbox title on preferences dialog</comment>
             <extracomment>Groupbox title on preferences dialog</extracomment>
-            <translation>CUE tags</translation>
+            <translation>Tags CUE</translation>
         </message>
         <message>
             <source>If the "TITLE" tag contains the artist's and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
@@ -618,7 +617,7 @@ Ez csak a fájl méretet befolyásolja. Minden beállítás veszteségmentes.</t
             <source>Proxy type</source>
             <comment>Preferences proxy settings</comment>
             <extracomment>Preferences proxy settings</extracomment>
-            <translation>Proxy type</translation>
+            <translation>Tip de proxy</translation>
         </message>
         <message>
             <source>Host</source>
@@ -630,21 +629,21 @@ Ez csak a fájl méretet befolyásolja. Minden beállítás veszteségmentes.</t
             <source>User name</source>
             <comment>Preferences proxy settings</comment>
             <extracomment>Preferences proxy settings</extracomment>
-            <translation>User name</translation>
+            <translation>Usator</translation>
         </message>
         <message>
             <source>Password</source>
             <comment>Preferences proxy settings</comment>
             <extracomment>Preferences proxy settings</extracomment>
-            <translation>Password</translation>
+            <translation>Contrasigne</translation>
         </message>
         <message>
             <source>Select temporary directory</source>
-            <translation>Válasszon ideiglenes könyvtárt</translation>
+            <translation>Select temporary directory</translation>
         </message>
         <message>
             <source>No proxy</source>
-            <translation>No proxy</translation>
+            <translation>Sin proxy</translation>
         </message>
         <message>
             <source>HTTP</source>
@@ -676,20 +675,20 @@ Ez csak a fájl méretet befolyásolja. Minden beállítás veszteségmentes.</t
         </message>
         <message>
             <source>Directory:</source>
-            <translation>Mappa:</translation>
+            <translation>Fólder:</translation>
         </message>
         <message>
             <source>You can browse to the destination directory. You can also input it manually.
 
 If the path is left empty or starts with "." (dot), the result files will be placed in the same directory as the source.</source>
             <comment>Main form tooltip for "Directory" edit</comment>
-            <translation>Böngészni tudsz a célkönyvtárba. Manuálisan is beírhatod
+            <translation>You can browse to the destination directory. You can also input it manually.
 
-Ha az elérési útvonal üresen marad, vagy "." (pont) lesz, az eredményfájlok ugyanabba a könyvtárba kerülnek, mint a forrás.</translation>
+If the path is left empty or starts with "." (dot), the result files will be placed in the same directory as the source.</translation>
         </message>
         <message>
             <source>Pattern:</source>
-            <translation>Minta:</translation>
+            <translation>Mustre:</translation>
         </message>
         <message>
             <source>&lt;style type="text/css"&gt;
@@ -730,36 +729,36 @@ If you surround sections of text that contain a token with braces, these section
         </message>
         <message>
             <source>Format:</source>
-            <translation>Formátum:</translation>
+            <translation>Formate:</translation>
         </message>
         <message>
             <source>Output format</source>
             <comment>Main form tooltip for "Format" edit</comment>
-            <translation>Kimeneti formátum</translation>
+            <translation>Output format</translation>
         </message>
         <message>
             <source>Album tags</source>
-            <translation>Album tags</translation>
+            <translation>Tags del album</translation>
         </message>
         <message>
             <source>Codepage:</source>
-            <translation>Kódlap:</translation>
+            <translation>Cod-págine:</translation>
         </message>
         <message>
             <source>Album performer:</source>
-            <translation>Album előadója:</translation>
+            <translation>Album performer:</translation>
         </message>
         <message>
             <source>Year:</source>
-            <translation>Év:</translation>
+            <translation>Annu:</translation>
         </message>
         <message>
             <source>Start num:</source>
-            <translation>Kezdőszám:</translation>
+            <translation>Start num:</translation>
         </message>
         <message>
             <source>Artist:</source>
-            <translation>Művész:</translation>
+            <translation>Artist:</translation>
         </message>
         <message>
             <source>Album:</source>
@@ -767,38 +766,38 @@ If you surround sections of text that contain a token with braces, these section
         </message>
         <message>
             <source>Genre:</source>
-            <translation>Műfaj:</translation>
+            <translation>Genre:</translation>
         </message>
         <message>
             <source>Edit all tags…</source>
             <comment>Button text</comment>
-            <translation>Az összes címke szerkesztése</translation>
+            <translation>Edit all tags…</translation>
         </message>
         <message>
             <source>&amp;File</source>
-            <translation>&amp;Fájl</translation>
+            <translation>&amp;File</translation>
         </message>
         <message>
             <source>&amp;Settings</source>
-            <translation>&amp;Beállítások</translation>
+            <translation>&amp;Settings</translation>
         </message>
         <message>
             <source>&amp;Help</source>
-            <translation>&amp;Segítség</translation>
+            <translation>Au&amp;xilie</translation>
         </message>
         <message>
             <source>Add disc…</source>
             <comment>Main menu item</comment>
-            <translation>Add disc…</translation>
+            <translation>Adjunter un disco...</translation>
         </message>
         <message>
             <source>Add disc</source>
             <comment>Toolbar item</comment>
-            <translation>Add disc</translation>
+            <translation>Adjunter un disco</translation>
         </message>
         <message>
             <source>Add CUE or audio file</source>
-            <translation>Cue vagy audio-fájl hozzáadása</translation>
+            <translation>Add CUE or audio file</translation>
         </message>
         <message>
             <source>Ctrl+O</source>
@@ -806,11 +805,11 @@ If you surround sections of text that contain a token with braces, these section
         </message>
         <message>
             <source>Convert</source>
-            <translation>Konvertálás</translation>
+            <translation>Converter</translation>
         </message>
         <message>
             <source>Start conversion process</source>
-            <translation>A konvertálási folyamat kezdése</translation>
+            <translation>Comensar li conversion</translation>
         </message>
         <message>
             <source>Ctrl+W</source>
@@ -818,15 +817,15 @@ If you surround sections of text that contain a token with braces, these section
         </message>
         <message>
             <source>Abort</source>
-            <translation>Megszakítás</translation>
+            <translation>Interrupter</translation>
         </message>
         <message>
             <source>Abort conversion process</source>
-            <translation>A konvertálási folyamat megszakítása</translation>
+            <translation>Interrupter li conversion</translation>
         </message>
         <message>
             <source>Exit</source>
-            <translation>Kilépés</translation>
+            <translation>Surtir</translation>
         </message>
         <message>
             <source>Ctrl+Q</source>
@@ -834,19 +833,19 @@ If you surround sections of text that contain a token with braces, these section
         </message>
         <message>
             <source>Preferences</source>
-            <translation>Beállítások</translation>
+            <translation>Preferenties</translation>
         </message>
         <message>
             <source>Program preferences</source>
-            <translation>A program beállításai</translation>
+            <translation>Preferenties del programma</translation>
         </message>
         <message>
             <source>About Flacon</source>
-            <translation>Flacon névjegye</translation>
+            <translation>Pri Flacon</translation>
         </message>
         <message>
             <source>Remove disc</source>
-            <translation>Remove disc</translation>
+            <translation>Remover li disco</translation>
         </message>
         <message>
             <source>Remove disc from project</source>
@@ -858,11 +857,11 @@ If you surround sections of text that contain a token with braces, these section
         </message>
         <message>
             <source>Configure encoder</source>
-            <translation>Átalakító beállítása</translation>
+            <translation>Configurar li codificator</translation>
         </message>
         <message>
             <source>Get from Internet</source>
-            <translation>Get from Internet</translation>
+            <translation>Obtener ex li Internet</translation>
         </message>
         <message>
             <source>Get album information from Internet</source>
@@ -875,16 +874,16 @@ If you surround sections of text that contain a token with braces, these section
         <message>
             <source>Add folder…</source>
             <comment>Main menu item</comment>
-            <translation>Add folder…</translation>
+            <translation>Adjunter un fólder...</translation>
         </message>
         <message>
             <source>Add folder</source>
             <comment>Toolbar item</comment>
-            <translation>Add folder</translation>
+            <translation>Adjunter un fólder</translation>
         </message>
         <message>
             <source>Recursive album search</source>
-            <translation>Rekurzív album keresés</translation>
+            <translation>Recursive album search</translation>
         </message>
         <message>
             <source>Ctrl+Shift+O</source>
@@ -897,12 +896,12 @@ If you surround sections of text that contain a token with braces, these section
         <message>
             <source>Convert selected</source>
             <extracomment>Main menu item</extracomment>
-            <translation>A kiválasztott konvertálása</translation>
+            <translation>Convert selected</translation>
         </message>
         <message>
             <source>Start conversion process for the selected tracks</source>
             <extracomment>Main menu item tooltip</extracomment>
-            <translation>A konvertálási folyamat kezdése a kiválasztott sávokkal</translation>
+            <translation>Start conversion process for the selected tracks</translation>
         </message>
         <message>
             <source>Ctrl+Shift+W</source>
@@ -912,24 +911,24 @@ If you surround sections of text that contain a token with braces, these section
         <message>
             <source>Warnings</source>
             <extracomment>Toolbar item caption</extracomment>
-            <translation>Warnings</translation>
+            <translation>Avises</translation>
         </message>
         <message>
             <source>Show warnings</source>
             <extracomment>Toolbar item tooltip</extracomment>
-            <translation>Show warnings</translation>
+            <translation>Monstrar avises</translation>
         </message>
         <message>
             <source>Errors</source>
             <comment>Toolbar item caption</comment>
             <extracomment>Toolbar item caption</extracomment>
-            <translation>Errors</translation>
+            <translation>Errores</translation>
         </message>
         <message>
             <source>Show errors</source>
             <comment>Toolbar item tooltip</comment>
             <extracomment>Toolbar item tooltip</extracomment>
-            <translation>Show errors</translation>
+            <translation>Monstrar errores</translation>
         </message>
         <message>
             <source>Trash Sources for successfully converted disks and Remove from list…</source>
@@ -953,11 +952,11 @@ If you surround sections of text that contain a token with braces, these section
         </message>
         <message>
             <source>Remove current directory from history</source>
-            <translation>A jelenlegi könyvtár eltávolítása az előzményekből</translation>
+            <translation>Remove current directory from history</translation>
         </message>
         <message>
             <source>Delete current pattern from history</source>
-            <translation>Az aktuális minta törlése az előzményekből</translation>
+            <translation>Delete current pattern from history</translation>
         </message>
         <message>
             <source>Conversion in progress.&lt;br&gt;Are you sure you want to exit?</source>
@@ -967,18 +966,18 @@ If you surround sections of text that contain a token with braces, these section
         <message>
             <source>Exit</source>
             <comment>Button caption</comment>
-            <translation>Kilépés</translation>
+            <translation>Surtir</translation>
         </message>
         <message>
             <source>Select CUE file</source>
             <comment>OpenFile dialog title</comment>
-            <translation>CUE-fájl kiválasztása</translation>
+            <translation>Selecte un file CUE</translation>
         </message>
         <message>
             <source>Some albums will not be converted, they contain errors.
 Do you want to continue?</source>
-            <translation>Több album nem lesz átalakítva mert hibákat tartalmaznak.
-Biztosan folytatni akarod?</translation>
+            <translation>Some albums will not be converted, they contain errors.
+Do you want to continue?</translation>
         </message>
         <message>
             <source>Flacon - Converting</source>
@@ -988,27 +987,27 @@ Biztosan folytatni akarod?</translation>
         <message>
             <source>%1 files</source>
             <comment>OpenFile dialog filter line, like "WAV files"</comment>
-            <translation>%1 fájlok</translation>
+            <translation>Files %1</translation>
         </message>
         <message>
             <source>All supported formats</source>
             <comment>OpenFile dialog filter line</comment>
-            <translation>Minden támogatott formátum</translation>
+            <translation>Omni supportat formates</translation>
         </message>
         <message>
             <source>All files</source>
             <comment>OpenFile dialog filter line like "All files"</comment>
-            <translation>Minden fájl</translation>
+            <translation>Omni files</translation>
         </message>
         <message>
             <source>Add CUE or audio file</source>
             <comment>OpenFile dialog title</comment>
-            <translation>Cue vagy audio-fájl hozzáadása</translation>
+            <translation>Add CUE or audio file</translation>
         </message>
         <message>
             <source>Select audio file</source>
             <comment>OpenFile dialog title</comment>
-            <translation>Audio-fájl kiválasztása</translation>
+            <translation>Selecte un audiofile</translation>
         </message>
         <message>
             <source>"%1" was not set.</source>
@@ -1017,12 +1016,12 @@ Biztosan folytatni akarod?</translation>
         </message>
         <message>
             <source>Select directory</source>
-            <translation>Válassza ki a könyvtárat</translation>
+            <translation>Selecter un fólder</translation>
         </message>
         <message>
             <source>Select another audio file…</source>
             <comment>context menu</comment>
-            <translation>Másik audiofájl kiválasztása...</translation>
+            <translation>Select another audio file…</translation>
         </message>
         <message>
             <source>Select another audio file for %1 track…</source>
@@ -1037,12 +1036,12 @@ Biztosan folytatni akarod?</translation>
         <message>
             <source>Edit tags…</source>
             <comment>context menu</comment>
-            <translation>Címkék szerkesztése..</translation>
+            <translation>Edit tags…</translation>
         </message>
         <message>
             <source>Select another CUE file…</source>
             <comment>context menu</comment>
-            <translation>Másik cue-fájl kiválasztása...</translation>
+            <translation>Select another CUE file…</translation>
         </message>
         <message>
             <source>Get data from Internet</source>
@@ -1057,12 +1056,12 @@ Biztosan folytatni akarod?</translation>
         <message>
             <source>Disk %1 "%2 - %3"</source>
             <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-            <translation>Disk %1 "%2 - %3"</translation>
+            <translation>Disco %1 «%2 - %3»</translation>
         </message>
         <message>
             <source>Disk %1</source>
             <comment>Error message, %1 is the disc number</comment>
-            <translation>Disk %1</translation>
+            <translation>Disco %1</translation>
         </message>
         <message>
             <source>Some disks have warnings:</source>
@@ -1077,14 +1076,14 @@ Biztosan folytatni akarod?</translation>
         <message>
             <source>%1% completed</source>
             <comment>Status bar, progress text</comment>
-            <translation>%1% completed</translation>
+            <translation>%1% compleet</translation>
         </message>
     </context>
     <context>
         <name>MultiValuesComboBox</name>
         <message>
             <source>Multiple values</source>
-            <translation>Többszörös értékek</translation>
+            <translation>Multiplic valores</translation>
         </message>
     </context>
     <context>
@@ -1092,14 +1091,14 @@ Biztosan folytatni akarod?</translation>
         <message>
             <source>Multiple values</source>
             <comment>MultiValues edit placeholder</comment>
-            <translation>Többszörös értékek</translation>
+            <translation>Multiplic valores</translation>
         </message>
     </context>
     <context>
         <name>MultiValuesSpinBox</name>
         <message>
             <source>Multiple values</source>
-            <translation>Többszörös értékek</translation>
+            <translation>Multiplic valores</translation>
         </message>
     </context>
     <context>
@@ -1107,7 +1106,7 @@ Biztosan folytatni akarod?</translation>
         <message>
             <source>Multiple values</source>
             <comment>MultiValues edit placeholder</comment>
-            <translation>Többszörös értékek</translation>
+            <translation>Multiplic valores</translation>
         </message>
     </context>
     <context>
@@ -1115,26 +1114,26 @@ Biztosan folytatni akarod?</translation>
         <message>
             <source>Select directory…</source>
             <comment>Menu item for output direcory button</comment>
-            <translation>Könyvtár kiválasztása..</translation>
+            <translation>Select directory…</translation>
         </message>
         <message>
             <source>Standard music location</source>
             <comment>Menu item for output direcory button</comment>
-            <translation>Szabványos zenei hely</translation>
+            <translation>Standard music location</translation>
         </message>
         <message>
             <source>Desktop</source>
             <comment>Menu item for output direcory button</comment>
-            <translation>Asztal</translation>
+            <translation>Pupitre</translation>
         </message>
         <message>
             <source>Same directory as CUE file</source>
             <comment>Menu item for output direcory button</comment>
-            <translation>A CUE-fájlal azonos könyvtár</translation>
+            <translation>Same directory as CUE file</translation>
         </message>
         <message>
             <source>Select result directory</source>
-            <translation>Eredmények mappa kiválaszása</translation>
+            <translation>Select result directory</translation>
         </message>
     </context>
     <context>
@@ -1142,18 +1141,18 @@ Biztosan folytatni akarod?</translation>
         <message>
             <source>Same directory as CUE file</source>
             <comment>Placeholder for output direcory combobox</comment>
-            <translation>A CUE-fájlal azonos könyvtár</translation>
+            <translation>Same directory as CUE file</translation>
         </message>
     </context>
     <context>
         <name>OutPatternButton</name>
         <message>
             <source>Insert "Track number"</source>
-            <translation>"Sávszám" beszúrása</translation>
+            <translation>Insert "Track number"</translation>
         </message>
         <message>
             <source>Insert "Total number of tracks"</source>
-            <translation>"Összesen sávszám" beszúrása</translation>
+            <translation>Insert "Total number of tracks"</translation>
         </message>
         <message>
             <source>Insert "Album performer"</source>
@@ -1161,19 +1160,19 @@ Biztosan folytatni akarod?</translation>
         </message>
         <message>
             <source>Insert "Album title"</source>
-            <translation>"Albumcím" beszúrása</translation>
+            <translation>Insert "Album title"</translation>
         </message>
         <message>
             <source>Insert "Track title"</source>
-            <translation>"Sávcím" beszúrása</translation>
+            <translation>Insert "Track title"</translation>
         </message>
         <message>
             <source>Insert "Year"</source>
-            <translation>"Év" beszúrása</translation>
+            <translation>Inserter «Annu»</translation>
         </message>
         <message>
             <source>Insert "Genre"</source>
-            <translation>"Műfaj" beszúrása</translation>
+            <translation>Insert "Genre"</translation>
         </message>
         <message>
             <source>Insert "Disc number"</source>
@@ -1190,14 +1189,14 @@ Biztosan folytatni akarod?</translation>
         <message>
             <source>Use "%1"</source>
             <comment>Predefined out file pattern, string like 'Use "%a/%A/%n - %t"'</comment>
-            <translation>"%1" használata</translation>
+            <translation>Usar «%1»</translation>
         </message>
     </context>
     <context>
         <name>OutTagsPage</name>
         <message>
             <source>Tags</source>
-            <translation>Címkék</translation>
+            <translation>Tags</translation>
         </message>
         <message>
             <source>Write “Disc number” and “Disc count” tags for single-disc albums</source>
@@ -1210,11 +1209,11 @@ Biztosan folytatni akarod?</translation>
             <source>Preferences</source>
             <comment>Preferences dialog title</comment>
             <extracomment>Preferences dialog title</extracomment>
-            <translation>Beállítások</translation>
+            <translation>Preferenties</translation>
         </message>
         <message>
             <source>Audio profiles</source>
-            <translation>Audio profiles</translation>
+            <translation>Profiles de audio</translation>
         </message>
         <message>
             <source>General</source>
@@ -1222,11 +1221,11 @@ Biztosan folytatni akarod?</translation>
         </message>
         <message>
             <source>Programs</source>
-            <translation>Programok</translation>
+            <translation>Programmas</translation>
         </message>
         <message>
             <source>Update</source>
-            <translation>Frissítés</translation>
+            <translation>Actualisar</translation>
         </message>
         <message>
             <source>I can't apply your preferences.</source>
@@ -1236,12 +1235,12 @@ Biztosan folytatni akarod?</translation>
         <message>
             <source>You should create at least one profile.</source>
             <comment>Message box text</comment>
-            <translation>You should create at least one profile.</translation>
+            <translation>On debe crear adminim ún profil.</translation>
         </message>
         <message>
             <source>Create profile</source>
             <comment>Button caption</comment>
-            <translation>Create profile</translation>
+            <translation>Crear un profil</translation>
         </message>
     </context>
     <context>
@@ -1257,21 +1256,21 @@ Biztosan folytatni akarod?</translation>
         <message>
             <source>Directory:</source>
             <comment>Preferences form label text</comment>
-            <translation>Mappa:</translation>
+            <translation>Fólder:</translation>
         </message>
         <message>
             <source>You can browse to the destination directory. You can also input it manually.
 
 If the path is left empty or starts with "." (dot), the result files will be placed in the same directory as the source.</source>
             <comment>Preferences form tooltip for "Directory" edit</comment>
-            <translation>Böngészni tudsz a célkönyvtárba. Manuálisan is beírhatod
+            <translation>You can browse to the destination directory. You can also input it manually.
 
-Ha az elérési útvonal üresen marad, vagy "." (pont) lesz, az eredményfájlok ugyanabba a könyvtárba kerülnek, mint a forrás.</translation>
+If the path is left empty or starts with "." (dot), the result files will be placed in the same directory as the source.</translation>
         </message>
         <message>
             <source>Pattern:</source>
             <comment>Preferences form label text</comment>
-            <translation>Minta:</translation>
+            <translation>Mustre:</translation>
         </message>
         <message>
             <source>&lt;style type="text/css"&gt;
@@ -1296,19 +1295,19 @@ If you surround sections of text that contain a token with braces, these section
 .term {font-weight: bold;}
 .def  { white-space: nowrap; }
 &lt;/style&gt;
-A token-ek %.jellel kezdődnek. A következő tokeneket használhatod:
+Tokens start with %. You can use the following tokens:
 &lt;table&gt;
-&lt;tr&gt;&lt;td class="term"&gt;%n&lt;/td&gt; &lt;td class="def"&gt; - Sáv száma  &lt;/td&gt;
-        &lt;td class="term"&gt;%N&lt;/td&gt; &lt;td class="def"&gt; - Sávok teljes száma&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class="term"&gt;%a&lt;/td&gt; &lt;td class="def"&gt; - Előadó&lt;/td&gt;
-        &lt;td class="term"&gt;%A&lt;/td&gt; &lt;td class="def"&gt; - Album címe&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class="term"&gt;%t&lt;/td&gt; &lt;td class="def"&gt; - Sáv címe&lt;/td&gt;
-        &lt;td class="term"&gt;%y&lt;/td&gt; &lt;td class="def"&gt; - Év&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class="term"&gt;%g&lt;/td&gt; &lt;td class="def"&gt; - Műfaj&lt;/td&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%n&lt;/td&gt; &lt;td class="def"&gt; - Track number  &lt;/td&gt;
+        &lt;td class="term"&gt;%N&lt;/td&gt; &lt;td class="def"&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%a&lt;/td&gt; &lt;td class="def"&gt; - Artist&lt;/td&gt;
+        &lt;td class="term"&gt;%A&lt;/td&gt; &lt;td class="def"&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%t&lt;/td&gt; &lt;td class="def"&gt; - Track title&lt;/td&gt;
+        &lt;td class="term"&gt;%y&lt;/td&gt; &lt;td class="def"&gt; - Year&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class="term"&gt;%g&lt;/td&gt; &lt;td class="def"&gt; - Genre&lt;/td&gt;
         &lt;td class="term"&gt;&lt;/td&gt; &lt;td class="def"&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 &lt;br&gt;&lt;br&gt;
-Ha a szövegrészeket zárójellel ellátod, ezek a részek el lesznek rejtve, ha a token üres.</translation>
+If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</translation>
         </message>
         <message>
             <source>Resampling settings:</source>
@@ -1317,11 +1316,11 @@ Ha a szövegrészeket zárójellel ellátod, ezek a részek el lesznek rejtve, h
         </message>
         <message>
             <source>Maximum bit depth:</source>
-            <translation>Maximális bitráta:</translation>
+            <translation>Maximum bit depth:</translation>
         </message>
         <message>
             <source>Maximum sample rate:</source>
-            <translation>Maximális mintaérték:</translation>
+            <translation>Maximum sample rate:</translation>
         </message>
         <message>
             <source>ReplayGain settings:</source>
@@ -1329,7 +1328,7 @@ Ha a szövegrészeket zárójellel ellátod, ezek a részek el lesznek rejtve, h
         </message>
         <message>
             <source>Calculate gain:</source>
-            <translation>Erősítés számolása:</translation>
+            <translation>Calculate gain:</translation>
         </message>
         <message>
             <source>CUE and cover image</source>
@@ -1352,17 +1351,17 @@ Ha a szövegrészeket zárójellel ellátod, ezek a részek el lesznek rejtve, h
         <message>
             <source>Create per track CUE sheet</source>
             <extracomment>Preferences dialog: group caption</extracomment>
-            <translation>CUE mező létrehozása sávonként</translation>
+            <translation>Create per track CUE sheet</translation>
         </message>
         <message>
             <source>Same directory as CUE file</source>
             <comment>Placeholder for output direcory combobox</comment>
-            <translation>A CUE-fájlal azonos könyvtár</translation>
+            <translation>Same directory as CUE file</translation>
         </message>
         <message>
             <source>Same as source</source>
             <comment>Item in combobox</comment>
-            <translation>Azonos a forrással</translation>
+            <translation>Quam li fonte</translation>
         </message>
         <message>
             <source>16-bit</source>
@@ -1402,7 +1401,7 @@ Ha a szövegrészeket zárójellel ellátod, ezek a részek el lesznek rejtve, h
         <message>
             <source>Disabled</source>
             <comment>ReplayGain type combobox</comment>
-            <translation>Letiltva</translation>
+            <translation>Disabled</translation>
         </message>
         <message>
             <source>Per track</source>
@@ -1419,15 +1418,15 @@ Ha a szövegrészeket zárójellel ellátod, ezek a részek el lesznek rejtve, h
 
 The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
 Using the album-gain analysis will preserve the volume differences within an album.</source>
-            <translation>A ReplayGain egy olyan szabvány, amely normalizálhatja a számítógépes hangformátumok észlelt hangosságát. 
+            <translation>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
 
-Az elemzést egyedi sávokon lehet végrehajtani, így minden sáv ugyanolyan hangerővel fog rendelkezni a lejátszás során. 
-Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő eltéréseket.</translation>
+The analysis can be performed on individual tracks, so that all tracks will be of equal volume on playback. 
+Using the album-gain analysis will preserve the volume differences within an album.</translation>
         </message>
         <message>
             <source>%1 encoder settings:</source>
             <comment>Preferences group title, %1 is a audio format name</comment>
-            <translation>%1 encoder settings:</translation>
+            <translation>Parametres del codificator %1:</translation>
         </message>
     </context>
     <context>
@@ -1438,7 +1437,7 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
         </message>
         <message>
             <source>-</source>
-            <translation>-</translation>
+            <translation>–</translation>
         </message>
         <message>
             <source>Are you sure you want to delete the profile "%1"?</source>
@@ -1448,7 +1447,7 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
         <message>
             <source>Delete the profile</source>
             <comment>Button caption</comment>
-            <translation>Delete the profile</translation>
+            <translation>Remover li profil</translation>
         </message>
     </context>
     <context>
@@ -1461,18 +1460,18 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
         <message>
             <source>All files</source>
             <comment>This is part of filter for 'select program' dialog. 'All files (*)'</comment>
-            <translation>Minden fájl</translation>
+            <translation>Omni files</translation>
         </message>
         <message>
             <source>Select program file</source>
-            <translation>Programfájl kiválasztása</translation>
+            <translation>Select program file</translation>
         </message>
     </context>
     <context>
         <name>ProgramsPage</name>
         <message>
             <source>Rescan</source>
-            <translation>Frissít</translation>
+            <translation>Rescan</translation>
         </message>
         <message>
             <source>%1:</source>
@@ -1490,12 +1489,12 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
         <message>
             <source>I can't read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
             <comment>%1 - is a file name, %2 - an error text</comment>
-            <translation>Nem lehetett olvasni a borítóképet &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+            <translation>I can't read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
         </message>
         <message>
             <source>I can't save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
             <comment>%1 - is file name, %2 - an error text</comment>
-            <translation>Nem lehetett menteni a borítóképet &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+            <translation>I can't save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
         </message>
         <message>
             <source>I can't write CUE:&lt;br&gt;%1</source>
@@ -1503,19 +1502,19 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
         </message>
         <message>
             <source>I can't write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
-            <translation>Nem lehet írni a CUE fájlt &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
+            <translation>I can't write CUE file &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
         </message>
         <message>
             <source>I can't create directory "%1".</source>
-            <translation>"%1" könyvtár nem hozható létre.</translation>
+            <translation>I can't create directory "%1".</translation>
         </message>
         <message>
             <source>I can't write to directory "%1".</source>
-            <translation>"%1" könyvtárba nem lehet írni.</translation>
+            <translation>I can't write to directory "%1".</translation>
         </message>
         <message>
             <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
-            <translation>&lt;b&gt;%1&lt;/b&gt; nem egy valódi cue-fájl. A cue mező nem tartalmaz FÁJL címkét.</translation>
+            <translation>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</translation>
         </message>
         <message>
             <source>Embedded on %1</source>
@@ -1524,22 +1523,22 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
         </message>
         <message>
             <source>File &lt;b&gt;"%1"&lt;/b&gt; does not exist</source>
-            <translation>&lt;b&gt;"%1"&lt;/b&gt; fájl nem létezik</translation>
+            <translation>Li file &lt;b&gt;«%1»&lt;/b&gt; ne existe</translation>
         </message>
         <message>
             <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</source>
             <comment>Cue parser error.</comment>
-            <translation>&lt;b&gt;%1&lt;/b&gt;  nem egy valódi cue-fájl. Érvénytelen sáv-sorszám ebben a sorban: %2</translation>
+            <translation>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</translation>
         </message>
         <message>
             <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track index on line %2.</source>
             <comment>Cue parser error.</comment>
-            <translation>&lt;b&gt;%1&lt;/b&gt;  nem egy valódi cue-fájl. Érvénytelen sáv-index ebben a sorban: %2</translation>
+            <translation>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track index on line %2.</translation>
         </message>
         <message>
             <source>you can't use 'ReplayGain' for files with sample rates above 48kHz. Metaflac doesn't support such files.</source>
             <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
-            <translation>Nem használhatsz "ReplayGain"-t olyan fájlok esetében, amelyek 48 kHz fölötti mintavételi gyakorisággal rendelkeznek. A Metaflac nem támogatja az ilyen fájlokat.</translation>
+            <translation>you can't use 'ReplayGain' for files with sample rates above 48kHz. Metaflac doesn't support such files.</translation>
         </message>
         <message>
             <source>Flacon</source>
@@ -1560,17 +1559,17 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
         <message>
             <source>Edit tags</source>
             <comment>Dialog title</comment>
-            <translation>Címkék szerkesztése</translation>
+            <translation>Edit tags</translation>
         </message>
         <message>
             <source>Artist:</source>
-            <translation>Művész:</translation>
+            <translation>Artist:</translation>
         </message>
         <message>
             <source>Album performer:</source>
             <comment>Music tag name</comment>
             <extracomment>Music tag name</extracomment>
-            <translation>Album előadója:</translation>
+            <translation>Album performer:</translation>
         </message>
         <message>
             <source>Song writer:</source>
@@ -1584,25 +1583,25 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
         </message>
         <message>
             <source>Year:</source>
-            <translation>Év:</translation>
+            <translation>Annu:</translation>
         </message>
         <message>
             <source>Genre:</source>
-            <translation>Műfaj:</translation>
+            <translation>Genre:</translation>
         </message>
         <message>
             <source>Track title:</source>
-            <translation>Sáv címe:</translation>
+            <translation>Track title:</translation>
         </message>
         <message>
             <source>Start track number:</source>
             <comment>Music tag name</comment>
             <extracomment>Music tag name</extracomment>
-            <translation>Kezdősáv száma:</translation>
+            <translation>Start track number:</translation>
         </message>
         <message>
             <source>of</source>
-            <translation>é</translation>
+            <translation>ex</translation>
         </message>
         <message>
             <source>Disc number:</source>
@@ -1612,7 +1611,7 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
         </message>
         <message>
             <source>Comment:</source>
-            <translation>Megjegyzés:</translation>
+            <translation>Commenta:</translation>
         </message>
         <message>
             <source>Catalog number:</source>
@@ -1649,7 +1648,7 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
         <name>TrackView</name>
         <message>
             <source>Select another CUE file…</source>
-            <translation>Másik cue-fájl kiválasztása...</translation>
+            <translation>Select another CUE file…</translation>
         </message>
         <message>
             <source>Get data from Internet</source>
@@ -1661,32 +1660,32 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
         <message>
             <source>Error</source>
             <comment>Status of the track conversion.</comment>
-            <translation>Hiba</translation>
+            <translation>Errore</translation>
         </message>
         <message>
             <source>Aborted</source>
             <comment>Status of the track conversion.</comment>
-            <translation>Megszakítva</translation>
+            <translation>Interruptet</translation>
         </message>
         <message>
             <source>OK</source>
             <comment>Status of the track conversion.</comment>
-            <translation>RENDBEN</translation>
+            <translation>OK</translation>
         </message>
         <message>
             <source>Extracting</source>
             <comment>Status of the track conversion.</comment>
-            <translation>Kibontás</translation>
+            <translation>Extraente</translation>
         </message>
         <message>
             <source>Encoding</source>
             <comment>Status of the track conversion.</comment>
-            <translation>Átalakítás</translation>
+            <translation>Codificante</translation>
         </message>
         <message>
             <source>Queued</source>
             <comment>Status of the track conversion.</comment>
-            <translation>Sorbaállított</translation>
+            <translation>In linea</translation>
         </message>
         <message>
             <source>Calculating gain</source>
@@ -1705,20 +1704,20 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
         </message>
         <message>
             <source>Tracks:</source>
-            <translation>Sávok:</translation>
+            <translation>Tracks:</translation>
         </message>
         <message>
             <source>Audio:</source>
-            <translation>Hang:</translation>
+            <translation>Audio:</translation>
         </message>
         <message>
             <source>Multiple files</source>
             <comment>Disk preview, audio file placeholder</comment>
-            <translation>Multiple files</translation>
+            <translation>Multiplic files</translation>
         </message>
         <message>
             <source>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</source>
-            <translation>&lt;b&gt;The conversion is not possible.&lt;/b&gt;</translation>
+            <translation>&lt;b&gt;Li conversion es impossibil.&lt;/b&gt;</translation>
         </message>
     </context>
     <context>
@@ -1726,22 +1725,22 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
         <message>
             <source>Track</source>
             <comment>Table header.</comment>
-            <translation>Sorszám</translation>
+            <translation>Track</translation>
         </message>
         <message>
             <source>Length</source>
             <comment>Table header.</comment>
-            <translation>Hossz</translation>
+            <translation>Duration</translation>
         </message>
         <message>
             <source>Title</source>
             <comment>Table header.</comment>
-            <translation>Cím</translation>
+            <translation>Titul</translation>
         </message>
         <message>
             <source>Artist</source>
             <comment>Table header.</comment>
-            <translation>Előadó</translation>
+            <translation>Artist</translation>
         </message>
         <message>
             <source>Album</source>
@@ -1751,12 +1750,12 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
         <message>
             <source>Comment</source>
             <comment>Table header.</comment>
-            <translation>Megjegyzés</translation>
+            <translation>Commenta</translation>
         </message>
         <message>
             <source>File</source>
             <comment>Table header.</comment>
-            <translation>Fájl</translation>
+            <translation>File</translation>
         </message>
         <message>
             <source>Date</source>
@@ -1780,7 +1779,7 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
         </message>
         <message>
             <source>Multiple values</source>
-            <translation>Többszörös értékek</translation>
+            <translation>Multiplic valores</translation>
         </message>
         <message>
             <source>%1:%2:%3</source>
@@ -1797,21 +1796,21 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
         <name>UpdatePage</name>
         <message>
             <source>Automatically check for updates</source>
-            <translation>Frissítések automatikus ellenőrzése</translation>
+            <translation>Automatically check for updates</translation>
         </message>
         <message>
             <source>Check now</source>
-            <translation>Ellenőrzés most</translation>
+            <translation>Controlar nu</translation>
         </message>
         <message>
             <source>Last check was %1</source>
             <comment>Information about last update</comment>
-            <translation>%1 volt utoljára ellenőrizve</translation>
+            <translation>Last check was %1</translation>
         </message>
         <message>
             <source>Never checked</source>
             <comment>Information about last update</comment>
-            <translation>Nem volt még ellenőrizve</translation>
+            <translation>Never checked</translation>
         </message>
     </context>
     <context>
@@ -1828,12 +1827,12 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
         </message>
         <message>
             <source>Cue file not set.</source>
-            <translation>Cue-fájl nincs beállíŧva</translation>
+            <translation>Cue file not set.</translation>
         </message>
         <message>
             <source>Audio file not set.</source>
             <comment>Warning message</comment>
-            <translation>Audio-fájl nincs beállítva.</translation>
+            <translation>Audio file not set.</translation>
         </message>
         <message>
             <source>Audio file not set for track %1.</source>
@@ -1847,7 +1846,7 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
         </message>
         <message>
             <source>Audio file shorter than expected from CUE sheet.</source>
-            <translation>Az audiofájl rövidebb, mint ami a CUE laptól elvárt.</translation>
+            <translation>Audio file shorter than expected from CUE sheet.</translation>
         </message>
         <message>
             <source>The same audio file is used for different tracks.</source>
@@ -1907,90 +1906,90 @@ The ReplayGain will be disabled for this disk.</translation>
         <name>aacConfigPage</name>
         <message>
             <source>Use quality setting (recommended)</source>
-            <translation>Használt minőség beállításai (javasolt)</translation>
+            <translation>Use quality setting (recommended)</translation>
         </message>
         <message>
             <source>Quality:</source>
             <extracomment>ACC preferences: label caption</extracomment>
-            <translation>Minőség:</translation>
+            <translation>Qualitá:</translation>
         </message>
         <message>
             <source>Bitrate:</source>
             <extracomment>ACC preferences: label caption</extracomment>
-            <translation>Bitráta:</translation>
+            <translation>Bitrate:</translation>
         </message>
         <message>
             <source>Sets target bitrate (in kb/s).</source>
-            <translation>Cél bitsebesség (bit/mp-ben)</translation>
+            <translation>Sets target bitrate (in kb/s).</translation>
         </message>
     </context>
     <context>
         <name>flacConfigPage</name>
         <message>
             <source>Compression:</source>
-            <translation>Tömörítő:</translation>
+            <translation>Compression:</translation>
         </message>
     </context>
     <context>
         <name>mp3ConfigPage</name>
         <message>
             <source>Preset:</source>
-            <translation>Bitzosított:</translation>
+            <translation>Preset:</translation>
         </message>
         <message>
             <source>Bitrate:</source>
-            <translation>Bitráta:</translation>
+            <translation>Bitrate:</translation>
         </message>
         <message>
             <source>Sets target bitrate (in kb/s).</source>
-            <translation>Cél bitsebesség (bit/mp-ben)</translation>
+            <translation>Sets target bitrate (in kb/s).</translation>
         </message>
         <message>
             <source>Quality:</source>
-            <translation>Minőség:</translation>
+            <translation>Qualitá:</translation>
         </message>
     </context>
     <context>
         <name>oggConfigPage</name>
         <message>
             <source>Use quality setting (recommended)</source>
-            <translation>Használt minőség beállításai (javasolt)</translation>
+            <translation>Use quality setting (recommended)</translation>
         </message>
         <message>
             <source>Quality:</source>
             <extracomment>OGG preferences: label caption</extracomment>
-            <translation>Minőség:</translation>
+            <translation>Qualitá:</translation>
         </message>
         <message>
             <source>Minimal bitrate:</source>
-            <translation>Minimális bitráta:</translation>
+            <translation>Minimal bitrate:</translation>
         </message>
         <message>
             <source>Sets minimum bitrate (in kb/s).</source>
-            <translation>Minimális bitsebesség (bit/mp-ben)</translation>
+            <translation>Sets minimum bitrate (in kb/s).</translation>
         </message>
         <message>
             <source>Nominal bitrate:</source>
-            <translation>Nominális bitráta</translation>
+            <translation>Nominal bitrate:</translation>
         </message>
         <message>
             <source>Sets target bitrate (in kb/s).</source>
-            <translation>Cél bitsebesség (bit/mp-ben)</translation>
+            <translation>Sets target bitrate (in kb/s).</translation>
         </message>
         <message>
             <source>Maximum bitrate:</source>
-            <translation>Maximális bitráta:</translation>
+            <translation>Maximum bitrate:</translation>
         </message>
         <message>
             <source>Sets maximum bitrate (in kb/s).</source>
-            <translation>Minimális cél bitsebesség (bit/mp-ben)</translation>
+            <translation>Sets maximum bitrate (in kb/s).</translation>
         </message>
     </context>
     <context>
         <name>wvConfigPage</name>
         <message>
             <source>Compression:</source>
-            <translation>Tömörítő:</translation>
+            <translation>Compression:</translation>
         </message>
     </context>
 </TS>
