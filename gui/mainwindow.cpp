@@ -56,6 +56,7 @@
 #include <QStandardPaths>
 #include "qtbackports/movetotrash.h"
 #include "audiofilematcher.h"
+#include "patternexpander.h"
 
 #ifdef MAC_UPDATER
 #include "updater/updater.h"
@@ -96,6 +97,7 @@ MainWindow::MainWindow(QWidget *parent) :
     setAcceptDrops(true);
     this->setContextMenuPolicy(Qt::NoContextMenu);
 
+    outPatternEdit->setToolTip(PatternExpander::toolTip());
     outPatternButton->setToolTip(outPatternEdit->toolTip());
     outDirButton->setToolTip(outDirEdit->toolTip());
 

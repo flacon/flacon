@@ -28,6 +28,7 @@
 #include "controls.h"
 #include "../preferencesdialog.h"
 #include "outtagspage.h"
+#include "patternexpander.h"
 
 class NoEncoderConfigPage : public EncoderConfigPage
 {
@@ -52,9 +53,12 @@ ProfileTabWidget::ProfileTabWidget(QWidget *parent) :
 
     ui->outDirEdit->setPlaceholderText(tr("Same directory as CUE file", "Placeholder for output direcory combobox"));
     ui->outDirButton->setBuddy(ui->outDirEdit);
+    ui->outDirButton->setToolTip(ui->outDirEdit->toolTip());
 
     ui->outPatternButton->setBuddy(ui->outPatternEdit);
     ui->outPatternButton->addStandardPatterns();
+    ui->outPatternEdit->setToolTip(PatternExpander::toolTip());
+    ui->outPatternButton->setToolTip(ui->outPatternEdit->toolTip());
 
     ui->encoderGroup->setLayout(new QVBoxLayout(ui->encoderGroup));
 

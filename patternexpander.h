@@ -29,6 +29,7 @@
 #include "types.h"
 #include "tags.h"
 #include <QString>
+#include <QCoreApplication>
 
 class Track;
 
@@ -41,6 +42,7 @@ class Track;
  ************************************************/
 class PatternExpander
 {
+    Q_DECLARE_TR_FUNCTIONS(PatternExpander)
 public:
     enum class Mode {
         Album,
@@ -57,6 +59,7 @@ public:
     static QString resultFileName(const QString &pattern, const Track *track, const QString &ext);
 
     static QString example(const QString &pattern);
+    static QString toolTip();
 
     const AlbumTags &albumTags() const { return mAlbumTags; }
     AlbumTags       &albumTags() { return mAlbumTags; }

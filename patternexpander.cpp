@@ -194,6 +194,55 @@ QString PatternExpander::expand(const QString &pattern, Mode mode) const
     return doExpandPattern(pattern, tokens, false);
 }
 
+QString PatternExpander::toolTip()
+{
+    QString css = R"(
+        <style type="text/css">
+            .term {font-weight: bold;}
+            .def  {
+                white-space: nowrap;
+                left-margin: 200px;
+            }
+        </style>)";
+
+    // clang-format off
+    QStringList items;
+    items << "%n" << tr("Track number", "Part of the tooltip for output pattern edit");
+    items << "%N" << tr("Total number of tracks", "Part of the tooltip for output pattern edit");
+    items << "%d" << tr("Disk number", "Part of the tooltip for output pattern edit");
+    items << "%D" << tr("Total number of disks", "Part of the tooltip for output pattern edit");
+    items << "%a" << tr("Artist", "Part of the tooltip for output pattern edit");
+    items << "%A" << tr("Album title", "Part of the tooltip for output pattern edit");
+    items << "%t" << tr("Track title", "Part of the tooltip for output pattern edit");
+    items << "%y" << tr("Year", "Part of the tooltip for output pattern edit");
+    items << "%g" << tr("Genre", "Part of the tooltip for output pattern edit");
+    items << "%C" << tr("Catalog number", "Part of the tooltip for output pattern edit");
+    // clang-format on
+
+    QString table;
+    table += "<table>";
+    for (int i = 0; i < items.count(); i += 4) {
+        table += "<tr>";
+        table += QString("<td class='term'>%1</td><td class='def'> - %2</td>").arg(items.at(i), items.at(i + 1));
+        if (i + 3 < items.count()) {
+            table += QString("<td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </td>");
+            table += QString("<td class='term'>%1</td><td class='def'> - %2</td>").arg(items.at(i + 2), items.at(i + 3));
+        }
+        table += "</tr>";
+    }
+    table += "</table>";
+
+    // clang-format off
+    return
+            css +
+            tr("Tokens start with %. You can use the following tokens:", "Part of the tooltip for output pattern edit") +
+            "<br>" +
+            table +
+            "<br><br>" +
+            tr("If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.", "Part of the tooltip for output pattern edit");
+    // clang-format on
+}
+
 /************************************************
  *
  ************************************************/
