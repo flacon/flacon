@@ -454,7 +454,7 @@ In CBR mode, it sets the specific output bitrate.
         <message>
             <source>I can't read &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
             <comment>Splitter error. %1 is a file name, %2 is a system error text.</comment>
-            <translation>לא ניתן לקרוא &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2"</translation>
+            <translation>לא ניתן לקרוא &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2&quot;</translation>
         </message>
     </context>
     <context>
@@ -511,25 +511,25 @@ In CBR mode, it sets the specific output bitrate.
             <translation>שיבוץ בקבצי שמע</translation>
         </message>
         <message>
-            <source>Insert "Artist"</source>
-            <translation>תחיבת "אמן"</translation>
+            <source>Insert &quot;Artist&quot;</source>
+            <translation>תחיבת &quot;אמן&quot;</translation>
         </message>
         <message>
-            <source>Insert "Album title"</source>
-            <translation>תחיבת "שם אלבום"</translation>
+            <source>Insert &quot;Album title&quot;</source>
+            <translation>תחיבת &quot;שם אלבום&quot;</translation>
         </message>
         <message>
-            <source>Insert "Year"</source>
-            <translation>תחיבת "שנה"</translation>
+            <source>Insert &quot;Year&quot;</source>
+            <translation>תחיבת &quot;שנה&quot;</translation>
         </message>
         <message>
-            <source>Insert "Genre"</source>
-            <translation>תחיבת "סוגה"</translation>
+            <source>Insert &quot;Genre&quot;</source>
+            <translation>תחיבת &quot;סוגה&quot;</translation>
         </message>
         <message>
-            <source>Use "%1"</source>
-            <comment>Predefined CUE file name, string like 'Use "%a/%A/%n - %t.cue"'</comment>
-            <translation>להשתמש ב־"%1"</translation>
+            <source>Use &quot;%1&quot;</source>
+            <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
+            <translation>להשתמש ב־&quot;%1&quot;</translation>
         </message>
         <message>
             <source>Extract to separate file</source>
@@ -600,9 +600,9 @@ This only affects the file size. All settings are lossless.</source>
             <translation>CUE tags</translation>
         </message>
         <message>
-            <source>If the "TITLE" tag contains the artist's and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
+            <source>If the &quot;TITLE&quot; tag contains the artist's and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
             <extracomment>Checkbox tooltip on preferences dialog</extracomment>
-            <translation>אם תג ה־"TITLE" מכיל את שמות האמן והרצועות משולבים ומופרדים תו מפריד, התוכנית תנסה להקצות את התגים המתאימים.</translation>
+            <translation>אם תג ה־&quot;TITLE&quot; מכיל את שמות האמן והרצועות משולבים ומופרדים תו מפריד, התוכנית תנסה להקצות את התגים המתאימים.</translation>
         </message>
         <message>
             <source>Use heuristic definition of track performer</source>
@@ -680,52 +680,15 @@ This only affects the file size. All settings are lossless.</source>
         <message>
             <source>You can browse to the destination directory. You can also input it manually.
 
-If the path is left empty or starts with "." (dot), the result files will be placed in the same directory as the source.</source>
-            <comment>Main form tooltip for "Directory" edit</comment>
+If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
+            <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
             <translation>ניתן לעיין בספריית היעד, או להזין את הנתיב לספריה באופן ידני.
 
-אם שדה הנתיב ישאר ריק או מתחיל ב "." (נקודה), קבצי התוצאוה יוצבו בספריית המקור.</translation>
+אם שדה הנתיב ישאר ריק או מתחיל ב &quot;.&quot; (נקודה), קבצי התוצאוה יוצבו בספריית המקור.</translation>
         </message>
         <message>
             <source>Pattern:</source>
             <translation>נתיב:</translation>
-        </message>
-        <message>
-            <source>&lt;style type="text/css"&gt;
-.term {font-weight: bold;}
-.def  { white-space: nowrap; }
-&lt;/style&gt;
-Tokens start with %. You can use the following tokens:
-&lt;table&gt;
-&lt;tr&gt;&lt;td class="term"&gt;%n&lt;/td&gt; &lt;td class="def"&gt; - Track number  &lt;/td&gt;
-        &lt;td class="term"&gt;%N&lt;/td&gt; &lt;td class="def"&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class="term"&gt;%a&lt;/td&gt; &lt;td class="def"&gt; - Artist&lt;/td&gt;
-        &lt;td class="term"&gt;%A&lt;/td&gt; &lt;td class="def"&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class="term"&gt;%t&lt;/td&gt; &lt;td class="def"&gt; - Track title&lt;/td&gt;
-        &lt;td class="term"&gt;%y&lt;/td&gt; &lt;td class="def"&gt; - Year&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class="term"&gt;%g&lt;/td&gt; &lt;td class="def"&gt; - Genre&lt;/td&gt;
-        &lt;td class="term"&gt;%C&lt;/td&gt; &lt;td class="def"&gt; - Catalog number&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-&lt;br&gt;&lt;br&gt;
-If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
-            <comment>Main form tooltip for "Pattern" edit</comment>
-            <translation>&lt;style type="text/css"&gt;
-.term {font-weight: bold;}
-.def  { white-space: nowrap; }
-&lt;/style&gt;
-Tokens start with %. You can use the following tokens:
-&lt;table&gt;
-&lt;tr&gt;&lt;td class="term"&gt;%n&lt;/td&gt; &lt;td class="def"&gt; - Track number  &lt;/td&gt;
-        &lt;td class="term"&gt;%N&lt;/td&gt; &lt;td class="def"&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class="term"&gt;%a&lt;/td&gt; &lt;td class="def"&gt; - Artist&lt;/td&gt;
-        &lt;td class="term"&gt;%A&lt;/td&gt; &lt;td class="def"&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class="term"&gt;%t&lt;/td&gt; &lt;td class="def"&gt; - Track title&lt;/td&gt;
-        &lt;td class="term"&gt;%y&lt;/td&gt; &lt;td class="def"&gt; - Year&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class="term"&gt;%g&lt;/td&gt; &lt;td class="def"&gt; - Genre&lt;/td&gt;
-        &lt;td class="term"&gt;%C&lt;/td&gt; &lt;td class="def"&gt; - Catalog number&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-&lt;br&gt;&lt;br&gt;
-If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</translation>
         </message>
         <message>
             <source>Format:</source>
@@ -733,7 +696,7 @@ If you surround sections of text that contain a token with braces, these section
         </message>
         <message>
             <source>Output format</source>
-            <comment>Main form tooltip for "Format" edit</comment>
+            <comment>Main form tooltip for &quot;Format&quot; edit</comment>
             <translation>תבנית פלט:</translation>
         </message>
         <message>
@@ -986,7 +949,7 @@ Do you want to continue?</source>
         </message>
         <message>
             <source>%1 files</source>
-            <comment>OpenFile dialog filter line, like "WAV files"</comment>
+            <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
             <translation>%1 קבצים</translation>
         </message>
         <message>
@@ -996,7 +959,7 @@ Do you want to continue?</source>
         </message>
         <message>
             <source>All files</source>
-            <comment>OpenFile dialog filter line like "All files"</comment>
+            <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
             <translation>כל הקבצים</translation>
         </message>
         <message>
@@ -1010,9 +973,9 @@ Do you want to continue?</source>
             <translation>בחירת קובץ שמע</translation>
         </message>
         <message>
-            <source>"%1" was not set.</source>
+            <source>&quot;%1&quot; was not set.</source>
             <comment>Error message, %1 is an filename.</comment>
-            <translation>"%1" לא הוגדר.</translation>
+            <translation>&quot;%1&quot; לא הוגדר.</translation>
         </message>
         <message>
             <source>Select directory</source>
@@ -1054,9 +1017,9 @@ Do you want to continue?</source>
             <translation>הקבצים הבאים יועברו לסל המחזור. האם להסיר את הקבצים הבאים?</translation>
         </message>
         <message>
-            <source>Disk %1 "%2 - %3"</source>
+            <source>Disk %1 &quot;%2 - %3&quot;</source>
             <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-            <translation>תקליטור %1 "%2 - %3"</translation>
+            <translation>תקליטור %1 &quot;%2 - %3&quot;</translation>
         </message>
         <message>
             <source>Disk %1</source>
@@ -1147,49 +1110,49 @@ Do you want to continue?</source>
     <context>
         <name>OutPatternButton</name>
         <message>
-            <source>Insert "Track number"</source>
-            <translation>הזנת "מספר רצועה"</translation>
+            <source>Insert &quot;Track number&quot;</source>
+            <translation>הזנת &quot;מספר רצועה&quot;</translation>
         </message>
         <message>
-            <source>Insert "Total number of tracks"</source>
-            <translation>הזנת "מספר רצועות כולל"</translation>
+            <source>Insert &quot;Total number of tracks&quot;</source>
+            <translation>הזנת &quot;מספר רצועות כולל&quot;</translation>
         </message>
         <message>
-            <source>Insert "Album performer"</source>
-            <translation>Insert "Album performer"</translation>
+            <source>Insert &quot;Album performer&quot;</source>
+            <translation>Insert &quot;Album performer&quot;</translation>
         </message>
         <message>
-            <source>Insert "Album title"</source>
-            <translation>הזנת "שם אלבום"</translation>
+            <source>Insert &quot;Album title&quot;</source>
+            <translation>הזנת &quot;שם אלבום&quot;</translation>
         </message>
         <message>
-            <source>Insert "Track title"</source>
-            <translation>הזנת "שם רצועה"</translation>
+            <source>Insert &quot;Track title&quot;</source>
+            <translation>הזנת &quot;שם רצועה&quot;</translation>
         </message>
         <message>
-            <source>Insert "Year"</source>
-            <translation>הזנת "שנה"</translation>
+            <source>Insert &quot;Year&quot;</source>
+            <translation>הזנת &quot;שנה&quot;</translation>
         </message>
         <message>
-            <source>Insert "Genre"</source>
-            <translation>הזנת "סוגה"</translation>
+            <source>Insert &quot;Genre&quot;</source>
+            <translation>הזנת &quot;סוגה&quot;</translation>
         </message>
         <message>
-            <source>Insert "Disc number"</source>
+            <source>Insert &quot;Disc number&quot;</source>
             <translation>הזנת 'מספר תקליטור'</translation>
         </message>
         <message>
-            <source>Insert "Total number of discs"</source>
+            <source>Insert &quot;Total number of discs&quot;</source>
             <translation>הזנת 'מספר תקליטורים כולל'</translation>
         </message>
         <message>
-            <source>Insert "Catalog number"</source>
-            <translation>Insert "Catalog number"</translation>
+            <source>Insert &quot;Catalog number&quot;</source>
+            <translation>Insert &quot;Catalog number&quot;</translation>
         </message>
         <message>
-            <source>Use "%1"</source>
-            <comment>Predefined out file pattern, string like 'Use "%a/%A/%n - %t"'</comment>
-            <translation>משתמש ב "%1"</translation>
+            <source>Use &quot;%1&quot;</source>
+            <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
+            <translation>משתמש ב &quot;%1&quot;</translation>
         </message>
     </context>
     <context>
@@ -1201,6 +1164,69 @@ Do you want to continue?</source>
         <message>
             <source>Write “Disc number” and “Disc count” tags for single-disc albums</source>
             <translation>Write “Disc number” and “Disc count” tags for single-disc albums</translation>
+        </message>
+    </context>
+    <context>
+        <name>PatternExpander</name>
+        <message>
+            <source>Track number</source>
+            <comment>Part of the tooltip for output pattern edit</comment>
+            <translation>Track number</translation>
+        </message>
+        <message>
+            <source>Total number of tracks</source>
+            <comment>Part of the tooltip for output pattern edit</comment>
+            <translation>Total number of tracks</translation>
+        </message>
+        <message>
+            <source>Disk number</source>
+            <comment>Part of the tooltip for output pattern edit</comment>
+            <translation>Disk number</translation>
+        </message>
+        <message>
+            <source>Total number of disks</source>
+            <comment>Part of the tooltip for output pattern edit</comment>
+            <translation>Total number of disks</translation>
+        </message>
+        <message>
+            <source>Artist</source>
+            <comment>Part of the tooltip for output pattern edit</comment>
+            <translation>אמן</translation>
+        </message>
+        <message>
+            <source>Album title</source>
+            <comment>Part of the tooltip for output pattern edit</comment>
+            <translation>Album title</translation>
+        </message>
+        <message>
+            <source>Track title</source>
+            <comment>Part of the tooltip for output pattern edit</comment>
+            <translation>Track title</translation>
+        </message>
+        <message>
+            <source>Year</source>
+            <comment>Part of the tooltip for output pattern edit</comment>
+            <translation>Year</translation>
+        </message>
+        <message>
+            <source>Genre</source>
+            <comment>Part of the tooltip for output pattern edit</comment>
+            <translation>Genre</translation>
+        </message>
+        <message>
+            <source>Catalog number</source>
+            <comment>Part of the tooltip for output pattern edit</comment>
+            <translation>Catalog number</translation>
+        </message>
+        <message>
+            <source>Tokens start with %. You can use the following tokens:</source>
+            <comment>Part of the tooltip for output pattern edit</comment>
+            <translation>Tokens start with %. You can use the following tokens:</translation>
+        </message>
+        <message>
+            <source>If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
+            <comment>Part of the tooltip for output pattern edit</comment>
+            <translation>If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</translation>
         </message>
     </context>
     <context>
@@ -1261,56 +1287,16 @@ Do you want to continue?</source>
         <message>
             <source>You can browse to the destination directory. You can also input it manually.
 
-If the path is left empty or starts with "." (dot), the result files will be placed in the same directory as the source.</source>
-            <comment>Preferences form tooltip for "Directory" edit</comment>
+If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
+            <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
             <translation>ניתן לעיין בספריית היעד, או להזין את הנתיב לספריה באופן ידני.
 
-אם שדה הנתיב ישאר ריק או מתחיל ב "." (נקודה), קבצי התוצאוה יוצבו בספריית המקור.</translation>
+אם שדה הנתיב ישאר ריק או מתחיל ב &quot;.&quot; (נקודה), קבצי התוצאוה יוצבו בספריית המקור.</translation>
         </message>
         <message>
             <source>Pattern:</source>
             <comment>Preferences form label text</comment>
             <translation>נתיב:</translation>
-        </message>
-        <message>
-            <source>&lt;style type="text/css"&gt;
-.term {font-weight: bold;}
-.def  { white-space: nowrap; }
-&lt;/style&gt;
-Tokens start with %. You can use the following tokens:
-&lt;table&gt;
-&lt;tr&gt;&lt;td class="term"&gt;%n&lt;/td&gt; &lt;td class="def"&gt; - Track number  &lt;/td&gt;
-        &lt;td class="term"&gt;%N&lt;/td&gt; &lt;td class="def"&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class="term"&gt;%a&lt;/td&gt; &lt;td class="def"&gt; - Artist&lt;/td&gt;
-        &lt;td class="term"&gt;%A&lt;/td&gt; &lt;td class="def"&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class="term"&gt;%t&lt;/td&gt; &lt;td class="def"&gt; - Track title&lt;/td&gt;
-        &lt;td class="term"&gt;%y&lt;/td&gt; &lt;td class="def"&gt; - Year&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class="term"&gt;%g&lt;/td&gt; &lt;td class="def"&gt; - Genre&lt;/td&gt;
-        &lt;td class="term"&gt;&lt;/td&gt; &lt;td class="def"&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-&lt;br&gt;&lt;br&gt;
-If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
-            <comment>Preferences form tooltip for "Pattern" edit</comment>
-            <translation>&lt;!DOCTYPE html&gt;
-&lt;html lang="he"&gt;
-&lt;body dir="rtl"&gt;
-&lt;style type="text/css"&gt;
- .term {font-weight: bold;}
- .def { white-space: nowrap; }
-&lt;/style&gt;
-תגים המתחילים ב %. ניתן להשתמש בתגים הבאים:
-&lt;table dir="rtl"&gt;
- &lt;tr&gt;&lt;td class="term"&gt;%n&lt;/td&gt; &lt;td class="def"&gt; - מספר רצועה &lt;/td&gt;
- &lt;td class="term"&gt;%N&lt;/td&gt; &lt;td class="def"&gt; - סך כל רצועות&lt;/td&gt;&lt;/tr&gt;
- &lt;tr&gt;&lt;td class="term"&gt;%a&lt;/td&gt; &lt;td class="def"&gt; - אמן&lt;/td&gt;
- &lt;td class="term"&gt;%A&lt;/td&gt; &lt;td class="def"&gt; - אלבום&lt;/td&gt;&lt;/tr&gt;
- &lt;tr&gt;&lt;td class="term"&gt;%t&lt;/td&gt; &lt;td class="def"&gt; - שם רצועה&lt;/td&gt;
- &lt;td class="term"&gt;%y&lt;/td&gt; &lt;td class="def"&gt; - שנה&lt;/td&gt;&lt;/tr&gt;
- &lt;tr&gt;&lt;td class="term"&gt;%g&lt;/td&gt; &lt;td class="def"&gt; - סוגה
- &lt;td class="term"&gt;&lt;/td&gt; &lt;td class="def"&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-&lt;br&gt;&lt;br&gt;
-עטיפת קטעי טקסט המכילים תגים עם תגיות, תסתיר את הקטעים אם התגים ריקים.</translation>
         </message>
         <message>
             <source>Resampling settings:</source>
@@ -1441,9 +1427,9 @@ Using the album-gain analysis will preserve the volume differences within an alb
             <translation>-</translation>
         </message>
         <message>
-            <source>Are you sure you want to delete the profile "%1"?</source>
+            <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
             <comment>Message box text</comment>
-            <translation>האם למחוק פרופיל "%1"?</translation>
+            <translation>האם למחוק פרופיל &quot;%1&quot;?</translation>
         </message>
         <message>
             <source>Delete the profile</source>
@@ -1490,12 +1476,12 @@ Using the album-gain analysis will preserve the volume differences within an alb
         <message>
             <source>I can't read cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
             <comment>%1 - is a file name, %2 - an error text</comment>
-            <translation>לא ניתן לקרוא תמונת עטיפה &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2"</translation>
+            <translation>לא ניתן לקרוא תמונת עטיפה &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2&quot;</translation>
         </message>
         <message>
             <source>I can't save cover image &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</source>
             <comment>%1 - is file name, %2 - an error text</comment>
-            <translation>לא ניתן לשמור תמונת עטיפה &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2"</translation>
+            <translation>לא ניתן לשמור תמונת עטיפה &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2&quot;</translation>
         </message>
         <message>
             <source>I can't write CUE:&lt;br&gt;%1</source>
@@ -1506,12 +1492,12 @@ Using the album-gain analysis will preserve the volume differences within an alb
             <translation>‮לא ניתן לכתוב קובץ ‭‭&lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2 cue‭</translation>
         </message>
         <message>
-            <source>I can't create directory "%1".</source>
-            <translation>לא ניתן לייצור ספריה "%1".</translation>
+            <source>I can't create directory &quot;%1&quot;.</source>
+            <translation>לא ניתן לייצור ספריה &quot;%1&quot;.</translation>
         </message>
         <message>
-            <source>I can't write to directory "%1".</source>
-            <translation>לא ניתן לכתוב לספריה "%1".</translation>
+            <source>I can't write to directory &quot;%1&quot;.</source>
+            <translation>לא ניתן לכתוב לספריה &quot;%1&quot;.</translation>
         </message>
         <message>
             <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
@@ -1523,8 +1509,8 @@ Using the album-gain analysis will preserve the volume differences within an alb
             <translation>שיבוץ ב־%1</translation>
         </message>
         <message>
-            <source>File &lt;b&gt;"%1"&lt;/b&gt; does not exist</source>
-            <translation>קובץ &lt;b&gt;"%1"&lt;/b&gt; לא קיים</translation>
+            <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
+            <translation>קובץ &lt;b&gt;&quot;%1&quot;&lt;/b&gt; לא קיים</translation>
         </message>
         <message>
             <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</source>
@@ -1855,21 +1841,21 @@ Using the album-gain analysis will preserve the volume differences within an alb
             <translation>קובץ שמע זהה משמש לרצועות שונות.</translation>
         </message>
         <message>
-            <source>Disk %1 "%2 - %3" will overwrite its own files.</source>
+            <source>Disk %1 &quot;%2 - %3&quot; will overwrite its own files.</source>
             <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-            <translation>תקליטור %1 "%2 - %3" יכתוב על הקבצים של עצמו.</translation>
+            <translation>תקליטור %1 &quot;%2 - %3&quot; יכתוב על הקבצים של עצמו.</translation>
         </message>
         <message>
-            <source>Disk %1 "%2 - %3" will overwrite the files of this disk.</source>
+            <source>Disk %1 &quot;%2 - %3&quot; will overwrite the files of this disk.</source>
             <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-            <translation>תקליטור %1 "%2 - %3" יכתוב על הקבצים של תקליטור זה.</translation>
+            <translation>תקליטור %1 &quot;%2 - %3&quot; יכתוב על הקבצים של תקליטור זה.</translation>
         </message>
         <message>
             <source>The output files of the disc are mixed with the files of disc %1.
-You could change the "Start num" for one of them.</source>
+You could change the &quot;Start num&quot; for one of them.</source>
             <comment>Error message, %1 is the disk description, artist and album for the disc, respectively</comment>
             <translation>קובצי הפלט של התקליטור מעורבבים עם קבצי התקליטור.
-ניתן לשנות "מספר התחלתי" של אחד מהם.</translation>
+ניתן לשנות &quot;מספר התחלתי&quot; של אחד מהם.</translation>
         </message>
         <message>
             <source>Disk %1 uses the same CUE file.</source>

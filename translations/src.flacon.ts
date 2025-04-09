@@ -1003,27 +1003,6 @@ Do you want to continue?</source>
         <extracomment>Toolbar item tooltip</extracomment>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>&lt;style type=&quot;text/css&quot;&gt;
-.term {font-weight: bold;}
-.def  { white-space: nowrap; }
-&lt;/style&gt;
-Tokens start with %. You can use the following tokens:
-&lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%C&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Catalog number&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-&lt;br&gt;&lt;br&gt;
-If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
-        <comment>Main form tooltip for &quot;Pattern&quot; edit</comment>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>MultiValuesComboBox</name>
@@ -1150,6 +1129,69 @@ If you surround sections of text that contain a token with braces, these section
     </message>
 </context>
 <context>
+    <name>PatternExpander</name>
+    <message>
+        <source>Track number</source>
+        <comment>Part of the tooltip for output pattern edit</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Total number of tracks</source>
+        <comment>Part of the tooltip for output pattern edit</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disk number</source>
+        <comment>Part of the tooltip for output pattern edit</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Total number of disks</source>
+        <comment>Part of the tooltip for output pattern edit</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Artist</source>
+        <comment>Part of the tooltip for output pattern edit</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Album title</source>
+        <comment>Part of the tooltip for output pattern edit</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Track title</source>
+        <comment>Part of the tooltip for output pattern edit</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Year</source>
+        <comment>Part of the tooltip for output pattern edit</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Genre</source>
+        <comment>Part of the tooltip for output pattern edit</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Catalog number</source>
+        <comment>Part of the tooltip for output pattern edit</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tokens start with %. You can use the following tokens:</source>
+        <comment>Part of the tooltip for output pattern edit</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
+        <comment>Part of the tooltip for output pattern edit</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PreferencesDialog</name>
     <message>
         <source>Preferences</source>
@@ -1210,27 +1252,6 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
     <message>
         <source>Pattern:</source>
         <comment>Preferences form label text</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;style type=&quot;text/css&quot;&gt;
-.term {font-weight: bold;}
-.def  { white-space: nowrap; }
-&lt;/style&gt;
-Tokens start with %. You can use the following tokens:
-&lt;table&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%n&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track number  &lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%N&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%a&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Artist&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%A&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%t&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Track title&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;%y&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Year&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class=&quot;term&quot;&gt;%g&lt;/td&gt; &lt;td class=&quot;def&quot;&gt; - Genre&lt;/td&gt;
-        &lt;td class=&quot;term&quot;&gt;&lt;/td&gt; &lt;td class=&quot;def&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-&lt;br&gt;&lt;br&gt;
-If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
-        <comment>Preferences form tooltip for &quot;Pattern&quot; edit</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>

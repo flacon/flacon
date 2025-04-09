@@ -512,24 +512,24 @@ DBVC – débit binaire variable contraint</translation>
             <translation>Intégrer aux fichiers son</translation>
         </message>
         <message>
-            <source>Insert "Artist"</source>
+            <source>Insert &quot;Artist&quot;</source>
             <translation>Insérer l’« Artiste »</translation>
         </message>
         <message>
-            <source>Insert "Album title"</source>
+            <source>Insert &quot;Album title&quot;</source>
             <translation>Insérer le « Titre de l’album »</translation>
         </message>
         <message>
-            <source>Insert "Year"</source>
+            <source>Insert &quot;Year&quot;</source>
             <translation>Insérer l’« Année »</translation>
         </message>
         <message>
-            <source>Insert "Genre"</source>
+            <source>Insert &quot;Genre&quot;</source>
             <translation>Insérer le « Genre »</translation>
         </message>
         <message>
-            <source>Use "%1"</source>
-            <comment>Predefined CUE file name, string like 'Use "%a/%A/%n - %t.cue"'</comment>
+            <source>Use &quot;%1&quot;</source>
+            <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
             <translation>Utiliser « %1 »</translation>
         </message>
         <message>
@@ -601,7 +601,7 @@ Cela affecte seulement la taille du fichier, toujours sans perte.</translation>
             <translation>Balises CUE</translation>
         </message>
         <message>
-            <source>If the "TITLE" tag contains the artist's and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
+            <source>If the &quot;TITLE&quot; tag contains the artist's and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
             <extracomment>Checkbox tooltip on preferences dialog</extracomment>
             <translation>Si la balise « Titre » comprend le nom de l’artiste et de la plage avec un caractère de séparation, le programme essaiera d’attribuer les balises appropriées.</translation>
         </message>
@@ -681,8 +681,8 @@ Cela affecte seulement la taille du fichier, toujours sans perte.</translation>
         <message>
             <source>You can browse to the destination directory. You can also input it manually.
 
-If the path is left empty or starts with "." (dot), the result files will be placed in the same directory as the source.</source>
-            <comment>Main form tooltip for "Directory" edit</comment>
+If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
+            <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
             <translation>Vous pouvez naviguer vers le dossier de destination. Vous pouvez aussi le saisir manuellement.
 
 Si le chemin est laissé vide ou commence par « . » (point), les fichiers de sortie seront placés dans le même dossier que la source.</translation>
@@ -692,49 +692,12 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
             <translation>Modèle :</translation>
         </message>
         <message>
-            <source>&lt;style type="text/css"&gt;
-.term {font-weight: bold;}
-.def  { white-space: nowrap; }
-&lt;/style&gt;
-Tokens start with %. You can use the following tokens:
-&lt;table&gt;
-&lt;tr&gt;&lt;td class="term"&gt;%n&lt;/td&gt; &lt;td class="def"&gt; - Track number  &lt;/td&gt;
-        &lt;td class="term"&gt;%N&lt;/td&gt; &lt;td class="def"&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class="term"&gt;%a&lt;/td&gt; &lt;td class="def"&gt; - Artist&lt;/td&gt;
-        &lt;td class="term"&gt;%A&lt;/td&gt; &lt;td class="def"&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class="term"&gt;%t&lt;/td&gt; &lt;td class="def"&gt; - Track title&lt;/td&gt;
-        &lt;td class="term"&gt;%y&lt;/td&gt; &lt;td class="def"&gt; - Year&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class="term"&gt;%g&lt;/td&gt; &lt;td class="def"&gt; - Genre&lt;/td&gt;
-        &lt;td class="term"&gt;%C&lt;/td&gt; &lt;td class="def"&gt; - Catalog number&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-&lt;br&gt;&lt;br&gt;
-If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
-            <comment>Main form tooltip for "Pattern" edit</comment>
-            <translation>&lt;style type="text/css"&gt;
-.term {font-weight: bold;}
-.def  { white-space: nowrap; }
-&lt;/style&gt;
-Tokens start with %. You can use the following tokens:
-&lt;table&gt;
-&lt;tr&gt;&lt;td class="term"&gt;%n&lt;/td&gt; &lt;td class="def"&gt; - Track number  &lt;/td&gt;
-        &lt;td class="term"&gt;%N&lt;/td&gt; &lt;td class="def"&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class="term"&gt;%a&lt;/td&gt; &lt;td class="def"&gt; - Artist&lt;/td&gt;
-        &lt;td class="term"&gt;%A&lt;/td&gt; &lt;td class="def"&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class="term"&gt;%t&lt;/td&gt; &lt;td class="def"&gt; - Track title&lt;/td&gt;
-        &lt;td class="term"&gt;%y&lt;/td&gt; &lt;td class="def"&gt; - Year&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class="term"&gt;%g&lt;/td&gt; &lt;td class="def"&gt; - Genre&lt;/td&gt;
-        &lt;td class="term"&gt;%C&lt;/td&gt; &lt;td class="def"&gt; - Catalog number&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-&lt;br&gt;&lt;br&gt;
-If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</translation>
-        </message>
-        <message>
             <source>Format:</source>
             <translation>Format :</translation>
         </message>
         <message>
             <source>Output format</source>
-            <comment>Main form tooltip for "Format" edit</comment>
+            <comment>Main form tooltip for &quot;Format&quot; edit</comment>
             <translation>Format de sortie</translation>
         </message>
         <message>
@@ -987,7 +950,7 @@ Voulez-vous continuer ?</translation>
         </message>
         <message>
             <source>%1 files</source>
-            <comment>OpenFile dialog filter line, like "WAV files"</comment>
+            <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
             <translation>Fichiers %1</translation>
         </message>
         <message>
@@ -997,7 +960,7 @@ Voulez-vous continuer ?</translation>
         </message>
         <message>
             <source>All files</source>
-            <comment>OpenFile dialog filter line like "All files"</comment>
+            <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
             <translation>Tous les fichiers</translation>
         </message>
         <message>
@@ -1011,7 +974,7 @@ Voulez-vous continuer ?</translation>
             <translation>Sélectionner le fichier son</translation>
         </message>
         <message>
-            <source>"%1" was not set.</source>
+            <source>&quot;%1&quot; was not set.</source>
             <comment>Error message, %1 is an filename.</comment>
             <translation>« %1 » n’a pas été défini.</translation>
         </message>
@@ -1055,7 +1018,7 @@ Voulez-vous continuer ?</translation>
             <translation>Les fichiers suivants seront déplacés vers la corbeille. Les supprimer ?</translation>
         </message>
         <message>
-            <source>Disk %1 "%2 - %3"</source>
+            <source>Disk %1 &quot;%2 - %3&quot;</source>
             <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
             <translation>&lt;b&gt;Disque %1 « %2 – %3 »&lt;/b&gt;</translation>
         </message>
@@ -1148,48 +1111,48 @@ Voulez-vous continuer ?</translation>
     <context>
         <name>OutPatternButton</name>
         <message>
-            <source>Insert "Track number"</source>
+            <source>Insert &quot;Track number&quot;</source>
             <translation>Insérer le « Numéro de plage »</translation>
         </message>
         <message>
-            <source>Insert "Total number of tracks"</source>
+            <source>Insert &quot;Total number of tracks&quot;</source>
             <translation>Insérer le « Nombre total de plages »</translation>
         </message>
         <message>
-            <source>Insert "Album performer"</source>
+            <source>Insert &quot;Album performer&quot;</source>
             <translation>Insérer l’« Interprète de l’album »</translation>
         </message>
         <message>
-            <source>Insert "Album title"</source>
+            <source>Insert &quot;Album title&quot;</source>
             <translation>Insérer le « Titre de l’album »</translation>
         </message>
         <message>
-            <source>Insert "Track title"</source>
+            <source>Insert &quot;Track title&quot;</source>
             <translation>Insérer le « Titre de la plage »</translation>
         </message>
         <message>
-            <source>Insert "Year"</source>
+            <source>Insert &quot;Year&quot;</source>
             <translation>Insérer l’« Année »</translation>
         </message>
         <message>
-            <source>Insert "Genre"</source>
+            <source>Insert &quot;Genre&quot;</source>
             <translation>Insérer le « Genre »</translation>
         </message>
         <message>
-            <source>Insert "Disc number"</source>
+            <source>Insert &quot;Disc number&quot;</source>
             <translation>Insérer le « Numéro de disque »</translation>
         </message>
         <message>
-            <source>Insert "Total number of discs"</source>
+            <source>Insert &quot;Total number of discs&quot;</source>
             <translation>Insérer le « Nombre total de disques »</translation>
         </message>
         <message>
-            <source>Insert "Catalog number"</source>
-            <translation>Insert "Catalog number"</translation>
+            <source>Insert &quot;Catalog number&quot;</source>
+            <translation>Insérer le « Numéro de catalogue »</translation>
         </message>
         <message>
-            <source>Use "%1"</source>
-            <comment>Predefined out file pattern, string like 'Use "%a/%A/%n - %t"'</comment>
+            <source>Use &quot;%1&quot;</source>
+            <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
             <translation>Utiliser « %1 »</translation>
         </message>
     </context>
@@ -1202,6 +1165,69 @@ Voulez-vous continuer ?</translation>
         <message>
             <source>Write “Disc number” and “Disc count” tags for single-disc albums</source>
             <translation>Écrire des balises « Numéro de disque » et « Nombre de disques » pour les albums qui ne comporte qu’un disque</translation>
+        </message>
+    </context>
+    <context>
+        <name>PatternExpander</name>
+        <message>
+            <source>Track number</source>
+            <comment>Part of the tooltip for output pattern edit</comment>
+            <translation>Track number</translation>
+        </message>
+        <message>
+            <source>Total number of tracks</source>
+            <comment>Part of the tooltip for output pattern edit</comment>
+            <translation>Total number of tracks</translation>
+        </message>
+        <message>
+            <source>Disk number</source>
+            <comment>Part of the tooltip for output pattern edit</comment>
+            <translation>Disk number</translation>
+        </message>
+        <message>
+            <source>Total number of disks</source>
+            <comment>Part of the tooltip for output pattern edit</comment>
+            <translation>Total number of disks</translation>
+        </message>
+        <message>
+            <source>Artist</source>
+            <comment>Part of the tooltip for output pattern edit</comment>
+            <translation>Artiste</translation>
+        </message>
+        <message>
+            <source>Album title</source>
+            <comment>Part of the tooltip for output pattern edit</comment>
+            <translation>Album title</translation>
+        </message>
+        <message>
+            <source>Track title</source>
+            <comment>Part of the tooltip for output pattern edit</comment>
+            <translation>Track title</translation>
+        </message>
+        <message>
+            <source>Year</source>
+            <comment>Part of the tooltip for output pattern edit</comment>
+            <translation>Year</translation>
+        </message>
+        <message>
+            <source>Genre</source>
+            <comment>Part of the tooltip for output pattern edit</comment>
+            <translation>Genre</translation>
+        </message>
+        <message>
+            <source>Catalog number</source>
+            <comment>Part of the tooltip for output pattern edit</comment>
+            <translation>Numéro de catalogue</translation>
+        </message>
+        <message>
+            <source>Tokens start with %. You can use the following tokens:</source>
+            <comment>Part of the tooltip for output pattern edit</comment>
+            <translation>Tokens start with %. You can use the following tokens:</translation>
+        </message>
+        <message>
+            <source>If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
+            <comment>Part of the tooltip for output pattern edit</comment>
+            <translation>If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</translation>
         </message>
     </context>
     <context>
@@ -1262,8 +1288,8 @@ Voulez-vous continuer ?</translation>
         <message>
             <source>You can browse to the destination directory. You can also input it manually.
 
-If the path is left empty or starts with "." (dot), the result files will be placed in the same directory as the source.</source>
-            <comment>Preferences form tooltip for "Directory" edit</comment>
+If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
+            <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
             <translation>Vous pouvez naviguer vers le dossier de destination. Vous pouvez aussi le saisir manuellement.
 
 Si le chemin est laissé vide ou commence par « . » (point), les fichiers de sortie seront placés dans le même dossier que la source.</translation>
@@ -1272,43 +1298,6 @@ Si le chemin est laissé vide ou commence par « . » (point), les fichiers de
             <source>Pattern:</source>
             <comment>Preferences form label text</comment>
             <translation>Modèle :</translation>
-        </message>
-        <message>
-            <source>&lt;style type="text/css"&gt;
-.term {font-weight: bold;}
-.def  { white-space: nowrap; }
-&lt;/style&gt;
-Tokens start with %. You can use the following tokens:
-&lt;table&gt;
-&lt;tr&gt;&lt;td class="term"&gt;%n&lt;/td&gt; &lt;td class="def"&gt; - Track number  &lt;/td&gt;
-        &lt;td class="term"&gt;%N&lt;/td&gt; &lt;td class="def"&gt; - Total number of tracks&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class="term"&gt;%a&lt;/td&gt; &lt;td class="def"&gt; - Artist&lt;/td&gt;
-        &lt;td class="term"&gt;%A&lt;/td&gt; &lt;td class="def"&gt; - Album title&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class="term"&gt;%t&lt;/td&gt; &lt;td class="def"&gt; - Track title&lt;/td&gt;
-        &lt;td class="term"&gt;%y&lt;/td&gt; &lt;td class="def"&gt; - Year&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td class="term"&gt;%g&lt;/td&gt; &lt;td class="def"&gt; - Genre&lt;/td&gt;
-        &lt;td class="term"&gt;&lt;/td&gt; &lt;td class="def"&gt;&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;
-&lt;br&gt;&lt;br&gt;
-If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
-            <comment>Preferences form tooltip for "Pattern" edit</comment>
-            <translation>&lt;style type="text/css"&gt;
- .term {font-weight: bold;}
- .def { white-space: nowrap; }
- &lt;/style&gt;
-Les marqueurs commencent par %. Vous pouvez utiliser les marqueurs suivants  :
- &lt;table&gt;
- &lt;tr&gt;&lt;td class="term"&gt;%n&lt;/td&gt; &lt;td class="def"&gt; – Numéro de plage &lt;/td&gt;
- &lt;td class="term"&gt;%N&lt;/td&gt; &lt;td class="def"&gt; – Nombre total de plages&lt;/td&gt;&lt;/tr&gt;
- &lt;tr&gt;&lt;td class="term"&gt;%a&lt;/td&gt; &lt;td class="def"&gt; – Artiste&lt;/td&gt;
- &lt;td class="term"&gt;%A&lt;/td&gt; &lt;td class="def"&gt; – Titre de l’album&lt;/td&gt;&lt;/tr&gt;
- &lt;tr&gt;&lt;td class="term"&gt;%t&lt;/td&gt; &lt;td class="def"&gt; – Titre de la plage&lt;/td&gt;
-&lt;td class="term"&gt;%y&lt;/td&gt; &lt;td class="def"&gt; – Année&lt;/td&gt;&lt;/tr&gt;
- &lt;tr&gt;&lt;td class="term"&gt;%g&lt;/td&gt; &lt;td class="def"&gt; – Genre&lt;/td&gt;
- &lt;td class="term"&gt;&lt;/td&gt; &lt;td class="def"&gt;&lt;/td&gt;&lt;/tr&gt;
- &lt;/table&gt;
- &lt;br&gt;&lt;br&gt;
-Si vous entourez des sections de texte qui comprennent un marqueur avec des accolades, ces sections seront cachées si le marqueur est vide.</translation>
         </message>
         <message>
             <source>Resampling settings:</source>
@@ -1441,7 +1430,7 @@ L’utilisation de l’analyse par album permet de préserver les différences d
             <translation>–</translation>
         </message>
         <message>
-            <source>Are you sure you want to delete the profile "%1"?</source>
+            <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
             <comment>Message box text</comment>
             <translation>Souhaitez-vous vraiment supprimer le profil « %1 » ?</translation>
         </message>
@@ -1506,11 +1495,11 @@ L’utilisation de l’analyse par album permet de préserver les différences d
             <translation>Je ne peux pas écrire le fichier CUE &lt;b&gt;%1&lt;/b&gt; :&lt;br&gt;%2.</translation>
         </message>
         <message>
-            <source>I can't create directory "%1".</source>
+            <source>I can't create directory &quot;%1&quot;.</source>
             <translation>Je ne peux pas créer le dossier « %1 »</translation>
         </message>
         <message>
-            <source>I can't write to directory "%1".</source>
+            <source>I can't write to directory &quot;%1&quot;.</source>
             <translation>Je ne peux pas écrire dans le dossier « %1 »</translation>
         </message>
         <message>
@@ -1523,7 +1512,7 @@ L’utilisation de l’analyse par album permet de préserver les différences d
             <translation>Intégré à %1</translation>
         </message>
         <message>
-            <source>File &lt;b&gt;"%1"&lt;/b&gt; does not exist</source>
+            <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
             <translation>Le fichier &lt;b&gt;« %1 »&lt;/b&gt; n’existe pas</translation>
         </message>
         <message>
@@ -1618,7 +1607,7 @@ L’utilisation de l’analyse par album permet de préserver les différences d
             <source>Catalog number:</source>
             <comment>Music tag name</comment>
             <extracomment>Music tag name</extracomment>
-            <translation>Catalog number:</translation>
+            <translation>Numéro de catalogue :</translation>
         </message>
     </context>
     <context>
@@ -1776,7 +1765,7 @@ L’utilisation de l’analyse par album permet de préserver les différences d
         <message>
             <source>Catalog number</source>
             <comment>Table header.</comment>
-            <translation>Catalog number</translation>
+            <translation>Numéro de catalogue</translation>
         </message>
         <message>
             <source>Multiple values</source>
@@ -1855,18 +1844,18 @@ L’utilisation de l’analyse par album permet de préserver les différences d
             <translation>Le même fichier son est utilisé pour différentes plages.</translation>
         </message>
         <message>
-            <source>Disk %1 "%2 - %3" will overwrite its own files.</source>
+            <source>Disk %1 &quot;%2 - %3&quot; will overwrite its own files.</source>
             <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
             <translation>Le disque %1 « %2 – %3 » remplacera ses propres fichiers.</translation>
         </message>
         <message>
-            <source>Disk %1 "%2 - %3" will overwrite the files of this disk.</source>
+            <source>Disk %1 &quot;%2 - %3&quot; will overwrite the files of this disk.</source>
             <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
             <translation>Le disque %1 « %2 – %3 » remplacera les fichiers de ce disque.</translation>
         </message>
         <message>
             <source>The output files of the disc are mixed with the files of disc %1.
-You could change the "Start num" for one of them.</source>
+You could change the &quot;Start num&quot; for one of them.</source>
             <comment>Error message, %1 is the disk description, artist and album for the disc, respectively</comment>
             <translation>Les fichiers de sortie du disque sont mélangés avec les fichiers du disque %1.
 Vous pouvez changer le « Numéro de début » d’un des fichiers.</translation>
