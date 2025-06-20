@@ -29,7 +29,7 @@
 #include "settings.h"
 #include "converter/converter.h"
 #include "inputaudiofile.h"
-#include "formats_in/informat.h"
+#include "converter/decoder.h"
 #include "preferences/preferencesdialog.h"
 #include "aboutdialog/aboutdialog.h"
 #include "scanner.h"
@@ -708,9 +708,9 @@ QString MainWindow::getOpenFileFilter(bool includeAudio, bool includeCue)
     QString     fltPattern = tr("%1 files", "OpenFile dialog filter line, like \"WAV files\"") + " (*.%2)";
 
     if (includeAudio) {
-        foreach (const InputFormat *format, InputFormat::allFormats()) {
-            allFlt << QStringLiteral(" *.%1").arg(format->ext());
-            flt << fltPattern.arg(format->name(), format->ext());
+        foreach (const Conv::Decoder::Format format, Conv::Decoder::allFormats()) {
+            allFlt << QStringLiteral(" *.%1").arg(format.ext);
+            flt << fltPattern.arg(format.name, format.ext);
         }
     }
 

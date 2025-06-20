@@ -166,7 +166,6 @@ configure_file(appconfig.h.in appconfig.h)
 
 include(internet/module.cmake)
 include(gui/module.cmake)
-include(formats_in/module.cmake)
 include(formats_out/module.cmake)
 include(qtbackports/module.cmake)
 include(validator/module.cmake)
@@ -260,6 +259,14 @@ message(STATUS "Using taglib version: ${TAGLIB_VERSION}")
 find_package(Iconv REQUIRED)
 set(LIBRARIES ${LIBRARIES} ${Iconv_LIBRARIES})
 
+# FFMPEG ..............................
+pkg_check_modules(LIBAV REQUIRED IMPORTED_TARGET
+    libavformat
+    libavcodec
+    libavutil
+)
+include_directories(${LIBAV_INCLUDE_DIRS})
+list(APPEND LIBRARIES PkgConfig::LIBAV)
 
 if (APPLE)
     FIND_LIBRARY(COCOA_LIBRARY Cocoa)

@@ -39,6 +39,7 @@ namespace Conv {
 class WavHeader
 {
 public:
+    static constexpr quint32 UNKNOWNS_SIZE = 0xEF'FF'FF'FF;
     enum Format {
         Format_Unknown           = 0x0000,
         Format_PCM               = 0x0001,
@@ -74,6 +75,7 @@ public:
 
     WavHeader() = default;
     explicit WavHeader(QIODevice *stream) noexcept(false);
+    WavHeader(quint16 numChannels, quint32 sampleRate, quint16 bitsPerSample);
 
     WavHeader(const WavHeader &other) = default;
     WavHeader &operator=(const WavHeader &other) = default;

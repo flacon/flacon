@@ -284,6 +284,27 @@ WavHeader::WavHeader(QIODevice *stream) noexcept(false)
     throw FlaconError("WAVE header is missing RIFF tag while processing file");
 }
 
+WavHeader::WavHeader(quint16 numChannels, quint32 sampleRate, quint16 bitsPerSample)
+{
+    m64Bit         = false;
+    mFmtSize       = FmtChunkMin;
+    mFormat        = WavHeader::Format_PCM;
+    mNumChannels   = numChannels;
+    mSampleRate    = sampleRate;
+    mBitsPerSample = bitsPerSample;
+    mByteRate      = mNumChannels * mSampleRate * mBitsPerSample / 8;
+    mBlockAlign    = 4;
+    mExtSize       = 0;
+
+    mDataStartPos =
+            12 + // header
+            4 +  // SubchunkID
+            4 +  // SubchunkSize
+            mFmtSize;
+    mDataSize = UNKNOWNS_SIZE;
+    mFileSize = mDataStartPos + mDataSize;
+}
+
 /************************************************
  * 52 49 46 46      RIFF
  * 24 B9 4D 02      file size - 8
@@ -405,12 +426,14 @@ void WavHeader::readWave64Header(QIODevice *stream)
  ************************************************/
 bool WavHeader::isCdQuality() const
 {
-    static const int CD_NUM_CHANNELS    = 2;
-    static const int CD_BITS_PER_SAMPLE = 16;
-    static const int CD_SAMPLE_RATE     = 44100;
-    static const int CD_BYTE_RATE       = 176400;
+    bool res = true;
 
-    return mNumChannels == CD_NUM_CHANNELS && mBitsPerSample == CD_BITS_PER_SAMPLE && mSampleRate == CD_SAMPLE_RATE && mByteRate == CD_BYTE_RATE;
+    res = res && mNumChannels == 2;
+    res = res && mBitsPerSample == 16;
+    res = res && mSampleRate == 44100;
+    res = res && mByteRate == 44100 * 2 * 2;
+
+    return res;
 }
 
 /************************************************
@@ -418,7 +441,7 @@ bool WavHeader::isCdQuality() const
  ************************************************/
 quint64 WavHeader::duration() const
 {
-    return (mDataSize * 1000ull) / mByteRate;
+    return (mByteRate && mDataSize) ? (mDataSize * 1000ull) / mByteRate : 0;
 }
 
 /************************************************

@@ -33,7 +33,6 @@
 #include "uchardetect.h"
 #include "profiles.h"
 #include "inputaudiofile.h"
-#include "formats_in/informat.h"
 #include <QBuffer>
 
 /**************************************
@@ -279,11 +278,11 @@ EmbeddedCue::EmbeddedCue(const InputAudioFile &audioFile) noexcept(false) :
     mTagsId.uri   = mFilePath;
     mTagsId.title = QObject::tr("Embedded on %1", "The title for the CUE embedded in the audio file. %1 - is an audio-file name.").arg(fileInfo.fileName());
 
-    if (!audioFile.isValid() || !audioFile.format()) {
+    if (!audioFile.isValid()) {
         return;
     }
 
-    QByteArray bytes = audioFile.format()->readEmbeddedCue(audioFile.filePath());
+    QByteArray bytes = audioFile.readEmbeddedCue();
     if (bytes.isEmpty()) {
         return;
     }

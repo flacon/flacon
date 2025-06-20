@@ -31,11 +31,17 @@
 #include <QString>
 #include <QByteArray>
 #include "../types.h"
-#include "../formats_in/informat.h"
+extern "C" {
+#include "libavcodec/codec_id.h"
+}
 
 class QIODevice;
 class QProcess;
 class QFile;
+class AVFormatContext;
+class AVCodecContext;
+struct AVFrame;
+struct AVPacket;
 
 namespace Conv {
 
@@ -43,39 +49,57 @@ class Decoder : public QObject
 {
     Q_OBJECT
 public:
+    struct Format
+    {
+        QString name;
+        QString ext;
+    };
+
+    static QList<Format> allFormats();
+    static QStringList   allFormatsExts();
+
+public:
     explicit Decoder(QObject *parent = nullptr);
     virtual ~Decoder();
 
     void open(const QString &fileName);
     void close();
 
-    void extract(const CueTime &start, const CueTime &end, QIODevice *outDevice, bool writeHeader = true);
-    void extract(const CueTime &start, const CueTime &end, const QString &outFileName);
-
-    // Duration of audio in milliseconds.
-    uint duration() const { return mWavHeader.duration(); }
+    uint64_t extract(const CueTime &startTime, const CueTime &endTime, QIODevice *outDevice);
 
     WavHeader wavHeader() const { return mWavHeader; }
 
-    const InputFormat *audioFormat() const { return mFormat; }
-
     QString inputFile() const { return mInputFile; }
 
-    uint64_t bytesCount(const CueTime &start, const CueTime &end) const;
+    int64_t bytesCount(const CueTime &startTime, const CueTime &endTime) const;
+
+    // Duration of audio in milliseconds.
+    mSec duration() const;
+
+    QString   formatName() const;
+    AVCodecID formatId() const;
 
 signals:
     void progress(int percent);
 
 private:
-    const InputFormat *mFormat;
-    QProcess          *mProcess;
-    QString            mInputFile;
-    QFile             *mFile;
-    WavHeader          mWavHeader;
-    quint64            mPos;
+    QString   mInputFile;
+    WavHeader mWavHeader;
 
-    void openFile();
-    void openProcess();
+    AVFormatContext *mFormatContext  = nullptr;
+    AVCodecContext  *mDecoderContext = nullptr;
+    AVPacket        *mPacket         = nullptr;
+    AVFrame         *mFrame          = nullptr;
+    int              mStreamIndex    = -1;
+    int64_t          mDecoderPos     = 0;
+    QByteArray       mFrameBuff;
+
+    bool readFrame();
+
+    static uint64_t writeInterleavedFrame(AVFrame *frame, QByteArray *buf);
+    static uint64_t writePlanarFrame(AVFrame *frame, QByteArray *buf);
+
+    uint64_t aproximateBytes(const CueTime &endTime) const;
 };
 
 } // namespace

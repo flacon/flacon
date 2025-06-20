@@ -27,11 +27,14 @@
 #include "../cue.h"
 
 #include <QIODevice>
-#include <QFile>
-#include <QProcess>
-#include <QDir>
-#include <QDebug>
 #include <QLoggingCategory>
+#include <limits>
+
+extern "C" {
+#include <libavformat/avformat.h>
+#include <libavcodec/avcodec.h>
+#include <libavutil/avutil.h>
+}
 
 namespace {
 Q_LOGGING_CATEGORY(LOG, "Decoder")
@@ -39,19 +42,96 @@ Q_LOGGING_CATEGORY(LOG, "Decoder")
 
 using namespace Conv;
 
-static const int MAX_BUF_SIZE = 4096;
-static const int READ_DELAY   = 1000;
+/************************************************
+ *
+ ************************************************/
+QList<Decoder::Format> Decoder::allFormats()
+{
+    // clang-format off
+    return {
+        // name         file ext
+        { "APE",        "ape"  },
+        { "FLAC",       "flac" },
+        { "TTA",        "tta"  },
+        { "MP3",        "mp3"  },
+        { "WAV",        "wav"  },
+        { "WAVE64",     "w64"  },
+        { "WavPack",    "wv"   },
+    };
+    // clang-format off
+}
 
 /************************************************
  *
  ************************************************/
-static qint64 timeToBytes(const CueTime &time, const WavHeader &wav)
+QStringList Decoder::allFormatsExts()
+{
+    QStringList res;
+    for (auto fmt : Conv::Decoder::allFormats()) {
+        res << QStringLiteral("*.%1").arg(fmt.ext);
+    }
+
+    return res;
+}
+
+static const int MAX_BUF_SIZE  = 4096;
+static const int READ_DELAY    = 1000;
+static const int UNKNOWN_COUNT = std::numeric_limits<int>::max();
+
+class RaiiPacketUnref
+{
+public:
+    RaiiPacketUnref(AVPacket *packet) :
+        mPacket(packet) { }
+
+    ~RaiiPacketUnref()
+    {
+        if (mPacket) {
+            av_packet_unref(mPacket);
+        }
+    }
+
+private:
+    AVPacket *mPacket = nullptr;
+};
+
+class RaiiFrameUnref
+{
+public:
+    RaiiFrameUnref(AVFrame *frame) :
+        mFrame(frame) { }
+
+    ~RaiiFrameUnref()
+    {
+        if (mFrame) {
+            av_frame_unref(mFrame);
+        }
+    }
+
+private:
+    AVFrame *mFrame = nullptr;
+};
+
+/************************************************
+ *
+ ************************************************/
+static QString ffErrorString(int ffCode)
+{
+    char buffer[1024];
+    av_make_error_string(buffer, 1024, ffCode);
+    return QString::fromUtf8(buffer);
+}
+
+/************************************************
+ *
+ ************************************************/
+static int64_t timeToBytes(const CueTime &time, const WavHeader &wav)
 {
     if (wav.isCdQuality()) {
-        return (qint64)((((double)time.frames() * (double)wav.byteRate()) / 75.0) + 0.5);
+        return (int64_t)((((double)time.frames() * (double)wav.byteRate()) / 75.0) + 0.5);
     }
     else {
-        return (qint64)((((double)time.milliseconds() * (double)wav.byteRate()) / 1000.0) + 0.5);
+        return (int64_t)((((double)time.milliseconds() * (double)wav.byteRate()) / 1000.0) + 0.5);
     }
 }
 
@@ -59,11 +139,7 @@ static qint64 timeToBytes(const CueTime &time, const WavHeader &wav)
  *
  ************************************************/
 Decoder::Decoder(QObject *parent) :
-    QObject(parent),
-    mFormat(nullptr),
-    mProcess(nullptr),
-    mFile(nullptr),
-    mPos(0)
+    QObject(parent)
 {
 }
 
@@ -73,8 +149,6 @@ Decoder::Decoder(QObject *parent) :
 Decoder::~Decoder()
 {
     close();
-    delete mFile;
-    delete mProcess;
 }
 
 /************************************************
@@ -83,80 +157,65 @@ Decoder::~Decoder()
 void Decoder::open(const QString &fileName)
 {
     mInputFile = fileName;
-    if (!mFormat) {
-        mFormat = InputFormat::formatForFile(fileName);
+
+    if (!mPacket) {
+        mPacket = av_packet_alloc();
     }
 
-    if (!mFormat) {
-        qCWarning(LOG) << "The audio file may be corrupted: Unknown InputFormat";
+    if (!mFrame) {
+        mFrame = av_frame_alloc();
+    }
+
+    int err = 0;
+    err     = avformat_open_input(&mFormatContext, mInputFile.toLocal8Bit(), nullptr, nullptr);
+    if (err < 0) {
+        qCWarning(LOG) << "Error calling avformat_open_input. err:" << err;
         throw FlaconError(tr("The audio file may be corrupted or an unsupported audio format.", "Error message."));
     }
 
-    if (mFormat->decoderProgram()) {
-        return openProcess();
-    }
-    else {
-        return openFile();
-    }
-}
-
-/************************************************
- *
- ************************************************/
-void Decoder::openFile()
-{
-    mFile = new QFile(mInputFile, this);
-    if (!mFile->open(QFile::ReadOnly)) {
-        throw FlaconError(mFile->errorString());
-    }
-
-    try {
-        mWavHeader = WavHeader(mFile);
-        mPos       = mWavHeader.dataStartPos();
-    }
-    catch (const FlaconError &err) {
-        qCWarning(LOG) << "The audio file may be corrupted:" << err.what();
+    err = avformat_find_stream_info(mFormatContext, nullptr);
+    if (err < 0) {
+        qCWarning(LOG) << "Error calling avformat_find_stream_info. err:" << err;
         throw FlaconError(tr("The audio file may be corrupted or an unsupported audio format.", "Error message."));
     }
-}
 
-/************************************************
- *
- ************************************************/
-void Decoder::openProcess()
-{
-    ExtProgram *program = mFormat->decoderProgram();
-
-    if (program->path().isEmpty()) {
-        throw FlaconError(tr("The %1 program is not installed.<br>Verify that all required programs are installed and in your preferences.",
-                             "Error message. %1 - is an program name")
-                                  .arg(program->name()));
-    }
-
-    if (!QFileInfo::exists(program->path())) {
-        throw FlaconError(tr("The %1 program is installed according to your settings, but the binary file can’t be found.<br>"
-                             "Verify that all required programs are installed and in your preferences.",
-                             "Error message. %1 - is an program name")
-                                  .arg(program->name()));
-    }
-    mProcess = new QProcess(this);
-    mProcess->setReadChannel(QProcess::StandardOutput);
-
-    mProcess->start(QDir::toNativeSeparators(program->path()), mFormat->decoderArgs(mInputFile));
-    bool res = mProcess->waitForStarted();
-    if (!res) {
-        throw FlaconError(QStringLiteral("Can't start '%1': %2")
-                                  .arg(program->path(), mProcess->errorString()));
-    }
-
-    try {
-        mWavHeader = WavHeader(mProcess);
-    }
-    catch (const FlaconError &err) {
-        qCWarning(LOG) << "The audio file may be corrupted:" << err.what();
+    // Find the first audio stream
+    mStreamIndex = av_find_best_stream(mFormatContext, AVMEDIA_TYPE_AUDIO, -1, -1, nullptr, 0);
+    if (mStreamIndex < 0) {
+        qCWarning(LOG) << "No audio stream found.";
         throw FlaconError(tr("The audio file may be corrupted or an unsupported audio format.", "Error message."));
     }
-    mPos = mWavHeader.dataStartPos();
+
+    const AVCodec *codec = avcodec_find_decoder(mFormatContext->streams[mStreamIndex]->codecpar->codec_id);
+    if (!codec) {
+        qCWarning(LOG) << "No input codec found.";
+        throw FlaconError(tr("The audio file may be corrupted or an unsupported audio format.", "Error message."));
+    }
+
+    mDecoderContext = avcodec_alloc_context3(codec);
+    if (!mDecoderContext) {
+        qCWarning(LOG) << "Error calling avcodec_alloc_context3. err:";
+        throw FlaconError(tr("The audio file may be corrupted or an unsupported audio format.", "Error message."));
+    }
+
+    err = avcodec_parameters_to_context(mDecoderContext, mFormatContext->streams[mStreamIndex]->codecpar);
+    if (mStreamIndex < 0) {
+        qCWarning(LOG) << "Error calling avcodec_parameters_to_context. err:" << err;
+        throw FlaconError(tr("The audio file may be corrupted or an unsupported audio format.", "Error message."));
+    }
+
+    err = avcodec_open2(mDecoderContext, codec, nullptr);
+    if (mStreamIndex < 0) {
+        qCWarning(LOG) << "Error calling avcodec_open2. err:" << err;
+        throw FlaconError(tr("The audio file may be corrupted or an unsupported audio format.", "Error message."));
+    }
+
+    mWavHeader = WavHeader(
+            mDecoderContext->ch_layout.nb_channels,
+            mDecoderContext->sample_rate,
+            av_get_bytes_per_sample(mDecoderContext->sample_fmt) * 8);
+
+    return;
 }
 
 /************************************************
@@ -164,176 +223,220 @@ void Decoder::openProcess()
  ************************************************/
 void Decoder::close()
 {
-    if (mFile)
-        mFile->close();
+    if (mDecoderContext) {
+        avcodec_free_context(&mDecoderContext);
+        mDecoderContext = nullptr;
+    }
 
-    if (mProcess) {
-        mProcess->terminate();
-        mProcess->waitForFinished();
-        mProcess->close();
+    if (mFormatContext) {
+        avformat_close_input(&mFormatContext);
+        mFormatContext = nullptr;
+    }
+
+    if (mFrame) {
+        av_frame_free(&mFrame);
+        mFrame = nullptr;
+    }
+
+    if (mPacket) {
+        av_packet_free(&mPacket);
+        mPacket = nullptr;
     }
 }
 
 /************************************************
  *
  ************************************************/
-void mustWrite(const char *buf, qint64 maxSize, QIODevice *outDevice)
+bool Decoder::readFrame()
 {
-    qint64 done = 0;
-    while (done < maxSize) {
-        outDevice->waitForBytesWritten(10000);
-        qint64 n = outDevice->write(buf + done, maxSize - done);
-        if (n < 0)
-            throw FlaconError(QStringLiteral("Can't write %1 bytes. %2")
-                                      .arg(maxSize - done)
-                                      .arg(outDevice->errorString()));
+    auto writeFrame = av_sample_fmt_is_planar(mDecoderContext->sample_fmt) ? writePlanarFrame : writeInterleavedFrame;
 
-        done += n;
-    }
-}
+    while (true) {
+        [[maybe_unused]] RaiiPacketUnref raiPacketUnref(mPacket);
 
-/************************************************
- *
- ************************************************/
-bool mustSkip(QIODevice *device, qint64 size, int msecs = READ_DELAY)
-{
-    static const int BUF_SIZE = 4096;
-
-    if (size == 0)
-        return true;
-
-    char   buf[BUF_SIZE];
-    qint64 left = size;
-    while (left > 0) {
-        device->bytesAvailable() || device->waitForReadyRead(msecs);
-        qint64 n = device->read(buf, qMin(qint64(BUF_SIZE), left));
-        if (n < 0)
+        int err = av_read_frame(mFormatContext, mPacket);
+        if (err == AVERROR_EOF) {
             return false;
-
-        left -= n;
-    }
-
-    return true;
-}
-
-/************************************************
- *
- ************************************************/
-void Decoder::extract(const CueTime &start, const CueTime &end, QIODevice *outDevice, bool writeHeader)
-{
-    try {
-        emit progress(0);
-
-        QIODevice *input;
-        if (mProcess)
-            input = mProcess;
-        else
-            input = mFile;
-
-        quint64 bs = timeToBytes(start, mWavHeader) + mWavHeader.dataStartPos();
-        quint64 be = 0;
-
-        if (end.isNull())
-            be = mWavHeader.dataStartPos() + mWavHeader.dataSize();
-        else
-            be = timeToBytes(end, mWavHeader) + mWavHeader.dataStartPos();
-
-        if (writeHeader) {
-            WavHeader hdr = mWavHeader;
-            hdr.resizeData(be - bs);
-            outDevice->write(hdr.toLegacyWav());
         }
 
-        qint64 pos = mPos;
+        if (err < 0) {
+            qCWarning(LOG) << QStringLiteral("Decoding error after %1 samples.").arg(mDecoderPos) << ": " << ffErrorString(err);
+            throw FlaconError(QStringLiteral("Decoding error after %1 samples.").arg(mDecoderPos));
+        }
 
-        // Skip bytes from current to start of track ......
-        qint64 len = bs - mPos;
-        if (len < 0)
-            throw FlaconError("Incorrect start time.");
+        if (mPacket->stream_index != mStreamIndex) {
+            continue;
+        }
 
-        if (!mustSkip(input, len))
-            throw FlaconError("Can't skip to start of track.");
+        err = avcodec_send_packet(mDecoderContext, mPacket);
+        if (err < 0) {
+            qCWarning(LOG) << QStringLiteral("Decoding error after %1 samples.").arg(mDecoderPos) << ": " << ffErrorString(err);
+            throw FlaconError(QStringLiteral("Decoding error after %1 samples.").arg(mDecoderPos));
+        }
 
-        pos += len;
-        // Skip bytes from current to start of track ......
+        while (true) {
+            [[maybe_unused]] RaiiFrameUnref raiPacketUnref(mFrame);
 
-        // Read bytes from start to end of track ..........
-        len = be - bs;
-        if (len < 0)
-            throw FlaconError("Incorrect start or end time.");
-
-        pos += len;
-        qint64 remains = len;
-        int    percent = 0;
-
-        char buf[MAX_BUF_SIZE];
-        while (remains > 0) {
-            input->bytesAvailable() || input->waitForReadyRead(10000);
-
-            Abort::check();
-            qint64 n = qMin(qint64(MAX_BUF_SIZE), remains);
-            n        = input->read(buf, n);
-            if (n < 0)
-                throw FlaconError(QStringLiteral("Can't read %1 bytes").arg(remains));
-
-            remains -= n;
-
-            // Write to OutDevice .........................
-            mustWrite(buf, n, outDevice);
-
-            // Calc progrress .............................
-            if (remains == 0) {
-                emit progress(100);
+            err = avcodec_receive_frame(mDecoderContext, mFrame);
+            if (err == AVERROR_EOF) {
                 break;
             }
-            else {
-                int prev = percent;
-                percent  = (len - remains) * 100.0 / len;
-                if (percent != prev) {
-                    emit progress(percent);
-                }
+
+            if (err == AVERROR(EAGAIN)) {
+                break;
+            }
+
+            if (err < 0) {
+                qCWarning(LOG) << QStringLiteral("Decoding error after %1 samples.").arg(mDecoderPos) << ": " << ffErrorString(err);
+                throw FlaconError(QStringLiteral("Decoding error after %1 samples.").arg(mDecoderPos));
+            }
+
+            mDecoderPos += writeFrame(mFrame, &mFrameBuff);
+        }
+        return true;
+    }
+}
+
+/************************************************
+ *
+ ************************************************/
+uint64_t Decoder::extract(const CueTime &startTime, const CueTime &endTime, QIODevice *outDevice)
+{
+    int     percent    = 0;
+    int64_t aproxTotal = aproximateBytes(endTime);
+    emit    progress(0);
+
+    auto updateProgrss = [&](int done) {
+        int prev = percent;
+        percent  = std::min(100.0, double(done) * 100.0 / aproxTotal);
+        if (percent != prev) {
+            emit progress(percent);
+        }
+    };
+
+    uint64_t res = 0;
+
+    int skip = timeToBytes(startTime, mWavHeader) - (mDecoderPos - mFrameBuff.size());
+    int rest = (!endTime.isNull()) ? timeToBytes(endTime, mWavHeader) - (mDecoderPos - mFrameBuff.size()) - skip : UNKNOWN_COUNT;
+
+    while (rest > 0) {
+        if (mFrameBuff.isEmpty()) {
+            if (!readFrame()) {
+                break; // EOF
             }
         }
-        // Read bytes from start to end of track ..........
-        mPos = pos;
+
+        if (skip > mFrameBuff.size()) {
+            skip -= mFrameBuff.size();
+            updateProgrss(aproxTotal - skip - rest);
+            mFrameBuff.clear();
+            continue;
+        }
+
+        int count  = rest < mFrameBuff.size() ? rest - skip : mFrameBuff.size() - skip;
+        int cnt    = outDevice->write(mFrameBuff.mid(skip, count));
+        mFrameBuff = mFrameBuff.mid(skip + count);
+
+        if (cnt != count) {
+            throw FlaconError(QStringLiteral("Can't write %1 bytes. %2").arg(res).arg(outDevice->errorString()));
+        }
+        rest -= count;
+        res += count;
+        skip = 0;
+        updateProgrss(aproxTotal - rest);
     }
-    catch (FlaconError &err) {
-        close();
-        throw err;
+
+    if (!endTime.isNull()) {
+        uint64_t bs = timeToBytes(startTime, mWavHeader);
+        uint64_t be = timeToBytes(endTime, mWavHeader);
+
+        if (res != (be - bs)) {
+            throw FlaconError("The decoder returned an incorrect number of bytes.");
+        }
     }
+
+    emit progress(100);
+    return res;
 }
 
 /************************************************
  *
  ************************************************/
-void Decoder::extract(const CueTime &start, const CueTime &end, const QString &outFileName)
+uint64_t Decoder::writeInterleavedFrame(AVFrame *frame, QByteArray *buf)
 {
-    QFile file(outFileName);
-    if (!file.open(QFile::WriteOnly | QFile::Truncate))
-        throw FlaconError(tr("I can't write file <b>%1</b>:<br>%2",
-                             "Error string, %1 is a filename, %2 error message")
-                                  .arg(file.fileName())
-                                  .arg(file.errorString()));
+    int     sampleSize = av_get_bytes_per_sample((AVSampleFormat)frame->format);
+    int     channels   = frame->ch_layout.nb_channels;
+    int64_t size       = frame->nb_samples * channels * sampleSize;
 
-    extract(start, end, &file);
-    file.close();
+    buf->append(reinterpret_cast<char *>(frame->data[0]), size);
+    return size;
 }
 
 /************************************************
  *
  ************************************************/
-uint64_t Decoder::bytesCount(const CueTime &start, const CueTime &end) const
+uint64_t Decoder::writePlanarFrame(AVFrame *frame, QByteArray *buf)
 {
+    int     sampleSize = av_get_bytes_per_sample((AVSampleFormat)frame->format);
+    int     channels   = frame->ch_layout.nb_channels;
+    int64_t size       = frame->nb_samples * channels * sampleSize;
+    buf->reserve(buf->size() + size);
 
-    quint64 bs = timeToBytes(start, mWavHeader) + mWavHeader.dataStartPos();
-    quint64 be = 0;
-
-    if (end.isNull()) {
-        be = mWavHeader.dataStartPos() + mWavHeader.dataSize();
+    uint64_t res = 0;
+    for (int i = 0; i < frame->nb_samples; ++i) {
+        for (int ch = 0; ch < channels; ++ch) {
+            buf->append(reinterpret_cast<char *>(frame->data[ch] + i * sampleSize), sampleSize);
+        }
     }
-    else {
-        be = timeToBytes(end, mWavHeader) + mWavHeader.dataStartPos();
+
+    return res;
+}
+
+/************************************************
+ *
+ ************************************************/
+uint64_t Decoder::aproximateBytes(const CueTime &endTime) const
+{
+    if (!endTime.isNull()) {
+        return timeToBytes(endTime, mWavHeader) - mDecoderPos;
     }
 
-    return be - bs;
+    int64_t end = (((duration() * (double)mWavHeader.byteRate()) / 1000.0) + 0.5);
+    return end - mDecoderPos;
+}
+
+/************************************************
+ *
+ ************************************************/
+int64_t Decoder::bytesCount(const CueTime &startTime, const CueTime &endTime) const
+{
+    if (endTime.isNull()) {
+        return 0;
+    }
+
+    return timeToBytes(endTime, mWavHeader) - timeToBytes(startTime, mWavHeader);
+}
+
+/************************************************
+ *
+ ************************************************/
+mSec Decoder::duration() const
+{
+    return mFormatContext ? mFormatContext->duration / 1000 : 0;
+}
+
+/************************************************
+ *
+ ************************************************/
+QString Decoder::formatName() const
+{
+    return mDecoderContext ? mDecoderContext->codec->name : "";
+}
+
+/************************************************
+ *
+ ************************************************/
+AVCodecID Decoder::formatId() const
+{
+    return mDecoderContext ? mDecoderContext->codec->id : AV_CODEC_ID_NONE;
 }

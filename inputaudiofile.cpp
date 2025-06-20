@@ -25,7 +25,6 @@
 
 #include "inputaudiofile.h"
 #include "decoder.h"
-#include "formats_in/informat.h"
 #include <QProcess>
 #include <QStringList>
 #include <QByteArray>
@@ -34,24 +33,11 @@
 #include <QFileInfo>
 #include <QDir>
 #include <QLoggingCategory>
+#include <taglib/flacfile.h>
+#include <taglib/xiphcomment.h>
 
 namespace {
 Q_LOGGING_CATEGORY(LOG, "InputAudioFile")
-}
-
-InputAudioFile::Data::Data(const InputAudioFile::Data &other) :
-    QSharedData(other),
-    mFilePath(other.mFilePath),
-    mFileName(other.mFileName),
-    mErrorString(other.mErrorString),
-    mFormat(other.mFormat),
-    mSampleRate(other.mSampleRate),
-    mBitsPerSample(other.mBitsPerSample),
-    mDuration(other.mDuration),
-    mValid(other.mValid),
-    mCdQuality(other.mCdQuality),
-    mChannelsCount(other.mChannelsCount)
-{
 }
 
 void InputAudioFile::Data::load(const QString &filePath)
@@ -80,21 +66,22 @@ void InputAudioFile::Data::load(const QString &filePath)
     try {
         Conv::Decoder dec;
         dec.open(mFilePath);
-        mFormat = dec.audioFormat();
 
         mSampleRate    = dec.wavHeader().sampleRate();
         mBitsPerSample = dec.wavHeader().bitsPerSample();
         mCdQuality     = dec.wavHeader().isCdQuality();
         mDuration      = dec.duration();
         mChannelsCount = dec.wavHeader().numChannels();
+        mFormatName    = dec.formatName();
+        mFormatId      = dec.formatId();
 
         mValid = true;
 
         // clang-format off
         qCDebug(LOG) << "Audio is loaded: "
-                        "format ="         << mFormat->name() <<
-                        "mDuration ="      << mDuration <<
-                        "mCdQuality ="     << mCdQuality <<
+                        "format ="         << mFormatName <<
+                        "mDuration ="      << mDuration   <<
+                        "mCdQuality ="     << mCdQuality  <<
                         "mSampleRate ="    << mSampleRate <<
                         "mBitsPerSample =" << mBitsPerSample;
         // clang-format on
@@ -131,4 +118,37 @@ InputAudioFile &InputAudioFile::operator=(const InputAudioFile &other)
 {
     mData = other.mData;
     return *this;
+}
+
+QByteArray InputAudioFile::readEmbeddedCue() const
+{
+    if (!isValid()) {
+        return {};
+    }
+
+    if (mData->mFormatId == AV_CODEC_ID_FLAC) {
+        TagLib::FLAC::File file(mData->mFilePath.toLocal8Bit().data());
+        if (!file.isOpen()) {
+            return QByteArray();
+        }
+
+        TagLib::Ogg::XiphComment *comment = file.xiphComment(false);
+        if (!comment) {
+            return QByteArray();
+        }
+
+        const TagLib::Ogg::FieldListMap &tags = comment->fieldListMap();
+
+        static constexpr auto CUE_SHEET_TAGS = { "CUESHEET", "cuesheet" };
+
+        for (auto key : CUE_SHEET_TAGS) {
+            if (tags.contains(key)) {
+                return QByteArray(tags[key].front().toCString(true));
+            }
+        }
+
+        return QByteArray();
+    }
+
+    return {};
 }

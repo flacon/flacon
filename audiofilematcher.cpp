@@ -24,7 +24,7 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "audiofilematcher.h"
-#include "formats_in/informat.h"
+#include "converter/decoder.h"
 #include <QDir>
 #include <QLoggingCategory>
 #include "inputaudiofile.h"
@@ -217,7 +217,7 @@ QFileInfoList AudioFileMatcher::searchCueFiles(const QDir &dir) const
  **************************************/
 QFileInfoList AudioFileMatcher::searchAudioFiles(const QDir &dir) const
 {
-    QStringList   exts = InputFormat::allFileExts();
+    QStringList   exts = Conv::Decoder::allFormatsExts();
     QFileInfoList res  = dir.entryInfoList(exts, QDir::Files | QDir::Readable, QDir::SortFlag::Name);
 
     qCDebug(LOG) << "Directory contains " << res.count() << " audio files:";

@@ -30,8 +30,7 @@
 #include <QString>
 #include <QList>
 #include <QExplicitlySharedDataPointer>
-
-class InputFormat;
+#include "converter/decoder.h"
 
 class InputAudioFile
 {
@@ -39,20 +38,21 @@ private:
     class Data : public QSharedData
     {
     public:
-        Data() = default;
-        Data(const Data &other);
+        Data()                  = default;
+        Data(const Data &other) = default;
 
     public:
-        QString            mFilePath;
-        QString            mFileName;
-        QString            mErrorString;
-        const InputFormat *mFormat        = nullptr;
-        quint32            mSampleRate    = 0;
-        int                mBitsPerSample = 0;
-        mSec               mDuration      = 0;
-        bool               mValid         = false;
-        bool               mCdQuality     = false;
-        uint               mChannelsCount = 0;
+        QString   mFilePath;
+        QString   mFileName;
+        QString   mErrorString;
+        QString   mFormatName;
+        AVCodecID mFormatId      = AV_CODEC_ID_NONE;
+        quint32   mSampleRate    = 0;
+        int       mBitsPerSample = 0;
+        mSec      mDuration      = 0;
+        bool      mValid         = false;
+        bool      mCdQuality     = false;
+        uint      mChannelsCount = 0;
 
         void load(const QString &fileName);
     };
@@ -69,6 +69,7 @@ public:
 
     QString filePath() const { return mData->mFilePath; }
     QString fileName() const { return mData->mFileName; }
+    QString formatName() const { return mData->mFormatName; }
     QString errorString() const { return mData->mErrorString; }
 
     bool isNull() const { return mData->mFileName.isEmpty(); }
@@ -79,7 +80,7 @@ public:
     mSec duration() const { return mData->mDuration; }
     uint channelsCount() const { return mData->mChannelsCount; }
 
-    const InputFormat *format() const { return mData->mFormat; }
+    QByteArray readEmbeddedCue() const;
 };
 
 using InputAudioFileList = QList<InputAudioFile>;

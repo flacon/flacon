@@ -319,21 +319,19 @@ void Splitter::processTrack(const Job &job)
         throw FlaconError(outFile.errorString());
     }
 
-    uint32_t bytes = 0;
+    ProgressCalc progress;
     for (const Job::Chunk &chunk : job.chunks) {
-        bytes += chunk.decoder->bytesCount(chunk.start, chunk.end);
+        progress.totalSize += chunk.decoder->duration();
     }
 
     WavHeader hdr = job.chunks.first().decoder->wavHeader();
-    hdr.resizeData(bytes);
     outFile.write(hdr.toLegacyWav());
 
-    ProgressCalc progress;
-    progress.totalSize = bytes;
-
+    uint32_t totalBytes = 0;
     for (const Job::Chunk &chunk : job.chunks) {
         try {
-            progress.chunkSize = chunk.decoder->bytesCount(chunk.start, chunk.end);
+            progress.chunkSize = chunk.decoder->duration();
+
             Abort::check();
             // Extract chunk .............................
             QObject keeper;
@@ -341,15 +339,19 @@ void Splitter::processTrack(const Job &job)
                 double chunkDone = double(percents) / 100 * progress.chunkSize;
                 emit   trackProgress(job.track, TrackState::Splitting, (progress.done + chunkDone) / progress.totalSize * 100);
             });
-            progress.done += progress.chunkSize;
 
             qCDebug(LOG) << "extract: " << chunk.file.filePath() << " [" << chunk.start.toString() << ":" << chunk.end.toString() << "] OUT:" << job.outFileName;
-            chunk.decoder->extract(chunk.start, chunk.end, &outFile, false);
+            totalBytes += chunk.decoder->extract(chunk.start, chunk.end, &outFile);
+            progress.done += chunk.decoder->duration();
         }
         catch (const FlaconError &err) {
             throw FlaconError(tr("I can't read <b>%1</b>:<br>%2", "Splitter error. %1 is a file name, %2 is a system error text.").arg(chunk.file.fileName(), err.what()));
         }
     }
+
+    outFile.seek(0);
+    hdr.resizeData(totalBytes);
+    outFile.write(hdr.toLegacyWav());
 
     outFile.close();
     emit trackProgress(job.track, TrackState::Splitting, 100);
