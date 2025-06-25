@@ -75,7 +75,6 @@ public:
 
     WavHeader() = default;
     explicit WavHeader(QIODevice *stream) noexcept(false);
-    WavHeader(quint16 numChannels, quint32 sampleRate, quint16 bitsPerSample);
 
     WavHeader(const WavHeader &other) = default;
     WavHeader &operator=(const WavHeader &other) = default;

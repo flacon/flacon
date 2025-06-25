@@ -61,8 +61,9 @@ void TestFlacon::testDecoder()
         QFAIL(QStringLiteral("Can't open input file '%1': %2").arg(inputFile, err.what()).toLocal8Bit());
     }
 
-    if (!decoder.audioFormat())
+    if (decoder.formatId() == AV_CODEC_ID_NONE) {
         QFAIL("Unknown format");
+    }
 
     for (int i = 0; i < tracks.count(); ++i) {
         TestTrack track = tracks.at(i);

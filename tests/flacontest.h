@@ -94,14 +94,6 @@ private slots:
     void testToLegacyWav();
     void testToLegacyWav_data();
 
-    void testFormatWavLast();
-
-    void testFormat();
-    void testFormat_data();
-
-    void testFormatFromFile();
-    void testFormatFromFile_data();
-
     void testInputAudioFile();
     void testInputAudioFile_data();
 

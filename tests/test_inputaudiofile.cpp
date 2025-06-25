@@ -25,7 +25,6 @@
 
 #include "flacontest.h"
 #include "tools.h"
-#include "../formats_in/informat.h"
 #include "types.h"
 #include "../inputaudiofile.h"
 
@@ -51,7 +50,7 @@ void TestFlacon::testInputAudioFile()
         }
 
         QCOMPARE(ia.duration(), dur);
-        QCOMPARE(ia.format()->name(), format);
+        QCOMPARE(ia.formatName(), format);
     }
     catch (FlaconError &err) {
         FAIL(err.what());

@@ -87,7 +87,7 @@ QString calcAudioHash(const QString &fileName)
         return "";
     }
 
-    if (!decoder.audioFormat()) {
+    if (!decoder.formatId() == AV_CODEC_ID_NONE) {
         FAIL("Unknown format");
         decoder.close();
         return "";
@@ -638,7 +638,7 @@ void Mediainfo::validateTags(const QMap<QString, QVariant> &expected)
 
     if (tagsError) {
         qWarning() << "metadata.json";
-        for (const QByteArray line : mJsonDoc.toJson(QJsonDocument::Indented).split('\n')) {
+        for (const QByteArray &line : mJsonDoc.toJson(QJsonDocument::Indented).split('\n')) {
             qWarning().noquote().nospace() << line;
         }
         QFAIL("Some tags not the same");

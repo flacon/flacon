@@ -284,27 +284,6 @@ WavHeader::WavHeader(QIODevice *stream) noexcept(false)
     throw FlaconError("WAVE header is missing RIFF tag while processing file");
 }
 
-WavHeader::WavHeader(quint16 numChannels, quint32 sampleRate, quint16 bitsPerSample)
-{
-    m64Bit         = false;
-    mFmtSize       = FmtChunkMin;
-    mFormat        = WavHeader::Format_PCM;
-    mNumChannels   = numChannels;
-    mSampleRate    = sampleRate;
-    mBitsPerSample = bitsPerSample;
-    mByteRate      = mNumChannels * mSampleRate * mBitsPerSample / 8;
-    mBlockAlign    = 4;
-    mExtSize       = 0;
-
-    mDataStartPos =
-            12 + // header
-            4 +  // SubchunkID
-            4 +  // SubchunkSize
-            mFmtSize;
-    mDataSize = UNKNOWNS_SIZE;
-    mFileSize = mDataStartPos + mDataSize;
-}
-
 /************************************************
  * 52 49 46 46      RIFF
  * 24 B9 4D 02      file size - 8

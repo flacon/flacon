@@ -29,6 +29,7 @@
 #include <QIODevice>
 #include <QLoggingCategory>
 #include <limits>
+#include <QFile>
 
 extern "C" {
 #include <libavformat/avformat.h>
@@ -45,7 +46,65 @@ using namespace Conv;
 /************************************************
  *
  ************************************************/
-QList<Decoder::Format> Decoder::allFormats()
+class FFWavHeader : public WavHeader
+{
+public:
+    FFWavHeader(AVCodecContext *decoder) :
+        WavHeader()
+    {
+        m64Bit         = false;
+        mFmtSize       = FmtChunkExt;
+        mFormat        = Format_Extensible;
+        mNumChannels   = decoder->ch_layout.nb_channels;
+        mSampleRate    = decoder->sample_rate;
+        mBitsPerSample = av_get_bytes_per_sample(decoder->sample_fmt) * 8;
+        mBlockAlign    = (mNumChannels * mBitsPerSample) / 8;
+        mByteRate      = mSampleRate * mBlockAlign;
+
+        mValidBitsPerSample = mBitsPerSample;
+
+        mExtSize     = 22;
+        mChannelMask = 0;
+
+        mSubFormat = QByteArray("\x00\x00\x00\x00\x00\x00\x10\x00\x80\x00\x00\xAA\x00\x38\x9B\x71", 16);
+        switch (decoder->sample_fmt) {
+            case AV_SAMPLE_FMT_FLT:
+            case AV_SAMPLE_FMT_FLTP: // IEEE float
+                mSubFormat[0] = 03;
+                mSubFormat[1] = 00;
+                break;
+
+            case AV_SAMPLE_FMT_U8:
+            case AV_SAMPLE_FMT_U8P:
+            case AV_SAMPLE_FMT_S16:
+            case AV_SAMPLE_FMT_S16P:
+            case AV_SAMPLE_FMT_S32:
+            case AV_SAMPLE_FMT_S32P:
+            case AV_SAMPLE_FMT_S64:
+            case AV_SAMPLE_FMT_S64P: // PCM
+                mSubFormat[0] = 01;
+                mSubFormat[1] = 00;
+                break;
+
+            default:
+                qCWarning(LOG) << "Unknown sample_fmt:" << decoder->sample_fmt;
+                throw FlaconError("The audio file may be corrupted or an unsupported audio format.");
+        }
+
+        mDataSize = 0;
+        mDataStartPos =
+                12 + // header
+                4 +  // SubchunkID
+                4 +  // SubchunkSize
+                mFmtSize;
+    }
+};
+
+/************************************************
+ *
+ ************************************************/
+QList<Decoder::Format>
+Decoder::allFormats()
 {
     // clang-format off
     return {
@@ -58,7 +117,7 @@ QList<Decoder::Format> Decoder::allFormats()
         { "WAVE64",     "w64"  },
         { "WavPack",    "wv"   },
     };
-    // clang-format off
+    // clang-format on
 }
 
 /************************************************
@@ -210,10 +269,7 @@ void Decoder::open(const QString &fileName)
         throw FlaconError(tr("The audio file may be corrupted or an unsupported audio format.", "Error message."));
     }
 
-    mWavHeader = WavHeader(
-            mDecoderContext->ch_layout.nb_channels,
-            mDecoderContext->sample_rate,
-            av_get_bytes_per_sample(mDecoderContext->sample_fmt) * 8);
+    mWavHeader = FFWavHeader(mDecoderContext);
 
     return;
 }
@@ -356,6 +412,23 @@ uint64_t Decoder::extract(const CueTime &startTime, const CueTime &endTime, QIOD
     }
 
     emit progress(100);
+    return res;
+}
+
+/************************************************
+ *
+ ************************************************/
+uint64_t Decoder::extract(const CueTime &startTime, const CueTime &endTime, const QString &outFileName)
+{
+    QFile file(outFileName);
+    if (!file.open(QFile::WriteOnly | QFile::Truncate))
+        throw FlaconError(tr("I can't write file <b>%1</b>:<br>%2",
+                             "Error string, %1 is a filename, %2 error message")
+                                  .arg(file.fileName())
+                                  .arg(file.errorString()));
+
+    uint64_t res = extract(startTime, endTime, &file);
+    file.close();
     return res;
 }
 
