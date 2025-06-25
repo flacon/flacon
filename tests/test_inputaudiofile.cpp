@@ -66,50 +66,50 @@ void TestFlacon::testInputAudioFile_data()
     QTest::newRow("01 mAudio_cd_ape")
             << mAudio_cd_ape
             << "900000"
-            << "APE";
+            << "ape";
 
     QTest::newRow("02 mAudio_cd_flac")
             << mAudio_cd_flac
             << "900000"
-            << "FLAC";
+            << "flac";
 
     QTest::newRow("03 mAudio_cd_tta")
             << mAudio_cd_tta
             << "900000"
-            << "TTA";
+            << "tta";
 
     QTest::newRow("04 mAudio_cd_wav")
             << mAudio_cd_wav
             << "900000"
-            << "WAV";
+            << "pcm_s16le";
 
     QTest::newRow("05 mAudio_cd_wv")
             << mAudio_cd_wv
             << "900000"
-            << "WavPack";
+            << "wavpack";
 
     QTest::newRow("06 mAudio_24x96_ape")
             << mAudio_24x96_ape
             << "900000"
-            << "APE";
+            << "ape";
 
     QTest::newRow("07 mAudio_24x96_flac")
             << mAudio_24x96_flac
             << "900000"
-            << "FLAC";
+            << "flac";
 
     QTest::newRow("08 mAudio_24x96_tta")
             << mAudio_24x96_tta
             << "900000"
-            << "TTA";
+            << "tta";
 
     QTest::newRow("09 mAudio_24x96_wav")
             << mAudio_24x96_wav
             << "900000"
-            << "WAV";
+            << "pcm_s24le";
 
     QTest::newRow("10 mAudio_24x96_wv")
             << mAudio_24x96_wv
             << "900000"
-            << "WavPack";
+            << "wavpack";
 }
