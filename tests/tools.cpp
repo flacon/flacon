@@ -35,6 +35,7 @@
 #include "../cue.h"
 #include "../disc.h"
 #include "wavheader.h"
+#include <filesystem>
 
 static void packByteArray(QByteArray &buf, quint16 bytesPerSample, quint16 validBytesPerSample)
 {
@@ -693,7 +694,7 @@ QString Mediainfo::tagToJsonPath(const QString &tag) const
     if (tag == "Catalog")        return "extra/CATALOGNUMBER";
 
     return tag;
-    //  clang-format on
+    // clang-format on
 }
 
 /**************************************
@@ -707,4 +708,15 @@ QVariant Mediainfo::search(const QJsonObject &root, const QStringList &path) con
     }
 
     return obj.take(path.last()).toVariant();
+}
+
+void copyTestDir(const QString &srcDir, const QString &destDir)
+{
+    try {
+        namespace fs = std::filesystem;
+        fs::copy(srcDir.toStdString(), destDir.toStdString(), fs::copy_options::overwrite_existing | fs::copy_options::recursive | fs::copy_options::copy_symlinks);
+    }
+    catch (std::exception &e) {
+        QFAIL(e.what());
+    }
 }

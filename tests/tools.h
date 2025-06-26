@@ -100,6 +100,7 @@ void       createWavFile(const QString &fileName, const QString &header, const i
 void       createWavFile(const QString &fileName, quint16 bitsPerSample, quint32 sampleRate, uint durationSec);
 void       encodeAudioFile(const QString &wavFileName, const QString &outFileName);
 void       testFail(const QString &message, const char *file, int line);
+void       copyTestDir(const QString &srcTestDir, const QString &destTestDir);
 
 #define FAIL(message)                          \
     do {                                       \

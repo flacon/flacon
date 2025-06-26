@@ -38,12 +38,13 @@
 void TestFlacon::testAudioFileMatcher()
 {
     QLoggingCategory::setFilterRules("InputAudioFile.debug=false\nAudioFileMatcher.debug=false\n");
-    QFETCH(QString, dir);
+    QFETCH(QString, srcDir);
+    copyTestDir(srcDir, dir());
 
     try {
-        TestSpec spec(dir);
+        TestSpec spec(dir());
 
-        QFileInfo        inFile(dir + "/" + spec["run"]["load"].toString());
+        QFileInfo        inFile(dir() + "/" + spec["run"]["load"].toString());
         AudioFileMatcher matcher;
 
         if (inFile.suffix().toLower() == "cue") {
@@ -59,13 +60,13 @@ void TestFlacon::testAudioFileMatcher()
 
         if (expected["cue"].exists()) {
             QString actual_cue = matcher.cue().filePath();
-            QString expect_cue = expected["cue"].toFileInfo(dir).filePath();
+            QString expect_cue = expected["cue"].toFileInfo(dir()).filePath();
             QCOMPARE(actual_cue, expect_cue);
         }
 
         if (expected["audio"].exists()) {
             QFileInfoList actual_audio = matcher.audioFilePaths();
-            QFileInfoList expect_audio = expected["audio"].toFileInfoList(dir);
+            QFileInfoList expect_audio = expected["audio"].toFileInfoList(dir());
             QCOMPARE(actual_audio, expect_audio);
         }
 
@@ -82,7 +83,7 @@ void TestFlacon::testAudioFileMatcher()
 
 void TestFlacon::testAudioFileMatcher_data()
 {
-    QTest::addColumn<QString>("dir", nullptr);
+    QTest::addColumn<QString>("srcDir", nullptr);
     QString srcDir = mDataDir + "testAudioFileMatcher";
 
     QDir dir(srcDir);
