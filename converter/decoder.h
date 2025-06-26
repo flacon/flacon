@@ -66,7 +66,6 @@ public:
     void close();
 
     uint64_t extract(const CueTime &startTime, const CueTime &endTime, QIODevice *outDevice);
-    uint64_t extract(const CueTime &startTime, const CueTime &endTime, const QString &outFileName);
 
     WavHeader wavHeader() const { return mWavHeader; }
 

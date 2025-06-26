@@ -71,7 +71,20 @@ void TestFlacon::testDecoder()
         QString flaconFile = QStringLiteral("%1/%2-flacon.wav").arg(dir()).arg(i + 1, 3, 10, QChar('0'));
 
         try {
-            decoder.extract(CueTime(track.start), CueTime(track.end), flaconFile);
+            Conv::WavHeader wavHeader = decoder.wavHeader();
+            QFile           outFile(flaconFile);
+            if (!outFile.open(QFile::WriteOnly)) {
+                throw FlaconError(outFile.errorString());
+            }
+            outFile.write(wavHeader.toLegacyWav());
+
+            uint64_t bytes = decoder.extract(CueTime(track.start), CueTime(track.end), &outFile);
+
+            outFile.seek(0);
+            wavHeader.resizeData(bytes);
+            outFile.write(wavHeader.toLegacyWav());
+
+            outFile.close();
         }
         catch (FlaconError &err) {
             QFAIL(QStringLiteral("Can't extract file '%1' [%2-%3]: %4")

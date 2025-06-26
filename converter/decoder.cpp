@@ -48,20 +48,59 @@ using namespace Conv;
  ************************************************/
 class FFWavHeader : public WavHeader
 {
+
+    quint16 calcValidBitsPerSample(AVCodecContext *decoder)
+    {
+        quint16 res = decoder->bits_per_raw_sample;
+        if (res != 0) {
+            return res;
+        }
+
+        res = decoder->bits_per_coded_sample;
+        if (res != 0) {
+            return res;
+        }
+
+        switch (decoder->sample_fmt) {
+            case AV_SAMPLE_FMT_FLT:
+            case AV_SAMPLE_FMT_FLTP:
+                return 32;
+
+            case AV_SAMPLE_FMT_U8:
+            case AV_SAMPLE_FMT_U8P:
+                return 8;
+
+            case AV_SAMPLE_FMT_S16:
+            case AV_SAMPLE_FMT_S16P:
+                return 16;
+
+            case AV_SAMPLE_FMT_S32:
+            case AV_SAMPLE_FMT_S32P:
+                return 32;
+
+            case AV_SAMPLE_FMT_S64:
+            case AV_SAMPLE_FMT_S64P:
+                return 64;
+
+            default:
+                qCWarning(LOG) << "Unknown sample_fmt:" << decoder->sample_fmt;
+                throw FlaconError("The audio file may be corrupted or an unsupported audio format.");
+        }
+    }
+
 public:
     FFWavHeader(AVCodecContext *decoder) :
         WavHeader()
     {
-        m64Bit         = false;
-        mFmtSize       = FmtChunkExt;
-        mFormat        = Format_Extensible;
-        mNumChannels   = decoder->ch_layout.nb_channels;
-        mSampleRate    = decoder->sample_rate;
-        mBitsPerSample = av_get_bytes_per_sample(decoder->sample_fmt) * 8;
-        mBlockAlign    = (mNumChannels * mBitsPerSample) / 8;
-        mByteRate      = mSampleRate * mBlockAlign;
-
-        mValidBitsPerSample = mBitsPerSample;
+        m64Bit              = false;
+        mFmtSize            = FmtChunkExt;
+        mFormat             = Format_Extensible;
+        mNumChannels        = decoder->ch_layout.nb_channels;
+        mSampleRate         = decoder->sample_rate;
+        mBitsPerSample      = av_get_bytes_per_sample(decoder->sample_fmt) * 8;
+        mBlockAlign         = (mNumChannels * mBitsPerSample) / 8;
+        mByteRate           = mNumChannels * mSampleRate * mBitsPerSample / 8;
+        mValidBitsPerSample = calcValidBitsPerSample(decoder);
 
         mExtSize     = 22;
         mChannelMask = 0;
@@ -228,13 +267,13 @@ void Decoder::open(const QString &fileName)
     int err = 0;
     err     = avformat_open_input(&mFormatContext, mInputFile.toLocal8Bit(), nullptr, nullptr);
     if (err < 0) {
-        qCWarning(LOG) << "Error calling avformat_open_input. err:" << err;
+        qCWarning(LOG) << "Error calling avformat_open_input. err:" << ffErrorString(err) << err;
         throw FlaconError(tr("The audio file may be corrupted or an unsupported audio format.", "Error message."));
     }
 
     err = avformat_find_stream_info(mFormatContext, nullptr);
     if (err < 0) {
-        qCWarning(LOG) << "Error calling avformat_find_stream_info. err:" << err;
+        qCWarning(LOG) << "Error calling avformat_find_stream_info. err:" << ffErrorString(err) << err;
         throw FlaconError(tr("The audio file may be corrupted or an unsupported audio format.", "Error message."));
     }
 
@@ -253,19 +292,19 @@ void Decoder::open(const QString &fileName)
 
     mDecoderContext = avcodec_alloc_context3(codec);
     if (!mDecoderContext) {
-        qCWarning(LOG) << "Error calling avcodec_alloc_context3. err:";
+        qCWarning(LOG) << "Error calling avcodec_alloc_context3.";
         throw FlaconError(tr("The audio file may be corrupted or an unsupported audio format.", "Error message."));
     }
 
     err = avcodec_parameters_to_context(mDecoderContext, mFormatContext->streams[mStreamIndex]->codecpar);
     if (mStreamIndex < 0) {
-        qCWarning(LOG) << "Error calling avcodec_parameters_to_context. err:" << err;
+        qCWarning(LOG) << "Error calling avcodec_parameters_to_context. err:" << ffErrorString(err) << err;
         throw FlaconError(tr("The audio file may be corrupted or an unsupported audio format.", "Error message."));
     }
 
     err = avcodec_open2(mDecoderContext, codec, nullptr);
     if (mStreamIndex < 0) {
-        qCWarning(LOG) << "Error calling avcodec_open2. err:" << err;
+        qCWarning(LOG) << "Error calling avcodec_open2. err:" << ffErrorString(err) << err;
         throw FlaconError(tr("The audio file may be corrupted or an unsupported audio format.", "Error message."));
     }
 
@@ -316,7 +355,7 @@ bool Decoder::readFrame()
         }
 
         if (err < 0) {
-            qCWarning(LOG) << QStringLiteral("Decoding error after %1 samples.").arg(mDecoderPos) << ": " << ffErrorString(err);
+            qCWarning(LOG) << QStringLiteral("Decoding error after %1 samples.").arg(mDecoderPos) << ": " << ffErrorString(err) << err;
             throw FlaconError(QStringLiteral("Decoding error after %1 samples.").arg(mDecoderPos));
         }
 
@@ -326,7 +365,7 @@ bool Decoder::readFrame()
 
         err = avcodec_send_packet(mDecoderContext, mPacket);
         if (err < 0) {
-            qCWarning(LOG) << QStringLiteral("Decoding error after %1 samples.").arg(mDecoderPos) << ": " << ffErrorString(err);
+            qCWarning(LOG) << QStringLiteral("Decoding error after %1 samples.").arg(mDecoderPos) << ": " << ffErrorString(err) << err;
             throw FlaconError(QStringLiteral("Decoding error after %1 samples.").arg(mDecoderPos));
         }
 
@@ -343,7 +382,7 @@ bool Decoder::readFrame()
             }
 
             if (err < 0) {
-                qCWarning(LOG) << QStringLiteral("Decoding error after %1 samples.").arg(mDecoderPos) << ": " << ffErrorString(err);
+                qCWarning(LOG) << QStringLiteral("Decoding error after %1 samples.").arg(mDecoderPos) << ": " << ffErrorString(err) << err;
                 throw FlaconError(QStringLiteral("Decoding error after %1 samples.").arg(mDecoderPos));
             }
 
@@ -418,23 +457,6 @@ uint64_t Decoder::extract(const CueTime &startTime, const CueTime &endTime, QIOD
 /************************************************
  *
  ************************************************/
-uint64_t Decoder::extract(const CueTime &startTime, const CueTime &endTime, const QString &outFileName)
-{
-    QFile file(outFileName);
-    if (!file.open(QFile::WriteOnly | QFile::Truncate))
-        throw FlaconError(tr("I can't write file <b>%1</b>:<br>%2",
-                             "Error string, %1 is a filename, %2 error message")
-                                  .arg(file.fileName())
-                                  .arg(file.errorString()));
-
-    uint64_t res = extract(startTime, endTime, &file);
-    file.close();
-    return res;
-}
-
-/************************************************
- *
- ************************************************/
 uint64_t Decoder::writeInterleavedFrame(AVFrame *frame, QByteArray *buf)
 {
     int     sampleSize = av_get_bytes_per_sample((AVSampleFormat)frame->format);
@@ -455,14 +477,13 @@ uint64_t Decoder::writePlanarFrame(AVFrame *frame, QByteArray *buf)
     int64_t size       = frame->nb_samples * channels * sampleSize;
     buf->reserve(buf->size() + size);
 
-    uint64_t res = 0;
     for (int i = 0; i < frame->nb_samples; ++i) {
         for (int ch = 0; ch < channels; ++ch) {
             buf->append(reinterpret_cast<char *>(frame->data[ch] + i * sampleSize), sampleSize);
         }
     }
 
-    return res;
+    return size;
 }
 
 /************************************************
