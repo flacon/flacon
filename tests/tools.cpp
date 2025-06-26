@@ -34,71 +34,58 @@
 #include <QJsonArray>
 #include "../cue.h"
 #include "../disc.h"
-#include "../converter/decoder.h"
+#include "wavheader.h"
 
-class HashDevice : public QIODevice
+static void packByteArray(QByteArray &buf, quint16 bytesPerSample, quint16 validBytesPerSample)
 {
-public:
-    HashDevice(QCryptographicHash::Algorithm method, QObject *parent = nullptr) :
-        QIODevice(parent),
-        mHash(method),
-        mInHeader(true)
-    {
+    char *data   = buf.data();
+    int   offset = bytesPerSample - validBytesPerSample;
+
+    int cnt = buf.size() * validBytesPerSample / bytesPerSample;
+    for (int d = 0; d < cnt; ++d) {
+        int block   = d / validBytesPerSample;
+        int inBlock = d % validBytesPerSample + offset;
+        int s       = block * bytesPerSample + inBlock;
+
+        data[d] = data[s];
     }
 
-    QByteArray result() const { return mHash.result(); }
-
-protected:
-    qint64 readData(char *, qint64) { return -1; }
-
-    qint64 writeData(const char *data, qint64 len)
-    {
-        if (mInHeader) {
-            mBuf.append(data, len);
-            int n = mBuf.indexOf("data");
-            if (n > -1 && n < mBuf.length() - 8) {
-                mInHeader = false;
-                mHash.addData(mBuf.mid(n + 8));
-            }
-            return len;
-        }
-
-        mHash.addData(QByteArray(data, len));
-        return len;
-    }
-
-private:
-    QByteArray         mBuf;
-    QCryptographicHash mHash;
-    bool               mInHeader;
-};
+    buf.resize(cnt);
+}
 
 /************************************************
  *
  ************************************************/
 QString calcAudioHash(const QString &fileName)
 {
-    Conv::Decoder decoder;
+    QCryptographicHash hash(QCryptographicHash::Md5);
+
     try {
-        decoder.open(fileName);
+        QFile f(fileName);
+        if (!f.open(QFile::ReadOnly)) {
+            throw FlaconError(f.errorString());
+        }
+
+        Conv::WavHeader hdr(&f);
+
+        quint16 bytesPerSample      = hdr.bitsPerSample() / 8;
+        quint16 validBytesPerSample = hdr.validBitsPerSample() ? hdr.validBitsPerSample() / 8 : bytesPerSample;
+
+        f.seek(hdr.dataStartPos());
+        while (!f.atEnd()) {
+            QByteArray buf = f.read(bytesPerSample * 4); //* 1024);
+            if (bytesPerSample != validBytesPerSample) {
+                packByteArray(buf, bytesPerSample, validBytesPerSample);
+            }
+            hash.addData(buf);
+        }
+
+        return hash.result().toHex();
     }
     catch (FlaconError &err) {
         FAIL(QStringLiteral("Can't open input file '%1': %2").arg(fileName, err.what()).toLocal8Bit());
         return "";
     }
-
-    if (!decoder.formatId() == AV_CODEC_ID_NONE) {
-        FAIL("Unknown format");
-        decoder.close();
-        return "";
-    }
-
-    HashDevice hash(QCryptographicHash::Md5);
-    hash.open(QIODevice::WriteOnly);
-    decoder.extract(CueTime(), CueTime(), &hash);
-    decoder.close();
-
-    return hash.result().toHex();
 }
 
 /************************************************
