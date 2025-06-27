@@ -35,7 +35,6 @@
 #include "../cue.h"
 #include "../disc.h"
 #include "wavheader.h"
-#include <filesystem>
 
 static void packByteArray(QByteArray &buf, quint16 bytesPerSample, quint16 validBytesPerSample)
 {
@@ -629,7 +628,7 @@ void Mediainfo::validateTags(const QMap<QString, QVariant> &expected)
         for (const QByteArray &line : mJsonDoc.toJson(QJsonDocument::Indented).split('\n')) {
             qWarning().noquote().nospace() << line;
         }
-        QFAIL("Some tags not the same");
+        QFAIL(QString("Some tags not the same. [%1]").arg(expected.keys().join(' ')).toLocal8Bit());
     }
 }
 
@@ -710,13 +709,25 @@ QVariant Mediainfo::search(const QJsonObject &root, const QStringList &path) con
     return obj.take(path.last()).toVariant();
 }
 
-void copyTestDir(const QString &srcDir, const QString &destDir)
+void expandWavFile(const QString &fileName)
 {
     try {
-        namespace fs = std::filesystem;
-        fs::copy(srcDir.toStdString(), destDir.toStdString(), fs::copy_options::overwrite_existing | fs::copy_options::recursive | fs::copy_options::copy_symlinks);
+        QFile f(fileName);
+        if (!f.open(QFile::ReadWrite)) {
+            throw FlaconError(f.errorString());
+        }
+
+        Conv::WavHeader hdr(&f);
+        f.seek(f.size());
+
+        uint64_t rest = hdr.dataSize() - (f.size() - hdr.dataStartPos());
+        while (rest > 0) {
+            QByteArray data(std::min(rest, uint64_t(4 * 1024)), 0x00);
+            rest -= f.write(data);
+        }
+        f.close();
     }
-    catch (std::exception &e) {
-        QFAIL(e.what());
+    catch (FlaconError &err) {
+        QFAIL(QStringLiteral("Can't open audio file '%1': %2").arg(fileName, err.what()).toLocal8Bit());
     }
 }

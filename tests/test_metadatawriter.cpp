@@ -102,7 +102,7 @@ void TestFlacon::testMetaDataWriter()
 {
     QFETCH(QString, srcDir);
     QFETCH(QString, fileType);
-    QFETCH(TagsMap, tags);
+    QFETCH(TagsMap, allTags);
     QDir::setCurrent(dir());
     Q_UNUSED(srcDir);
 
@@ -110,7 +110,7 @@ void TestFlacon::testMetaDataWriter()
     Cue cue("in.cue");
 
     // Older versions of mediainfo have a bug, and incorrectly display the lone "AlbumPerformer" tag.
-    if (fileType == "WV" && tags.keys().join("") == "AlbumPerformer") {
+    if (fileType == "WV" && allTags.keys().join("") == "AlbumPerformer") {
         // QTest::qSkip("Older versions of mediainfo have a bug, and incorrectly display the lone 'AlbumPerformer' tag.", __FILE__, __LINE__);
         return;
     }
@@ -118,29 +118,45 @@ void TestFlacon::testMetaDataWriter()
     QString audioFile = QString("out.%1").arg(fileType.toLower());
     encodeAudioFile("../../1sec.wav", audioFile);
 
-    Disc disk;
-    disk.setCue(cue);
-    setTags(&disk, tags);
+    QList<TagsMap> cases;
+    cases << allTags;
 
-    Profile         profile;
-    OutFormat      *format = OutFormat::formatForId(fileType);
-    MetadataWriter *writer = format->createMetadataWriter(profile, audioFile);
+    for (uint i = 0; i < pow(2, allTags.count()); ++i) {
+        TagsMap tags;
+        for (int t = 0; t < allTags.count(); ++t) {
+            if ((i) & (1 << (t))) {
+                QString key = allTags.keys().at(t);
+                tags[key]   = allTags[key];
+            }
+        }
+        cases << tags;
+    }
 
-    writer->setTags(*disk.tracks().at(0));
-    writer->save();
+    for (const TagsMap &tags : cases) {
+        Disc disk;
+        disk.setCue(cue);
+        setTags(&disk, tags);
 
-    delete writer;
+        Profile         profile;
+        OutFormat      *format = OutFormat::formatForId(fileType);
+        MetadataWriter *writer = format->createMetadataWriter(profile, audioFile);
 
-    Mediainfo mediaInfo(audioFile);
-    mediaInfo.save(audioFile + ".json");
-    mediaInfo.validateTags(tags);
+        writer->setTags(*disk.tracks().at(0));
+        writer->save();
+
+        delete writer;
+
+        Mediainfo mediaInfo(audioFile);
+        mediaInfo.save(audioFile + ".json");
+        mediaInfo.validateTags(tags);
+    }
 }
 
 void TestFlacon::testMetaDataWriter_data()
 {
     QTest::addColumn<QString>("srcDir", nullptr);
     QTest::addColumn<QString>("fileType", nullptr);
-    QTest::addColumn<TagsMap>("tags", nullptr);
+    QTest::addColumn<TagsMap>("allTags", nullptr);
 
     QString srcDir = sourceDir();
 
@@ -167,48 +183,5 @@ void TestFlacon::testMetaDataWriter_data()
                 << d.filePath()
                 << spec["fileType"].toString()
                 << tags;
-    }
-}
-
-void TestFlacon::testMetaDataWriterMatrix()
-{
-    testMetaDataWriter();
-}
-
-void TestFlacon::testMetaDataWriterMatrix_data()
-{
-    QTest::addColumn<QString>("srcDir", nullptr);
-    QTest::addColumn<QString>("fileType", nullptr);
-    QTest::addColumn<TagsMap>("tags", nullptr);
-
-    QString srcDir = mDataDir + "/testMetaDataWriter";
-
-    QDir dir(srcDir);
-    foreach (QFileInfo d, dir.entryInfoList(QStringList("*"), QDir::Dirs | QDir::NoDotAndDotDot, QDir::Name)) {
-        QJsonObject spec;
-        try {
-            spec = readSpec(d.filePath() + "/spec.json");
-        }
-        catch (const FlaconError &err) {
-            QFAIL(err.what());
-        }
-
-        QStringList allTags = spec["tags"].toObject().keys();
-
-        for (uint i = 0; i < pow(2, allTags.count()); ++i) {
-            TagsMap tags;
-            for (int t = 0; t < allTags.count(); ++t) {
-                if ((i) & (1 << (t))) {
-                    QString key = allTags.at(t);
-                    tags[key]   = spec["tags"].toObject()[key].toVariant();
-                }
-            }
-
-            QString testName = QString("%1_%2 %3").arg(d.fileName()).arg(i, 4, 10, QChar('0')).arg(tags.keys().join(" "));
-            QTest::newRow(testName.toLocal8Bit())
-                    << d.filePath()
-                    << spec["fileType"].toString()
-                    << tags;
-        }
     }
 }

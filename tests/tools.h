@@ -96,11 +96,11 @@ QString    calcAudioHash(const QString &fileName);
 bool       compareAudioHash(const QString &file1, const QString &expected);
 void       writeHexString(const QString &str, QIODevice *out);
 QByteArray writeHexString(const QString &str);
+void       expandWavFile(const QString &fileName);
 void       createWavFile(const QString &fileName, const QString &header, const int duration = 0);
 void       createWavFile(const QString &fileName, quint16 bitsPerSample, quint32 sampleRate, uint durationSec);
 void       encodeAudioFile(const QString &wavFileName, const QString &outFileName);
 void       testFail(const QString &message, const char *file, int line);
-void       copyTestDir(const QString &srcTestDir, const QString &destTestDir);
 
 #define FAIL(message)                          \
     do {                                       \

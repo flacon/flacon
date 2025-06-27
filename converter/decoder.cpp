@@ -172,6 +172,37 @@ QStringList Decoder::allFormatsExts()
     return res;
 }
 
+/************************************************
+ *
+ ************************************************/
+Decoder::LogLevel Decoder::logLevel()
+{
+    int avLevel = av_log_get_level();
+
+    // clang-format off
+    if (avLevel <= AV_LOG_QUIET) return LogLevel::Silent;
+    if (avLevel <= AV_LOG_ERROR) return LogLevel::Error;
+    if (avLevel <= AV_LOG_INFO)  return LogLevel::Info;
+
+    return LogLevel::Debug;
+    // clang-format on
+}
+
+/************************************************
+ *
+ ************************************************/
+void Decoder::setLogLevel(LogLevel value)
+{
+    // clang-format off
+    switch (value) {
+        case LogLevel::Silent: av_log_set_level(AV_LOG_QUIET); break;
+        case LogLevel::Error:  av_log_set_level(AV_LOG_ERROR); break;
+        case LogLevel::Info:   av_log_set_level(AV_LOG_INFO); break;
+        case LogLevel::Debug:  av_log_set_level(AV_LOG_DEBUG); break;
+    }
+    // clang-format on
+}
+
 static const int MAX_BUF_SIZE  = 4096;
 static const int READ_DELAY    = 1000;
 static const int UNKNOWN_COUNT = std::numeric_limits<int>::max();
@@ -236,9 +267,38 @@ static int64_t timeToBytes(const CueTime &time, const WavHeader &wav)
 /************************************************
  *
  ************************************************/
+void logCallback(void *, int level, const char *fmt, va_list vargs)
+{
+    if (level > av_log_get_level()) {
+        return;
+    }
+
+    char buffer[4096];
+    vsnprintf(buffer, sizeof(buffer), fmt, vargs);
+
+    switch (level) {
+        case AV_LOG_ERROR:
+        case AV_LOG_WARNING:
+            qCWarning(LOG) << buffer;
+            break;
+
+        case AV_LOG_INFO:
+            qCInfo(LOG) << buffer;
+            break;
+
+        default:
+            qCDebug(LOG) << buffer;
+            break;
+    }
+}
+
+/************************************************
+ *
+ ************************************************/
 Decoder::Decoder(QObject *parent) :
     QObject(parent)
 {
+    // av_log_set_callback(logCallback);
 }
 
 /************************************************

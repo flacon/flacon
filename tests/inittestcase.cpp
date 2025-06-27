@@ -29,6 +29,7 @@
 #include "converter/wavheader.h"
 #include "../settings.h"
 
+#include <filesystem>
 #include <QString>
 #include <QProcessEnvironment>
 #include <QFileInfo>
@@ -182,6 +183,20 @@ QString TestFlacon::sourceDir(const QString &subTest)
                                    .arg(mDataDir)
                                    .arg(safePath(test))
                                    .arg(safePath(subtest)));
+}
+
+/************************************************
+ *
+ ************************************************/
+void TestFlacon::copyTestDir(const QString &srcDir, const QString &destDir)
+{
+    try {
+        namespace fs = std::filesystem;
+        fs::copy(srcDir.toStdString(), destDir.toStdString(), fs::copy_options::overwrite_existing | fs::copy_options::recursive | fs::copy_options::copy_symlinks);
+    }
+    catch (std::exception &e) {
+        QFAIL(e.what());
+    }
 }
 
 /************************************************

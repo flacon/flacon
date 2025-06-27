@@ -36,6 +36,7 @@
 #include "../types.h"
 #include "../project.h"
 #include "discspec.h"
+#include "tools.h"
 
 namespace {
 class TestProject : public Project
@@ -55,9 +56,14 @@ void TestFlacon::testLoadDiscFromAudio()
     QLoggingCategory::setFilterRules("InputAudioFile.debug=false\n"
                                      "AudioFileMatcher.debug=false\n"
                                      "SearchAudioFiles.debug=false\n");
-    QFETCH(QString, dir);
+    QFETCH(QString, srcDir);
 
-    QSettings spec(dir + "/test.spec", QSettings::IniFormat);
+    copyTestDir(srcDir, dir());
+    for (QFileInfo fi : QDir(dir()).entryInfoList(QStringList("*.wav"), QDir::Files)) {
+        expandWavFile(fi.absoluteFilePath());
+    }
+
+    QSettings spec(dir() + "/test.spec", QSettings::IniFormat);
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     spec.setIniCodec("UTF-8");
 #endif
@@ -68,12 +74,12 @@ void TestFlacon::testLoadDiscFromAudio()
             QFAIL("Can't set LOAD tag in the spec file");
         }
 
-        QString fileName = dir + "/" + spec.value("LOAD").toString();
+        QString fileName = dir() + "/" + spec.value("LOAD").toString();
         Disc   *disc     = fileName.endsWith("cue") ? p.addCueFile(fileName) : p.addAudioFile(fileName);
 
         disc->setCodecName(spec.value("CODEC", "UTF-8").toString());
 
-        Tests::DiscSpec exp(dir + "/expected.json");
+        Tests::DiscSpec exp(dir() + "/expected.json");
         exp.verify(*disc);
         delete disc;
     }
@@ -84,7 +90,7 @@ void TestFlacon::testLoadDiscFromAudio()
 
 void TestFlacon::testLoadDiscFromAudio_data()
 {
-    QTest::addColumn<QString>("dir", nullptr);
+    QTest::addColumn<QString>("srcDir", nullptr);
     QString srcDir = sourceDir();
 
     QDir dir(srcDir);

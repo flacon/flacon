@@ -58,6 +58,16 @@ public:
     static QList<Format> allFormats();
     static QStringList   allFormatsExts();
 
+    enum class LogLevel {
+        Silent,
+        Error,
+        Info,
+        Debug,
+    };
+
+    static LogLevel logLevel();
+    static void     setLogLevel(LogLevel value);
+
 public:
     explicit Decoder(QObject *parent = nullptr);
     virtual ~Decoder();

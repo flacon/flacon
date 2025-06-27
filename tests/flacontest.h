@@ -138,9 +138,6 @@ private slots:
     void testMetaDataWriter();
     void testMetaDataWriter_data();
 
-    void testMetaDataWriterMatrix();
-    void testMetaDataWriterMatrix_data();
-
     void testConvertBroken();
     void testConvertBroken_data();
 
@@ -157,6 +154,7 @@ private:
     void    applySettings(const SettingsValues &config);
     QString dir(const QString &subTest = "");
     QString sourceDir(const QString &subTest = "");
+    void    copyTestDir(const QString &srcDir, const QString &destDir);
 
     Disc *standardDisc();
 
