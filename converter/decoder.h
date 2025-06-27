@@ -112,5 +112,23 @@ private:
     uint64_t aproximateBytes(const CueTime &endTime) const;
 };
 
+class DecoderLogSwitcher
+{
+public:
+    DecoderLogSwitcher(Decoder::LogLevel logLevel)
+    {
+        mPrevLogLevel = Decoder::logLevel();
+        Decoder::setLogLevel(logLevel);
+    }
+
+    ~DecoderLogSwitcher()
+    {
+        Decoder::setLogLevel(mPrevLogLevel);
+    }
+
+private:
+    Decoder::LogLevel mPrevLogLevel;
+};
+
 } // namespace
 #endif // DECODER_H

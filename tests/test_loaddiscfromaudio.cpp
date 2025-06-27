@@ -113,6 +113,7 @@ void TestFlacon::testLoadDiscFromAudioErrors()
 
     QLoggingCategory::setFilterRules("*.debug=false\n*.warning=false\n");
 
+    Conv::DecoderLogSwitcher loglevel(Conv::Decoder::LogLevel::Silent);
     try {
         if (spec.value("LOAD").isNull()) {
             QFAIL("Can't set LOAD tag in the spec file");
@@ -120,11 +121,6 @@ void TestFlacon::testLoadDiscFromAudioErrors()
 
         QFile::copy(dir + "/conf.ini", this->dir() + "/conf.ini");
         Settings::setFileName(this->dir() + "/conf.ini");
-
-        if (spec.contains("PROGRAM")) {
-
-            ExtProgram::flac()->setPath(spec.value("PROGRAM").toString());
-        }
 
         InputAudioFile audio(dir + "/" + spec.value("LOAD").toString());
 
