@@ -155,6 +155,7 @@ private:
     QString dir(const QString &subTest = "");
     QString sourceDir(const QString &subTest = "");
     void    copyTestDir(const QString &srcDir, const QString &destDir);
+    void    copyFile(const QString &srcFile, const QString &destFile);
 
     Disc *standardDisc();
 

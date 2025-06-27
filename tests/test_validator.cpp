@@ -33,6 +33,7 @@
 #include "settings.h"
 #include "json_struct.h"
 #include "tools.h"
+#include <filesystem>
 
 namespace {
 
@@ -83,6 +84,7 @@ void TestFlacon::testValidator()
 {
     QFETCH(QString, dataDir);
     try {
+        auto    log     = Conv::DecoderLogSwitcher(Conv::Decoder::LogLevel::Silent);
         QString cfgFile = dir() + "/flacon.conf";
         QDir::setCurrent(dir());
 
@@ -101,7 +103,12 @@ void TestFlacon::testValidator()
         for (auto d : spec.disks) {
             QFile::copy(QStringLiteral("%1/%2").arg(dataDir).arg(d.cue.c_str()), QStringLiteral("%1/%2").arg(dir()).arg(d.cue.c_str()));
             for (auto a : d.audio) {
-                QFile::copy(QStringLiteral("%1/%2").arg(dataDir).arg(a.c_str()), QStringLiteral("%1/%2").arg(dir()).arg(a.c_str()));
+                QFileInfo src(QStringLiteral("%1/%2").arg(dataDir).arg(a.c_str()));
+                QFileInfo dest(QStringLiteral("%1/%2").arg(dir()).arg(a.c_str()));
+                copyFile(src.absoluteFilePath(), dest.absoluteFilePath());
+                // if (dest.suffix() == "w64") {
+                //     expandWavFile(dest.absoluteFilePath());
+                // }
             }
         }
 

@@ -199,6 +199,18 @@ void TestFlacon::copyTestDir(const QString &srcDir, const QString &destDir)
     }
 }
 
+void TestFlacon::copyFile(const QString &srcFile, const QString &destFile)
+{
+    try {
+        namespace fs = std::filesystem;
+        fs::remove(destFile.toStdString());
+        fs::copy(srcFile.toStdString(), destFile.toStdString(), fs::copy_options::overwrite_existing | fs::copy_options::recursive | fs::copy_options::copy_symlinks);
+    }
+    catch (std::exception &e) {
+        QFAIL(e.what());
+    }
+}
+
 /************************************************
  *
  ************************************************/
