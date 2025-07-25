@@ -36,6 +36,31 @@
 #include "../disc.h"
 #include "wavheader.h"
 
+class HashDevice : public QIODevice
+{
+public:
+    HashDevice(QCryptographicHash::Algorithm method, QObject *parent = nullptr) :
+        QIODevice(parent),
+        mHash(method)
+    {
+    }
+
+    QByteArray result() const { return mHash.result(); }
+
+protected:
+    qint64 readData(char *, qint64) { return -1; }
+
+    qint64 writeData(const char *data, qint64 len)
+    {
+        mHash.addData(QByteArray(data, len));
+        return len;
+    }
+
+private:
+    QByteArray         mBuf;
+    QCryptographicHash mHash;
+};
+
 static void packByteArray(QByteArray &buf, quint16 bytesPerSample, quint16 validBytesPerSample)
 {
     char *data   = buf.data();
@@ -56,7 +81,7 @@ static void packByteArray(QByteArray &buf, quint16 bytesPerSample, quint16 valid
 /************************************************
  *
  ************************************************/
-QString calcAudioHash(const QString &fileName)
+static QString calcWavAudioHash(const QString &fileName)
 {
     QCryptographicHash hash(QCryptographicHash::Md5);
 
@@ -73,7 +98,7 @@ QString calcAudioHash(const QString &fileName)
 
         f.seek(hdr.dataStartPos());
         while (!f.atEnd()) {
-            QByteArray buf = f.read(bytesPerSample * 4); //* 1024);
+            QByteArray buf = f.read(bytesPerSample * 1024);
             if (bytesPerSample != validBytesPerSample) {
                 packByteArray(buf, bytesPerSample, validBytesPerSample);
             }
@@ -81,6 +106,61 @@ QString calcAudioHash(const QString &fileName)
         }
 
         return hash.result().toHex();
+    }
+    catch (FlaconError &err) {
+        FAIL(QStringLiteral("Can't open input file '%1': %2").arg(fileName, err.what()).toLocal8Bit());
+        return "";
+    }
+}
+
+/************************************************
+ *
+ ************************************************/
+static QString calcDecodedAudioHash(const QString &fileName)
+{
+    Conv::Decoder decoder;
+    try {
+        decoder.open(fileName);
+    }
+    catch (FlaconError &err) {
+        FAIL(QStringLiteral("Can't open input file '%1': %2").arg(fileName, err.what()).toLocal8Bit());
+        return "";
+    }
+
+    if (decoder.formatId() == AV_CODEC_ID_NONE) {
+        FAIL("Unknown format");
+        decoder.close();
+        return "";
+    }
+
+    HashDevice hash(QCryptographicHash::Md5);
+    hash.open(QIODevice::WriteOnly);
+    decoder.extract(CueTime(), CueTime(), &hash);
+    decoder.close();
+
+    return hash.result().toHex();
+}
+
+/************************************************
+ *
+ ************************************************/
+QString calcAudioHash(const QString &fileName)
+{
+    try {
+        QFile f(fileName);
+        if (!f.open(QFile::ReadOnly)) {
+            throw FlaconError(f.errorString());
+        }
+
+        QByteArray magic = f.read(4);
+        f.close();
+
+        if (magic == "RIFF" || magic == "riff") {
+            return calcWavAudioHash(fileName);
+        }
+        else {
+            return calcDecodedAudioHash(fileName);
+        }
     }
     catch (FlaconError &err) {
         FAIL(QStringLiteral("Can't open input file '%1': %2").arg(fileName, err.what()).toLocal8Bit());

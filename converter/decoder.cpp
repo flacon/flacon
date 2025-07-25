@@ -97,7 +97,7 @@ public:
         mFormat             = Format_Extensible;
         mNumChannels        = decoder->ch_layout.nb_channels;
         mSampleRate         = decoder->sample_rate;
-        mBitsPerSample      = av_get_bytes_per_sample(decoder->sample_fmt) * 8;
+        mBitsPerSample      = calcValidBitsPerSample(decoder); // av_get_bytes_per_sample(decoder->sample_fmt) * 8;
         mBlockAlign         = (mNumChannels * mBitsPerSample) / 8;
         mByteRate           = mNumChannels * mSampleRate * mBitsPerSample / 8;
         mValidBitsPerSample = calcValidBitsPerSample(decoder);
@@ -370,6 +370,13 @@ void Decoder::open(const QString &fileName)
 
     mWavHeader = FFWavHeader(mDecoderContext);
 
+    if (mWavHeader.bitsPerSample() == 24) {
+        mWriteFrame = av_sample_fmt_is_planar(mDecoderContext->sample_fmt) ? writePlanarFrame24Bit : writeInterleavedFrame24Bit;
+    }
+    else {
+        mWriteFrame = av_sample_fmt_is_planar(mDecoderContext->sample_fmt) ? writePlanarFrame : writeInterleavedFrame;
+    }
+
     return;
 }
 
@@ -404,8 +411,6 @@ void Decoder::close()
  ************************************************/
 bool Decoder::readFrame()
 {
-    auto writeFrame = av_sample_fmt_is_planar(mDecoderContext->sample_fmt) ? writePlanarFrame : writeInterleavedFrame;
-
     while (true) {
         [[maybe_unused]] RaiiPacketUnref raiPacketUnref(mPacket);
 
@@ -446,7 +451,7 @@ bool Decoder::readFrame()
                 throw FlaconError(QStringLiteral("Decoding error after %1 samples.").arg(mDecoderPos));
             }
 
-            mDecoderPos += writeFrame(mFrame, &mFrameBuff);
+            mDecoderPos += mWriteFrame(mFrame, &mFrameBuff);
         }
         return true;
     }
@@ -540,6 +545,48 @@ uint64_t Decoder::writePlanarFrame(AVFrame *frame, QByteArray *buf)
     for (int i = 0; i < frame->nb_samples; ++i) {
         for (int ch = 0; ch < channels; ++ch) {
             buf->append(reinterpret_cast<char *>(frame->data[ch] + i * sampleSize), sampleSize);
+        }
+    }
+
+    return size;
+}
+
+/************************************************
+ *
+ ************************************************/
+uint64_t Decoder::writeInterleavedFrame24Bit(AVFrame *frame, QByteArray *buf)
+{
+    const uint32_t *src = reinterpret_cast<const uint32_t *>(frame->data[0]);
+
+    int      totalSamples = frame->nb_samples * frame->ch_layout.nb_channels;
+    uint64_t size         = totalSamples * 3;
+    buf->resize(buf->size() + size);
+
+    uint8_t *dst = reinterpret_cast<uint8_t *>(buf->data() + buf->size() - size);
+    for (int i = 0; i < totalSamples; ++i) {
+        uint32_t sample = src[i]; // little-endian
+        *dst++          = (sample >> 8) & 0xFF;
+        *dst++          = (sample >> 16) & 0xFF;
+        *dst++          = (sample >> 24) & 0xFF;
+    }
+
+    return size;
+}
+
+/************************************************
+ *
+ ************************************************/
+uint64_t Decoder::writePlanarFrame24Bit(AVFrame *frame, QByteArray *buf)
+{
+    int      sampleSize   = av_get_bytes_per_sample((AVSampleFormat)frame->format);
+    int      channels     = frame->ch_layout.nb_channels;
+    int      totalSamples = frame->nb_samples * frame->ch_layout.nb_channels;
+    uint64_t size         = totalSamples * 3;
+    buf->reserve(buf->size() + size);
+
+    for (int i = 0; i < frame->nb_samples; ++i) {
+        for (int ch = 0; ch < channels; ++ch) {
+            buf->append(reinterpret_cast<char *>(frame->data[ch] + i * sampleSize) + 1, 3);
         }
     }
 
