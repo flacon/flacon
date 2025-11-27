@@ -84,4 +84,9 @@
 
   <content_rating type="oars-1.1">
   </content_rating>
+  <keywords>
+    <keyword>audio extractor</keyword>
+    <keyword>track splitter</keyword>
+    <keyword>audio file converter</keyword>
+  </keywords>
 </component>
