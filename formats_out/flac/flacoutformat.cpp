@@ -76,7 +76,6 @@ QHash<QString, QVariant> OutFormat_Flac::defaultParameters() const
 {
     QHash<QString, QVariant> res;
     res.insert("Compression", 5);
-    res.insert("ReplayGain", gainTypeToString(GainType::Disable));
     return res;
 }
 

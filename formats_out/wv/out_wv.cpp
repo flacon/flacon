@@ -28,7 +28,6 @@
 #include "wvmetadatawriter.h"
 
 static const constexpr char *COMPRESSION_KEY = "Compression";
-static const constexpr char *REPLAY_GAIN_KEY = "ReplayGain";
 
 /************************************************
 
@@ -48,7 +47,6 @@ QHash<QString, QVariant> OutFormat_Wv::defaultParameters() const
 {
     QHash<QString, QVariant> res;
     res.insert(COMPRESSION_KEY, 1);
-    res.insert(REPLAY_GAIN_KEY, gainTypeToString(GainType::Disable));
     return res;
 }
 

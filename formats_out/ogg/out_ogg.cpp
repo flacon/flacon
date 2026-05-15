@@ -51,7 +51,6 @@ QHash<QString, QVariant> OutFormat_Ogg::defaultParameters() const
     res.insert("MinBitrate", "");
     res.insert("NormBitrate", "");
     res.insert("MaxBitrate", "");
-    res.insert("ReplayGain", gainTypeToString(GainType::Disable));
     return res;
 }
 
