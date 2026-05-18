@@ -893,7 +893,7 @@ void MainWindow::removeDiscs()
 void MainWindow::openScanDialog()
 {
     QString lastDir = Settings::i()->value(SETTINGS_LASTDIR_KEY).toString();
-    QString dir     = QFileDialog::getExistingDirectory(this, tr("Select directory"), lastDir);
+    QString dir     = QFileDialog::getExistingDirectory(this, tr("Add Folder"), lastDir);
 
     if (!dir.isEmpty()) {
         Settings::i()->setValue(SETTINGS_LASTDIR_KEY, dir);
