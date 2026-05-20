@@ -8,20 +8,45 @@ env:
   LANG: en_US.UTF-8
   LS_ALL: en_US.UTF-8
   LANGUAGE: en_US:en
-  PROGRAMS: alacenc faac flac lame mac oggenc opusenc sox ttaenc wavpack wvunpack
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    strategy:
+      fail-fast: false  # If one architecture has fallen, others continue
+
+      matrix:
+        include:
+          - name: x86_64
+            arch: amd64
+            runner: ubuntu-22.04
+            appimage_arch: x86_64
+            linuxdeploy_link:    https://github.com/linuxdeploy/linuxdeploy/releases/download/1-alpha-20251107-1/linuxdeploy-x86_64.AppImage
+            linuxdeploy_qt_link: https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/1-alpha-20250213-1/linuxdeploy-plugin-qt-x86_64.AppImage
+
+          - name: arm64
+            arch: arm64
+            runner: ubuntu-22.04-arm
+            appimage_arch: aarch64
+            linuxdeploy_link:    https://github.com/linuxdeploy/linuxdeploy/releases/download/1-alpha-20251107-1/linuxdeploy-aarch64.AppImage
+            linuxdeploy_qt_link: https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/1-alpha-20250213-1/linuxdeploy-plugin-qt-aarch64.AppImage
+            qemu: true
+
+
+    runs-on: ${{ matrix.runner }}
+
 
     steps:
+
+    ###################################
+    #
     - name: Set env
       run: |
-        echo "RELEASE_DATE=$(date +%Y.%m.%d_%H.%M.%S)" >> ${GITHUB_ENV}
-        echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+        echo "BUILD_DIR=${GITHUB_WORKSPACE}/BUILD/${{ matrix.arch }}"       >> $GITHUB_ENV
+        echo "APP_DIR=${GITHUB_WORKSPACE}/BUILD/${{ matrix.arch }}/AppDir"  >> $GITHUB_ENV
 
-        [[ "${GITHUB_REF_TYPE}"  = "tag" ]] && echo APPIMAGE_NAME="flacon-${GITHUB_REF_NAME:1}-x86_64.AppImage" >> $GITHUB_ENV
-        [[ "${GITHUB_REF_TYPE}" != "tag" ]] && echo APPIMAGE_NAME="flacon-$(date +%Y.%m.%d_%H.%M.%S)-x86_64.AppImage" >> $GITHUB_ENV
+        echo "RELEASE_DATE=$(date +%Y.%m.%d_%H.%M.%S)" >> ${GITHUB_ENV}
+        [[ "${GITHUB_REF_TYPE}"  = "tag" ]] && echo RELEASE_VERSION="${GITHUB_REF_NAME:1}" >> $GITHUB_ENV
+        [[ "${GITHUB_REF_TYPE}" != "tag" ]] && echo RELEASE_VERSION="$(date +%Y.%m.%d_%H.%M.%S)" >> $GITHUB_ENV
 
         echo "==============================="
         export
@@ -29,80 +54,217 @@ jobs:
         cat $GITHUB_ENV
         echo "==============================="
 
-    - uses: actions/checkout@v3
 
+    ###################################
+    #
+    - uses: actions/checkout@v6
+
+
+    ###################################
+    #
+    - name: Prepare
+      run: |
+        rm -rf "${BUILD_DIR}"
+        mkdir -p "${BUILD_DIR}"
+        cd "${BUILD_DIR}"
+
+        mkdir -p "${APP_DIR}"
+
+        wget -qO linuxdeploy.AppImage ${{ matrix.linuxdeploy_link }}
+        chmod a+x linuxdeploy.AppImage
+        ./linuxdeploy.AppImage --appimage-extract
+
+        wget -qO linuxdeploy-plugin-qt.AppImage ${{ matrix.linuxdeploy_qt_link }}
+        chmod a+x linuxdeploy-plugin-qt.AppImage
+        ./linuxdeploy-plugin-qt.AppImage --appimage-extract
+
+        echo PATH=${BUILD_DIR}/squashfs-root/usr/bin:$PATH >> $GITHUB_ENV
+        echo LD_LIBRARY_PATH=${BUILD_DIR}/squashfs-root/usr/lib >> $GITHUB_ENV
+
+        rm linuxdeploy.AppImage
+        rm linuxdeploy-plugin-qt.AppImage
+
+
+    ###################################
+    #
     - name: Install packages
       run:  |
         echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
         sudo apt-get -y update
-        sudo apt-get -y install locales
-        sudo sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen
-        sudo apt-get -y install software-properties-common
-        sudo add-apt-repository -y ppa:flacon
-        sudo apt-get -y update
-        sudo apt-get -y install build-essential pkg-config cmake  qtbase5-dev qttools5-dev-tools qttools5-dev libuchardet-dev libtag1-dev
-        sudo apt-get -y install flac mac alacenc vorbis-tools wavpack lame ttaenc faac opus-tools sox
-        sudo apt-get -y install desktop-file-utils
+        sudo apt-get -y --no-install-recommends install build-essential pkg-config cmake
+        sudo apt-get -y  --no-install-recommends install libgl1-mesa-dev qt6-base-dev qt6-tools-dev-tools qt6-tools-dev qt6-l10n-tools qt6-l10n-tools qmake6 qt6-xdgdesktopportal-platformtheme
+        sudo apt-get -y  --no-install-recommends install libuchardet-dev libtag1-dev
+        sudo ln -sf /usr/lib/qt6/bin/qmake /usr/bin/qmake
 
-    - name: Clone tools
-      run: |
-        git clone --depth 1 https://github.com/SokoloffA/nightly-tools.git ~/tools
-        echo PATH=~/tools/appimage/usr/bin:$PATH >> $GITHUB_ENV
-        echo LD_LIBRARY_PATH=~/tools/appimage/usr/lib >> $GITHUB_ENV
 
-    - name: Create Build Environment
-      run: |
-        cmake -E make_directory ${{github.workspace}}/build
-        cmake -E make_directory ${{github.workspace}}/build/app
-
-    - name: Run CMake
+    ###################################
+    #
+    - name: Build flacon
       shell: bash
-      working-directory: ${{github.workspace}}/build
-      run: cmake -DCMAKE_INSTALL_PREFIX=${{github.workspace}}/build/app/usr -DAPPIMAGE_BUNDLE=Yes -DCMAKE_BUILD_TYPE=$BUILD_TYPE $GITHUB_WORKSPACE
+      working-directory: ${{env.BUILD_DIR}}
+      run: |
+        mkdir flacon
+        cd flacon
+        cmake -DCMAKE_INSTALL_PREFIX=${APP_DIR}/usr -DAPPIMAGE_BUNDLE=Yes -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DUSE_QT5=OFF -DUSE_QT6=ON  $GITHUB_WORKSPACE
+        make -j$(nproc)
+        make install
 
-    - name: Build Flacon
-      working-directory: ${{github.workspace}}/build
+
+    ###################################
+    #
+    - name: Build alacenc
       shell: bash
-      run: make -j 8
+      working-directory: ${{env.BUILD_DIR}}
+      run: |
+        git clone --depth 1 https://github.com/flacon/alacenc.git --branch v0.4.1 alacenc || true
+        cd alacenc
+        cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${APP_DIR}/usr .
+        make -j$(nproc)
+        make install
 
-    - name: Install Flacon
-      working-directory: ${{github.workspace}}/build
+
+    ###################################
+    #
+    - name: Build mac
       shell: bash
-      run: make install
-
-    - name: Build AppImage dir
-      working-directory: ${{github.workspace}}/build/app
+      working-directory: ${{env.BUILD_DIR}}
       run: |
-        echo "==============================="
-        export PATH=~/tools/appimage/usr/bin:$PATH
-        export LD_LIBRARY_PATH=~/tools/appimage/usr/lib
-        echo "= Create symlinks ============="
-        ln -sf usr/bin/flacon AppRun
-        ln -sf usr/share/icons/hicolor/scalable/apps/flacon.svg .
-        ln -sf ./flacon.png  ./.DirIcon
-        ln -sf usr/share/applications/flacon.desktop .
-        echo "= Add programs ================"
-        for prog in ${PROGRAMS}; do echo " * Copy ${prog}"; src=$(which "$prog"); dest=${src#/}; cp -f "${src}" "usr/bin/"; done
-        echo "= Build image ================="
-        linuxdeploy --verbosity=3  --plugin qt --appdir "${{github.workspace}}/build/app"
+        sudo apt-get -y install yasm
+        git clone --depth 1 https://github.com/SokoloffA/monkeyaudio.git mac || true
+        cd mac
+        ./configure --prefix=${APP_DIR}/usr --mandir=/usr/share/man --infodir=/usr/share/info LDFLAGS="-Wl,-z,defs" --enable-assembly=yes
+        make -j$(nproc)
+        make install
 
-    - name: Check AppImage dir
+
+    ###################################
+    #
+    - name: Build ttaenc
+      shell: bash
+      working-directory: ${{env.BUILD_DIR}}
       run: |
-        /bin/bash ~/tools/appdir-lint.sh ${{github.workspace}}/build/app
+        git clone --depth 1 https://github.com/SokoloffA/ttaenc.git ttaenc || true
+        cd ttaenc
+        make -j$(nproc)
+        install -d "${APP_DIR}/usr/bin"
+        install ttaenc "${APP_DIR}/usr/bin"
 
-    - name: Check external programs
-      working-directory: ${{github.workspace}}
+
+    ###################################
+    #
+    - name: Install faac
+      shell: bash
+      working-directory: ${{env.BUILD_DIR}}
       run: |
-        scripts/check-extprograms.sh . ${{github.workspace}}/build/app/usr/bin
+        sudo apt install -y faac
+        cp -f /usr/bin/faac "${APP_DIR}/usr/bin/"
 
-    - name: Build AppImage file
-      working-directory: ${{github.workspace}}/build/app
+
+    ###################################
+    #
+    - name: Install flac
+      shell: bash
+      working-directory: ${{env.BUILD_DIR}}
       run: |
-        appimagetool "${{github.workspace}}/build/app" "${{github.workspace}}/build/${{ env.APPIMAGE_NAME }}"
+        sudo apt install -y flac
+        cp -f /usr/bin/flac "${APP_DIR}/usr/bin/"
 
 
+    ###################################
+    #
+    - name: Install lame
+      shell: bash
+      working-directory: ${{env.BUILD_DIR}}
+      run: |
+        sudo apt install -y lame
+        cp -f /usr/bin/lame "${APP_DIR}/usr/bin/"
+
+
+    ###################################
+    #
+    - name: Install oggenc
+      shell: bash
+      working-directory: ${{env.BUILD_DIR}}
+      run: |
+        sudo apt install -y vorbis-tools
+        cp -f /usr/bin/oggenc "${APP_DIR}/usr/bin/"
+
+
+    ###################################
+    #
+    - name: Install opus
+      shell: bash
+      working-directory: ${{env.BUILD_DIR}}
+      run: |
+        sudo apt install -y opus-tools
+        cp -f /usr/bin/opusenc "${APP_DIR}/usr/bin/"
+
+
+    ###################################
+    #
+    - name: Install sox
+      shell: bash
+      working-directory: ${{env.BUILD_DIR}}
+      run: |
+        sudo apt install -y sox
+        cp -f /usr/bin/sox "${APP_DIR}/usr/bin/"
+
+
+    ###################################
+    #
+    - name: Install wavpack
+      shell: bash
+      working-directory: ${{env.BUILD_DIR}}
+      run: |
+        sudo apt install -y wavpack
+        cp -f /usr/bin/wavpack  "${APP_DIR}/usr/bin/"
+        cp -f /usr/bin/wvunpack "${APP_DIR}/usr/bin/"
+
+
+    ###################################
+    #
+    - name: Create AppImage file
+      working-directory: ${{env.BUILD_DIR}}
+      env:
+        LINUXDEPLOY_OUTPUT_VERSION: ${{ env.RELEASE_VERSION }}
+        DISABLE_COPYRIGHT_FILES_DEPLOYMENT: 1
+      run: |
+        mkdir -p "${APP_DIR}/apprun-hooks"
+        echo 'export QT_QPA_PLATFORMTHEME=xdgdesktopportal' > "${APP_DIR}/apprun-hooks/use-xdgdesktopportal.sh"
+
+        rm -rf usr/share/doc
+        rm -rf usr/share/man
+        rm -rf usr/include
+
+        find "${APP_DIR}/usr/lib" -name "*.so*" -type f | while read f; do
+          strip --strip-unneeded "$f" && echo "Stripped: $f" || echo "Skip: $f"
+        done
+
+        linuxdeploy \
+          --appdir ${APP_DIR} \
+          --executable "${APP_DIR}/usr/bin/flacon" \
+          --desktop-file "${APP_DIR}/usr/share/applications/flacon.desktop" \
+          --icon-file "${APP_DIR}/usr/share/icons/hicolor/scalable/apps/flacon.svg" \
+          --plugin qt \
+          --output appimage
+
+
+    ###################################
+    #
+    - name: Check AppImage
+      shell: bash
+      run: |
+        sudo apt-get -y install --no-install-recommends  libfile-mimeinfo-perl desktop-file-utils
+        .github/workflows/appdir-lint.sh "${APP_DIR}"
+        scripts/check-extprograms.sh . "${APP_DIR}/usr/bin"
+
+
+    ###################################
+    #
     - name: Upload artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v6
       with:
-        name: ${{ env.APPIMAGE_NAME }}
-        path: "${{github.workspace}}/build/${{ env.APPIMAGE_NAME }}"
+        name: "Flacon-${{env.RELEASE_VERSION}}-${{ matrix.appimage_arch }}.AppImage"
+        path: ${{env.BUILD_DIR}}/*.AppImage
+
+
