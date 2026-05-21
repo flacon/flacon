@@ -16,6 +16,15 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Set env
+      run: |
+        printf "CPU %d\n" `nproc`
+        echo "==============================="
+        export
+        echo "-------------------------------"
+        cat $GITHUB_ENV
+        echo "==============================="
+
     - name: Checks License
       run: ./scripts/checkLicense.sh .
 
