@@ -71,6 +71,7 @@ jobs:
           -DCMAKE_INSTALL_PREFIX=build \
           -DCMAKE_OSX_DEPLOYMENT_TARGET=10.10.1 \
           -Bbuild \
+          -DUSE_QT5=ON \
           -DCMAKE_OSX_ARCHITECTURES=${{ inputs.arch }} \
           ${{github.workspace}}
 
