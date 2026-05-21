@@ -65,8 +65,7 @@ ExternalProject_Add(
     CONFIGURE_COMMAND cd "Project/GNU/CLI" && ./autogen.sh > /dev/null 2>&1 && ./configure --quiet --enable-staticlibs --enable-silent-rules
     BUILD_COMMAND     cd "Project/GNU/CLI" && make --silent -j4
 
-    INSTALL_COMMAND   ${CMAKE_COMMAND} -E make_directory "${CMAKE_BINARY_DIR}/tests"
-          COMMAND     ${CMAKE_COMMAND} -E copy "Project/GNU/CLI/.libs/mediainfo" "${MEDIAINFO_OUT}"
+    INSTALL_COMMAND   ${CMAKE_COMMAND} -E copy "${CMAKE_CURRENT_SOURCE_DIR}/Project/GNU/CLI/.libs/mediainfo" "${MEDIAINFO_OUT}"
 
     DEPENDS           mediainfolib
 )
