@@ -105,7 +105,7 @@ jobs:
       run: |
         mkdir flacon
         cd flacon
-        cmake -DCMAKE_INSTALL_PREFIX=${APP_DIR}/usr -DAPPIMAGE_BUNDLE=Yes -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DUSE_QT5=OFF -DUSE_QT6=ON  $GITHUB_WORKSPACE
+        cmake -DCMAKE_INSTALL_PREFIX=${APP_DIR}/usr -DAPPIMAGE_BUNDLE=Yes -DCMAKE_BUILD_TYPE=$BUILD_TYPE $GITHUB_WORKSPACE
         make -j$(nproc)
         make install
 

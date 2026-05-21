@@ -210,15 +210,12 @@ include_directories(
 #*******************************************
 include("cmake/macos.cmake")
 
-option(USE_QT5 "Try to use the Qt5." ON)
-option(USE_QT6 "Try to use the Qt6." ON)
+option(USE_QT5 "Try to use the Qt5." OFF)
 
-if (USE_QT5 AND USE_QT6)
-    find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-elseif (USE_QT6)
-    find_package(QT NAMES Qt6 REQUIRED COMPONENTS Widgets)
-elseif (USE_QT5)
+if (USE_QT5)
     find_package(QT NAMES Qt5 REQUIRED COMPONENTS Widgets)
+else()
+    find_package(QT NAMES Qt6 REQUIRED COMPONENTS Widgets)
 endif()
 message(STATUS "Using Qt version ${QT_VERSION}")
 
