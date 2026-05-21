@@ -414,3 +414,14 @@ void Settings::writeExtPrograms()
     }
 }
 #endif
+
+/************************************************
+ * GuiSettings
+ ************************************************/
+GuiSettings::GuiSettings() :
+    QSettings("flacon", QString("gui_qt%1").arg(QT_VERSION_MAJOR))
+{
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+    setIniCodec("UTF-8");
+#endif
+}

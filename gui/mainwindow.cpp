@@ -348,7 +348,7 @@ void MainWindow::setCueForDisc(Disc *disc)
             dir = QFileInfo(disc->cueFilePath()).dir().absolutePath();
         }
         else {
-            dir = Settings::i()->value(SETTINGS_LASTDIR_KEY).toString();
+            dir = GuiSettings().value(SETTINGS_LASTDIR_KEY).toString();
         }
     }
 
@@ -735,14 +735,14 @@ QString MainWindow::getOpenFileFilter(bool includeAudio, bool includeCue)
 void MainWindow::openAddFileDialog()
 {
     QString     flt       = getOpenFileFilter(true, true);
-    QString     lastDir   = Settings::i()->value(SETTINGS_LASTDIR_KEY).toString();
+    QString     lastDir   = GuiSettings().value(SETTINGS_LASTDIR_KEY).toString();
     QStringList fileNames = QFileDialog::getOpenFileNames(this, tr("Add CUE or audio file", "OpenFile dialog title"), lastDir, flt);
 
     if (fileNames.isEmpty()) {
         return;
     }
 
-    Settings::i()->setValue(SETTINGS_LASTDIR_KEY, QFileInfo(fileNames.last()).dir().path());
+    GuiSettings().setValue(SETTINGS_LASTDIR_KEY, QFileInfo(fileNames.last()).dir().path());
 
     foreach (const QString &fileName, fileNames) {
         addFileOrDir(fileName);
@@ -767,7 +767,7 @@ void MainWindow::setAudioForDisc(Disc *disc, int audioFileNum)
             dir = QFileInfo(audioFiles[audioFileNum]).dir().absolutePath();
         }
         else {
-            dir = Settings::i()->value(SETTINGS_LASTDIR_KEY).toString();
+            dir = GuiSettings().value(SETTINGS_LASTDIR_KEY).toString();
         }
     }
 
@@ -892,11 +892,12 @@ void MainWindow::removeDiscs()
  ************************************************/
 void MainWindow::openScanDialog()
 {
-    QString lastDir = Settings::i()->value(SETTINGS_LASTDIR_KEY).toString();
-    QString dir     = QFileDialog::getExistingDirectory(this, tr("Add Folder"), lastDir);
+    GuiSettings settings;
+    QString     lastDir = settings.value(SETTINGS_LASTDIR_KEY).toString();
+    QString     dir     = QFileDialog::getExistingDirectory(this, tr("Add Folder"), lastDir);
 
     if (!dir.isEmpty()) {
-        Settings::i()->setValue(SETTINGS_LASTDIR_KEY, dir);
+        settings.setValue(SETTINGS_LASTDIR_KEY, dir);
         addFileOrDir(dir);
     }
 }
@@ -1257,20 +1258,20 @@ void MainWindow::initStatusBar()
  ************************************************/
 void MainWindow::loadSettings()
 {
-    Settings *settings = Settings::i();
+    GuiSettings settings;
 
     // MainWindow geometry
-    int x      = settings->value("MainWindow/Left", geometry().left()).toInt();
-    int y      = settings->value("MainWindow/Top", geometry().top()).toInt();
-    int width  = settings->value("MainWindow/Width", QVariant(987)).toInt();
-    int height = settings->value("MainWindow/Height", QVariant(450)).toInt();
+    int x      = settings.value("MainWindow/Left", geometry().left()).toInt();
+    int y      = settings.value("MainWindow/Top", geometry().top()).toInt();
+    int width  = settings.value("MainWindow/Width", QVariant(987)).toInt();
+    int height = settings.value("MainWindow/Height", QVariant(450)).toInt();
     this->setGeometry(x, y, width, height);
 
-    splitter->restoreState(settings->value("MainWindow/Splitter").toByteArray());
-    trackView->header()->restoreState(settings->value("MainWindow/TrackViewV2").toByteArray());
+    splitter->restoreState(settings.value("MainWindow/Splitter").toByteArray());
+    trackView->header()->restoreState(settings.value("MainWindow/TrackView").toByteArray());
 
-    outDirEdit->setHistory(Settings::i()->value(SETTINGS_OUTFILES_DIR_HISTORY_KEY).toStringList());
-    outPatternEdit->setHistory(Settings::i()->value(SETTINGS_PATTERN_HISTORY_KEY).toStringList());
+    outDirEdit->setHistory(settings.value(SETTINGS_OUTFILES_DIR_HISTORY_KEY).toStringList());
+    outPatternEdit->setHistory(settings.value(SETTINGS_PATTERN_HISTORY_KEY).toStringList());
 }
 
 /************************************************
@@ -1278,17 +1279,17 @@ void MainWindow::loadSettings()
  ************************************************/
 void MainWindow::saveSettings()
 {
-    Settings *settings = Settings::i();
+    GuiSettings settings;
 
-    settings->setValue("MainWindow/Left", geometry().left());
-    settings->setValue("MainWindow/Top", geometry().top());
-    settings->setValue("MainWindow/Width", QVariant(size().width()));
-    settings->setValue("MainWindow/Height", QVariant(size().height()));
-    settings->setValue("MainWindow/Splitter", QVariant(splitter->saveState()));
-    settings->setValue("MainWindow/TrackViewV2", QVariant(trackView->header()->saveState()));
+    settings.setValue("MainWindow/Left", geometry().left());
+    settings.setValue("MainWindow/Top", geometry().top());
+    settings.setValue("MainWindow/Width", QVariant(size().width()));
+    settings.setValue("MainWindow/Height", QVariant(size().height()));
+    settings.setValue("MainWindow/Splitter", QVariant(splitter->saveState()));
+    settings.setValue("MainWindow/TrackView", QVariant(trackView->header()->saveState()));
 
-    Settings::i()->setValue(SETTINGS_OUTFILES_DIR_HISTORY_KEY, outDirEdit->history());
-    Settings::i()->setValue(SETTINGS_PATTERN_HISTORY_KEY, outPatternEdit->history());
+    settings.setValue(SETTINGS_OUTFILES_DIR_HISTORY_KEY, outDirEdit->history());
+    settings.setValue(SETTINGS_PATTERN_HISTORY_KEY, outPatternEdit->history());
 }
 
 /************************************************

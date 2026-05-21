@@ -67,4 +67,10 @@ private:
     uint          readThreadsCount(const QString &key, uint def) const;
 };
 
+class GuiSettings : public QSettings
+{
+public:
+    GuiSettings();
+};
+
 #endif // SETTINGS_H

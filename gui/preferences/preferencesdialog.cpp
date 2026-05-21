@@ -98,8 +98,9 @@ PreferencesDialog::PreferencesDialog(QWidget *parent) :
 
     // Restore saved size ..................
     fixLayout(this);
-    int width  = Settings::i()->value(SETTINGS_DIALOG_WIDTH_KEY).toInt();
-    int height = Settings::i()->value(SETTINGS_DIALOG_HEIGHT_KEY).toInt();
+    GuiSettings gui;
+    int         width  = gui.value(SETTINGS_DIALOG_WIDTH_KEY).toInt();
+    int         height = gui.value(SETTINGS_DIALOG_HEIGHT_KEY).toInt();
     resize(width, height);
 
     connect(ui->buttonBox, &QDialogButtonBox::accepted, this, [this]() {
@@ -152,9 +153,10 @@ void PreferencesDialog::initToolBar()
  ************************************************/
 PreferencesDialog::~PreferencesDialog()
 {
-    Settings::i()->setValue(SETTINGS_DIALOG_WIDTH_KEY, size().width());
-    Settings::i()->setValue(SETTINGS_DIALOG_HEIGHT_KEY, size().height());
-    Settings::i()->sync();
+    GuiSettings gui;
+    gui.setValue(SETTINGS_DIALOG_WIDTH_KEY, size().width());
+    gui.setValue(SETTINGS_DIALOG_HEIGHT_KEY, size().height());
+    gui.sync();
 
     delete ui;
 }
