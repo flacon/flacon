@@ -12,7 +12,6 @@ function build() {
 
     OPTS=""
     OPTS+=" -b"
-    OPTS+=" --artifact-server-path ./ARTIFACTS"
     OPTS+=" --workflows .github/workflows/build-appimage.yml"
     OPTS+=" --matrix name:${ARCH}"
 
