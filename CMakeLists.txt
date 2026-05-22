@@ -124,9 +124,8 @@ set(HEADERS
     gui/trackview.h
     gui/trackviewmodel.h
     gui/trackviewdelegate.h
-    gui/aboutdialog/aboutdialog.h
-    gui/coverdialog/coverdialog.h
-    gui/coverdialog/asynclistwidgetitem.h
+
+    gui/qwindowdebugger.h
  )
 
 set(SOURCES
@@ -152,9 +151,6 @@ set(SOURCES
     runconsole.cpp
     commandlineparser.cpp
 
-    gui/aboutdialog/aboutdialog.cpp
-    gui/coverdialog/coverdialog.cpp
-    gui/coverdialog/asynclistwidgetitem.cpp
 )
 
 if (APPLE)

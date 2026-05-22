@@ -1,0 +1,5 @@
+QDialogButtonBox QPushButton {
+    icon-size: 0px 0px;
+    padding:8px;
+    min-width: 80px;
+}

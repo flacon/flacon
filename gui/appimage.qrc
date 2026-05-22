@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/appimage">
+        <file>appimage.css</file>
+    </qresource>
+</RCC>

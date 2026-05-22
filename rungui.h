@@ -41,6 +41,7 @@ public:
 
 private:
     void translate(QApplication *app);
+    void addStyleSheet(const QString &cssFile);
 };
 
 #endif // RUNGUI_H

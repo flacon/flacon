@@ -84,6 +84,11 @@ QString path(QLibraryInfo::LibraryPath p)
 int RunGui::run(int argc, char *argv[])
 {
     Application app(argc, argv);
+
+#if APPIMAGE_BUNDLE
+    addStyleSheet(":appimage/appimage.css");
+#endif
+
     translate(&app);
     CommandLineParser commandLineParser;
     commandLineParser.process(app);
@@ -152,6 +157,15 @@ void RunGui::translate(QApplication *app)
     if (appTranslator->load(QStringLiteral("flacon_%2.qm").arg(locale)) || appTranslator->load(QStringLiteral("%1/flacon_%2.qm").arg(appDir, locale))) {
         app->installTranslator(appTranslator);
     }
+}
+
+void RunGui::addStyleSheet(const QString &cssFile)
+{
+    QFile f(cssFile);
+    if (f.open(QFile::ReadOnly)) {
+        qApp->setStyleSheet(qApp->styleSheet() + "\n" + f.readAll());
+    }
+    f.close();
 }
 
 /**************************************

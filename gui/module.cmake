@@ -20,11 +20,14 @@ list(APPEND SOURCES
 
   ${CMAKE_CURRENT_LIST_DIR}/movie.h
   ${CMAKE_CURRENT_LIST_DIR}/movie.cpp
+
+  ${CMAKE_CURRENT_LIST_DIR}/appimage.qrc
+  ${CMAKE_CURRENT_LIST_DIR}/appimage.css
 )
 
-include(${CMAKE_CURRENT_LIST_DIR}/preferences/module.cmake)
-include(${CMAKE_CURRENT_LIST_DIR}/messagebox/module.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/aboutdialog/module.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/coverdialog/module.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/logview/module.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/messagebox/module.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/preferences/module.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/tageditor/module.cmake)
-
-

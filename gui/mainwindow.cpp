@@ -57,6 +57,7 @@
 #include "qtbackports/movetotrash.h"
 #include "audiofilematcher.h"
 #include "patternexpander.h"
+#include "qwindowdebugger.h"
 
 #ifdef MAC_UPDATER
 #include "updater/updater.h"
@@ -65,6 +66,11 @@
 static constexpr auto SETTINGS_LASTDIR_KEY              = "Misc/LastDirectory";
 static constexpr auto SETTINGS_PATTERN_HISTORY_KEY      = "OutFiles/PatternHistory";
 static constexpr auto SETTINGS_OUTFILES_DIR_HISTORY_KEY = "OutFiles/DirectoryHistory";
+
+static QString lastDir()
+{
+    return GuiSettings().value(SETTINGS_LASTDIR_KEY, qgetenv("HOME")).toString();
+}
 
 /************************************************
 
@@ -76,6 +82,10 @@ MainWindow::MainWindow(QWidget *parent) :
     Messages::setHandler(this);
 
     setupUi(this);
+
+#ifdef QT_DEBUG
+    QWindowDebugger::start();
+#endif
 
     qApp->setWindowIcon(loadMainIcon());
     toolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
@@ -348,7 +358,7 @@ void MainWindow::setCueForDisc(Disc *disc)
             dir = QFileInfo(disc->cueFilePath()).dir().absolutePath();
         }
         else {
-            dir = GuiSettings().value(SETTINGS_LASTDIR_KEY).toString();
+            dir = lastDir();
         }
     }
 
@@ -735,8 +745,7 @@ QString MainWindow::getOpenFileFilter(bool includeAudio, bool includeCue)
 void MainWindow::openAddFileDialog()
 {
     QString     flt       = getOpenFileFilter(true, true);
-    QString     lastDir   = GuiSettings().value(SETTINGS_LASTDIR_KEY).toString();
-    QStringList fileNames = QFileDialog::getOpenFileNames(this, tr("Add CUE or audio file", "OpenFile dialog title"), lastDir, flt);
+    QStringList fileNames = QFileDialog::getOpenFileNames(this, tr("Add CUE or audio file", "OpenFile dialog title"), lastDir(), flt);
 
     if (fileNames.isEmpty()) {
         return;
@@ -767,7 +776,7 @@ void MainWindow::setAudioForDisc(Disc *disc, int audioFileNum)
             dir = QFileInfo(audioFiles[audioFileNum]).dir().absolutePath();
         }
         else {
-            dir = GuiSettings().value(SETTINGS_LASTDIR_KEY).toString();
+            dir = lastDir();
         }
     }
 
@@ -893,8 +902,7 @@ void MainWindow::removeDiscs()
 void MainWindow::openScanDialog()
 {
     GuiSettings settings;
-    QString     lastDir = settings.value(SETTINGS_LASTDIR_KEY).toString();
-    QString     dir     = QFileDialog::getExistingDirectory(this, tr("Add Folder"), lastDir);
+    QString     dir = QFileDialog::getExistingDirectory(this, tr("Add Folder"), lastDir());
 
     if (!dir.isEmpty()) {
         settings.setValue(SETTINGS_LASTDIR_KEY, dir);
