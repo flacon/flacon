@@ -518,24 +518,41 @@ void Disc::addInternetTags(const QVector<InternetTags> &tags)
     int bestDisc = 0;
     for (int i = 0; i < tags.count(); ++i) {
         const InternetTags &t = tags.at(i);
-        if (t.tracks().count() < mTracks.count()) {
-            continue;
-        }
 
-        Tags userTags;
-        userTags.resize(t.tracks().count());
-
-        mInternetTags << t;
-        mInternetUserTags << userTags;
-
-        int n = distance(t);
-        if (n < minDist) {
-            minDist  = n;
-            bestDisc = i;
+        if (addInternetTags(t)) {
+            int n = distance(t);
+            if (n < minDist) {
+                minDist  = n;
+                bestDisc = i;
+            }
         }
     }
 
     activateTagSet(mInternetTags.at(bestDisc).tagsId().uri);
+}
+
+/**************************************
+ *
+ **************************************/
+bool Disc::addInternetTags(const InternetTags &newTags)
+{
+    if (newTags.tracks().count() < mTracks.count()) {
+        return false;
+    }
+
+    for (const InternetTags &t : mInternetTags) {
+        if (t.tagsId().uri == newTags.tagsId().uri) {
+            return false;
+        }
+    }
+
+    Tags userTags;
+    userTags.resize(newTags.tracks().count());
+
+    mInternetTags << newTags;
+    mInternetUserTags << userTags;
+
+    return true;
 }
 
 /**************************************

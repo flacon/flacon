@@ -80,6 +80,7 @@ public:
     void          activateTagSet(const QString &uri);
 
     void addInternetTags(const QVector<InternetTags> &tags);
+    bool addInternetTags(const InternetTags &newTags);
 
     void searchCoverImage(bool replaceExisting = false);
 
