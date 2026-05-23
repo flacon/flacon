@@ -511,25 +511,25 @@ In CBR mode, it sets the specific output bitrate.
             <translation>Embed to audio files</translation>
         </message>
         <message>
-            <source>Insert &quot;Artist&quot;</source>
+            <source>Insert "Artist"</source>
             <translation>Introduceți „Artist”</translation>
         </message>
         <message>
-            <source>Insert &quot;Album title&quot;</source>
+            <source>Insert "Album title"</source>
             <translation>Introduceți „Titlu album”</translation>
         </message>
         <message>
-            <source>Insert &quot;Year&quot;</source>
+            <source>Insert "Year"</source>
             <translation>Introduceți „Anul”</translation>
         </message>
         <message>
-            <source>Insert &quot;Genre&quot;</source>
+            <source>Insert "Genre"</source>
             <translation>Introduceți „Genul”</translation>
         </message>
         <message>
-            <source>Use &quot;%1&quot;</source>
-            <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
-            <translation>Utilizează &quot;%1&quot;</translation>
+            <source>Use "%1"</source>
+            <comment>Predefined CUE file name, string like 'Use "%a/%A/%n - %t.cue"'</comment>
+            <translation>Utilizează "%1"</translation>
         </message>
         <message>
             <source>Extract to separate file</source>
@@ -600,9 +600,9 @@ Aceasta are efect doar asupra mărimii fișierului rezultat. Calitatea va fi ace
             <translation>CUE tags</translation>
         </message>
         <message>
-            <source>If the &quot;TITLE&quot; tag contains the artist's and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
+            <source>If the "TITLE" tag contains the artist's and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
             <extracomment>Checkbox tooltip on preferences dialog</extracomment>
-            <translation>If the &quot;TITLE&quot; tag contains the artist's and the track names combined by a separator character, the program will try to assign the appropriate tags.</translation>
+            <translation>If the "TITLE" tag contains the artist's and the track names combined by a separator character, the program will try to assign the appropriate tags.</translation>
         </message>
         <message>
             <source>Use heuristic definition of track performer</source>
@@ -680,8 +680,8 @@ Aceasta are efect doar asupra mărimii fișierului rezultat. Calitatea va fi ace
         <message>
             <source>You can browse to the destination directory. You can also input it manually.
 
-If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
-            <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
+If the path is left empty or starts with "." (dot), the result files will be placed in the same directory as the source.</source>
+            <comment>Main form tooltip for "Directory" edit</comment>
             <translation>Puteți alege dosarul destinație sau îl puteți scrie direct.
 
 Dacă nu ați ales nimic sau calea către dosar începe cu un punct (.), fișierele rezultate vor fi puse în același dosar cu fișierele sursă.</translation>
@@ -696,7 +696,7 @@ Dacă nu ați ales nimic sau calea către dosar începe cu un punct (.), fișier
         </message>
         <message>
             <source>Output format</source>
-            <comment>Main form tooltip for &quot;Format&quot; edit</comment>
+            <comment>Main form tooltip for "Format" edit</comment>
             <translation>Format ieșire</translation>
         </message>
         <message>
@@ -949,7 +949,7 @@ Vreți să continuați?</translation>
         </message>
         <message>
             <source>%1 files</source>
-            <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
+            <comment>OpenFile dialog filter line, like "WAV files"</comment>
             <translation>%1 (de) fișiere</translation>
         </message>
         <message>
@@ -959,7 +959,7 @@ Vreți să continuați?</translation>
         </message>
         <message>
             <source>All files</source>
-            <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
+            <comment>OpenFile dialog filter line like "All files"</comment>
             <translation>Toate fișierele</translation>
         </message>
         <message>
@@ -973,13 +973,13 @@ Vreți să continuați?</translation>
             <translation>Alege fișierul audio</translation>
         </message>
         <message>
-            <source>&quot;%1&quot; was not set.</source>
+            <source>"%1" was not set.</source>
             <comment>Error message, %1 is an filename.</comment>
-            <translation>&quot;%1&quot; was not set.</translation>
+            <translation>"%1" was not set.</translation>
         </message>
         <message>
-            <source>Select directory</source>
-            <translation>Alege dosarul</translation>
+            <source>Add Folder</source>
+            <translation>Add Folder</translation>
         </message>
         <message>
             <source>Select another audio file…</source>
@@ -1017,9 +1017,9 @@ Vreți să continuați?</translation>
             <translation>The following files will be moved to the trash. Remove the following files?</translation>
         </message>
         <message>
-            <source>Disk %1 &quot;%2 - %3&quot;</source>
+            <source>Disk %1 "%2 - %3"</source>
             <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-            <translation>Disk %1 &quot;%2 - %3&quot;</translation>
+            <translation>Disk %1 "%2 - %3"</translation>
         </message>
         <message>
             <source>Disk %1</source>
@@ -1110,49 +1110,49 @@ Vreți să continuați?</translation>
     <context>
         <name>OutPatternButton</name>
         <message>
-            <source>Insert &quot;Track number&quot;</source>
+            <source>Insert "Track number"</source>
             <translation>Introduceți „Număr pistă”</translation>
         </message>
         <message>
-            <source>Insert &quot;Total number of tracks&quot;</source>
+            <source>Insert "Total number of tracks"</source>
             <translation>Introduceți „Număr total de piste”</translation>
         </message>
         <message>
-            <source>Insert &quot;Album performer&quot;</source>
-            <translation>Insert &quot;Album performer&quot;</translation>
+            <source>Insert "Album performer"</source>
+            <translation>Insert "Album performer"</translation>
         </message>
         <message>
-            <source>Insert &quot;Album title&quot;</source>
+            <source>Insert "Album title"</source>
             <translation>Introduceți „Titlu album”</translation>
         </message>
         <message>
-            <source>Insert &quot;Track title&quot;</source>
+            <source>Insert "Track title"</source>
             <translation>Introduceți „Titlu pistă”</translation>
         </message>
         <message>
-            <source>Insert &quot;Year&quot;</source>
+            <source>Insert "Year"</source>
             <translation>Introduceți „Anul”</translation>
         </message>
         <message>
-            <source>Insert &quot;Genre&quot;</source>
+            <source>Insert "Genre"</source>
             <translation>Introduceți „Genul”</translation>
         </message>
         <message>
-            <source>Insert &quot;Disc number&quot;</source>
+            <source>Insert "Disc number"</source>
             <translation>Introduceți „Număr disc”</translation>
         </message>
         <message>
-            <source>Insert &quot;Total number of discs&quot;</source>
+            <source>Insert "Total number of discs"</source>
             <translation>Itroduceți „Număr total de discuri”</translation>
         </message>
         <message>
-            <source>Insert &quot;Catalog number&quot;</source>
-            <translation>Insert &quot;Catalog number&quot;</translation>
+            <source>Insert "Catalog number"</source>
+            <translation>Insert "Catalog number"</translation>
         </message>
         <message>
-            <source>Use &quot;%1&quot;</source>
-            <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
-            <translation>Utilizează &quot;%1&quot;</translation>
+            <source>Use "%1"</source>
+            <comment>Predefined out file pattern, string like 'Use "%a/%A/%n - %t"'</comment>
+            <translation>Utilizează "%1"</translation>
         </message>
     </context>
     <context>
@@ -1287,8 +1287,8 @@ Vreți să continuați?</translation>
         <message>
             <source>You can browse to the destination directory. You can also input it manually.
 
-If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
-            <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
+If the path is left empty or starts with "." (dot), the result files will be placed in the same directory as the source.</source>
+            <comment>Preferences form tooltip for "Directory" edit</comment>
             <translation>Puteți alege dosarul destinație sau îl puteți scrie direct.
 
 Dacă nu ați ales nimic sau calea către dosar începe cu un punct (.), fișierele rezultate vor fi puse în același dosar cu fișierele sursă.</translation>
@@ -1429,7 +1429,7 @@ Dacă utilizați analiza de normalizare pentru un întreg album, diferențele de
             <translation>-</translation>
         </message>
         <message>
-            <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
+            <source>Are you sure you want to delete the profile "%1"?</source>
             <comment>Message box text</comment>
             <translation>Sigur vreți să ștergeți profilul „%1”?</translation>
         </message>
@@ -1494,11 +1494,11 @@ Dacă utilizați analiza de normalizare pentru un întreg album, diferențele de
             <translation>Nu se poate scrie lista de indexare &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
         </message>
         <message>
-            <source>I can't create directory &quot;%1&quot;.</source>
+            <source>I can't create directory "%1".</source>
             <translation>Nu se poate crea dosarul „%1”.</translation>
         </message>
         <message>
-            <source>I can't write to directory &quot;%1&quot;.</source>
+            <source>I can't write to directory "%1".</source>
             <translation>Nu se poate scrie în dosarul „%1”.</translation>
         </message>
         <message>
@@ -1511,8 +1511,8 @@ Dacă utilizați analiza de normalizare pentru un întreg album, diferențele de
             <translation>Embedded on %1</translation>
         </message>
         <message>
-            <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-            <translation>Fișierul  &lt;b&gt;&quot;%1&quot;&lt;/b&gt; nu există</translation>
+            <source>File &lt;b&gt;"%1"&lt;/b&gt; does not exist</source>
+            <translation>Fișierul  &lt;b&gt;"%1"&lt;/b&gt; nu există</translation>
         </message>
         <message>
             <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</source>
@@ -1843,21 +1843,21 @@ Dacă utilizați analiza de normalizare pentru un întreg album, diferențele de
             <translation>The same audio file is used for different tracks.</translation>
         </message>
         <message>
-            <source>Disk %1 &quot;%2 - %3&quot; will overwrite its own files.</source>
+            <source>Disk %1 "%2 - %3" will overwrite its own files.</source>
             <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-            <translation>Disk %1 &quot;%2 - %3&quot; will overwrite its own files.</translation>
+            <translation>Disk %1 "%2 - %3" will overwrite its own files.</translation>
         </message>
         <message>
-            <source>Disk %1 &quot;%2 - %3&quot; will overwrite the files of this disk.</source>
+            <source>Disk %1 "%2 - %3" will overwrite the files of this disk.</source>
             <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-            <translation>Disk %1 &quot;%2 - %3&quot; will overwrite the files of this disk.</translation>
+            <translation>Disk %1 "%2 - %3" will overwrite the files of this disk.</translation>
         </message>
         <message>
             <source>The output files of the disc are mixed with the files of disc %1.
-You could change the &quot;Start num&quot; for one of them.</source>
+You could change the "Start num" for one of them.</source>
             <comment>Error message, %1 is the disk description, artist and album for the disc, respectively</comment>
             <translation>The output files of the disc are mixed with the files of disc %1.
-You could change the &quot;Start num&quot; for one of them.</translation>
+You could change the "Start num" for one of them.</translation>
         </message>
         <message>
             <source>Disk %1 uses the same CUE file.</source>

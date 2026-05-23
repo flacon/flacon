@@ -74,7 +74,7 @@
         <message>
             <source>Flacon account on github.com</source>
             <comment>Thanks on the about page</comment>
-            <translation>Konto &quot;Flacon&quot; na github.com</translation>
+            <translation>Konto "Flacon" na github.com</translation>
         </message>
         <message>
             <source>Icon for application</source>
@@ -319,25 +319,25 @@
       &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;</source>
             <comment>Tooltip for the Mp3 presets combobox on preferences dialog.</comment>
             <translation>&lt;dt&gt;VBR medium&lt;/dt&gt;
-      &lt;dd&gt;By using a medium Variable BitRate, this preset should provide near transparency to most people and most music.&lt;/dd&gt;
+      &lt;dd&gt;Użycie średniej zmiennej przepływności powinno zapewnić jakość bliską transparentnej dla większości osób i dla większości utworów muzycznych.&lt;/dd&gt;
 
       &lt;dt&gt;VBR standard&lt;/dt&gt;
-      &lt;dd&gt;By using a standard Variable BitRate, this preset should generally be transparent to most people on most music and is already quite high in quality.&lt;/dd&gt;
+      &lt;dd&gt;Użycie standardowej zmiennej przepływności powinno być generalnie transparentne dla większości osób i dla większości utworów muzycznych, a jego jakość jest już dość wysoka.&lt;/dd&gt;
 
       &lt;dt&gt;VBR extreme&lt;/dt&gt;
-      &lt;dd&gt;By using the highest possible Variable BitRate, this preset provides slightly higher quality than the standard mode if you have extremely good hearing or high-end audio equipment.&lt;/dd&gt;
+      &lt;dd&gt;Użycie najwyższej możliwej zmiennej przepływności zapewnia nieco wyższą jakość niż tryb standardowy, co może być słyszalne, jeśli masz wyjątkowo dobry słuch lub wysokiej klasy sprzęt audio.&lt;/dd&gt;
 
       &lt;dt&gt;VBR quality&lt;/dt&gt;
-      &lt;dd&gt;This Variable BitRate option lets you specify the output quality.&lt;/dd&gt;
+      &lt;dd&gt;Ta opcja zmiennej przepływności pozwala określić jakość wyjściową.&lt;/dd&gt;
 
       &lt;dt&gt;CBR insane&lt;/dt&gt;
-      &lt;dd&gt;If you must have the absolute highest quality with no regard to file size, you'll achieve it by using this Constant BitRate.&lt;/dd&gt;
+      &lt;dd&gt;Jeśli potrzebujesz absolutnie najwyższej jakości bez względu na rozmiar pliku, osiągniesz ją, używając tej stałej przepływności.&lt;/dd&gt;
 
       &lt;dt&gt;CBR kbps&lt;/dt&gt;
-      &lt;dd&gt;Using this Constant BitRate preset will usually give you good quality at a specified bitrate.&lt;/dd&gt;
+      &lt;dd&gt;Użycie tego ustawienia stałej przepływności zazwyczaj zapewni dobrą jakość przy określonej przepływności.&lt;/dd&gt;
 
       &lt;dt&gt;ABR kbps&lt;/dt&gt;
-      &lt;dd&gt;Using this Average BitRate preset will usually give you higher quality than the Constant BitRate option for a specified bitrate.&lt;/dd&gt;</translation>
+      &lt;dd&gt;Użycie tego ustawienia średniej przepływności w większości zapewni wyższą jakość niż opcja stałej przepływności przy określonej przepływności.&lt;/dd&gt;</translation>
         </message>
     </context>
     <context>
@@ -352,11 +352,11 @@
 
 &lt;dt&gt;CVBR - constrained variable bitrate&lt;/dt&gt;
 &lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</source>
-            <translation>&lt;dt&gt;VBR - variable bitrate&lt;/dt&gt;
-&lt;dd&gt;Use variable bitrate encoding (recommended). In VBR mode, the bitrate may go up and down freely depending on the content ensure quality consistency.&lt;/dd&gt;
+            <translation>&lt;dt&gt;VBR - zmienna przepływność&lt;/dt&gt;
+&lt;dd&gt;Użyj kodowania ze zmienną przepływnością (zalecane). W trybie VBR przepływność może swobodnie wzrastać i spadać w zależności od zawartości, co zapewnia stałą jakość.&lt;/dd&gt;
 
-&lt;dt&gt;CVBR - constrained variable bitrate&lt;/dt&gt;
-&lt;dd&gt;Use constrained variable bitrate encoding. Outputs to a specific bitrate. This mode is analogous to CBR in AAC/MP3 encoders and managed mode in vorbis coders. This delivers less consistent quality than VBR mode but consistent bitrate.&lt;/dd&gt;</translation>
+&lt;dt&gt;CVBR - ograniczona zmienna przepływność&lt;/dt&gt;
+&lt;dd&gt;Użyj kodowania z ograniczoną zmienną przepływnością. Wartość przepływności jest z góry ustalona. Ten tryb jest analogiczny do CBR w koderach AAC/MP3 i trybu zarządzanego w koderach Vorbis. Zapewnia mniej stałą jakość niż tryb VBR, ale za to stałą przepływność.&lt;/dd&gt;</translation>
         </message>
         <message>
             <source>Bitrate:</source>
@@ -433,7 +433,7 @@ W trybie CBR, ustawia określoną wartość wyjściowej prędkości transmisji b
         <message>
             <source>Track %1. Encoder error:</source>
             <comment>Track error message, %1 is a track number</comment>
-            <translation>Ścieżka %1. Błąd kodera:</translation>
+            <translation>Utwór %1. Błąd kodera:</translation>
         </message>
         <message>
             <source>I can't read %1 file</source>
@@ -511,25 +511,25 @@ W trybie CBR, ustawia określoną wartość wyjściowej prędkości transmisji b
             <translation>Osadzone w plikach audio</translation>
         </message>
         <message>
-            <source>Insert &quot;Artist&quot;</source>
-            <translation>Wstaw &quot;Wykonawca&quot;</translation>
+            <source>Insert "Artist"</source>
+            <translation>Wstaw "Wykonawca"</translation>
         </message>
         <message>
-            <source>Insert &quot;Album title&quot;</source>
-            <translation>Wstaw &quot;Tytuł albumu&quot;</translation>
+            <source>Insert "Album title"</source>
+            <translation>Wstaw "Tytuł albumu"</translation>
         </message>
         <message>
-            <source>Insert &quot;Year&quot;</source>
-            <translation>Wstaw &quot;Rok&quot;</translation>
+            <source>Insert "Year"</source>
+            <translation>Wprowadź "Rok"</translation>
         </message>
         <message>
-            <source>Insert &quot;Genre&quot;</source>
-            <translation>Wstaw &quot;Gatunek&quot;</translation>
+            <source>Insert "Genre"</source>
+            <translation>Wprowadź "Gatunek"</translation>
         </message>
         <message>
-            <source>Use &quot;%1&quot;</source>
-            <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
-            <translation>Użyj &quot;%1&quot;</translation>
+            <source>Use "%1"</source>
+            <comment>Predefined CUE file name, string like 'Use "%a/%A/%n - %t.cue"'</comment>
+            <translation>Użyj "%1"</translation>
         </message>
         <message>
             <source>Extract to separate file</source>
@@ -597,27 +597,27 @@ Wpływa to wyłącznie na wielkość pliku. Konwersja pozostaje bezstratna.</tra
             <source>CUE tags</source>
             <comment>Groupbox title on preferences dialog</comment>
             <extracomment>Groupbox title on preferences dialog</extracomment>
-            <translation>CUE tags</translation>
+            <translation>Tagi CUE</translation>
         </message>
         <message>
-            <source>If the &quot;TITLE&quot; tag contains the artist's and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
+            <source>If the "TITLE" tag contains the artist's and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
             <extracomment>Checkbox tooltip on preferences dialog</extracomment>
-            <translation>If the &quot;TITLE&quot; tag contains the artist's and the track names combined by a separator character, the program will try to assign the appropriate tags.</translation>
+            <translation>Jeśli tag "Tytuł" zawiera połączone separatorem nazwy wykonawcy i utworu, program spróbuje przypisać odpowiednie tagi.</translation>
         </message>
         <message>
             <source>Use heuristic definition of track performer</source>
             <extracomment>Checkbox text on preferences </extracomment>
-            <translation>Use heuristic definition of track performer</translation>
+            <translation>Użyj heurystycznej definicji wykonawcy utworu</translation>
         </message>
         <message>
             <source>Proxy</source>
-            <translation>Proxy</translation>
+            <translation>Serwer proxy</translation>
         </message>
         <message>
             <source>Proxy type</source>
             <comment>Preferences proxy settings</comment>
             <extracomment>Preferences proxy settings</extracomment>
-            <translation>Proxy type</translation>
+            <translation>Typ serwera proxy</translation>
         </message>
         <message>
             <source>Host</source>
@@ -629,13 +629,13 @@ Wpływa to wyłącznie na wielkość pliku. Konwersja pozostaje bezstratna.</tra
             <source>User name</source>
             <comment>Preferences proxy settings</comment>
             <extracomment>Preferences proxy settings</extracomment>
-            <translation>User name</translation>
+            <translation>Nazwa użytkownika</translation>
         </message>
         <message>
             <source>Password</source>
             <comment>Preferences proxy settings</comment>
             <extracomment>Preferences proxy settings</extracomment>
-            <translation>Password</translation>
+            <translation>Hasło</translation>
         </message>
         <message>
             <source>Select temporary directory</source>
@@ -643,7 +643,7 @@ Wpływa to wyłącznie na wielkość pliku. Konwersja pozostaje bezstratna.</tra
         </message>
         <message>
             <source>No proxy</source>
-            <translation>No proxy</translation>
+            <translation>Bez serwera proxy</translation>
         </message>
         <message>
             <source>HTTP</source>
@@ -660,7 +660,7 @@ Wpływa to wyłącznie na wielkość pliku. Konwersja pozostaje bezstratna.</tra
             <source>Flacon logs</source>
             <comment>Logs view dialog title</comment>
             <extracomment>Logs view dialog title</extracomment>
-            <translation>Flacon logs</translation>
+            <translation>Logi Flacona</translation>
         </message>
     </context>
     <context>
@@ -671,7 +671,7 @@ Wpływa to wyłącznie na wielkość pliku. Konwersja pozostaje bezstratna.</tra
         </message>
         <message>
             <source>Result files</source>
-            <translation>Result files</translation>
+            <translation>Pliki wynikowe</translation>
         </message>
         <message>
             <source>Directory:</source>
@@ -680,11 +680,11 @@ Wpływa to wyłącznie na wielkość pliku. Konwersja pozostaje bezstratna.</tra
         <message>
             <source>You can browse to the destination directory. You can also input it manually.
 
-If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
-            <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
+If the path is left empty or starts with "." (dot), the result files will be placed in the same directory as the source.</source>
+            <comment>Main form tooltip for "Directory" edit</comment>
             <translation>Można wybrać katalog docelowy albo ręcznie wprowadzić ścieżkę dostępu.
 
-Jeżeli nie podano ścieżki dostępu lub zaczyna się ona od &quot;.&quot; (kropka), pliki wynikowe zostaną umieszczone w tym samym katalogu, co źródło.</translation>
+Jeżeli nie podano ścieżki dostępu lub zaczyna się ona od "." (kropka), pliki wynikowe zostaną umieszczone w tym samym katalogu, co źródło.</translation>
         </message>
         <message>
             <source>Pattern:</source>
@@ -696,12 +696,12 @@ Jeżeli nie podano ścieżki dostępu lub zaczyna się ona od &quot;.&quot; (kro
         </message>
         <message>
             <source>Output format</source>
-            <comment>Main form tooltip for &quot;Format&quot; edit</comment>
+            <comment>Main form tooltip for "Format" edit</comment>
             <translation>Format wyjściowy</translation>
         </message>
         <message>
             <source>Album tags</source>
-            <translation>Album tags</translation>
+            <translation>Tagi albumu</translation>
         </message>
         <message>
             <source>Codepage:</source>
@@ -837,12 +837,12 @@ Jeżeli nie podano ścieżki dostępu lub zaczyna się ona od &quot;.&quot; (kro
         <message>
             <source>Add folder…</source>
             <comment>Main menu item</comment>
-            <translation>Dodaj folder...</translation>
+            <translation>Dodaj katalog...</translation>
         </message>
         <message>
             <source>Add folder</source>
             <comment>Toolbar item</comment>
-            <translation>Dodaj folder</translation>
+            <translation>Dodaj katalog</translation>
         </message>
         <message>
             <source>Recursive album search</source>
@@ -854,7 +854,7 @@ Jeżeli nie podano ścieżki dostępu lub zaczyna się ona od &quot;.&quot; (kro
         </message>
         <message>
             <source>Check for updates…</source>
-            <translation>Check for updates…</translation>
+            <translation>Sprawdź aktualizacje…</translation>
         </message>
         <message>
             <source>Convert selected</source>
@@ -864,7 +864,7 @@ Jeżeli nie podano ścieżki dostępu lub zaczyna się ona od &quot;.&quot; (kro
         <message>
             <source>Start conversion process for the selected tracks</source>
             <extracomment>Main menu item tooltip</extracomment>
-            <translation>Rozpocznij konwersję wybranych ścieżek</translation>
+            <translation>Rozpocznij konwersję wybranych utworów</translation>
         </message>
         <message>
             <source>Ctrl+Shift+W</source>
@@ -874,44 +874,44 @@ Jeżeli nie podano ścieżki dostępu lub zaczyna się ona od &quot;.&quot; (kro
         <message>
             <source>Warnings</source>
             <extracomment>Toolbar item caption</extracomment>
-            <translation>Warnings</translation>
+            <translation>Ostrzeżenia</translation>
         </message>
         <message>
             <source>Show warnings</source>
             <extracomment>Toolbar item tooltip</extracomment>
-            <translation>Show warnings</translation>
+            <translation>Pokaż ostrzeżenia</translation>
         </message>
         <message>
             <source>Errors</source>
             <comment>Toolbar item caption</comment>
             <extracomment>Toolbar item caption</extracomment>
-            <translation>Errors</translation>
+            <translation>Błędy</translation>
         </message>
         <message>
             <source>Show errors</source>
             <comment>Toolbar item tooltip</comment>
             <extracomment>Toolbar item tooltip</extracomment>
-            <translation>Show errors</translation>
+            <translation>Pokaż błędy</translation>
         </message>
         <message>
             <source>Trash Sources for successfully converted disks and Remove from list…</source>
-            <translation>Trash Sources for successfully converted disks and Remove from list…</translation>
+            <translation>Przenieś do kosza źródła pomyślnie skonwertowanych dysków i usuń z listy...</translation>
         </message>
         <message>
             <source>Trash sources for converted disks and remove from list…</source>
-            <translation>Trash sources for converted disks and remove from list…</translation>
+            <translation>Przenieś do kosza źródła skonwertowanych dysków i usuń z listy...</translation>
         </message>
         <message>
             <source>View logs</source>
             <comment>Main menu item</comment>
             <extracomment>Main menu item</extracomment>
-            <translation>View logs</translation>
+            <translation>Wyświetl logi</translation>
         </message>
         <message>
             <source>View logs</source>
             <comment>Main menu tooltip</comment>
             <extracomment>Main menu tooltip</extracomment>
-            <translation>View logs</translation>
+            <translation>Wyświetl logi</translation>
         </message>
         <message>
             <source>Remove current directory from history</source>
@@ -924,7 +924,7 @@ Jeżeli nie podano ścieżki dostępu lub zaczyna się ona od &quot;.&quot; (kro
         <message>
             <source>Conversion in progress.&lt;br&gt;Are you sure you want to exit?</source>
             <comment>Message box text</comment>
-            <translation>Conversion in progress.&lt;br&gt;Are you sure you want to exit?</translation>
+            <translation>Konwersja w toku.&lt;br&gt;Czy na pewno chcesz wyjść?</translation>
         </message>
         <message>
             <source>Exit</source>
@@ -949,7 +949,7 @@ Czy chcesz kontynuować?</translation>
         </message>
         <message>
             <source>%1 files</source>
-            <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
+            <comment>OpenFile dialog filter line, like "WAV files"</comment>
             <translation>Pliki %1</translation>
         </message>
         <message>
@@ -959,7 +959,7 @@ Czy chcesz kontynuować?</translation>
         </message>
         <message>
             <source>All files</source>
-            <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
+            <comment>OpenFile dialog filter line like "All files"</comment>
             <translation>Wszystkie pliki</translation>
         </message>
         <message>
@@ -973,13 +973,13 @@ Czy chcesz kontynuować?</translation>
             <translation>Wybierz plik audio</translation>
         </message>
         <message>
-            <source>&quot;%1&quot; was not set.</source>
+            <source>"%1" was not set.</source>
             <comment>Error message, %1 is an filename.</comment>
-            <translation>nie określono &quot;%1&quot;.</translation>
+            <translation>nie określono "%1".</translation>
         </message>
         <message>
-            <source>Select directory</source>
-            <translation>Wybierz katalog</translation>
+            <source>Add Folder</source>
+            <translation>Add Folder</translation>
         </message>
         <message>
             <source>Select another audio file…</source>
@@ -989,12 +989,12 @@ Czy chcesz kontynuować?</translation>
         <message>
             <source>Select another audio file for %1 track…</source>
             <comment>context menu. Placeholders are track number</comment>
-            <translation>Wybierz inny plik audio dla ścieżki %1…</translation>
+            <translation>Wybierz inny plik audio dla utworu %1…</translation>
         </message>
         <message>
             <source>Select another audio file for tracks %1 to %2…</source>
             <comment>context menu. Placeholders are track numbers</comment>
-            <translation>Wybierz inne pliki audio dla ścieżek %1 - %2…</translation>
+            <translation>Wybierz inne pliki audio dla utworów %1 - %2…</translation>
         </message>
         <message>
             <source>Edit tags…</source>
@@ -1014,32 +1014,32 @@ Czy chcesz kontynuować?</translation>
         <message>
             <source>The following files will be moved to the trash. Remove the following files?</source>
             <comment>Message box text</comment>
-            <translation>The following files will be moved to the trash. Remove the following files?</translation>
+            <translation>Następujące pliki zostaną przeniesione do kosza. Czy usunąć następujące pliki?</translation>
         </message>
         <message>
-            <source>Disk %1 &quot;%2 - %3&quot;</source>
+            <source>Disk %1 "%2 - %3"</source>
             <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-            <translation>Disk %1 &quot;%2 - %3&quot;</translation>
+            <translation>Dysk %1 "%2 - %3"</translation>
         </message>
         <message>
             <source>Disk %1</source>
             <comment>Error message, %1 is the disc number</comment>
-            <translation>Disk %1</translation>
+            <translation>Dysk %1</translation>
         </message>
         <message>
             <source>Some disks have warnings:</source>
             <comment>Error message title</comment>
-            <translation>Some disks have warnings:</translation>
+            <translation>Niektóre dyski zawierają ostrzeżenia:</translation>
         </message>
         <message>
             <source>Some disks have errors, and will be skipped when converting:</source>
             <comment>Error message title</comment>
-            <translation>Some disks have errors, and will be skipped when converting:</translation>
+            <translation>Niektóre dyski zawierają błędy i zostaną pominięte podczas konwersji:</translation>
         </message>
         <message>
             <source>%1% completed</source>
             <comment>Status bar, progress text</comment>
-            <translation>%1% completed</translation>
+            <translation>%1% ukończono</translation>
         </message>
     </context>
     <context>
@@ -1110,49 +1110,49 @@ Czy chcesz kontynuować?</translation>
     <context>
         <name>OutPatternButton</name>
         <message>
-            <source>Insert &quot;Track number&quot;</source>
-            <translation>Wstaw &quot;Numer ścieżki&quot;</translation>
+            <source>Insert "Track number"</source>
+            <translation>Wprowadź "Numer utworu"</translation>
         </message>
         <message>
-            <source>Insert &quot;Total number of tracks&quot;</source>
-            <translation>Wstaw &quot;Całkowita liczba ścieżek&quot;</translation>
+            <source>Insert "Total number of tracks"</source>
+            <translation>Wprowadź "Całkowita liczba utworów"</translation>
         </message>
         <message>
-            <source>Insert &quot;Album performer&quot;</source>
-            <translation>Insert &quot;Album performer&quot;</translation>
+            <source>Insert "Album performer"</source>
+            <translation>Wprowadź "Wykonawca albumu"</translation>
         </message>
         <message>
-            <source>Insert &quot;Album title&quot;</source>
-            <translation>Wstaw &quot;Tytuł albumu&quot;</translation>
+            <source>Insert "Album title"</source>
+            <translation>Wprowadź "Tytuł albumu"</translation>
         </message>
         <message>
-            <source>Insert &quot;Track title&quot;</source>
-            <translation>Wstaw &quot;Tytuł utworu&quot;</translation>
+            <source>Insert "Track title"</source>
+            <translation>Wprowadź "Tytuł utworu"</translation>
         </message>
         <message>
-            <source>Insert &quot;Year&quot;</source>
-            <translation>Wstaw &quot;Rok&quot;</translation>
+            <source>Insert "Year"</source>
+            <translation>Wprowadź "Rok"</translation>
         </message>
         <message>
-            <source>Insert &quot;Genre&quot;</source>
-            <translation>Wstaw &quot;Gatunek&quot;</translation>
+            <source>Insert "Genre"</source>
+            <translation>Wprowadź "Gatunek"</translation>
         </message>
         <message>
-            <source>Insert &quot;Disc number&quot;</source>
-            <translation>Wstaw &quot;Numer dysku&quot;</translation>
+            <source>Insert "Disc number"</source>
+            <translation>Wprowadź "Numer dysku"</translation>
         </message>
         <message>
-            <source>Insert &quot;Total number of discs&quot;</source>
-            <translation>Wstaw &quot;Całkowita liczba dysków&quot;</translation>
+            <source>Insert "Total number of discs"</source>
+            <translation>Wprowadź "Całkowita liczba dysków"</translation>
         </message>
         <message>
-            <source>Insert &quot;Catalog number&quot;</source>
-            <translation>Insert &quot;Catalog number&quot;</translation>
+            <source>Insert "Catalog number"</source>
+            <translation>Wprowadź "Numer katalogowy"</translation>
         </message>
         <message>
-            <source>Use &quot;%1&quot;</source>
-            <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
-            <translation>Użyj &quot;%1&quot;</translation>
+            <source>Use "%1"</source>
+            <comment>Predefined out file pattern, string like 'Use "%a/%A/%n - %t"'</comment>
+            <translation>Użyj "%1"</translation>
         </message>
     </context>
     <context>
@@ -1163,7 +1163,7 @@ Czy chcesz kontynuować?</translation>
         </message>
         <message>
             <source>Write “Disc number” and “Disc count” tags for single-disc albums</source>
-            <translation>Write “Disc number” and “Disc count” tags for single-disc albums</translation>
+            <translation>Zapisuj tagi „Numer dysku” i „Liczba dysków” dla albumów jednopłytowych</translation>
         </message>
     </context>
     <context>
@@ -1171,22 +1171,22 @@ Czy chcesz kontynuować?</translation>
         <message>
             <source>Track number</source>
             <comment>Part of the tooltip for output pattern edit</comment>
-            <translation>Track number</translation>
+            <translation>Numer utworu</translation>
         </message>
         <message>
             <source>Total number of tracks</source>
             <comment>Part of the tooltip for output pattern edit</comment>
-            <translation>Total number of tracks</translation>
+            <translation>Całkowita liczba utworów</translation>
         </message>
         <message>
             <source>Disk number</source>
             <comment>Part of the tooltip for output pattern edit</comment>
-            <translation>Disk number</translation>
+            <translation>Numer dysku</translation>
         </message>
         <message>
             <source>Total number of disks</source>
             <comment>Part of the tooltip for output pattern edit</comment>
-            <translation>Total number of disks</translation>
+            <translation>Całkowita liczba dysków</translation>
         </message>
         <message>
             <source>Artist</source>
@@ -1196,37 +1196,37 @@ Czy chcesz kontynuować?</translation>
         <message>
             <source>Album title</source>
             <comment>Part of the tooltip for output pattern edit</comment>
-            <translation>Album title</translation>
+            <translation>Tytuł albumu</translation>
         </message>
         <message>
             <source>Track title</source>
             <comment>Part of the tooltip for output pattern edit</comment>
-            <translation>Track title</translation>
+            <translation>Tytuł utworu</translation>
         </message>
         <message>
             <source>Year</source>
             <comment>Part of the tooltip for output pattern edit</comment>
-            <translation>Year</translation>
+            <translation>Rok</translation>
         </message>
         <message>
             <source>Genre</source>
             <comment>Part of the tooltip for output pattern edit</comment>
-            <translation>Genre</translation>
+            <translation>Gatunek</translation>
         </message>
         <message>
             <source>Catalog number</source>
             <comment>Part of the tooltip for output pattern edit</comment>
-            <translation>Catalog number</translation>
+            <translation>Numer katalogowy</translation>
         </message>
         <message>
             <source>Tokens start with %. You can use the following tokens:</source>
             <comment>Part of the tooltip for output pattern edit</comment>
-            <translation>Tokens start with %. You can use the following tokens:</translation>
+            <translation>Tokeny rozpoczynają się od %. Możesz użyć następujących tokenów:</translation>
         </message>
         <message>
             <source>If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
             <comment>Part of the tooltip for output pattern edit</comment>
-            <translation>If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</translation>
+            <translation>Jeśli fragmenty tekstu zawierające token otoczysz nawiasami klamrowymi, fragmenty te zostaną ukryte, jeśli token będzie pusty.</translation>
         </message>
     </context>
     <context>
@@ -1239,7 +1239,7 @@ Czy chcesz kontynuować?</translation>
         </message>
         <message>
             <source>Audio profiles</source>
-            <translation>Audio profiles</translation>
+            <translation>Profile audio</translation>
         </message>
         <message>
             <source>General</source>
@@ -1256,17 +1256,17 @@ Czy chcesz kontynuować?</translation>
         <message>
             <source>I can't apply your preferences.</source>
             <comment>Message box text</comment>
-            <translation>I can't apply your preferences.</translation>
+            <translation>Nie można zastosować twoich ustawień.</translation>
         </message>
         <message>
             <source>You should create at least one profile.</source>
             <comment>Message box text</comment>
-            <translation>You should create at least one profile.</translation>
+            <translation>Musisz utworzyć co najmniej jeden profil.</translation>
         </message>
         <message>
             <source>Create profile</source>
             <comment>Button caption</comment>
-            <translation>Create profile</translation>
+            <translation>Utwórz profil</translation>
         </message>
     </context>
     <context>
@@ -1277,7 +1277,7 @@ Czy chcesz kontynuować?</translation>
         </message>
         <message>
             <source>Result files</source>
-            <translation>Result files</translation>
+            <translation>Pliki wynikowe</translation>
         </message>
         <message>
             <source>Directory:</source>
@@ -1287,11 +1287,11 @@ Czy chcesz kontynuować?</translation>
         <message>
             <source>You can browse to the destination directory. You can also input it manually.
 
-If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
-            <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
+If the path is left empty or starts with "." (dot), the result files will be placed in the same directory as the source.</source>
+            <comment>Preferences form tooltip for "Directory" edit</comment>
             <translation>Można wybrać katalog docelowy albo ręcznie wprowadzić ścieżkę dostępu.
 
-Jeżeli ścieżki dostępu nie zostanie podana lub zaczyna się od &quot;.&quot; (kropka), pliki wynikowe zostaną umieszczone w tym samym katalogu, co źródło.</translation>
+Jeżeli ścieżki dostępu nie zostanie podana lub zaczyna się od "." (kropka), pliki wynikowe zostaną umieszczone w tym samym katalogu, co źródło.</translation>
         </message>
         <message>
             <source>Pattern:</source>
@@ -1322,16 +1322,16 @@ Jeżeli ścieżki dostępu nie zostanie podana lub zaczyna się od &quot;.&quot;
         <message>
             <source>CUE and cover image</source>
             <comment>Preferences dialog tab title</comment>
-            <translation>CUE and cover image</translation>
+            <translation>CUE i obraz okładki</translation>
         </message>
         <message>
             <source>Copy cover image</source>
-            <translation>Zapis obrazu okładki w oddzielnym pliku</translation>
+            <translation>Kopiuj obraz okładki</translation>
         </message>
         <message>
             <source>If the format is supported, the cover will be added to the meta information for all output files.</source>
             <comment>Tooltip on checkbox on preferences dialog</comment>
-            <translation>Jeśli format jest obsługiwany, obraz okładki zostanie zapisany w metadanych wszystkich wyjściowych plików audio.</translation>
+            <translation>Jeżeli format jest obsługiwany, obraz okładki zostanie zapisany w metadanych wszystkich plików wyjściowych.</translation>
         </message>
         <message>
             <source>Embed cover image in output files</source>
@@ -1395,12 +1395,12 @@ Jeżeli ścieżki dostępu nie zostanie podana lub zaczyna się od &quot;.&quot;
         <message>
             <source>Per track</source>
             <comment>ReplayGain type combobox</comment>
-            <translation>Per track</translation>
+            <translation>Dla utworu</translation>
         </message>
         <message>
             <source>Per album</source>
             <comment>ReplayGain type combobox</comment>
-            <translation>Per album</translation>
+            <translation>Dla albumu</translation>
         </message>
         <message>
             <source>ReplayGain is a standard to normalize the perceived loudness of computer audio formats. 
@@ -1429,9 +1429,9 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
             <translation>-</translation>
         </message>
         <message>
-            <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
+            <source>Are you sure you want to delete the profile "%1"?</source>
             <comment>Message box text</comment>
-            <translation>Czy na pewno chcesz usunąć profil &quot;%1&quot;?</translation>
+            <translation>Czy na pewno chcesz usunąć profil "%1"?</translation>
         </message>
         <message>
             <source>Delete the profile</source>
@@ -1494,12 +1494,12 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
             <translation>Nie można zapisać pliku CUE &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
         </message>
         <message>
-            <source>I can't create directory &quot;%1&quot;.</source>
-            <translation>Nie można utworzyć katalogu &quot;%1&quot;.</translation>
+            <source>I can't create directory "%1".</source>
+            <translation>Nie można utworzyć katalogu "%1".</translation>
         </message>
         <message>
-            <source>I can't write to directory &quot;%1&quot;.</source>
-            <translation>Nie można zapisywać w katalogu &quot;%1&quot;.</translation>
+            <source>I can't write to directory "%1".</source>
+            <translation>Nie można zapisywać w katalogu "%1".</translation>
         </message>
         <message>
             <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
@@ -1511,8 +1511,8 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
             <translation>Osadzono w %1</translation>
         </message>
         <message>
-            <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-            <translation>Plik &lt;b&gt;&quot;%1&quot;&lt;/b&gt; nie znaleziony.</translation>
+            <source>File &lt;b&gt;"%1"&lt;/b&gt; does not exist</source>
+            <translation>Plik &lt;b&gt;"%1"&lt;/b&gt; nie istnieje</translation>
         </message>
         <message>
             <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</source>
@@ -1562,7 +1562,7 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
         </message>
         <message>
             <source>Song writer:</source>
-            <translation>Song writer:</translation>
+            <translation>Autor/Autorzy:</translation>
         </message>
         <message>
             <source>Album:</source>
@@ -1586,7 +1586,7 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
             <source>Start track number:</source>
             <comment>Music tag name</comment>
             <extracomment>Music tag name</extracomment>
-            <translation>Początkowy numer ścieżki:</translation>
+            <translation>Początkowy numer utworu:</translation>
         </message>
         <message>
             <source>of</source>
@@ -1606,7 +1606,7 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
             <source>Catalog number:</source>
             <comment>Music tag name</comment>
             <extracomment>Music tag name</extracomment>
-            <translation>Catalog number:</translation>
+            <translation>Numer katalogowy:</translation>
         </message>
     </context>
     <context>
@@ -1749,22 +1749,22 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
         <message>
             <source>Date</source>
             <comment>Table header.</comment>
-            <translation>Date</translation>
+            <translation>Data</translation>
         </message>
         <message>
             <source>Genre</source>
             <comment>Table header.</comment>
-            <translation>Genre</translation>
+            <translation>Gatunek</translation>
         </message>
         <message>
             <source>Song writer</source>
             <comment>Table header.</comment>
-            <translation>Song writer</translation>
+            <translation>Autor/Autorzy</translation>
         </message>
         <message>
             <source>Catalog number</source>
             <comment>Table header.</comment>
-            <translation>Catalog number</translation>
+            <translation>Numer katalogowy</translation>
         </message>
         <message>
             <source>Multiple values</source>
@@ -1785,7 +1785,7 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
         <name>UpdatePage</name>
         <message>
             <source>Automatically check for updates</source>
-            <translation>Automatycznie sprawdzaj dostępność aktualizacji</translation>
+            <translation>Automatycznie sprawdzaj aktualizacje</translation>
         </message>
         <message>
             <source>Check now</source>
@@ -1794,7 +1794,7 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
         <message>
             <source>Last check was %1</source>
             <comment>Information about last update</comment>
-            <translation>Ostatnio sprawdzanie %1</translation>
+            <translation>Ostatnie sprawdzanie %1</translation>
         </message>
         <message>
             <source>Never checked</source>
@@ -1807,12 +1807,12 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
         <message>
             <source>Some disks will overwrite the resulting files of another disk.</source>
             <comment>error message</comment>
-            <translation>Some disks will overwrite the resulting files of another disk.</translation>
+            <translation>Niektóre dyski nadpiszą pliki wynikowe innego dysku.</translation>
         </message>
         <message>
             <source>Incorrect output profile.</source>
             <comment>error message</comment>
-            <translation>Incorrect output profile.</translation>
+            <translation>Nieprawidłowy profil wyjściowy.</translation>
         </message>
         <message>
             <source>Cue file not set.</source>
@@ -1835,60 +1835,60 @@ Przeprowadzenia analizy dla całego albumu, pozwala zachować zmiany głośnośc
         </message>
         <message>
             <source>Audio file shorter than expected from CUE sheet.</source>
-            <translation>Plik audio krótszy niż oczekiwano w arkuszu CUE.</translation>
+            <translation>Plik audio jest krótszy, niż wynika z arkusza CUE.</translation>
         </message>
         <message>
             <source>The same audio file is used for different tracks.</source>
             <comment>Error message</comment>
-            <translation>The same audio file is used for different tracks.</translation>
+            <translation>Ten sam plik audio jest używany dla różnych utworów.</translation>
         </message>
         <message>
-            <source>Disk %1 &quot;%2 - %3&quot; will overwrite its own files.</source>
+            <source>Disk %1 "%2 - %3" will overwrite its own files.</source>
             <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-            <translation>Disk %1 &quot;%2 - %3&quot; will overwrite its own files.</translation>
+            <translation>Dysk %1 "%2 - %3" nadpisze własne pliki.</translation>
         </message>
         <message>
-            <source>Disk %1 &quot;%2 - %3&quot; will overwrite the files of this disk.</source>
+            <source>Disk %1 "%2 - %3" will overwrite the files of this disk.</source>
             <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-            <translation>Disk %1 &quot;%2 - %3&quot; will overwrite the files of this disk.</translation>
+            <translation>Dysk %1 "%2 - %3” nadpisze pliki tego dysku.</translation>
         </message>
         <message>
             <source>The output files of the disc are mixed with the files of disc %1.
-You could change the &quot;Start num&quot; for one of them.</source>
+You could change the "Start num" for one of them.</source>
             <comment>Error message, %1 is the disk description, artist and album for the disc, respectively</comment>
-            <translation>The output files of the disc are mixed with the files of disc %1.
-You could change the &quot;Start num&quot; for one of them.</translation>
+            <translation>Pliki wyjściowe tego dysku mieszają się z plikami dysku %1.
+Możesz zmienić „Numer początkowy” dla jednego z nich.</translation>
         </message>
         <message>
             <source>Disk %1 uses the same CUE file.</source>
             <comment>Warning message, %1 is the disk description, artist and album for the disc, respectively</comment>
-            <translation>Disk %1 uses the same CUE file.</translation>
+            <translation>Dysk %1 używa tego samego pliku CUE.</translation>
         </message>
         <message>
             <source>Disk %1 uses the same audio file.</source>
             <comment>Warning message, %1 is the disk description, artist and album for the disc, respectively</comment>
-            <translation>Disk %1 uses the same audio file.</translation>
+            <translation>Dysk %1 używa tego samego pliku audio.</translation>
         </message>
         <message>
             <source>A maximum of %1-bit per sample is supported by this format.
 This value will be used for encoding.</source>
             <comment>Warning message</comment>
-            <translation>A maximum of %1-bit per sample is supported by this format.
-This value will be used for encoding.</translation>
+            <translation>Ten format obsługuje maksymalnie %1 bitów na próbkę.
+Taka wartość zostanie użyta do kodowania.</translation>
         </message>
         <message>
             <source>A maximum sample rate of %1 is supported by this format.
 This value will be used for encoding.</source>
             <comment>Warning message</comment>
-            <translation>A maximum sample rate of %1 is supported by this format.
-This value will be used for encoding.</translation>
+            <translation>Ten format obsługuje maksymalną częstotliwość próbkowania %1.
+Taka wartość zostanie użyta do kodowania.</translation>
         </message>
         <message>
             <source>ReplayGain calculation is not supported for multi-channel audio.
 The ReplayGain will be disabled for this disk.</source>
             <comment>Warning message</comment>
-            <translation>ReplayGain calculation is not supported for multi-channel audio.
-The ReplayGain will be disabled for this disk.</translation>
+            <translation>Obliczanie ReplayGain nie jest obsługiwane dla dźwięku wielokanałowego. 
+ReplayGain zostanie wyłączone dla tego dysku.</translation>
         </message>
     </context>
     <context>

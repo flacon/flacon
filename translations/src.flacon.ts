@@ -859,10 +859,6 @@ Do you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Select directory</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Select another audio file…</source>
         <comment>context menu</comment>
         <translation type="unfinished"></translation>
@@ -928,6 +924,10 @@ Do you want to continue?</source>
     <message>
         <source>Exit</source>
         <comment>Button caption</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

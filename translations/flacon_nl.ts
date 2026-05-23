@@ -514,24 +514,24 @@ In CBR-modus stelt het de specifieke uitvoerbitsnelheid in.
             <translation>Insluiten in audiobestanden</translation>
         </message>
         <message>
-            <source>Insert &quot;Artist&quot;</source>
+            <source>Insert "Artist"</source>
             <translation>‘Artiest’ invoegen</translation>
         </message>
         <message>
-            <source>Insert &quot;Album title&quot;</source>
+            <source>Insert "Album title"</source>
             <translation>‘Albumtitel’ invoegen</translation>
         </message>
         <message>
-            <source>Insert &quot;Year&quot;</source>
+            <source>Insert "Year"</source>
             <translation>‘Jaar’ invoegen</translation>
         </message>
         <message>
-            <source>Insert &quot;Genre&quot;</source>
+            <source>Insert "Genre"</source>
             <translation>‘Genre’ invoegen</translation>
         </message>
         <message>
-            <source>Use &quot;%1&quot;</source>
-            <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
+            <source>Use "%1"</source>
+            <comment>Predefined CUE file name, string like 'Use "%a/%A/%n - %t.cue"'</comment>
             <translation>‘%1’ gebruiken</translation>
         </message>
         <message>
@@ -603,7 +603,7 @@ Dit is enkel van invloed op de bestandsgrootte - alle instellingen zijn zonder k
             <translation>Cue-tags</translation>
         </message>
         <message>
-            <source>If the &quot;TITLE&quot; tag contains the artist's and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
+            <source>If the "TITLE" tag contains the artist's and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
             <extracomment>Checkbox tooltip on preferences dialog</extracomment>
             <translation>Als de ‘TITEL’-tag de artiestnaam en naam van het nummer kommagescheiden bevatten, dan zal het programma de juiste tags proberen toe te kennen.</translation>
         </message>
@@ -683,8 +683,8 @@ Dit is enkel van invloed op de bestandsgrootte - alle instellingen zijn zonder k
         <message>
             <source>You can browse to the destination directory. You can also input it manually.
 
-If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
-            <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
+If the path is left empty or starts with "." (dot), the result files will be placed in the same directory as the source.</source>
+            <comment>Main form tooltip for "Directory" edit</comment>
             <translation>U kunt de doelmap kiezen of handmatig een locatie opgeven.
 
 Als de locatie leeg wordt gelaten of begint met een ‘.’ (punt), dan zullen de resultaatbestanden in dezelfde map als de bron geplaatst worden.</translation>
@@ -699,7 +699,7 @@ Als de locatie leeg wordt gelaten of begint met een ‘.’ (punt), dan zullen d
         </message>
         <message>
             <source>Output format</source>
-            <comment>Main form tooltip for &quot;Format&quot; edit</comment>
+            <comment>Main form tooltip for "Format" edit</comment>
             <translation>Uitvoerformaat</translation>
         </message>
         <message>
@@ -952,7 +952,7 @@ Wil u doorgaan?</translation>
         </message>
         <message>
             <source>%1 files</source>
-            <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
+            <comment>OpenFile dialog filter line, like "WAV files"</comment>
             <translation>%1-bestanden</translation>
         </message>
         <message>
@@ -962,7 +962,7 @@ Wil u doorgaan?</translation>
         </message>
         <message>
             <source>All files</source>
-            <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
+            <comment>OpenFile dialog filter line like "All files"</comment>
             <translation>Alle bestanden</translation>
         </message>
         <message>
@@ -976,13 +976,13 @@ Wil u doorgaan?</translation>
             <translation>Kies een audiobestand</translation>
         </message>
         <message>
-            <source>&quot;%1&quot; was not set.</source>
+            <source>"%1" was not set.</source>
             <comment>Error message, %1 is an filename.</comment>
             <translation>‘%1’ is niet ingesteld.</translation>
         </message>
         <message>
-            <source>Select directory</source>
-            <translation>Kies een map</translation>
+            <source>Add Folder</source>
+            <translation>Add Folder</translation>
         </message>
         <message>
             <source>Select another audio file…</source>
@@ -1020,7 +1020,7 @@ Wil u doorgaan?</translation>
             <translation>De volgende bestanden zullen naar de prullenbak worden verplaatst. Weet u het zeker?</translation>
         </message>
         <message>
-            <source>Disk %1 &quot;%2 - %3&quot;</source>
+            <source>Disk %1 "%2 - %3"</source>
             <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
             <translation>Schijf %1 “%2 - %3”</translation>
         </message>
@@ -1113,48 +1113,48 @@ Wil u doorgaan?</translation>
     <context>
         <name>OutPatternButton</name>
         <message>
-            <source>Insert &quot;Track number&quot;</source>
+            <source>Insert "Track number"</source>
             <translation>‘Volgnummer’ invoegen</translation>
         </message>
         <message>
-            <source>Insert &quot;Total number of tracks&quot;</source>
+            <source>Insert "Total number of tracks"</source>
             <translation>‘Aantal nummers’ invoegen</translation>
         </message>
         <message>
-            <source>Insert &quot;Album performer&quot;</source>
+            <source>Insert "Album performer"</source>
             <translation>‘Albumartiest’ invoegen</translation>
         </message>
         <message>
-            <source>Insert &quot;Album title&quot;</source>
+            <source>Insert "Album title"</source>
             <translation>‘Albumtitel’ invoegen</translation>
         </message>
         <message>
-            <source>Insert &quot;Track title&quot;</source>
+            <source>Insert "Track title"</source>
             <translation>‘Nummertitel’ invoegen</translation>
         </message>
         <message>
-            <source>Insert &quot;Year&quot;</source>
+            <source>Insert "Year"</source>
             <translation>‘Jaar’ invoegen</translation>
         </message>
         <message>
-            <source>Insert &quot;Genre&quot;</source>
+            <source>Insert "Genre"</source>
             <translation>‘Genre’ invoegen</translation>
         </message>
         <message>
-            <source>Insert &quot;Disc number&quot;</source>
+            <source>Insert "Disc number"</source>
             <translation>‘Schijfnummer’ invoegen</translation>
         </message>
         <message>
-            <source>Insert &quot;Total number of discs&quot;</source>
+            <source>Insert "Total number of discs"</source>
             <translation>‘Aantal schijven’ invoegen</translation>
         </message>
         <message>
-            <source>Insert &quot;Catalog number&quot;</source>
+            <source>Insert "Catalog number"</source>
             <translation>‘Catalogusnummer’ invoegen</translation>
         </message>
         <message>
-            <source>Use &quot;%1&quot;</source>
-            <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
+            <source>Use "%1"</source>
+            <comment>Predefined out file pattern, string like 'Use "%a/%A/%n - %t"'</comment>
             <translation>‘%1’ gebruiken</translation>
         </message>
     </context>
@@ -1174,22 +1174,22 @@ Wil u doorgaan?</translation>
         <message>
             <source>Track number</source>
             <comment>Part of the tooltip for output pattern edit</comment>
-            <translation>Track number</translation>
+            <translation>Volgnummer</translation>
         </message>
         <message>
             <source>Total number of tracks</source>
             <comment>Part of the tooltip for output pattern edit</comment>
-            <translation>Total number of tracks</translation>
+            <translation>Aantal nummers</translation>
         </message>
         <message>
             <source>Disk number</source>
             <comment>Part of the tooltip for output pattern edit</comment>
-            <translation>Disk number</translation>
+            <translation>Schijfnummer</translation>
         </message>
         <message>
             <source>Total number of disks</source>
             <comment>Part of the tooltip for output pattern edit</comment>
-            <translation>Total number of disks</translation>
+            <translation>Aantal schijven</translation>
         </message>
         <message>
             <source>Artist</source>
@@ -1199,17 +1199,17 @@ Wil u doorgaan?</translation>
         <message>
             <source>Album title</source>
             <comment>Part of the tooltip for output pattern edit</comment>
-            <translation>Album title</translation>
+            <translation>Albumtitel</translation>
         </message>
         <message>
             <source>Track title</source>
             <comment>Part of the tooltip for output pattern edit</comment>
-            <translation>Track title</translation>
+            <translation>Nummertitel</translation>
         </message>
         <message>
             <source>Year</source>
             <comment>Part of the tooltip for output pattern edit</comment>
-            <translation>Year</translation>
+            <translation>Jaar</translation>
         </message>
         <message>
             <source>Genre</source>
@@ -1224,12 +1224,12 @@ Wil u doorgaan?</translation>
         <message>
             <source>Tokens start with %. You can use the following tokens:</source>
             <comment>Part of the tooltip for output pattern edit</comment>
-            <translation>Tokens start with %. You can use the following tokens:</translation>
+            <translation>Opvulteksten beginnen met een %-teken.  U kunt de volgende opvullingen gebruiken:</translation>
         </message>
         <message>
             <source>If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</source>
             <comment>Part of the tooltip for output pattern edit</comment>
-            <translation>If you surround sections of text that contain a token with braces, these sections will be hidden if the token is empty.</translation>
+            <translation>Als u tekstdelen met een opvultekst met haakjes omsluit, zullen die verborgen worden indien er geen opvultekst is.</translation>
         </message>
     </context>
     <context>
@@ -1290,8 +1290,8 @@ Wil u doorgaan?</translation>
         <message>
             <source>You can browse to the destination directory. You can also input it manually.
 
-If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
-            <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
+If the path is left empty or starts with "." (dot), the result files will be placed in the same directory as the source.</source>
+            <comment>Preferences form tooltip for "Directory" edit</comment>
             <translation>U kunt de doelmap kiezen of handmatig een locatie opgeven.
 
 Als de locatie leeg wordt gelaten of begint met een ‘.’ (punt), dan zullen de resultaatbestanden in dezelfde map als de bron geplaatst worden.</translation>
@@ -1432,7 +1432,7 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
             <translation>-</translation>
         </message>
         <message>
-            <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
+            <source>Are you sure you want to delete the profile "%1"?</source>
             <comment>Message box text</comment>
             <translation>Weet u zeker dat u het profiel ‘%1’ wilt verwijderen?</translation>
         </message>
@@ -1497,11 +1497,11 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
             <translation>Ik kan niet naar het cuebestand &lt;b&gt;%1&lt;/b&gt; schrijven:&lt;br&gt;%2</translation>
         </message>
         <message>
-            <source>I can't create directory &quot;%1&quot;.</source>
+            <source>I can't create directory "%1".</source>
             <translation>Ik kan de map ‘%1’ niet aanmaken.</translation>
         </message>
         <message>
-            <source>I can't write to directory &quot;%1&quot;.</source>
+            <source>I can't write to directory "%1".</source>
             <translation>Ik kan niet naar de map ‘%1’ schrijven.</translation>
         </message>
         <message>
@@ -1514,7 +1514,7 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
             <translation>Ingesloten in %1</translation>
         </message>
         <message>
-            <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
+            <source>File &lt;b&gt;"%1"&lt;/b&gt; does not exist</source>
             <translation>Bestand &lt;b&gt;‘%1’&lt;/b&gt; bestaat niet</translation>
         </message>
         <message>
@@ -1846,18 +1846,18 @@ De analyse per album zal de verschillen in volume binnen een album bewaren.</tra
             <translation>Het audiobestand wordt voor verschillende nummers gebruikt.</translation>
         </message>
         <message>
-            <source>Disk %1 &quot;%2 - %3&quot; will overwrite its own files.</source>
+            <source>Disk %1 "%2 - %3" will overwrite its own files.</source>
             <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
             <translation>%1 ‘%2 - %3’ zal zijn eigen bestanden overschrijven.</translation>
         </message>
         <message>
-            <source>Disk %1 &quot;%2 - %3&quot; will overwrite the files of this disk.</source>
+            <source>Disk %1 "%2 - %3" will overwrite the files of this disk.</source>
             <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
             <translation>%1 ‘%2 - %3’ zal de bestanden van deze schijf overschrijven.</translation>
         </message>
         <message>
             <source>The output files of the disc are mixed with the files of disc %1.
-You could change the &quot;Start num&quot; for one of them.</source>
+You could change the "Start num" for one of them.</source>
             <comment>Error message, %1 is the disk description, artist and album for the disc, respectively</comment>
             <translation>De uitvoerbestanden van de schijf zijn verweven met die van schijf %1.
 Pas het volgnummer van een van de nummers aan.</translation>
