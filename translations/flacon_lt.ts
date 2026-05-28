@@ -979,7 +979,7 @@ Ar norite tęsti?</translation>
         </message>
         <message>
             <source>Add Folder</source>
-            <translation>Add Folder</translation>
+            <translation>Pridėti aplanką</translation>
         </message>
         <message>
             <source>Select another audio file…</source>

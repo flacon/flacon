@@ -980,7 +980,7 @@ Voulez-vous continuer ?</translation>
         </message>
         <message>
             <source>Add Folder</source>
-            <translation>Add Folder</translation>
+            <translation>Ajouter un dossier</translation>
         </message>
         <message>
             <source>Select another audio file…</source>

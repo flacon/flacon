@@ -982,7 +982,7 @@ Wil u doorgaan?</translation>
         </message>
         <message>
             <source>Add Folder</source>
-            <translation>Add Folder</translation>
+            <translation>Map toevoegen</translation>
         </message>
         <message>
             <source>Select another audio file…</source>
