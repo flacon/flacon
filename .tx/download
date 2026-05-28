@@ -50,6 +50,8 @@ def find_json_files(dir):
 #
 if __name__ == "__main__":
     try:
+        tx.load_config()
+
         shutil.rmtree(TMP_DIR, ignore_errors=True)
         os.makedirs(TMP_DIR, exist_ok=True)
         tx.pull_translations()

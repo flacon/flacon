@@ -392,6 +392,33 @@ def lupdate(input, ts_file, silent = False):
 
 
 ##################################
+#
+def load_config(config_path="~/.config/tx.conf"):
+    config_path = os.path.expanduser(config_path)
+
+    if not os.path.isfile(config_path):
+        return
+
+    with open(config_path, "r") as f:
+        for line in f:
+            line = line.strip()
+
+            if not line or line.startswith("#"):
+                continue
+
+            if "=" not in line:
+                continue
+
+            key, value = line.split("=", 1)
+
+            key = key.strip()
+            value = value.strip()
+
+            if key not in os.environ:
+                os.environ[key] = value
+
+
+##################################
 # imported from https://rest.api.transifex.com/languages
 #   doc: https://developers.transifex.com/reference/get_languages
 LANGS = {
