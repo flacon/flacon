@@ -132,6 +132,7 @@ jobs:
       run: |
         export PATH="${{github.workspace}}/.github/workflows/:${PATH}"
         tar -C . -cf ${{env.TAR_NAME}} Flacon.app
+        cp .github/workflows/dmg_settings.json ./dmg_settings.json
         .github/workflows/makedmg.sh
 
     # - name: Prepare artifacts
