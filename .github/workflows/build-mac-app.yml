@@ -130,7 +130,7 @@ jobs:
     - name: Sign application
       working-directory: ${{ env.HOME }}
       run: |
-        brew install dmgbuild
+        export PATH="${{github.workspace}}/.github/workflows/:${PATH}"
         tar -C . -cf ${{env.TAR_NAME}} Flacon.app
         .github/workflows/makedmg.sh
 
