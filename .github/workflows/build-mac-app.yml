@@ -51,6 +51,26 @@ jobs:
         cat ${GITHUB_ENV}
         echo "--------------------------------------------"
 
+
+    - name: Create temporary keychain and import cert
+      run: |
+        echo "${{ secrets.CERT_P12_BASE64 }}" | base64 --decode > ./cert.p12
+        KEYCHAIN_NAME=build.keychain
+        KEYCHAIN_PASS=secretpass123
+        security create-keychain -p "$KEYCHAIN_PASS" "$KEYCHAIN_NAME"
+        security default-keychain -s "$KEYCHAIN_NAME"
+        security unlock-keychain -p "$KEYCHAIN_PASS" "$KEYCHAIN_NAME"
+        security set-keychain-settings -t 3600 -l "$KEYCHAIN_NAME"
+        security import ./cert.p12 -k "$KEYCHAIN_NAME" -P "${{ secrets.CERT_P12_PASSWORD }}" -T /usr/bin/codesign -T /usr/bin/security >/dev/null
+        security set-key-partition-list -S apple-tool:,apple: -s -k "$KEYCHAIN_PASS" "$KEYCHAIN_NAME" >/dev/null
+        rm -rf ./cert.p12
+
+        mkdir -p ~/Library/Developer/Xcode/UserData/Provisioning\ Profiles/
+        echo "${{ secrets.PROVISIONING_PROFILE_BASE64 }}" | base64 --decode > ~/Library/Developer/Xcode/UserData/Provisioning\ Profiles/current.provisionprofile
+
+        echo "${{ secrets.AC_PRIVATE_KEY_BASE64 }}" | base64 --decode > ./AuthKey.p8
+
+
     - name: Download arm64
       uses: actions/download-artifact@v4
       with:
@@ -107,19 +127,25 @@ jobs:
         ${HOME}/bin/macdeploy.py check-libs Flacon.app
 
 
-    - name: Prepare artifacts
+    - name: Sign application
       working-directory: ${{ env.HOME }}
-      run : |
+      run:
+        brew install dmgbuild
         tar -C . -cf ${{env.TAR_NAME}} Flacon.app
-        cp ${{github.workspace}}/.github/workflows/makedmg.sh .
-        cp ${{github.workspace}}/.github/workflows/dmg_settings.json .
+        .github/workflows/makedmg.sh
+
+    # - name: Prepare artifacts
+    #   working-directory: ${{ env.HOME }}
+    #   run : |
+    #     mkdir -p "ARTIFACTS"
+    #     cp ${{github.workspace}}/*.dmg .
+    #     cp ${{github.workspace}}/.github/workflows/makedmg.sh .
+    #     cp ${{github.workspace}}/.github/workflows/dmg_settings.json .
 
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
         name: ${{ env.ARTIFACT_NAME }}
-        path: |
-          ${{env.TAR_NAME}}
-          makedmg.sh
-          dmg_settings.json
+        path: "${{github.workspace}}/*.dmg"
+
