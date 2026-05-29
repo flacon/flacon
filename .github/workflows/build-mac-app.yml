@@ -53,6 +53,9 @@ jobs:
         export "ARTIFACT_NAME=Flacon-${RELEASE_VERSION}.dmg"
         echo   "ARTIFACT_NAME=${ARTIFACT_NAME}" >> ${GITHUB_ENV}
 
+        export "PAGE_URL=${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+        echo "PAGE_URL=${PAGE_URL}"
+
         echo "--------------------------------------------"
         export
         echo "--------------------------------------------"
@@ -62,6 +65,7 @@ jobs:
 
     - name: Create temporary keychain and import cert
       run: |
+        qwerty
         echo "${{ secrets.CERT_P12_BASE64 }}" | base64 --decode > ./cert.p12
         KEYCHAIN_NAME=build.keychain
         KEYCHAIN_PASS=secretpass123
@@ -204,9 +208,22 @@ jobs:
         echo "** NOTARIZATION SUCCEEDED **"
 
 
+    - name: Prepare artifacts
+      run: |
+        echo "RELEASE_DATE=${RELEASE_DATE}"                                                 >> metadata.txt
+        echo "RELEASE_VERSION=${RELEASE_VERSION}"                                           >> metadata.txt
+        echo "COMMIT_URL=${COMMIT_URL}"                                                     >> metadata.txt
+        echo "COMMIT_TXT=${COMMIT_TXT}"                                                     >> metadata.txt
+        echo "BUILD_URL=https://github.com/SokoloffA/radiola/actions/runs/${GITHUB_RUN_ID}" >> metadata.txt
+        echo "BUILD_TXT=${GITHUB_RUN_NUMBER}"                                               >> metadata.txt
+        echo "ARTIFACT_NAME=${ARTIFACT_NAME}"                                               >> metadata.txt
+
+
     - name: Upload artifact
       uses: actions/upload-artifact@v6
       with:
         name: ${{ env.ARTIFACT_NAME }}
-        path: "${{ env.DMG_NAME }}"
+        path: |
+          "${{ env.DMG_NAME }}"
+          "metadata.txt"
 
