@@ -171,13 +171,29 @@ jobs:
         echo "================================"
         ls -l
         echo "================================"
-        xcrun notarytool submit \
+        NOTARY_OUTPUT=$(xcrun notarytool submit \
           --wait \
           --output-format json \
           --key "./AuthKey.p8" \
           --key-id "${{ secrets.AC_KEY_ID }}" \
           --issuer "${{ secrets.AC_ISSUER_ID }}" \
-          "${{ env.DMG_PATH }}"
+          "${{ env.DMG_PATH }}")
+
+        echo "$NOTARY_OUTPUT"
+        SUBMISSION_ID=$(echo "$NOTARY_OUTPUT" | python3 -c "import sys,json; print(json.load(sys.stdin)['id'])")
+        STATUS=$(echo "$NOTARY_OUTPUT" | python3 -c "import sys,json; print(json.load(sys.stdin)['status'])")
+        echo "Submission ID: $SUBMISSION_ID"
+        echo "Status: $STATUS"
+
+        echo "***********************************"
+        echo "** Notarization Log"
+        echo "***********************************"
+        xcrun notarytool log \
+          --key "./AuthKey.p8" \
+          --key-id "${{ secrets.AC_KEY_ID }}" \
+          --issuer "${{ secrets.AC_ISSUER_ID }}" \
+          "$SUBMISSION_ID"
+
 
         echo ""
         echo "** WAITING RESULT .... **"
