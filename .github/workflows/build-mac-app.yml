@@ -80,7 +80,7 @@ jobs:
 
 
     - name: Download arm64
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v6
       with:
         name: Flacon-arm64
 
@@ -95,7 +95,7 @@ jobs:
 
 
     - name: Download x86_64
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v6
       with:
         name: Flacon-x86_64
 
@@ -167,7 +167,7 @@ jobs:
         echo "** DMG CREATION SUCCEEDED ${{ env.DMG_NAME }} **"
 
 
-    - name: Submitting to Apple notary service
+    - name: Notarize DMG file
       run: |
         NOTARY_OUTPUT=$(xcrun notarytool submit \
           --wait \
@@ -183,20 +183,17 @@ jobs:
         echo "Submission ID: $SUBMISSION_ID"
         echo "Status: $STATUS"
 
-        #if [ "$STATUS" != "Accepted" ]; then \
-          echo "***********************************"; \
-          echo "** NOTARIZATION FAILED: $STATUS"; \
-          echo "***********************************"; \
-          xcrun notarytool log \
-            --key "./AuthKey.p8" \
-            --key-id "${{ secrets.AC_KEY_ID }}" \
-            --issuer "${{ secrets.AC_ISSUER_ID }}" \
-            "$SUBMISSION_ID"; \
-        #fi
+        echo "***********************************"; \
+        echo "** Notarization log"; \
+        echo "***********************************"; \
+        xcrun notarytool log \
+          --key "./AuthKey.p8" \
+          --key-id "${{ secrets.AC_KEY_ID }}" \
+          --issuer "${{ secrets.AC_ISSUER_ID }}" \
+          "$SUBMISSION_ID"; \
 
-        echo ""
-        echo "** WAITING RESULT .... **"
         xcrun stapler staple "${{ env.DMG_PATH }}"
+
 
         echo ""
         echo "***********************************"
