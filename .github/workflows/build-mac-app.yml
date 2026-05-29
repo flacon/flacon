@@ -80,7 +80,7 @@ jobs:
 
 
     - name: Download arm64
-      uses: actions/download-artifact@v6
+      uses: actions/download-artifact@v8
       with:
         name: Flacon-arm64
 
@@ -95,7 +95,7 @@ jobs:
 
 
     - name: Download x86_64
-      uses: actions/download-artifact@v6
+      uses: actions/download-artifact@v8
       with:
         name: Flacon-x86_64
 
@@ -216,7 +216,7 @@ jobs:
 
 
     - name: Upload artifact
-      uses: actions/upload-artifact@v6
+      uses: actions/upload-artifact@v7
       with:
         name: ${{ env.ARTIFACT_NAME }}
         path: |
