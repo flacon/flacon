@@ -29,24 +29,24 @@ jobs:
 
     - name: Set env
       run: |
+        export "RELEASE_DATE=$(date +%Y.%m.%d_%H.%M.%S)"
+        echo   "RELEASE_DATE=$(RELEASE_DATE)" >> ${GITHUB_ENV}
+
+        if [[ "${GITHUB_REF_TYPE}"  = "tag" ]]; then \
+          export RELEASE_VERSION="${GITHUB_REF_NAME:1}"; \
+        else \
+          export "RELEASE_VERSION=$(RELEASE_DATE)" \
+        fi
+        echo   "RELEASE_VERSION=$(RELEASE_VERSION)" >> ${GITHUB_ENV}
+
+        export "DMG_NAME="Flacon-${VERSION}.dmg"
+        echo   "DMG_NAME=$(DMG_NAME)" >> ${GITHUB_ENV}
+
+        export "ARTIFACT_NAME="Flacon-${VERSION}.dmg"
+        echo   "ARTIFACT_NAME=$(ARTIFACT_NAME)" >> ${GITHUB_ENV}
+
         echo "--------------------------------------------"
         export
-        echo "--------------------------------------------"
-
-        echo "RELEASE_DATE=$(date +%Y.%m.%d_%H.%M.%S)" >> ${GITHUB_ENV}
-        grep "RELEASE_DATE" ${GITHUB_ENV}
-
-        echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> ${GITHUB_ENV}
-        grep "RELEASE_VERSION" ${GITHUB_ENV}
-
-        [[ "${GITHUB_REF_TYPE}"  = "tag" ]] && echo ARTIFACT_NAME="Flacon-${GITHUB_REF_NAME:1}.app" >> ${GITHUB_ENV}
-        [[ "${GITHUB_REF_TYPE}" != "tag" ]] && echo ARTIFACT_NAME="Flacon-$(date +%Y.%m.%d_%H.%M.%S).app" >> ${GITHUB_ENV}
-        grep "ARTIFACT_NAME" ${GITHUB_ENV}
-
-        [[ "${GITHUB_REF_TYPE}"  = "tag" ]] && echo TAR_NAME="Flacon-${GITHUB_REF_NAME:1}.tar" >> ${GITHUB_ENV}
-        [[ "${GITHUB_REF_TYPE}" != "tag" ]] && echo TAR_NAME="Flacon-$(date +%Y.%m.%d_%H.%M.%S).tar" >> ${GITHUB_ENV}
-        grep "TAR_NAME" ${GITHUB_ENV}
-
         echo "--------------------------------------------"
         cat ${GITHUB_ENV}
         echo "--------------------------------------------"
@@ -128,25 +128,77 @@ jobs:
 
 
     - name: Sign application
-      working-directory: ${{ env.HOME }}
-      run: |
-        export PATH="${{github.workspace}}/.github/workflows/:${PATH}"
-        tar -C . -cf ${{env.TAR_NAME}} Flacon.app
-        cp .github/workflows/dmg_settings.json ./dmg_settings.json
-        .github/workflows/makedmg.sh
+      env:
+        APP_NAME: Flacon
+        APP_PATH: "${{ github.workspace }}/Flacon.app"
 
-    # - name: Prepare artifacts
-    #   working-directory: ${{ env.HOME }}
-    #   run : |
-    #     mkdir -p "ARTIFACTS"
-    #     cp ${{github.workspace}}/*.dmg .
-    #     cp ${{github.workspace}}/.github/workflows/makedmg.sh .
-    #     cp ${{github.workspace}}/.github/workflows/dmg_settings.json .
+        CODE_SIGN_IDENTITY: "Developer ID Application: Alex Sokolov (635H9TYSZJ)"
+        AC_KEY_ID: "${{ secrets.AC_KEY_ID }}"
+        AC_ISSUER_ID: "${{ secrets.AC_ISSUER_ID }}"
+      run: |
+        echo "***********************************"
+        echo "Removing quarantine flag..."
+        echo "***********************************"
+        xattr -r -d com.apple.quarantine "${APP_PATH}"
+        echo "  OK"
+        echo ""
+
+        echo "***********************************"
+        echo "Signing the bundle..."
+        echo "***********************************"
+        codesign --force --options runtime --deep --verify --sign  "${CODE_SIGN_IDENTITY}" "${APP_PATH}"
+        echo "  OK"
+        echo ""
+
+        echo "***********************************"
+        echo "** Verifying codesign and entitlements..."
+        echo "***********************************"
+        codesign --verify --deep --strict --verbose=2 "${APP_PATH}"
+        echo ""
+        echo "** VERIFICATION SUCCEEDED **"
+
+        echo "***********************************"
+        echo "** Build DMG file"
+        echo "***********************************"
+        "${{ github.workspace }}/.github/workflows/dmgbuild" -s "${{ github.workspace }}/.github/workflows/dmg_settings.json" "${APP_NAME}" "${DMG_NAME}")
+        echo ""
+        echo "** DMG CREATION SUCCEEDED ${DMG_NAME} **"
+
+
+        echo ""
+        echo "***********************************"
+        echo "Submitting to Apple notary service..."
+        echo "***********************************"
+
+        DMG_PATH=$(ls ${BUILD_DIR}/*.dmg)
+        echo "DMG FILE: ${DMG_PATH}"
+
+        xcrun notarytool submit \
+          --wait \
+          --output-format json \
+          --key "./AuthKey.p8" \
+          --key-id "${AC_KEY_ID}" \
+          --issuer "${AC_ISSUER_ID}" \
+          "${ARGS[@]}" \
+          "${DMG_PATH}" \
+          | tee "${BUILD_DIR}/03-notarize.log"
+
+        echo ""
+        echo "** WAITING RESULT .... **"
+        xcrun stapler staple "${DMG_PATH}"
+
+        echo ""
+        echo "***********************************"
+        echo "** Verifying..."
+        echo "***********************************"
+        spctl -a -vvv -t install "${APP_PATH}" || spctl --assess --type execute --verbose=4 "${APP_PATH}"
+        echo ""
+        echo "** NOTARIZATION SUCCEEDED **"
 
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
         name: ${{ env.ARTIFACT_NAME }}
-        path: "${{github.workspace}}/*.dmg"
+        path: "${{ env.DMG_NAME }}/*.dmg"
 
