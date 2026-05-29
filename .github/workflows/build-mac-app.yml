@@ -185,7 +185,7 @@ jobs:
 
         if [ "$STATUS" != "Accepted" ]; then \
           echo "***********************************"; \
-          echo "** Notarization Log"; \
+          echo "** NOTARIZATION FAILED: $STATUS"; \
           echo "***********************************"; \
           xcrun notarytool log \
             --key "./AuthKey.p8" \
