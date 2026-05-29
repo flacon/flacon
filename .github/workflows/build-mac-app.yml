@@ -148,7 +148,7 @@ jobs:
         echo "***********************************"
         echo "Signing the bundle..."
         echo "***********************************"
-        codesign --force --options runtime --deep --verify --sign  "${CODE_SIGN_IDENTITY}" "${APP_PATH}/Contents/Frameworks/Sparkle.framework/Versions/A/Resources/Autoupdate.app"
+        #codesign --force --options runtime --deep --verify --sign  "${CODE_SIGN_IDENTITY}" "${APP_PATH}/Contents/Frameworks/Sparkle.framework/Versions/A/Resources/Autoupdate.app"
         codesign --force --options runtime --deep --verify --sign  "${CODE_SIGN_IDENTITY}" "${APP_PATH}"
         echo "  OK"
         echo ""
@@ -163,9 +163,9 @@ jobs:
 
     - name: Build DMG file
       run: |
-        "${{ github.workspace }}/.github/workflows/dmgbuild" -s "${{ github.workspace }}/.github/workflows/dmg_settings.json" "${APP_NAME}" "${DMG_NAME}"
-        echo "** DMG CREATION SUCCEEDED ${DMG_NAME} **"
-        echo ""
+        "${{ github.workspace }}/.github/workflows/dmgbuild" -s "${{ github.workspace }}/.github/workflows/dmg_settings.json" "${{ env.APP_NAME }}" "${{ env.DMG_NAME }}"
+        echo "** DMG CREATION SUCCEEDED ${{ env.DMG_NAME }} **"
+
 
     - name: Submitting to Apple notary service
       run: |
@@ -211,5 +211,5 @@ jobs:
       uses: actions/upload-artifact@v6
       with:
         name: ${{ env.ARTIFACT_NAME }}
-        path: "${{ env.DMG_NAME }}/*.dmg"
+        path: "${{ env.DMG_NAME }}"
 
