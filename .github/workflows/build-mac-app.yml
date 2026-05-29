@@ -148,6 +148,7 @@ jobs:
         echo "***********************************"
         echo "Signing the bundle..."
         echo "***********************************"
+        codesign --force --options runtime --deep --verify --sign  "${CODE_SIGN_IDENTITY}" "${APP_PATH}/Contents/Frameworks/Sparkle.framework/Versions/A/Resources/Autoupdate.app"
         codesign --force --options runtime --deep --verify --sign  "${CODE_SIGN_IDENTITY}" "${APP_PATH}"
         echo "  OK"
         echo ""
@@ -168,9 +169,6 @@ jobs:
 
     - name: Submitting to Apple notary service
       run: |
-        echo "================================"
-        ls -l
-        echo "================================"
         NOTARY_OUTPUT=$(xcrun notarytool submit \
           --wait \
           --output-format json \
@@ -185,15 +183,16 @@ jobs:
         echo "Submission ID: $SUBMISSION_ID"
         echo "Status: $STATUS"
 
-        echo "***********************************"
-        echo "** Notarization Log"
-        echo "***********************************"
-        xcrun notarytool log \
-          --key "./AuthKey.p8" \
-          --key-id "${{ secrets.AC_KEY_ID }}" \
-          --issuer "${{ secrets.AC_ISSUER_ID }}" \
-          "$SUBMISSION_ID"
-
+        if [ "$STATUS" != "Accepted" ]; then \
+          echo "***********************************"; \
+          echo "** Notarization Log"; \
+          echo "***********************************"; \
+          xcrun notarytool log \
+            --key "./AuthKey.p8" \
+            --key-id "${{ secrets.AC_KEY_ID }}" \
+            --issuer "${{ secrets.AC_ISSUER_ID }}" \
+            "$SUBMISSION_ID"; \
+        fi
 
         echo ""
         echo "** WAITING RESULT .... **"
