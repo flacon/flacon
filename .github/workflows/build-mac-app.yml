@@ -24,6 +24,11 @@ jobs:
       - build-arm64
       - build-x86_64
 
+    env:
+      APP_NAME: Flacon
+      CODE_SIGN_IDENTITY: "Developer ID Application: Alex Sokolov (635H9TYSZJ)"
+      APP_PATH: "${{ github.workspace }}/Flacon.app"
+
     steps:
     - uses: actions/checkout@v6
 
@@ -41,6 +46,9 @@ jobs:
 
         export "DMG_NAME=Flacon-${VERSION}.dmg"
         echo   "DMG_NAME=${DMG_NAME}" >> ${GITHUB_ENV}
+
+        export "DMG_PATH="${{ github.workspace }}/${DMG_NAME}"
+        echo    "DMG_PATH=${DMG_PATH}" >> ${GITHUB_ENV}
 
         export "ARTIFACT_NAME=Flacon-${VERSION}.dmg"
         echo   "ARTIFACT_NAME=${ARTIFACT_NAME}" >> ${GITHUB_ENV}
@@ -128,13 +136,6 @@ jobs:
 
 
     - name: Sign application
-      env:
-        APP_NAME: Flacon
-        APP_PATH: "${{ github.workspace }}/Flacon.app"
-
-        CODE_SIGN_IDENTITY: "Developer ID Application: Alex Sokolov (635H9TYSZJ)"
-        AC_KEY_ID: "${{ secrets.AC_KEY_ID }}"
-        AC_ISSUER_ID: "${{ secrets.AC_ISSUER_ID }}"
       run: |
         echo "***********************************"
         echo "Removing quarantine flag..."
@@ -155,31 +156,27 @@ jobs:
         echo "** Verifying codesign and entitlements..."
         echo "***********************************"
         codesign --verify --deep --strict --verbose=2 "${APP_PATH}"
-        echo ""
         echo "** VERIFICATION SUCCEEDED **"
+        echo ""
 
-        echo "***********************************"
-        echo "** Build DMG file"
-        echo "***********************************"
+
+    - name: Build DMG file
+      run: |
         "${{ github.workspace }}/.github/workflows/dmgbuild" -s "${{ github.workspace }}/.github/workflows/dmg_settings.json" "${APP_NAME}" "${DMG_NAME}")
-        echo ""
         echo "** DMG CREATION SUCCEEDED ${DMG_NAME} **"
-
-
         echo ""
-        echo "***********************************"
-        echo "Submitting to Apple notary service..."
-        echo "***********************************"
 
-        DMG_PATH=$(ls ${BUILD_DIR}/*.dmg)
+    - name: Submitting to Apple notary service
+      run: |
+        DMG_PATH=$(ls *.dmg)
         echo "DMG FILE: ${DMG_PATH}"
 
         xcrun notarytool submit \
           --wait \
           --output-format json \
           --key "./AuthKey.p8" \
-          --key-id "${AC_KEY_ID}" \
-          --issuer "${AC_ISSUER_ID}" \
+          --key-id "${{ secrets.AC_KEY_ID }}" \
+          --issuer "${{ secrets.AC_ISSUER_ID }}" \
           "${ARGS[@]}" \
           "${DMG_PATH}" \
           | tee "${BUILD_DIR}/03-notarize.log"
