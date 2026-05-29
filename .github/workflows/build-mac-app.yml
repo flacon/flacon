@@ -148,7 +148,7 @@ jobs:
         echo "***********************************"
         echo "Signing the bundle..."
         echo "***********************************"
-        #codesign --force --options runtime --deep --verify --sign  "${CODE_SIGN_IDENTITY}" "${APP_PATH}/Contents/Frameworks/Sparkle.framework/Versions/A/Resources/Autoupdate.app"
+        codesign --force --options runtime --deep --verify --sign  "${CODE_SIGN_IDENTITY}" "${APP_PATH}/Contents/Frameworks/Sparkle.framework/Versions/A/Resources/Autoupdate.app"
         codesign --force --options runtime --deep --verify --sign  "${CODE_SIGN_IDENTITY}" "${APP_PATH}"
         echo "  OK"
         echo ""
@@ -183,7 +183,7 @@ jobs:
         echo "Submission ID: $SUBMISSION_ID"
         echo "Status: $STATUS"
 
-        if [ "$STATUS" != "Accepted" ]; then \
+        #if [ "$STATUS" != "Accepted" ]; then \
           echo "***********************************"; \
           echo "** NOTARIZATION FAILED: $STATUS"; \
           echo "***********************************"; \
@@ -192,7 +192,7 @@ jobs:
             --key-id "${{ secrets.AC_KEY_ID }}" \
             --issuer "${{ secrets.AC_ISSUER_ID }}" \
             "$SUBMISSION_ID"; \
-        fi
+        #fi
 
         echo ""
         echo "** WAITING RESULT .... **"
