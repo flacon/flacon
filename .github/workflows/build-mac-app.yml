@@ -162,7 +162,7 @@ jobs:
 
     - name: Build DMG file
       run: |
-        "${{ github.workspace }}/.github/workflows/dmgbuild" -s "${{ github.workspace }}/.github/workflows/dmg_settings.json" "${APP_NAME}" "${DMG_NAME}")
+        "${{ github.workspace }}/.github/workflows/dmgbuild" -s "${{ github.workspace }}/.github/workflows/dmg_settings.json" "${APP_NAME}" "${DMG_NAME}"
         echo "** DMG CREATION SUCCEEDED ${DMG_NAME} **"
         echo ""
 
