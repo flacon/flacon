@@ -35,7 +35,7 @@ jobs:
         if [[ "${GITHUB_REF_TYPE}"  = "tag" ]]; then \
           export "RELEASE_VERSION=${GITHUB_REF_NAME:1}"; \
         else \
-          export "RELEASE_VERSION=${RELEASE_DATE}" \
+          export "RELEASE_VERSION=${RELEASE_DATE}"; \
         fi
         echo   "RELEASE_VERSION=${RELEASE_VERSION}" >> ${GITHUB_ENV}
 
