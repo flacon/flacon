@@ -139,6 +139,7 @@ jobs:
         echo "***********************************"
         echo "Removing quarantine flag..."
         echo "***********************************"
+        ls -l "${APP_PATH}"
         xattr -r -d com.apple.quarantine "${APP_PATH}"
         echo "  OK"
         echo ""
