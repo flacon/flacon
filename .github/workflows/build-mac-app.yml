@@ -47,8 +47,8 @@ jobs:
         export "DMG_NAME=Flacon-${VERSION}.dmg"
         echo   "DMG_NAME=${DMG_NAME}" >> ${GITHUB_ENV}
 
-        export "DMG_PATH="${{ github.workspace }}/${DMG_NAME}"
-        echo    "DMG_PATH=${DMG_PATH}" >> ${GITHUB_ENV}
+        export "DMG_PATH=${{ github.workspace }}/${DMG_NAME}"
+        echo   "DMG_PATH=${DMG_PATH}" >> ${GITHUB_ENV}
 
         export "ARTIFACT_NAME=Flacon-${VERSION}.dmg"
         echo   "ARTIFACT_NAME=${ARTIFACT_NAME}" >> ${GITHUB_ENV}
