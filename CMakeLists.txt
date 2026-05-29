@@ -32,7 +32,7 @@ endif()
 project(flacon)
 
 
-set(MAJOR_VERSION 12)
+set(MAJOR_VERSION 13)
 set(MINOR_VERSION 0)
 set(PATCH_VERSION 0)
 #set(BETA_VERSION beta1)
