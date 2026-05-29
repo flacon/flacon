@@ -168,6 +168,9 @@ jobs:
 
     - name: Submitting to Apple notary service
       run: |
+        echo "================================"
+        ls -l
+        echo "================================"
         xcrun notarytool submit \
           --wait \
           --output-format json \
@@ -178,13 +181,13 @@ jobs:
 
         echo ""
         echo "** WAITING RESULT .... **"
-        xcrun stapler staple "${DMG_PATH}"
+        xcrun stapler staple "${{ env.DMG_PATH }}"
 
         echo ""
         echo "***********************************"
         echo "** Verifying..."
         echo "***********************************"
-        spctl -a -vvv -t install "${APP_PATH}" || spctl --assess --type execute --verbose=4 "${APP_PATH}"
+        spctl -a -vvv -t install "${{ env.APP_PATH }}" || spctl --assess --type execute --verbose=4 "${{ env.APP_PATH }}"
         echo ""
         echo "** NOTARIZATION SUCCEEDED **"
 
