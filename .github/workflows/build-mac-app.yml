@@ -210,7 +210,6 @@ jobs:
         echo "RELEASE_VERSION=${RELEASE_VERSION}"                                                 >> metadata.txt
         echo "COMMIT=${GITHUB_SHA}"                                                               >> metadata.txt
         echo "BUILD_URL=${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"  >> metadata.txt
-        echo "BUILD_TXT=${GITHUB_RUN_NUMBER}"                                                     >> metadata.txt
         echo "ARTIFACT_NAME=${ARTIFACT_NAME}"                                                     >> metadata.txt
 
 
