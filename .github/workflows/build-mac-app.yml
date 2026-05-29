@@ -44,13 +44,13 @@ jobs:
         fi
         echo   "RELEASE_VERSION=${RELEASE_VERSION}" >> ${GITHUB_ENV}
 
-        export "DMG_NAME=Flacon-${VERSION}.dmg"
+        export "DMG_NAME=Flacon-${RELEASE_VERSION}.dmg"
         echo   "DMG_NAME=${DMG_NAME}" >> ${GITHUB_ENV}
 
         export "DMG_PATH=${{ github.workspace }}/${DMG_NAME}"
         echo   "DMG_PATH=${DMG_PATH}" >> ${GITHUB_ENV}
 
-        export "ARTIFACT_NAME=Flacon-${VERSION}.dmg"
+        export "ARTIFACT_NAME=Flacon-${RELEASE_VERSION}.dmg"
         echo   "ARTIFACT_NAME=${ARTIFACT_NAME}" >> ${GITHUB_ENV}
 
         echo "--------------------------------------------"
@@ -174,8 +174,7 @@ jobs:
           --key "./AuthKey.p8" \
           --key-id "${{ secrets.AC_KEY_ID }}" \
           --issuer "${{ secrets.AC_ISSUER_ID }}" \
-          "${ARGS[@]}" \
-          "${DMG_PATH}"
+          "${{ env.DMG_PATH }}"
 
         echo ""
         echo "** WAITING RESULT .... **"
