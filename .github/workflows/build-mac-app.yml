@@ -168,9 +168,6 @@ jobs:
 
     - name: Submitting to Apple notary service
       run: |
-        DMG_PATH=$(ls *.dmg)
-        echo "DMG FILE: ${DMG_PATH}"
-
         xcrun notarytool submit \
           --wait \
           --output-format json \
@@ -178,8 +175,7 @@ jobs:
           --key-id "${{ secrets.AC_KEY_ID }}" \
           --issuer "${{ secrets.AC_ISSUER_ID }}" \
           "${ARGS[@]}" \
-          "${DMG_PATH}" \
-          | tee "${BUILD_DIR}/03-notarize.log"
+          "${DMG_PATH}"
 
         echo ""
         echo "** WAITING RESULT .... **"
