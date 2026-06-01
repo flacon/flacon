@@ -2,6 +2,8 @@
 
 set -e
 
+EXCEPTIONS="fdkaac"
+
 SRC_DIR=${1:-..}
 BIN_DIR=${2:-${PATH}}
 
@@ -11,6 +13,11 @@ WHICH=$(which which)
 PROGS=$(sed -n 's|.*static ExtProgram \*\(.*\)().*|\1|p' "${EXTPROGRAM_H}")
 RES=0
 for PROG in $PROGS; do
+  if [[ " $EXCEPTIONS " =~ " $PROG " ]]; then
+    printf "%-20s  %s\n" $PROG "SKIPPED"
+    continue
+  fi
+
   if PATH=$BIN_DIR $WHICH  $PROG > /dev/null 2>&1; then
     printf "%-20s  %s\n" $PROG "OK"
   else

@@ -41,7 +41,7 @@ public:
 
     QString find() const;
 
-    bool check(QStringList *errors) const;
+    bool check(QStringList *errors = nullptr) const;
 
     static QList<ExtProgram *> allPrograms();
 
@@ -58,6 +58,7 @@ protected:
 public:
     static ExtProgram *alacenc();
     static ExtProgram *faac();
+    static ExtProgram *fdkaac();
     static ExtProgram *flac();
     static ExtProgram *lame();
     static ExtProgram *mac();
