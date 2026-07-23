@@ -26,7 +26,9 @@
 #ifndef UPDATER_H
 #define UPDATER_H
 
-#ifdef MAC_UPDATER
+#include <appconfig.h>
+
+#if MAC_UPDATER
 
 #include <QObject>
 #include <QUrl>
