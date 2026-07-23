@@ -24,8 +24,9 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "updater.h"
+#include "appconfig.h"
 
-#ifdef MAC_UPDATER
+#if MAC_UPDATER
 
 #include <AppKit/AppKit.h>
 #include <Cocoa/Cocoa.h>
