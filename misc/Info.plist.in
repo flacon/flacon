@@ -18,10 +18,10 @@
 	<string>io.github.flacon</string>
 
 	<key>CFBundleShortVersionString</key>
-	<string>@FLACON_VERSION@</string>
+	<string>@APP_VERSION@</string>
 
 	<key>CFBundleVersion</key>
-	<string>@FLACON_VERSION@</string>
+	<string>@APP_VERSION@</string>
 
 	<key>NSHumanReadableCopyright</key>
 	<string>LGPL v2+</string>
