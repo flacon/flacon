@@ -58,8 +58,9 @@
 #include "audiofilematcher.h"
 #include "patternexpander.h"
 #include "qwindowdebugger.h"
+#include "appconfig.h"
 
-#ifdef MAC_UPDATER
+#if MAC_UPDATER
 #include "updater/updater.h"
 #endif
 
@@ -941,7 +942,7 @@ void MainWindow::openLogViewDialog()
  ************************************************/
 void MainWindow::checkUpdates()
 {
-#ifdef MAC_UPDATER
+#if MAC_UPDATER
     Updater::sharedUpdater().checkForUpdates("io.github.flacon");
 #endif
 }
@@ -1218,7 +1219,7 @@ void MainWindow::initActions()
 
     connect(actionRemoveSourceFiles, &QAction::triggered, this, &MainWindow::removeSourceFiles);
 
-#ifdef MAC_UPDATER
+#if MAC_UPDATER
     actionUpdates->setVisible(true);
     actionUpdates->setMenuRole(QAction::ApplicationSpecificRole);
 

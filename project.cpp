@@ -28,6 +28,7 @@
 #include "cue.h"
 #include "inputaudiofile.h"
 #include "audiofilematcher.h"
+#include "appconfig.h"
 
 #include <QDebug>
 #include <QApplication>

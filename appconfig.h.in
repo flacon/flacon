@@ -45,6 +45,10 @@ static constexpr bool IS_TAG_RELEASE  = @IS_TAG_RELEASE@;
 #cmakedefine01 APPIMAGE_BUNDLE
 #cmakedefine01 MAC_BUNDLE
 #cmakedefine01 BUNDLED_PROGRAMS
+#cmakedefine01 MAC_UPDATER
+#cmakedefine01 DISABLE_TMP_DIR
+
+static constexpr auto TRANSLATIONS_DIR = "@TRANSLATIONS_DIR@";
 
 // clang-format on
 #endif // APPCONFIG_H

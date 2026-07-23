@@ -28,6 +28,7 @@
 
 #include <QSettings>
 #include "profiles.h"
+#include "appconfig.h"
 
 class OutFormat;
 

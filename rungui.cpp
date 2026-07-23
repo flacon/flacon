@@ -39,7 +39,7 @@ namespace {
 Q_LOGGING_CATEGORY(LOG, "User")
 }
 
-#ifdef MAC_UPDATER
+#if MAC_UPDATER
 #include "updater/updater.h"
 #endif
 
@@ -119,7 +119,7 @@ int RunGui::run(int argc, char *argv[])
 
     window.show();
 
-#ifdef MAC_UPDATER
+#if MAC_UPDATER
     QTimer::singleShot(0, []() {
         Updater &updater = Updater::sharedUpdater();
         if (updater.automaticallyChecksForUpdates()) {
@@ -138,7 +138,7 @@ int RunGui::run(int argc, char *argv[])
  **************************************/
 void RunGui::translate(QApplication *app)
 {
-#ifdef MAC_BUNDLE
+#if MAC_BUNDLE
     QString appDir = LibraryInfo::path(QLibraryInfo::TranslationsPath);
 #elif APPIMAGE_BUNDLE
     QString appDir = LibraryInfo::path(QLibraryInfo::DataPath) + "/share/flacon/translations";

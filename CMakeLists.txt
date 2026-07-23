@@ -37,15 +37,10 @@ set(MINOR_VERSION 0)
 set(PATCH_VERSION 1)
 #set(BETA_VERSION beta1)
 
-set(FLACON_VERSION ${MAJOR_VERSION}.${MINOR_VERSION}.${PATCH_VERSION})
+set(APP_VERSION ${MAJOR_VERSION}.${MINOR_VERSION}.${PATCH_VERSION})
 if (BETA_VERSION)
-    set(FLACON_VERSION ${FLACON_VERSION}-${BETA_VERSION})
+    set(APP_VERSION ${APP_VERSION}-${BETA_VERSION})
 endif()
-
-add_definitions(-DFLACON_MAJOR_VERSION=\"${MAJOR_VERSION}\")
-add_definitions(-DFLACON_MINOR_VERSION=\"${MINOR_VERSION}\")
-add_definitions(-DFLACON_PATCH_VERSION=\"${PATCH_VERSION}\")
-add_definitions(-DFLACON_VERSION=\"${FLACON_VERSION}\")
 
 set (CMAKE_CXX_STANDARD 17)
 
@@ -64,7 +59,7 @@ else()
     set(IS_TAG_RELEASE "false")
 endif()
 
-status_message("${PROJECT_NAME} ver. ${FLACON_VERSION}")
+status_message("${PROJECT_NAME} ver. ${APP_VERSION}")
 status_message(" ")
 
 if ( ${CMAKE_SYSTEM_NAME} STREQUAL "Darwin" )
@@ -78,18 +73,15 @@ endif()
 
 
 if ( MAC_BUNDLE )
-    add_definitions(-DMAC_BUNDLE)
-    add_definitions(-DBUNDLED_PROGRAMS)
-    add_definitions(-DMAC_UPDATER)
+    set(BUNDLED_PROGRAMS ON)
+    set(MAC_UPDATER ON)
 
 elseif ( FLATPAK_BUNDLE )
-    add_definitions(-DFLATPAK_BUNDLE)
-    add_definitions(-DBUNDLED_PROGRAMS)
-    add_definitions(-DDISABLE_TMP_DIR)
+    set(BUNDLED_PROGRAMS ON)
+    set(DISABLE_TMP_DIR ON)
 
 elseif ( APPIMAGE_BUNDLE )
-    add_definitions(-DAPPIMAGE_BUNDLE)
-    add_definitions(-DBUNDLED_PROGRAMS)
+    set(BUNDLED_PROGRAMS ON)
 
 endif()
 
@@ -158,7 +150,7 @@ if (APPLE)
 endif()
 
 
-configure_file(appconfig.h.in appconfig.h)
+
 
 include(internet/module.cmake)
 include(gui/module.cmake)
@@ -188,8 +180,6 @@ set(DATA_DIR
 set(TRANSLATIONS_DIR
     "${DATA_DIR}/translations"
 )
-add_definitions(-DTRANSLATIONS_DIR=\"${TRANSLATIONS_DIR}\")
-
 
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}
@@ -388,7 +378,7 @@ add_tests(tests)
 
 # Add make dist target **************************
 if(NOT CPACK_PACKAGE_VERSION)
-    SET(CPACK_PACKAGE_VERSION "${FLACON_VERSION}")
+    SET(CPACK_PACKAGE_VERSION "${APP_VERSION}")
 endif()
 
 SET(CPACK_SOURCE_GENERATOR "TBZ2")
@@ -409,5 +399,7 @@ SET(CPACK_SOURCE_IGNORE_FILES ${CPACK_IGNORE_FILES})
 INCLUDE(CPack)
 # simulate autotools' "make dist"
 add_custom_target(dist COMMAND ${CMAKE_MAKE_PROGRAM} package_source)
+
+configure_file(appconfig.h.in appconfig.h)
 
 show_status()
