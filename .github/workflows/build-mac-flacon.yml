@@ -99,7 +99,7 @@ jobs:
         tar -C ${{github.workspace}}/build -cf ${{github.workspace}}/Flacon-${{ inputs.arch }}.tar Flacon.app
 
     - name: Upload artifact
-      uses: actions/upload-artifact@v6
+      uses: actions/upload-artifact@v7
       with:
         name: Flacon-${{ inputs.arch }}
         path: ${{github.workspace}}/Flacon-${{ inputs.arch }}.tar
