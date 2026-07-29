@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-24.04
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v6
 
     - name: Set env
       run: |
@@ -77,7 +77,7 @@ jobs:
         rm -rvf 1min.*  1sec.*  24x96.* CD.*
 
     - name: Upload artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v6
       if: ${{ failure() }}
       with:
         name: ${{ github.workflow }}

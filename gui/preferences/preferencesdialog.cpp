@@ -34,6 +34,7 @@
 #include <QMessageBox>
 #include "../controls.h"
 #include "settings.h"
+#include "appconfig.h"
 
 #ifdef Q_OS_MAC
 static constexpr bool DIALOG_HAS_BUTTONS = false;
@@ -128,12 +129,12 @@ void PreferencesDialog::initToolBar()
 
     Controls::arangeTollBarButtonsWidth(ui->toolBar);
 
-#ifndef MAC_UPDATER
+#if !MAC_UPDATER
     ui->actShowUpdatePage->setVisible(false);
     ui->updatePage->hide();
 #endif
 
-#ifdef BUNDLED_PROGRAMS
+#if BUNDLED_PROGRAMS
     ui->actShowProgramsPage->setVisible(false);
     ui->programsPage->hide();
 #endif
@@ -190,7 +191,7 @@ void PreferencesDialog::setProfiles(const Profiles &profiles)
     ui->generalPage->setProxyUserName(p.proxyUserName());
     ui->generalPage->setProxyPassword(p.proxyPassword());
 
-#ifndef BUNDLED_PROGRAMS
+#if !BUNDLED_PROGRAMS
     // Programs page .......................
     ui->programsPage->load();
 #endif
@@ -294,7 +295,7 @@ bool PreferencesDialog::save()
     p.setProxyUserName(ui->generalPage->proxyUserName());
     p.setProxyPassword(ui->generalPage->proxyPassword());
 
-#ifndef BUNDLED_PROGRAMS
+#if !BUNDLED_PROGRAMS
     // Programs page .......................
     ui->programsPage->save();
 #endif

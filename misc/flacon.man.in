@@ -1,4 +1,4 @@
-.TH flacon "1" "October 2013" "Flacon @FLACON_VERSION@" "Flacon - Audio File Encoder"
+.TH flacon "1" "October 2013" "Flacon @APP_VERSION@" "Flacon - Audio File Encoder"
 .SH NAME
 flacon \- Extracts audio tracks from an audio CD image to separate tracks.
 .SH SYNOPSIS

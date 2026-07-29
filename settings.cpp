@@ -25,6 +25,7 @@
 
 #include "settings.h"
 #include "extprogram.h"
+#include "appconfig.h"
 
 static constexpr auto PROFILES_GROUP = "Profiles";
 #if !BUNDLED_PROGRAMS
@@ -127,7 +128,6 @@ Settings::Settings(const QString &organization, const QString &application) :
     setIniCodec("UTF-8");
 #endif
 }
-#include <QDir>
 
 /************************************************
  *

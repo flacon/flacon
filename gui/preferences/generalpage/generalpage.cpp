@@ -27,6 +27,7 @@
 #include "ui_generalpage.h"
 #include "icon.h"
 #include <QFileDialog>
+#include "appconfig.h"
 
 GeneralPage::GeneralPage(QWidget *parent) :
     QWidget(parent),
@@ -40,7 +41,7 @@ GeneralPage::GeneralPage(QWidget *parent) :
 
     initProxyTypeComboBox();
 
-#ifdef DISABLE_TMP_DIR
+#if DISABLE_TMP_DIR
     ui->tmpDirLabel->hide();
     ui->tmpDirEdit->hide();
     ui->tmpDirButton->hide();
@@ -73,7 +74,7 @@ void GeneralPage::initProxyTypeComboBox()
 
 QString GeneralPage::tmpDir() const
 {
-#ifndef DISABLE_TMP_DIR
+#if !DISABLE_TMP_DIR
     return ui->tmpDirEdit->text();
 #else
     return "";
@@ -82,7 +83,7 @@ QString GeneralPage::tmpDir() const
 
 void GeneralPage::setTmpDir(const QString &value)
 {
-#ifndef DISABLE_TMP_DIR
+#if !DISABLE_TMP_DIR
     ui->tmpDirEdit->setText(value);
 #else
     Q_UNUSED(value)
