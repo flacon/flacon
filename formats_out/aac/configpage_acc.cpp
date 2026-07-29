@@ -69,7 +69,7 @@ void ConfigPage_Acc::initDouble()
     mProgCombo = new QComboBox(this);
     mProgCombo->addItem("faac", "faac");
     mProgCombo->addItem("fdkaac", "fdkaac");
-    connect(mProgCombo, &QComboBox::currentIndexChanged, this, &ConfigPage_Acc::progComboChanged);
+    connect(mProgCombo, qOverload<int>(&QComboBox::currentIndexChanged), this, &ConfigPage_Acc::progComboChanged);
 
     mFaacPage   = new FaacConfigPage(this);
     mFdkaacPage = new FdkaacConfigPage(this);

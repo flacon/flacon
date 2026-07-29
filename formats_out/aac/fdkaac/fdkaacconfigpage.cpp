@@ -119,7 +119,7 @@ void FdkaacConfigPage::initQualitySlider()
     spinBox->setMaximum(slider->maximum());
 
     connect(slider, &QSlider::valueChanged, spinBox, &QSpinBox::setValue);
-    connect(spinBox, &QSpinBox::valueChanged, slider, &QSlider::setValue);
+    connect(spinBox, qOverload<int>(&QSpinBox::valueChanged), slider, &QSlider::setValue);
 
     slider->setToolTip(tr("VBR (higher value -> higher bitrate)"));
     spinBox->setToolTip(slider->toolTip());
