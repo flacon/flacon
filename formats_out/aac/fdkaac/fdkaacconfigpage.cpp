@@ -13,7 +13,7 @@ FdkaacConfigPage::FdkaacConfigPage(QWidget *parent) :
     initQualitySlider();
     initCbrBitrateComboBox();
 
-    connect(ui->useVbrCheckBox, &QCheckBox::checkStateChanged, this, &FdkaacConfigPage::refresh);
+    connect(ui->useVbrCheckBox, &QCheckBox::clicked, this, &FdkaacConfigPage::refresh);
 
     refresh();
 }

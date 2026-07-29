@@ -99,7 +99,11 @@ MetadataWriter *OutFormat_Aac::createMetadataWriter(const Profile &profile, cons
  ************************************************/
 OutFormat *OutFormat_Aac::subFormat(const Profile &profile) const
 {
-    if (profile.encoderValues()->value("Program").toString() == "fdkaac") {
+    bool useFdkaac = true;
+    useFdkaac      = useFdkaac && profile.encoderValues()->value("Program").toString() == "fdkaac";
+    useFdkaac      = useFdkaac && mFdkAacOutFormat->encoderProgram(profile)->check();
+
+    if (useFdkaac) {
         return mFdkAacOutFormat;
     }
     else {
