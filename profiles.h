@@ -37,7 +37,26 @@ class QSettings;
 
 class Profile
 {
-    using EncoderValues = QHash<QString, QVariant>;
+public:
+    class EncoderValues
+    {
+    public:
+        EncoderValues()                           = default;
+        EncoderValues(const EncoderValues &other) = default;
+        EncoderValues &operator=(const EncoderValues &other) = default;
+        EncoderValues(const QHash<QString, QVariant> &defaults);
+
+        QVariant value(const QString &key) const;
+        void     setValue(const QString &key, const QVariant &value);
+
+        QStringList allKeys() const;
+
+        QVariant defaultValue(const QString &key) const;
+
+    private:
+        QHash<QString, QVariant> mDefaults;
+        QHash<QString, QVariant> mValues;
+    };
 
 public:
     Profile()                     = default;
@@ -90,11 +109,8 @@ public:
     CoverOptions embedCoverOptions() const { return mEmbedCoverOptions; }
     void         setEmbedCoverOptions(const CoverOptions &value);
 
-    EncoderValues encoderValues() const { return mEncoderValues; }
-    void          setEncoderValues(const EncoderValues &values);
-
-    QVariant encoderValue(const QString &key, const QVariant &defaultValue = QVariant()) const;
-    void     setEncoderValue(const QString &key, const QVariant &value);
+    const EncoderValues *encoderValues() const { return &mEncoderValues; }
+    EncoderValues       *encoderValues() { return &mEncoderValues; }
 
     const OutFormat *outFormat() const { return mFormat; }
     QString          formatId() const { return mFormat->id(); }

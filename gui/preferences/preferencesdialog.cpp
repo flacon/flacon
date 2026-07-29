@@ -89,7 +89,7 @@ PreferencesDialog::PreferencesDialog(QWidget *parent) :
         parent->installEventFilter(this);
     }
 
-    setStyleSheet("QFrame[frameShape='4'] { border-bottom: 1px solid #7F7F7F7F; background: transparent; }");
+    // setStyleSheet("QFrame[frameShape='4'] { border-bottom: 1px solid #7F7F7F7F; background: transparent; }");
 
     initToolBar();
 

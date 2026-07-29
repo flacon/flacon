@@ -183,11 +183,24 @@ Profile Settings::readProfile(const QString &profileId)
         profile.setEmbedCoverOptions(opts);
     }
 
-    QHash<QString, QVariant> vals = profile.encoderValues();
-    for (auto i = vals.begin(); i != vals.end(); ++i) {
-        i.value() = value(i.key(), i.value());
+    // In version 13.1, the encoder settings have been moved to a separate "Encoder" group.
+    QStringList qwerty = childGroups();
+    if (childGroups().contains("Encoder")) {
+        beginGroup("Encoder");
+        for (const QString &key : this->allKeys()) {
+            profile.encoderValues()->setValue(key, value(key));
+        }
+        endGroup();
     }
-    profile.setEncoderValues(vals);
+    else {
+        // If there is no "Encoder" group, we read the legacy values.
+        QStringList keys = profile.encoderValues()->allKeys();
+        for (const QString &key : profile.encoderValues()->allKeys()) {
+            if (this->contains(key)) {
+                profile.encoderValues()->setValue(key, value(key));
+            }
+        }
+    }
 
     endGroup();
 
@@ -241,10 +254,13 @@ void Settings::writeProfile(const Profile &profile)
         setValue(PROFILE_COVER_EMBED_SIZE_KEY, profile.embedCoverOptions().size);
     }
 
-    QHash<QString, QVariant> vals = profile.encoderValues();
-    for (auto i = vals.constBegin(); i != vals.constEnd(); ++i) {
-        setValue(i.key(), i.value());
+    // In version 13.1, the encoder settings have been moved to a separate "Encoder" group.
+    beginGroup("Encoder");
+    for (const QString &key : profile.encoderValues()->allKeys()) {
+        QVariant val = profile.encoderValues()->value(key);
+        setValue(key, val);
     }
+    endGroup();
     endGroup();
 
     setValue(ENCODER_TMPDIR_KEY, profile.tmpDir());
@@ -363,7 +379,7 @@ void Settings::writeProfiles(const Profiles &profiles)
     allKeys();
     setValue(KNOWN_FORMATS_KEY, OutFormat::allFormatsId());
 
-    remove(PROFILES_GROUP);
+    // remove(PROFILES_GROUP);
     for (const Profile &p : profiles) {
         writeProfile(p);
     }

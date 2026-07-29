@@ -3,9 +3,6 @@
     OutPattern=aac-%a/{%y - }%A/%n - %t
     Format=AAC
     Name=Aac
-    Bitrate=128
-    Quality=90
-    UseQuality=false
     BitsPerSample=16
     SampleRate=44100
     CreateCue=false
@@ -14,13 +11,19 @@
     CoverFile/Mode=Scale
     CoverFile/Size=600
     Tags\WriteSingleDiskNum=false
+    Encoder/Bitrate=128
+    Encoder/Quality=90
+    Encoder/UseQuality=false
+    Encoder/Fdkaac/UseVBR = true
+    Encoder/Fdkaac/Quality = 5
+    Encoder/Fdkaac/Bitrate = 320
+
 
 [Profiles/FLAC]
     OutDirectory=~/Music/flac
     OutPattern=flac-%a/{%y - }%A/%n - %t
     Format=FLAC
     Name=Flac
-    Compression=3
     ReplayGain=Track
     BitsPerSample=16
     SampleRate=44100
@@ -32,6 +35,7 @@
     CoverEmbed/Mode=Scale
     CoverEmbed/Size=800
     Tags\WriteSingleDiskNum=true
+    Encoder/Compression=3
 
 
 [Profiles/MP3]
@@ -39,9 +43,6 @@
     OutPattern=mp3-%a/{%y - }%A/%n - %t
     Format = MP3
     Name = Mp3
-    Bitrate=320
-    Preset=vbrStandard
-    Quality=4
     ReplayGain=Album
     BitsPerSample=16
     SampleRate=44100
@@ -51,6 +52,9 @@
     CoverFile/Mode=Scale
     CoverFile/Size=600
     Tags\WriteSingleDiskNum=false
+    Encoder/Preset=vbrStandard
+    Encoder/Bitrate=320
+    Encoder/Quality=4
 
 
 [Profiles/OGG]
@@ -58,12 +62,7 @@
     OutPattern=ogg-%a/{%y - }%A/%n - %t
     Format = OGG
     Name = Ogg
-    MaxBitrate=1
-    MinBitrate=1
-    NormBitrate=1
-    Quality=2
     ReplayGain=Disable
-    UseQuality=false
     BitsPerSample=16
     SampleRate=44100
     CreateCue=true
@@ -72,6 +71,11 @@
     CoverFile/Mode=Scale
     CoverFile/Size=600
     Tags\WriteSingleDiskNum=true
+    Encoder/UseQuality=false
+    Encoder/MaxBitrate=1
+    Encoder/MinBitrate=1
+    Encoder/NormBitrate=1
+    Encoder/Quality=2
 
 
 [Profiles/OPUS]
@@ -79,8 +83,6 @@
     OutPattern=opus-%a/{%y - }%A/%n - %t
     Name = Opus
     Format = OPUS
-    Bitrate=128
-    BitrateType=VBR
     BitsPerSample=16
     SampleRate=44100
     CreateCue=false
@@ -89,6 +91,8 @@
     CoverFile/Mode=Scale
     CoverFile/Size=600
     Tags\WriteSingleDiskNum=false
+    Encoder/Bitrate=128
+    Encoder/BitrateType=VBR
 
 
 [Profiles/WV]
@@ -96,7 +100,6 @@
     OutPattern=wv-%a/{%y - }%A/%n - %t
     Name = WV
     Format = WV
-    Compression=2
     ReplayGain=Track
     BitsPerSample=16
     SampleRate=44100
@@ -106,6 +109,7 @@
     CoverFile/Mode=Scale
     CoverFile/Size=600
     Tags\WriteSingleDiskNum=true
+    Encoder/Compression=2
 
 
 [Profiles/WAV]
@@ -122,12 +126,12 @@
     CoverFile/Size=600
     Tags\WriteSingleDiskNum=false
 
+
 [Profiles/ALAC]
     OutDirectory=~/Music/flac
     OutPattern=flac-%a/{%y - }%A/%n - %t
     Format=ALAC
     Name=Alac
-    Compression=1
     ReplayGain=None
     BitsPerSample=16
     SampleRate=44100
@@ -139,3 +143,4 @@
     CoverEmbed/Mode=Scale
     CoverEmbed/Size=800
     Tags\WriteSingleDiskNum=true
+    Encoder/Compression=1

@@ -3,9 +3,6 @@
     OutPattern=%a/{%y - }%A/%n - %t
     Format=AAC
     Name=AAC
-    Bitrate=256
-    Quality=100
-    UseQuality=true
     BitsPerSample=0
     SampleRate=0
     CreateCue=false
@@ -18,6 +15,12 @@
     EmbedCue=false
     ReplayGain=Disable
     Tags\WriteSingleDiskNum=true
+    Encoder/Bitrate=256
+    Encoder/Quality=100
+    Encoder/UseQuality=true
+    Encoder/Fdkaac/UseVBR = true
+    Encoder/Fdkaac/Quality = 5
+    Encoder/Fdkaac/Bitrate = 320
 
 
 [Profiles/FLAC]
@@ -25,7 +28,6 @@
     OutPattern=%a/{%y - }%A/%n - %t
     Format = FLAC
     Name = FLAC
-    Compression=5
     ReplayGain=Disable
     BitsPerSample=0
     SampleRate=0
@@ -38,6 +40,7 @@
     CoverEmbed/Size=1024
     EmbedCue=false
     Tags\WriteSingleDiskNum=true
+    Encoder/Compression=5
 
 
 [Profiles/MP3]
@@ -45,9 +48,6 @@
     OutPattern=%a/{%y - }%A/%n - %t
     Format = MP3
     Name = MP3
-    Bitrate=320
-    Preset=vbrStandard
-    Quality=4
     ReplayGain=Disable
     BitsPerSample=0
     SampleRate=0
@@ -60,6 +60,9 @@
     CoverEmbed/Size=1024
     EmbedCue=false
     Tags\WriteSingleDiskNum=true
+    Encoder/Preset=vbrStandard
+    Encoder/Bitrate=320
+    Encoder/Quality=4
 
 
 [Profiles/OGG]
@@ -67,12 +70,7 @@
     OutPattern=%a/{%y - }%A/%n - %t
     Format = OGG
     Name = OGG
-    MaxBitrate=
-    MinBitrate=
-    NormBitrate=
-    Quality=7
     ReplayGain=Disable
-    UseQuality=true
     BitsPerSample=0
     SampleRate=0
     CreateCue=false
@@ -84,6 +82,11 @@
     CoverEmbed/Size=1024
     EmbedCue=false
     Tags\WriteSingleDiskNum=true
+    Encoder/UseQuality=true
+    Encoder/MaxBitrate=
+    Encoder/MinBitrate=
+    Encoder/NormBitrate=
+    Encoder/Quality=7
 
 
 [Profiles/OPUS]
@@ -91,8 +94,6 @@
     OutPattern=%a/{%y - }%A/%n - %t
     Name = Opus
     Format = OPUS
-    Bitrate=96
-    BitrateType=VBR
     BitsPerSample=0
     SampleRate=0
     CreateCue=false
@@ -105,6 +106,8 @@
     EmbedCue=false
     ReplayGain=Disable
     Tags\WriteSingleDiskNum=true
+    Encoder/Bitrate=96
+    Encoder/BitrateType=VBR
 
 
 [Profiles/WV]
@@ -112,7 +115,6 @@
     OutPattern=%a/{%y - }%A/%n - %t
     Name = WavPack
     Format = WV
-    Compression=1
     ReplayGain=Disable
     BitsPerSample=0
     SampleRate=0
@@ -125,6 +127,7 @@
     CoverEmbed/Size=1024
     EmbedCue=false
     Tags\WriteSingleDiskNum=true
+    Encoder/Compression=1
 
 
 [Profiles/WAV]
@@ -146,7 +149,6 @@
 
 [Profiles/ALAC]
     BitsPerSample=0
-    Compression=0
     CoverFile\Mode=Disable
     CoverFile\Size=1024
     CreateCue=false
@@ -162,3 +164,4 @@
     EmbedCue=false
     ReplayGain=Disable
     Tags\WriteSingleDiskNum=true
+    Encoder/Compression=0

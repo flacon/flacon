@@ -27,17 +27,18 @@
 #define OUT_AAC_H
 
 #include "../outformat.h"
-#include "../encoderconfigpage.h"
-#include "ui_out_aac_config.h"
-#include "../converter/encoder.h"
+
+class FaacOutFormat;
+class FdkAacOutFormat;
 
 class OutFormat_Aac : public OutFormat
 {
 public:
     OutFormat_Aac();
+    ~OutFormat_Aac();
 
     QHash<QString, QVariant> defaultParameters() const override;
-    EncoderConfigPage       *configPage(QWidget *parentr) const override;
+    EncoderConfigPage       *configPage(QWidget *parent) const override;
 
     // See https://en.wikipedia.org/wiki/Comparison_of_audio_coding_formats for details
     virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_32; }
@@ -47,19 +48,12 @@ public:
     QStringList encoderArgs(const Profile &profile, const QString &outFile) const override;
 
     MetadataWriter *createMetadataWriter(const Profile &profile, const QString &filePath) const override;
-};
 
-class ConfigPage_Acc : public EncoderConfigPage, private Ui::aacConfigPage
-{
-    Q_OBJECT
-public:
-    explicit ConfigPage_Acc(QWidget *parent = nullptr);
+private:
+    FaacOutFormat   *mFaaccOutFormat  = nullptr;
+    FdkAacOutFormat *mFdkAacOutFormat = nullptr;
 
-    virtual void load(const Profile &profile) override;
-    virtual void save(Profile *profile) override;
-
-private slots:
-    void useQualityChecked(bool checked);
+    OutFormat *subFormat(const Profile &profile) const;
 };
 
 #endif // OUT_AAC_H

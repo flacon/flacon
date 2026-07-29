@@ -24,13 +24,17 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "out_aac.h"
-#include "inputaudiofile.h"
 #include "../metadatawriter.h"
+#include "configpage_acc.h"
+#include "faac/faacoutformat.h"
+#include "fdkaac/fdkaacoutformat.h"
 
 /************************************************
 
  ************************************************/
-OutFormat_Aac::OutFormat_Aac()
+OutFormat_Aac::OutFormat_Aac() :
+    mFaaccOutFormat(new FaacOutFormat()),
+    mFdkAacOutFormat(new FdkAacOutFormat())
 {
     mId      = "AAC";
     mExt     = "m4a";
@@ -41,29 +45,37 @@ OutFormat_Aac::OutFormat_Aac()
 /************************************************
 
  ************************************************/
+OutFormat_Aac::~OutFormat_Aac()
+{
+    delete mFaaccOutFormat;
+    delete mFdkAacOutFormat;
+}
+
+/************************************************
+
+ ************************************************/
 QHash<QString, QVariant> OutFormat_Aac::defaultParameters() const
 {
     QHash<QString, QVariant> res;
-    res.insert("UseQuality", true);
-    res.insert("Quality", 100);
-    res.insert("Bitrate", 256);
+    res.insert(mFdkAacOutFormat->defaultParameters());
+    res.insert(mFaaccOutFormat->defaultParameters());
     return res;
 }
 
 /************************************************
 
  ************************************************/
-EncoderConfigPage *OutFormat_Aac::configPage(QWidget *parentr) const
+EncoderConfigPage *OutFormat_Aac::configPage(QWidget *parent) const
 {
-    return new ConfigPage_Acc(parentr);
+    return new ConfigPage_Acc(parent);
 }
 
 /************************************************
 
  ************************************************/
-ExtProgram *OutFormat_Aac::encoderProgram(const Profile &) const
+ExtProgram *OutFormat_Aac::encoderProgram(const Profile &profile) const
 {
-    return ExtProgram::faac();
+    return subFormat(profile)->encoderProgram(profile);
 }
 
 /************************************************
@@ -71,19 +83,7 @@ ExtProgram *OutFormat_Aac::encoderProgram(const Profile &) const
  ************************************************/
 QStringList OutFormat_Aac::encoderArgs(const Profile &profile, const QString &outFile) const
 {
-    QStringList args;
-
-    args << "-w"; // Wrap  AAC  data  in  an MP4 container.
-
-    // Quality settings .........................................
-    if (profile.encoderValue("UseQuality").toBool())
-        args << "-q" << profile.encoderValue("Quality").toString();
-    else
-        args << "-b" << profile.encoderValue("Bitrate").toString();
-
-    args << "-o" << outFile;
-    args << "-";
-    return args;
+    return subFormat(profile)->encoderArgs(profile, outFile);
 }
 
 /************************************************
@@ -95,50 +95,14 @@ MetadataWriter *OutFormat_Aac::createMetadataWriter(const Profile &profile, cons
 }
 
 /************************************************
-
- ************************************************/
-ConfigPage_Acc::ConfigPage_Acc(QWidget *parent) :
-    EncoderConfigPage(parent)
-{
-    setupUi(this);
-
-    setLossyToolTip(aacQualitySpin);
-    aacQualitySlider->setToolTip(aacQualitySpin->toolTip());
-    fillBitrateComboBox(aacBitrateCbx, QList<int>() << 64 << 80 << 128 << 160 << 192 << 224 << 256 << 288 << 320);
-
-    connect(aacUseQualityCheck, &QCheckBox::toggled,
-            this, &ConfigPage_Acc::useQualityChecked);
-}
-
-/************************************************
-
- ************************************************/
-void ConfigPage_Acc::load(const Profile &profile)
-{
-    loadWidget(profile, "UseQuality", aacUseQualityCheck);
-    loadWidget(profile, "Quality", aacQualitySpin);
-    loadWidget(profile, "Bitrate", aacBitrateCbx);
-}
-
-/************************************************
-
- ************************************************/
-void ConfigPage_Acc::save(Profile *profile)
-{
-    saveWidget(profile, "UseQuality", aacUseQualityCheck);
-    saveWidget(profile, "Quality", aacQualitySpin);
-    saveWidget(profile, "Bitrate", aacBitrateCbx);
-}
-
-/************************************************
  *
  ************************************************/
-void ConfigPage_Acc::useQualityChecked(bool checked)
+OutFormat *OutFormat_Aac::subFormat(const Profile &profile) const
 {
-    qualityLabel->setEnabled(checked);
-    aacQualitySlider->setEnabled(checked);
-    aacQualitySpin->setEnabled(checked);
-
-    bitrateLabel->setEnabled(!checked);
-    aacBitrateCbx->setEnabled(!checked);
+    if (profile.encoderValues()->value("Program").toString() == "fdkaac") {
+        return mFdkAacOutFormat;
+    }
+    else {
+        return mFaaccOutFormat;
+    }
 }

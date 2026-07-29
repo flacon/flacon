@@ -163,6 +163,13 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
      </widget>
     </item>
     <item>
+     <widget class="Line" name="line_2">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item>
      <widget class="QGroupBox" name="gainGroup">
       <property name="title">
        <string>ReplayGain settings:</string>

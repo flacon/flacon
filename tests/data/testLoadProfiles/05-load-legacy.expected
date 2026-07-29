@@ -71,6 +71,7 @@
     Format = OGG
     Name = Ogg
     ReplayGain=Disable
+    Encoder/UseQuality=false
     BitsPerSample=16
     SampleRate=44100
     CreateCue=true
@@ -82,7 +83,6 @@
     CoverEmbed/Size=1024
     EmbedCue=false
     Tags\WriteSingleDiskNum=true
-    Encoder/UseQuality=false
     Encoder/MaxBitrate=1
     Encoder/MinBitrate=1
     Encoder/NormBitrate=1

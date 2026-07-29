@@ -76,7 +76,7 @@ QStringList OutFormat_Wv::encoderArgs(const Profile &profile, const QString &out
     args << "-q"; // Suppress progress indicator
 
     // Quality Settings .........................
-    int compression = profile.encoderValue(COMPRESSION_KEY).toInt();
+    int compression = profile.encoderValues()->value(COMPRESSION_KEY).toInt();
     switch (compression) {
         case 0:
             args << "-f";
