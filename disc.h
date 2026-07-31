@@ -53,7 +53,7 @@ public:
     QList<Track *> tracks() const { return mTracks; }
     bool           isEmpty() const { return mTracks.isEmpty(); }
 
-    Cue     cue() const { return mCue; }
+    Cue    *cue() const { return mCue; }
     void    setCue(const Cue &cue);
     QString cueFilePath() const;
 
@@ -124,18 +124,16 @@ public:
 
 private:
     QList<Track *> mTracks;
-    Cue            mCue;
+    Cue           *mCue = nullptr;
 
-    Tags mCueUserTags;
-    Tags mUserTags;
-    Tags mLoadedTags;
+    AlbumTags mAlbumLoadedTags;
+    AlbumTags mAlbumUserTags;
 
     TextCodec mTextCodec = TextCodecUtf8();
 
     QVector<TagSet> mTagSets;
 
     QList<InternetTags> mInternetTags;
-    QList<Tags>         mInternetUserTags;
     int                 mInternetTagsIndex = -1;
 
     InputAudioFile mAudioFile;
@@ -147,8 +145,8 @@ private:
 
     int distance(const InternetTags &other);
 
-    void syncTagsFromTracks();
-    void syncTagsToTracks();
+    void resetUserTags();
+    void updateLoadedTags(const Tags &tags);
 };
 
 typedef QList<Disc *> DiscList;

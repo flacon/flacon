@@ -30,6 +30,8 @@
 #include <QString>
 #include <QList>
 #include <QExplicitlySharedDataPointer>
+#include "textcodec.h"
+#include "tags.h"
 
 class InputFormat;
 
@@ -53,8 +55,13 @@ private:
         bool               mValid         = false;
         bool               mCdQuality     = false;
         uint               mChannelsCount = 0;
+        TagsId             mTagsId;
+
+        QMap<AlbumTags::TagId, QByteArray> mAlbumTags;
+        QMap<TrackTags::TagId, QByteArray> mTrackTags;
 
         void load(const QString &fileName);
+        void loadTags(const QString &filePath);
     };
 
     QExplicitlySharedDataPointer<Data> mData;
@@ -80,6 +87,9 @@ public:
     uint channelsCount() const { return mData->mChannelsCount; }
 
     const InputFormat *format() const { return mData->mFormat; }
+
+    TagsId tagsId() const { return mData->mTagsId; }
+    Tags   tags(const TextCodec &textCodec) const;
 };
 
 using InputAudioFileList = QList<InputAudioFile>;

@@ -281,12 +281,15 @@ QString Profile::calcResultFilePath(const Track *track) const
         return "";
     }
 
-    QString cueFile = track->disc()->cue().filePath();
-    if (cueFile.startsWith(Cue::EMBEDED_PREFIX)) {
-        cueFile = cueFile.mid(strlen(Cue::EMBEDED_PREFIX));
+    if (track->disc()->cue()) {
+        QString cueFile = track->disc()->cue()->filePath();
+        if (cueFile.startsWith(Cue::EMBEDED_PREFIX)) {
+            cueFile = cueFile.mid(strlen(Cue::EMBEDED_PREFIX));
+        }
+        return QFileInfo(cueFile).dir().absolutePath() + QDir::separator() + dir;
     }
 
-    return QFileInfo(cueFile).dir().absolutePath() + QDir::separator() + dir;
+    return "";
 }
 
 /************************************************

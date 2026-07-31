@@ -48,8 +48,12 @@ void Track::setAudioFile(const InputAudioFile &file)
  **************************************/
 Duration Track::duration() const
 {
-    Cue::Track cur  = mDisk->cue().tracks().at(index());
-    Cue::Track next = (index() < mDisk->tracks().count() - 1) ? mDisk->cue().tracks().at(index() + 1) : Cue::Track();
+    if (!mDisk->cue()) {
+        return audioFile().duration();
+    }
+
+    Cue::Track cur  = mDisk->cue()->tracks().at(index());
+    Cue::Track next = (index() < mDisk->tracks().count() - 1) ? mDisk->cue()->tracks().at(index() + 1) : Cue::Track();
 
     Duration trackLen = 0;
     if (cur.cueIndex01().file() != next.cueIndex00().file()) {
@@ -138,7 +142,11 @@ void Track::setTrackNumTag(int value)
  **************************************/
 QString Track::fileTag() const
 {
-    return mDisk->textCodec().decode(mDisk->cue().tracks().at(mIndex).fileTag());
+    if (mDisk->cue()) {
+        return mDisk->textCodec().decode(mDisk->cue()->tracks().at(mIndex).fileTag());
+    }
+
+    return "";
 }
 
 /**************************************
