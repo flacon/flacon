@@ -175,6 +175,26 @@ Disc *Project::addAudioFile(const QFileInfo &file, bool isOptional) noexcept(fal
         throw FlaconError(audio.errorString());
     }
 
+    for (int i = 0; i < count(); ++i) {
+        Disc *disk = disc(i);
+        if (disk->isEmpty()) {
+            continue;
+        }
+
+        AlbumTags newAlbumTags = audio.albumTags(disk->textCodec());
+        TrackTags newTrackTags = audio.trackTags(disk->textCodec());
+        // TrackTags diskTags = disk->tracks().first().
+
+        bool match = !disk->isEmpty();
+        match      = match && disk->tracks().first()->artistTag() == newTrackTags.artist();
+        match      = match && disk->albumTag() == newAlbumTags.album();
+
+        if (match) {
+            disk->addTrack(audio);
+            return disk;
+        }
+    }
+
     AudioFileMatcher matcher;
     matcher.matchForAudio(file.filePath());
     InputAudioFileList audioFiles = matcher.audioFiles();
@@ -231,10 +251,15 @@ Disc *Project::addDisc(const Cue cue, const InputAudioFileList audioFiles)
 
     if (!cue.isEmpty()) {
         disc->setCue(cue);
-    }
 
-    if (!audioFiles.isEmpty()) {
-        disc->setAudioFiles(audioFiles);
+        if (!audioFiles.isEmpty()) {
+            disc->setAudioFiles(audioFiles);
+        }
+    }
+    else {
+        for (const InputAudioFile &file : audioFiles) {
+            disc->addTrack(file);
+        }
     }
 
     if (disc->isEmpty()) {

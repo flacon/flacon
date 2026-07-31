@@ -164,6 +164,8 @@ public:
     bool isEmpty() const { return mTracks.isEmpty(); }
     void resize(int size);
 
+    Tags &operator=(const AlbumTags &albumTags);
+
     void merge(const Tags &other);
 
 private:
@@ -183,6 +185,7 @@ private:
     TagsId mTagsId;
 };
 
+QDebug operator<<(QDebug debug, const Tags &tags);
 QDebug operator<<(QDebug debug, const Tags::Track &track);
 
 #endif // TAGS_H

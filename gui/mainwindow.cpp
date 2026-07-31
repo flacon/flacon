@@ -1426,7 +1426,7 @@ void MainWindow::scanDir(const QString &dir)
         QFileInfo fi = QFileInfo(file);
 
         try {
-            Disc *disc = Project::instance()->addFile(file, true);
+            Disc *disc = Project::instance()->addFile(file, false);
 
             if (disc && isFirst) {
                 isFirst = false;

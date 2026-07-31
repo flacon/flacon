@@ -68,6 +68,8 @@ public:
     void        setAudioFile(const InputAudioFile &file, int fileNum);
     bool        isMultiAudio() const;
 
+    void addTrack(const InputAudioFile &file);
+
     int  startTrackNum() const;
     void setStartTrackNum(TrackNum value);
 
@@ -146,7 +148,8 @@ private:
     int distance(const InternetTags &other);
 
     void resetUserTags();
-    void updateLoadedTags(const Tags &tags);
+    // void updateLoadedTags(const Tags &tags);
+    void updateLoadedTags();
 };
 
 typedef QList<Disc *> DiscList;

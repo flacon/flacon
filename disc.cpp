@@ -139,8 +139,7 @@ void Disc::setCue(const Cue &cue)
         setCodecName(CODEC_AUTODETECT);
     }
 
-    Tags cueTags = mCue->decode(mTextCodec);
-    updateLoadedTags(cueTags);
+    updateLoadedTags();
     resetUserTags();
 
     Project::instance()->emitLayoutChanged();
@@ -181,8 +180,32 @@ void Disc::resetUserTags()
 /**************************************
  *
  **************************************/
-void Disc::updateLoadedTags(const Tags &tags)
+// void Disc::updateLoadedTags(const Tags &tags)
+// {
+//     mAlbumLoadedTags = tags;
+
+//     for (int i = 0; i < mTracks.count(); ++i) {
+//         mTracks[i]->setLoadedTags(tags.tracks().at(i));
+//     }
+// }
+
+void Disc::updateLoadedTags()
 {
+    Tags tags;
+
+    if (mInternetTagsIndex >= 0 && mInternetTagsIndex < mInternetTags.count()) {
+        tags = mInternetTags[mInternetTagsIndex];
+    }
+    else if (mCue) {
+        tags = mCue->decode(mTextCodec);
+    }
+    else if (!isEmpty()) {
+        tags = mTracks.first()->audioFile().albumTags(mTextCodec);
+        for (int i = 0; i < mTracks.count(); ++i) {
+            tags.tracks().append(mTracks[i]->audioFile().trackTags(mTextCodec));
+        }
+    }
+
     mAlbumLoadedTags = tags;
 
     for (int i = 0; i < mTracks.count(); ++i) {
@@ -201,7 +224,10 @@ QList<TrackPtrList> Disc::tracksByFileTag() const
     }
 
     if (!mCue) {
-        res.append(TrackPtrList(mTracks));
+        for (Track *track : mTracks) {
+            res.append(TrackPtrList());
+            res.last().append(track);
+        }
         return res;
     }
 
@@ -283,18 +309,29 @@ QStringList Disc::audioFilePaths() const
  **************************************/
 void Disc::setAudioFile(const InputAudioFile &file, int fileNum)
 {
+    assert(mCue != nullptr);
     if (!mCue) {
-        assert(fileNum == 0);
-        mAudioFile = file;
-
-        Track *track = new Track(this, mTracks.count());
-        track->setAudioFile(mAudioFile);
-        track->mCueIndex00 = CueIndex("00:00:00", mAudioFile.filePath().toLocal8Bit());
-        track->mCueIndex01 = CueIndex("00:00:00", mAudioFile.filePath().toLocal8Bit());
-        mTracks.append(track);
-
         return;
     }
+
+    // if (!mCue) {
+    //     assert(fileNum == 0);
+    //     mAudioFile = file;
+
+    //     Track *track = new Track(this, mTracks.count());
+    //     track->setAudioFile(mAudioFile);
+    //     track->mCueIndex00 = CueIndex("00:00:00", mAudioFile.filePath().toLocal8Bit());
+    //     track->mCueIndex01 = CueIndex("00:00:00", mAudioFile.filePath().toLocal8Bit());
+    //     if (fileNum < 0) {
+    //         mTracks.insert(0);
+    //     }
+    //     mTracks.append(track);
+
+    //     updateLoadedTags();
+    //     Project::instance()->emitLayoutChanged();
+
+    //     return;
+    // }
 
     QList<TrackPtrList> tracksList = tracksByFileTag();
     if (fileNum >= tracksList.count()) {
@@ -305,6 +342,49 @@ void Disc::setAudioFile(const InputAudioFile &file, int fileNum)
     for (Track *track : tracks) {
         track->setAudioFile(file);
     }
+}
+
+/**************************************
+ *
+ **************************************/
+void Disc::addTrack(const InputAudioFile &file)
+{
+    assert(mCue == nullptr);
+    if (mCue) {
+        return;
+    }
+
+    mAudioFile = file;
+
+    Track *track = new Track(this, mTracks.count());
+    track->setAudioFile(mAudioFile);
+    track->mCueIndex00 = CueIndex("00:00:00", mAudioFile.filePath().toLocal8Bit());
+    track->mCueIndex01 = CueIndex("00:00:00", mAudioFile.filePath().toLocal8Bit());
+
+    qDebug() << "@@@ ========================================";
+
+    int num = file.trackTags(TextCodecUtf8()).trackNum();
+    int n   = 0;
+    for (const Track *t : mTracks) {
+        qDebug() << "@@@  *" << num << t->trackNumTag();
+        if (num > t->trackNumTag()) {
+            n++;
+            continue;
+        }
+        // break;
+    }
+    qDebug() << "@@@ RES:" << n;
+    qDebug() << "@@@ ========================================";
+
+    if (n < mTracks.count()) {
+        mTracks.insert(n, track);
+    }
+    else {
+        mTracks.append(track);
+    }
+
+    updateLoadedTags();
+    Project::instance()->emitLayoutChanged();
 }
 
 /**************************************
@@ -366,13 +446,7 @@ void Disc::setCodecName(const QString &codecName)
         mTextCodec = TextCodecUtf8();
     }
 
-    if (mCue) {
-        updateLoadedTags(mCue->decode(mTextCodec));
-    }
-    else {
-        updateLoadedTags(mAudioFile.tags(mTextCodec));
-    }
-
+    updateLoadedTags();
     Project::instance()->emitDiscChanged(this);
 }
 
@@ -484,26 +558,15 @@ TagsId Disc::currentTagSet() const
  **************************************/
 void Disc::activateTagSet(const QString &uri)
 {
-    Tags newTags;
-
-    if (mCue && uri == mCue->tagsId().uri) {
-        mInternetTagsIndex = -1;
-        newTags            = mCue->decode(mTextCodec);
-    }
-    else if (uri == mAudioFile.tagsId().uri) {
-        newTags = mAudioFile.tags(mTextCodec);
-    }
-    else {
-        for (int i = 0; i < mInternetTags.count(); ++i) {
-            if (uri == mInternetTags.at(i).tagsId().uri) {
-                mInternetTagsIndex = i;
-                newTags            = mInternetTags[mInternetTagsIndex];
-                break;
-            }
+    mInternetTagsIndex = -1;
+    for (int i = 0; i < mInternetTags.count(); ++i) {
+        if (uri == mInternetTags.at(i).tagsId().uri) {
+            mInternetTagsIndex = i;
+            break;
         }
     }
 
-    updateLoadedTags(newTags);
+    updateLoadedTags();
     resetUserTags();
     Project::instance()->emitLayoutChanged();
 }

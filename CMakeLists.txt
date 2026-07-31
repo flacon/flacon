@@ -97,6 +97,7 @@ set(HEADERS
     project.h
     settings.h
     inputaudiofile.h
+    inputaudiofiletags.h
     scanner.h
     patternexpander.h
     profiles.h
@@ -132,6 +133,7 @@ set(SOURCES
     project.cpp
     settings.cpp
     inputaudiofile.cpp
+    inputaudiofiletags.cpp
     scanner.cpp
     patternexpander.cpp
     profiles.cpp
