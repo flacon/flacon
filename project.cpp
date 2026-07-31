@@ -138,39 +138,69 @@ bool Project::discExists(const QString &cueUri)
 /************************************************
 
  ************************************************/
-Disc *Project::addAudioFile(const QString &fileName) noexcept(false)
+Disc *Project::addFile(const QString &fileName, bool isOptional) noexcept(false)
 {
-    QFileInfo file = QFileInfo(fileName);
+    return addFile(QFileInfo(fileName), isOptional);
+}
 
+/************************************************
+
+ ************************************************/
+Disc *Project::addFile(const QFileInfo &file, bool isOptional) noexcept(false)
+{
+    return (file.size() > 102400) ? addAudioFile(file, isOptional) : addCueFile(file, isOptional);
+}
+
+/************************************************
+
+ ************************************************/
+Disc *Project::addAudioFile(const QString &fileName, bool isOptional) noexcept(false)
+{
+    return addAudioFile(QFileInfo(fileName), isOptional);
+}
+
+/************************************************
+
+ ************************************************/
+Disc *Project::addAudioFile(const QFileInfo &file, bool isOptional) noexcept(false)
+{
     for (int i = 0; i < count(); ++i) {
         if (disc(i)->audioFilePaths().contains(file.canonicalFilePath())) {
             return nullptr;
         }
     }
 
-    InputAudioFile audio(QFileInfo(fileName).absoluteFilePath());
+    InputAudioFile audio(file.absoluteFilePath());
     if (!audio.isValid()) {
         throw FlaconError(audio.errorString());
     }
 
     AudioFileMatcher matcher;
     matcher.matchForAudio(file.filePath());
+    InputAudioFileList audioFiles = matcher.audioFiles();
 
-    Disc *disk = new Disc();
-    disk->setCue(matcher.cue());
-    disk->setAudioFiles(matcher.audioFiles());
-    disk->searchCoverImage();
-    addDisc(disk);
-    return disk;
+    if (!isOptional && !matcher.audioFiles().contains(audio)) {
+        audioFiles.insert(0, audio);
+    }
+
+    return addDisc(matcher.cue(), audioFiles);
 }
 
 /************************************************
 
  ************************************************/
-Disc *Project::addCueFile(const QString &fileName)
+Disc *Project::addCueFile(const QString &fileName, bool isOptional)
+{
+    return addCueFile(QFileInfo(fileName), isOptional);
+}
+
+/************************************************
+
+ ************************************************/
+Disc *Project::addCueFile(const QFileInfo &file, bool isOptional)
 {
     try {
-        Cue cue(fileName);
+        Cue cue(file.absoluteFilePath());
 
         if (discExists(cue.filePath())) {
             return nullptr;
@@ -179,19 +209,43 @@ Disc *Project::addCueFile(const QString &fileName)
         AudioFileMatcher matcher;
         matcher.matchForCue(cue);
 
-        Disc *disc = new Disc();
-        disc->setCue(matcher.cue());
-        disc->setAudioFiles(matcher.audioFiles());
-        disc->searchCoverImage();
-        addDisc(disc);
-        emit layoutChanged();
-        return disc;
+        if (!isOptional && matcher.cue().isEmpty()) {
+            return addDisc(cue, matcher.audioFiles());
+        }
+
+        return addDisc(matcher.cue(), matcher.audioFiles());
     }
     catch (FlaconError &err) {
         emit layoutChanged();
         qWarning() << err.what();
         throw err;
     }
+}
+
+/************************************************
+
+ ************************************************/
+Disc *Project::addDisc(const Cue cue, const InputAudioFileList audioFiles)
+{
+    Disc *disc = new Disc();
+
+    if (!cue.isEmpty()) {
+        disc->setCue(cue);
+    }
+
+    if (!audioFiles.isEmpty()) {
+        disc->setAudioFiles(audioFiles);
+    }
+
+    if (disc->isEmpty()) {
+        delete disc;
+        return nullptr;
+    }
+
+    disc->searchCoverImage();
+    addDisc(disc);
+    emit layoutChanged();
+    return disc;
 }
 
 /************************************************

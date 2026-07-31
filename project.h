@@ -58,9 +58,16 @@ public:
 
     bool discExists(const QString &cueUri);
 
-    void  clear();
-    Disc *addAudioFile(const QString &fileName) noexcept(false);
-    Disc *addCueFile(const QString &fileName);
+    void clear();
+
+    Disc *addFile(const QString &fileName, bool isOptional = false) noexcept(false);
+    Disc *addFile(const QFileInfo &file, bool isOptional = false) noexcept(false);
+
+    Disc *addAudioFile(const QString &fileName, bool isOptional = false) noexcept(false);
+    Disc *addAudioFile(const QFileInfo &file, bool isOptional = false) noexcept(false);
+
+    Disc *addCueFile(const QString &fileName, bool isOptional = false);
+    Disc *addCueFile(const QFileInfo &file, bool isOptional = false);
 
     Profile *profile() { return mProfile; }
     bool     selectProfile(const QString &profileId);
@@ -87,6 +94,8 @@ private:
     Validator     mValidator;
     Profile      *mProfile = nullptr;
     Profiles      mProfiles;
+
+    Disc *addDisc(const Cue cue, const InputAudioFileList audioFiles);
 };
 
 #endif // PROJECT_H
