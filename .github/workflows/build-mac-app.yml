@@ -109,18 +109,10 @@ jobs:
         tar xvf Flacon-${{env.ARCH}}.tar -C ${{env.ARCH}}
 
 
-    - name: Install tools
-      shell: bash
-      run: |
-        git clone https://github.com/flacon/flacon.third-party.git ${HOME}/flacon.third-party
-        mkdir -p ${HOME}/bin/
-        cp ${HOME}/flacon.third-party/bin/* ${HOME}/bin/
-
-
     - name: Create universal application
       shell: bash
       run: |
-        lipo-app x86_64/Flacon.app arm64/Flacon.app Flacon.app
+        "${{github.workspace}}/.github/workflows/lipo-app" x86_64/Flacon.app arm64/Flacon.app Flacon.app
 
 
     - name: Check external programs
@@ -132,7 +124,7 @@ jobs:
       shell: bash
       working-directory: ${{github.workspace}}
       run: |
-        ${HOME}/bin/macdeploy.py check-libs Flacon.app
+        "${{github.workspace}}/.github/workflows/macdeploy.py" check-libs Flacon.app
 
 
     - name: Sign application

@@ -1,0 +1,60 @@
+on:
+  workflow_call:
+    inputs:
+      arch:
+        required: true
+        type: string
+      osx_target:
+        required: true
+        type: string
+
+env:
+  PREFIX: "${{ github.workspace }}/build/usr"
+  HOMEBREW_NO_ENV_HINTS: "1"
+  HOMEBREW_NO_REQUIRE_TAP_TRUST: "1"
+
+jobs:
+  faac:
+    runs-on: macos-latest
+
+    steps:
+
+    ##################################
+    #
+    - name: prepare
+      run: |
+        export
+
+        brew install \
+          meson
+
+    ##################################
+    #
+    - name: build
+      shell: bash
+      env:
+        VERSION: "2.0"
+
+      run: |
+        git clone --depth 1 https://github.com/knik0/faac.git --branch "faac-${{ env.VERSION }}" faac || true
+        cd faac
+        meson setup build \
+          --prefix="${{ env.PREFIX }}" \
+          --buildtype=release \
+          --default-library=static \
+          -Dc_args="-arch ${{ inputs.arch }} -mmacosx-version-min=${{ inputs.osx_target }}" \
+          -Dcpp_args="-arch ${{ inputs.arch }} -mmacosx-version-min=${{ inputs.osx_target }}" \
+          -Dc_link_args="-arch ${{ inputs.arch }}"
+
+        ninja -C build
+        ninja -C build install
+
+
+    ##################################
+    #
+    - name: Upload artifact
+      uses: actions/upload-artifact@v7
+      with:
+        name: ext-${{ github.job }}-${{ inputs.arch }}
+        path: |
+          ${{ env.PREFIX }}/bin/faac

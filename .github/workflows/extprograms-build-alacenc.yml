@@ -1,0 +1,54 @@
+on:
+  workflow_call:
+    inputs:
+      arch:
+        required: true
+        type: string
+      osx_target:
+        required: true
+        type: string
+env:
+  PREFIX:           ${{ github.workspace }}/build/usr
+
+jobs:
+  alacenc:
+    runs-on: macos-latest
+
+    steps:
+
+    ##################################
+    #
+    - name: prepare
+      run: |
+        export
+
+
+    ##################################
+    #
+    - name: build
+      shell: bash
+      env:
+        VERSION:  "0.4.1"
+
+      run: |
+        git clone --depth 1 https://github.com/flacon/alacenc.git --branch v${{env.VERSION}} alacenc || true
+        cd alacenc
+        cmake \
+        -DCMAKE_INSTALL_PREFIX="${{env.PREFIX}}" \
+        -DCMAKE_OSX_ARCHITECTURES=${{ inputs.arch }} \
+        -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+        -DCMAKE_BUILD_TYPE=Release \
+        .
+
+        make -j$(nproc)
+        make install
+
+
+    ##################################
+    #
+    - name: Upload artifact
+      uses: actions/upload-artifact@v7
+      with:
+        name: ext-${{ github.job }}-${{ inputs.arch }}
+        path: |
+          ${{ env.PREFIX }}/bin/alacenc

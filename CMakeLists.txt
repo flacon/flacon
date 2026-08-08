@@ -322,7 +322,6 @@ add_custom_command(TARGET ${PROJECT_NAME}
     COMMAND gzip -c -n ${CMAKE_CURRENT_BINARY_DIR}/flacon.1 > ${CMAKE_CURRENT_BINARY_DIR}/flacon.1.gz
 )
 
-string(REPLACE "/lib/cmake/Qt5Core" "" QT_DIR "${Qt5Core_DIR}")
 
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
     set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "Flacon")
@@ -332,25 +331,41 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
     install(FILES   ${CMAKE_CURRENT_BINARY_DIR}/Info.plist  DESTINATION Flacon.app/Contents)
     install(FILES   images/mainicon/Flacon.icns             DESTINATION Flacon.app/Contents/Resources)
 
+    get_target_property(QT_COCOA_PLUGIN Qt6::QCocoaIntegrationPlugin LOCATION)
+    get_filename_component(QT_PLUGINS_DIR "${QT_COCOA_PLUGIN}/../../" ABSOLUTE)
+
     set(QT_PLUGINS
-        "bearer/libqgenericbearer.dylib"
-        "iconengines/libqsvgicon.dylib"
-        "imageformats/libqgif.dylib"
-        "imageformats/libqicns.dylib"
-        "imageformats/libqico.dylib"
-        "imageformats/libqjpeg.dylib"
         "platforms/libqcocoa.dylib"
         "styles/libqmacstyle.dylib"
+
+        "iconengines/libqsvgicon.dylib"
+        "imageformats/libqgif.dylib"
+        "imageformats/libqico.dylib"
+        "imageformats/libqjpeg.dylib"
+        "imageformats/libqsvg.dylib"
+
+        "tls/libqsecuretransportbackend.dylib"
+        "tls/libqopensslbackend.dylib"
+        "tls/libqcertonlybackend.dylib"
     )
 
     foreach(plugin ${QT_PLUGINS})
-        get_filename_component(dest_dir "Flacon.app/Contents/PlugIns/${plugin}" DIRECTORY)
-        install(FILES "${QT_DIR}/plugins/${plugin}" DESTINATION "${dest_dir}")
+        get_filename_component(plugin_dir "${plugin}" DIRECTORY)
+        set(full_plugin_path "${QT_PLUGINS_DIR}/${plugin}")
+
+        install(FILES "${full_plugin_path}" DESTINATION "Flacon.app/Contents/PlugIns/${plugin_dir}")
     endforeach()
 
 
     set(BUNDLE_DIR "${CMAKE_BINARY_DIR}/Flacon.app")
-    set(DIRS ${CMAKE_PREFIX_PATH} $ENV{HOME}/Library/Frameworks)
+
+    set(BUNDLE_DIRS "")
+    foreach(prefix ${CMAKE_PREFIX_PATH})
+        list(APPEND BUNDLE_DIRS "${prefix}" "${prefix}/lib")
+    endforeach()
+    list(APPEND BUNDLE_DIRS "$ENV{HOME}/Library/Frameworks")
+
+    set(DIRS ${BUNDLE_DIRS})
     configure_file(cmake/macdelopy.cmake.in "${CMAKE_BINARY_DIR}/macdelopy.cmake" @ONLY)
     install(SCRIPT "${CMAKE_BINARY_DIR}/macdelopy.cmake")
 

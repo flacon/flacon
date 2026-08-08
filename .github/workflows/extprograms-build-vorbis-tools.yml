@@ -1,0 +1,118 @@
+on:
+  workflow_call:
+    inputs:
+      arch:
+        required: true
+        type: string
+      osx_target:
+        required: true
+        type: string
+
+env:
+  PREFIX: "${{ github.workspace }}/build/usr"
+
+jobs:
+  vorbis-tools:
+    runs-on: macos-latest
+
+    steps:
+
+    ##################################
+    #
+    - name: prepare
+      run: |
+        if [ "${{ inputs.arch }}" = "x86_64" ]; then
+          export "HOST=x86_64-apple-darwin"
+        elif [ "${{ inputs.arch }}" = "arm64" ]; then
+          export "HOST=aarch64-apple-darwin"
+        fi
+        echo "HOST=${HOST}" >> $GITHUB_ENV
+
+        export
+
+
+    ##################################
+    #
+    - name: Build libogg
+      shell: bash
+      env:
+        VERSION: "1.3.5"
+
+      run: |
+        mkdir -p libogg
+        curl -sSL https://downloads.xiph.org/releases/ogg/libogg-${{env.VERSION}}.tar.gz | tar xz --strip-components=1 -C libogg
+        cd libogg
+
+        ./configure \
+          --host="${{ env.HOST }}" \
+          --prefix="${{ env.PREFIX }}" \
+          --enable-static \
+          --disable-shared \
+          CFLAGS="-arch ${{ inputs.arch }} -mmacosx-version-min=${{ inputs.osx_target }}" \
+          LDFLAGS="-arch ${{ inputs.arch }}"
+
+        make -j$(sysctl -n hw.ncpu)
+        make install
+
+    ##################################
+    #
+    - name: Build libvorbis
+      shell: bash
+      env:
+        VERSION: "1.3.7"
+      run: |
+        mkdir -p libvorbis
+        curl -sSL https://downloads.xiph.org/releases/vorbis/libvorbis-${{ env.VERSION }}.tar.gz | tar xz --strip-components=1 -C libvorbis
+        cd libvorbis
+
+        sed -i '' 's/-force_cpusubtype_ALL//g' configure
+
+        ./configure \
+          --host="${{ env.HOST }}" \
+          --prefix="${{ env.PREFIX }}" \
+          --enable-static \
+          --disable-shared \
+          --disable-oggtest \
+          PKG_CONFIG_PATH="${{ env.PREFIX }}/lib/pkgconfig" \
+          CPPFLAGS="-I${{ env.PREFIX }}/include" \
+          CFLAGS="-arch ${{ inputs.arch }} -mmacosx-version-min=${{ inputs.osx_target }}" \
+          LDFLAGS="-L${{ env.PREFIX }}/lib -arch ${{ inputs.arch }}"
+
+        make -j$(sysctl -n hw.ncpu)
+        make install
+
+    ##################################
+    #
+    - name: Build vorbis-tools (oggenc)
+      shell: bash
+      env:
+        VERSION: "1.4.3"
+      run: |
+        mkdir -p vorbis-tools
+        curl -sSL https://downloads.xiph.org/releases/vorbis/vorbis-tools-${{env.VERSION}}.tar.gz | tar xz --strip-components=1 -C vorbis-tools
+        cd vorbis-tools
+
+        ./configure \
+          --host="${{ env.HOST }}" \
+          --prefix="${{ env.PREFIX }}" \
+          --enable-static \
+          --disable-shared \
+          --disable-oggtest \
+          --disable-vorbistest \
+          PKG_CONFIG_PATH="${{ env.PREFIX }}/lib/pkgconfig" \
+          CPPFLAGS="-I${{ env.PREFIX }}/include" \
+          CFLAGS="-arch ${{ inputs.arch }} -mmacosx-version-min=${{ inputs.osx_target }} -Wno-implicit-function-declaration" \
+          LDFLAGS="-L${{ env.PREFIX }}/lib -arch ${{ inputs.arch }}"
+
+        make -j$(sysctl -n hw.ncpu)
+        make install
+
+
+    ##################################
+    #
+    - name: Upload artifact
+      uses: actions/upload-artifact@v7
+      with:
+        name: ext-${{ github.job }}-${{ inputs.arch }}
+        path: |
+          ${{ env.PREFIX }}/bin/oggenc
