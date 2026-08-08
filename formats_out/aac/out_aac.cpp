@@ -76,10 +76,10 @@ QStringList OutFormat_Aac::encoderArgs(const Profile &profile, const QString &ou
     args << "-w"; // Wrap  AAC  data  in  an MP4 container.
 
     // Quality settings .........................................
-    if (profile.encoderValue("UseQuality").toBool())
-        args << "-q" << profile.encoderValue("Quality").toString();
+    if (profile.encoderValues()->value("UseQuality").toBool())
+        args << "-q" << profile.encoderValues()->value("Quality").toString();
     else
-        args << "-b" << profile.encoderValue("Bitrate").toString();
+        args << "-b" << profile.encoderValues()->value("Bitrate").toString();
 
     args << "-o" << outFile;
     args << "-";

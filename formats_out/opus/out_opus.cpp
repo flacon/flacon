@@ -77,14 +77,14 @@ QStringList OutFormat_Opus::encoderArgs(const Profile &profile, const QString &o
 
     args << "--quiet";
 
-    QString type = profile.encoderValue(BITRATE_TYPE_KEY).toString();
+    QString type = profile.encoderValues()->value(BITRATE_TYPE_KEY).toString();
     if (type == "VBR")
         args << "--vbr";
 
     if (type == "CVBR")
         args << "--cvbr";
 
-    args << "--bitrate" << profile.encoderValue(BITRATE_KEY).toString();
+    args << "--bitrate" << profile.encoderValues()->value(BITRATE_KEY).toString();
 
     // Files ....................................................
     args << "-";

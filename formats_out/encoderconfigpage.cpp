@@ -126,7 +126,7 @@ void EncoderConfigPage::fillBitrateComboBox(QComboBox *comboBox, const QList<int
 void EncoderConfigPage::loadWidget(const Profile &profile, const QString &key, QSlider *widget) const
 {
     bool ok;
-    int  value = profile.encoderValue(key).toInt(&ok);
+    int  value = profile.encoderValues()->value(key).toInt(&ok);
     if (ok)
         widget->setValue(value);
 }
@@ -136,7 +136,7 @@ void EncoderConfigPage::loadWidget(const Profile &profile, const QString &key, Q
  ************************************************/
 void EncoderConfigPage::saveWidget(Profile *profile, const QString &key, const QSlider *widget)
 {
-    profile->setEncoderValue(key, widget->value());
+    profile->encoderValues()->setValue(key, widget->value());
 }
 
 /************************************************
@@ -144,7 +144,7 @@ void EncoderConfigPage::saveWidget(Profile *profile, const QString &key, const Q
  ************************************************/
 void EncoderConfigPage::loadWidget(const Profile &profile, const QString &key, QLineEdit *widget) const
 {
-    widget->setText(profile.encoderValue(key).toString());
+    widget->setText(profile.encoderValues()->value(key).toString());
 }
 
 /************************************************
@@ -152,7 +152,7 @@ void EncoderConfigPage::loadWidget(const Profile &profile, const QString &key, Q
  ************************************************/
 void EncoderConfigPage::saveWidget(Profile *profile, const QString &key, const QLineEdit *widget)
 {
-    profile->setEncoderValue(key, widget->text());
+    profile->encoderValues()->setValue(key, widget->text());
 }
 
 /************************************************
@@ -161,7 +161,7 @@ void EncoderConfigPage::saveWidget(Profile *profile, const QString &key, const Q
 void EncoderConfigPage::loadWidget(const Profile &profile, const QString &key, QCheckBox *widget) const
 {
     bool wasChecked = widget->isChecked();
-    widget->setChecked(profile.encoderValue(key).toBool());
+    widget->setChecked(profile.encoderValues()->value(key).toBool());
 
     if (widget->isChecked() == wasChecked) {
         emit widget->toggled(widget->isChecked());
@@ -174,7 +174,7 @@ void EncoderConfigPage::loadWidget(const Profile &profile, const QString &key, Q
  ************************************************/
 void EncoderConfigPage::saveWidget(Profile *profile, const QString &key, const QCheckBox *widget)
 {
-    profile->setEncoderValue(key, widget->isChecked());
+    profile->encoderValues()->setValue(key, widget->isChecked());
 }
 
 /************************************************
@@ -183,7 +183,7 @@ void EncoderConfigPage::saveWidget(Profile *profile, const QString &key, const Q
 void EncoderConfigPage::loadWidget(const Profile &profile, const QString &key, QGroupBox *widget) const
 {
     bool wasChecked = widget->isChecked();
-    widget->setChecked(profile.encoderValue(key).toBool());
+    widget->setChecked(profile.encoderValues()->value(key).toBool());
 
     if (widget->isChecked() == wasChecked) {
         emit widget->toggled(widget->isChecked());
@@ -196,7 +196,7 @@ void EncoderConfigPage::loadWidget(const Profile &profile, const QString &key, Q
  ************************************************/
 void EncoderConfigPage::saveWidget(Profile *profile, const QString &key, const QGroupBox *widget)
 {
-    profile->setEncoderValue(key, widget->isChecked());
+    profile->encoderValues()->setValue(key, widget->isChecked());
 }
 
 /************************************************
@@ -205,7 +205,7 @@ void EncoderConfigPage::saveWidget(Profile *profile, const QString &key, const Q
 void EncoderConfigPage::loadWidget(const Profile &profile, const QString &key, QSpinBox *widget) const
 {
     bool ok;
-    int  value = profile.encoderValue(key).toInt(&ok);
+    int  value = profile.encoderValues()->value(key).toInt(&ok);
     if (ok)
         widget->setValue(value);
 }
@@ -215,7 +215,7 @@ void EncoderConfigPage::loadWidget(const Profile &profile, const QString &key, Q
  ************************************************/
 void EncoderConfigPage::saveWidget(Profile *profile, const QString &key, const QSpinBox *widget)
 {
-    profile->setEncoderValue(key, widget->value());
+    profile->encoderValues()->setValue(key, widget->value());
 }
 
 /************************************************
@@ -224,7 +224,7 @@ void EncoderConfigPage::saveWidget(Profile *profile, const QString &key, const Q
 void EncoderConfigPage::loadWidget(const Profile &profile, const QString &key, QDoubleSpinBox *widget) const
 {
     bool ok;
-    int  value = profile.encoderValue(key).toDouble(&ok);
+    int  value = profile.encoderValues()->value(key).toDouble(&ok);
     if (ok)
         widget->setValue(value);
 }
@@ -234,7 +234,7 @@ void EncoderConfigPage::loadWidget(const Profile &profile, const QString &key, Q
  ************************************************/
 void EncoderConfigPage::saveWidget(Profile *profile, const QString &key, const QDoubleSpinBox *widget)
 {
-    profile->setEncoderValue(key, widget->value());
+    profile->encoderValues()->setValue(key, widget->value());
 }
 
 /************************************************
@@ -243,10 +243,10 @@ void EncoderConfigPage::saveWidget(Profile *profile, const QString &key, const Q
 void EncoderConfigPage::loadWidget(const Profile &profile, const QString &key, QComboBox *widget) const
 {
     if (widget->isEditable()) {
-        widget->setEditText(profile.encoderValue(key).toString());
+        widget->setEditText(profile.encoderValues()->value(key).toString());
     }
     else {
-        int n = qMax(0, widget->findData(profile.encoderValue(key)));
+        int n = qMax(0, widget->findData(profile.encoderValues()->value(key)));
         widget->setCurrentIndex(n);
     }
 }
@@ -257,11 +257,11 @@ void EncoderConfigPage::loadWidget(const Profile &profile, const QString &key, Q
 void EncoderConfigPage::saveWidget(Profile *profile, const QString &key, const QComboBox *widget)
 {
     if (widget->isEditable()) {
-        profile->setEncoderValue(key, widget->currentText());
+        profile->encoderValues()->setValue(key, widget->currentText());
     }
     else {
         QVariant data = widget->itemData(widget->currentIndex());
-        profile->setEncoderValue(key, data);
+        profile->encoderValues()->setValue(key, data);
     }
 }
 

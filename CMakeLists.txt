@@ -97,6 +97,7 @@ set(HEADERS
     project.h
     settings.h
     inputaudiofile.h
+    inputaudiofiletags.h
     scanner.h
     patternexpander.h
     profiles.h
@@ -132,6 +133,7 @@ set(SOURCES
     project.cpp
     settings.cpp
     inputaudiofile.cpp
+    inputaudiofiletags.cpp
     scanner.cpp
     patternexpander.cpp
     profiles.cpp
@@ -318,7 +320,7 @@ configure_file(
     @ONLY
 )
 
-add_custom_command(TARGET ${PROJECT_NAME}
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
     COMMAND gzip -c -n ${CMAKE_CURRENT_BINARY_DIR}/flacon.1 > ${CMAKE_CURRENT_BINARY_DIR}/flacon.1.gz
 )
 

@@ -10,6 +10,10 @@
     PregapType = AddToFirst
     CoverFile/Mode=Scale
     CoverFile/Size=600
+    CoverEmbed/Mode=Disable
+    CoverEmbed/Size=1024
+    EmbedCue=false
+    ReplayGain=Disable
     Tags\WriteSingleDiskNum=false
     Encoder/Bitrate=128
     Encoder/Quality=90
@@ -31,6 +35,7 @@
     CoverFile/Size=600
     CoverEmbed/Mode=Scale
     CoverEmbed/Size=800
+    EmbedCue=false
     Tags\WriteSingleDiskNum=true
     Encoder/Compression=3
 
@@ -45,9 +50,12 @@
     SampleRate=44100
     CreateCue=false
     CueFileName = MP3 %a %d - %A.cue
-    PregapType = Disable
+    PregapType = Skip
     CoverFile/Mode=Scale
     CoverFile/Size=600
+    CoverEmbed/Mode=Disable
+    CoverEmbed/Size=1024
+    EmbedCue=false
     Tags\WriteSingleDiskNum=false
     Encoder/Preset=vbrStandard
     Encoder/Bitrate=320
@@ -60,6 +68,7 @@
     Format = OGG
     Name = Ogg
     ReplayGain=Disable
+    Encoder/UseQuality=false
     BitsPerSample=16
     SampleRate=44100
     CreateCue=true
@@ -67,8 +76,10 @@
     PregapType = AddToFirst
     CoverFile/Mode=Scale
     CoverFile/Size=600
+    CoverEmbed/Mode=Disable
+    CoverEmbed/Size=1024
+    EmbedCue=false
     Tags\WriteSingleDiskNum=true
-    Encoder/UseQuality=false
     Encoder/MaxBitrate=1
     Encoder/MinBitrate=1
     Encoder/NormBitrate=1
@@ -87,6 +98,10 @@
     PregapType = Extract
     CoverFile/Mode=Scale
     CoverFile/Size=600
+    CoverEmbed/Mode=Disable
+    CoverEmbed/Size=1024
+    EmbedCue=false
+    ReplayGain=Disable
     Tags\WriteSingleDiskNum=false
     Encoder/Bitrate=128
     Encoder/BitrateType=VBR
@@ -102,9 +117,12 @@
     SampleRate=44100
     CreateCue=true
     CueFileName = WV %a %d - %A.cue
-    PregapType = Disable
+    PregapType = Skip
     CoverFile/Mode=Scale
     CoverFile/Size=600
+    CoverEmbed/Mode=Disable
+    CoverEmbed/Size=1024
+    EmbedCue=false
     Tags\WriteSingleDiskNum=true
     Encoder/Compression=2
 
@@ -121,6 +139,8 @@
     PregapType = AddToFirst
     CoverFile/Mode=Scale
     CoverFile/Size=600
+    EmbedCue=false
+    ReplayGain=Disable
     Tags\WriteSingleDiskNum=false
 
 
@@ -129,7 +149,7 @@
     OutPattern=flac-%a/{%y - }%A/%n - %t
     Format=ALAC
     Name=Alac
-    ReplayGain=None
+    ReplayGain=Disable
     BitsPerSample=16
     SampleRate=44100
     CreateCue=true
@@ -139,5 +159,6 @@
     CoverFile/Size=600
     CoverEmbed/Mode=Scale
     CoverEmbed/Size=800
+    EmbedCue=false
     Tags\WriteSingleDiskNum=true
     Encoder/Compression=1

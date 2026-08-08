@@ -137,6 +137,9 @@ private:
 
     bool showExitDialog();
     void setStartButtonAction(QAction *action);
+
+    void addFile(const QString &file);
+    void scanDir(const QString &dir);
 };
 
 #endif // MAINWINDOW_H

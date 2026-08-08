@@ -74,7 +74,7 @@ QStringList OutFormat_Alac::encoderArgs(const Profile &profile, const QString &o
     args << "--quiet"; // Produce no output to stderr
 
     // Settings .................................................
-    if (profile.encoderValue("Compression").toInt() == 0) {
+    if (profile.encoderValues()->value("Compression").toInt() == 0) {
         args << QStringLiteral("--fast");
     }
 

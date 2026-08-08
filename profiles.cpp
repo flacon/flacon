@@ -25,7 +25,6 @@
 
 #include "profiles.h"
 #include "formats_out/outformat.h"
-#include <QSettings>
 #include <QStandardPaths>
 #include <QDir>
 #include <QDebug>
@@ -60,7 +59,7 @@ Profile::Profile(const QString &formatId, const QString &id)
     mId   = !id.isEmpty() ? id : mFormat->id();
     mName = mFormat->name();
 
-    mEncoderValues = mFormat->defaultParameters();
+    mEncoderValues = EncoderValues(mFormat->defaultParameters());
 }
 
 /************************************************
@@ -184,30 +183,6 @@ void Profile::setEmbedCoverOptions(const CoverOptions &value)
 /************************************************
  *
  ************************************************/
-void Profile::setEncoderValues(const EncoderValues &values)
-{
-    mEncoderValues = values;
-}
-
-/************************************************
- *
- ************************************************/
-QVariant Profile::encoderValue(const QString &key, const QVariant &defaultValue) const
-{
-    return mEncoderValues.value(key, defaultValue);
-}
-
-/************************************************
- *
- ************************************************/
-void Profile::setEncoderValue(const QString &key, const QVariant &value)
-{
-    mEncoderValues[key] = value;
-}
-
-/************************************************
- *
- ************************************************/
 void Profile::setTmpDir(const QString &value)
 {
     globalParams().mTmpDir = value;
@@ -306,12 +281,15 @@ QString Profile::calcResultFilePath(const Track *track) const
         return "";
     }
 
-    QString cueFile = track->disc()->cue().filePath();
-    if (cueFile.startsWith(Cue::EMBEDED_PREFIX)) {
-        cueFile = cueFile.mid(strlen(Cue::EMBEDED_PREFIX));
+    if (track->disc()->cue()) {
+        QString cueFile = track->disc()->cue()->filePath();
+        if (cueFile.startsWith(Cue::EMBEDED_PREFIX)) {
+            cueFile = cueFile.mid(strlen(Cue::EMBEDED_PREFIX));
+        }
+        return QFileInfo(cueFile).dir().absolutePath() + QDir::separator() + dir;
     }
 
-    return QFileInfo(cueFile).dir().absolutePath() + QDir::separator() + dir;
+    return "";
 }
 
 /************************************************
@@ -407,4 +385,46 @@ Profiles createStandardProfiles()
         res << Profile(format->id());
     }
     return res;
+}
+
+/************************************************
+ * EncoderValues
+ ************************************************/
+Profile::EncoderValues::EncoderValues(const QHash<QString, QVariant> &defaults) :
+    mDefaults(defaults)
+{
+}
+
+/************************************************
+ *
+ ************************************************/
+QVariant Profile::EncoderValues::value(const QString &key) const
+{
+    return mValues.value(key, mDefaults.value(key));
+}
+
+/************************************************
+ *
+ ************************************************/
+void Profile::EncoderValues::setValue(const QString &key, const QVariant &value)
+{
+    mValues[key] = value;
+}
+
+/************************************************
+ *
+ ************************************************/
+QStringList Profile::EncoderValues::allKeys() const
+{
+    QStringList res = mDefaults.keys() + mValues.keys();
+    res.removeDuplicates();
+    return res;
+}
+
+/************************************************
+ *
+ ************************************************/
+QVariant Profile::EncoderValues::defaultValue(const QString &key) const
+{
+    return mDefaults.value(key);
 }

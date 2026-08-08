@@ -755,7 +755,7 @@ void MainWindow::openAddFileDialog()
     GuiSettings().setValue(SETTINGS_LASTDIR_KEY, QFileInfo(fileNames.last()).dir().path());
 
     foreach (const QString &fileName, fileNames) {
-        addFileOrDir(fileName);
+        addFile(fileName);
     }
 }
 
@@ -835,47 +835,13 @@ void MainWindow::downloadDiscInfo(Disc *disc)
  ************************************************/
 void MainWindow::addFileOrDir(const QString &fileName)
 {
-    bool isFirst   = true;
-    bool showError = false;
-    auto addFile   = [&](const QString &file) {
-        try {
-            QFileInfo fi = QFileInfo(file);
-            DiscList  discs;
-            if (fi.size() > 102400)
-                discs << Project::instance()->addAudioFile(file);
-            else
-                discs << Project::instance()->addCueFile(file);
-
-            if (!discs.isEmpty() && isFirst) {
-                isFirst = false;
-                this->trackView->selectDisc(discs.first());
-            }
-        }
-
-        catch (FlaconError &err) {
-            if (showError)
-                showErrorMessage(err.what());
-        }
-    };
-
-    QApplication::setOverrideCursor(Qt::WaitCursor);
     QFileInfo fi = QFileInfo(fileName);
-
     if (fi.isDir()) {
-        mScanner = new Scanner;
-        setControlsEnable();
-        showError = false;
-        connect(mScanner, &Scanner::found, addFile);
-        mScanner->start(fi.absoluteFilePath());
-        delete mScanner;
-        mScanner = nullptr;
-        setControlsEnable();
+        scanDir(fi.absoluteFilePath());
     }
     else {
-        showError = true;
-        addFile(fileName);
+        addFile(fi.absoluteFilePath());
     }
-    QApplication::restoreOverrideCursor();
 }
 
 /************************************************
@@ -907,7 +873,7 @@ void MainWindow::openScanDialog()
 
     if (!dir.isEmpty()) {
         settings.setValue(SETTINGS_LASTDIR_KEY, dir);
-        addFileOrDir(dir);
+        scanDir(dir);
     }
 }
 
@@ -1432,4 +1398,55 @@ void MainWindow::showErrors()
 void MainWindow::updateTotalProgress(double percent)
 {
     mTotalProgressLabel.setText(tr("%1% completed", "Status bar, progress text").arg(percent, 0, 'f', 0));
+}
+
+/************************************************
+ *
+ ************************************************/
+void MainWindow::addFile(const QString &file)
+{
+    try {
+        Disk *disc = Project::instance()->addFile(file, false);
+        if (disc) {
+            this->trackView->selectDisc(disc);
+        }
+    }
+    catch (FlaconError &err) {
+        showErrorMessage(err.what());
+    }
+}
+
+/************************************************
+ *
+ ************************************************/
+void MainWindow::scanDir(const QString &dir)
+{
+    bool isFirst = true;
+    auto addFile = [&](const QString file) {
+        QFileInfo fi = QFileInfo(file);
+
+        try {
+            Disc *disc = Project::instance()->addFile(file, false);
+
+            if (disc && isFirst) {
+                isFirst = false;
+                this->trackView->selectDisc(disc);
+            }
+        }
+        catch (FlaconError &err) {
+        }
+    };
+
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+
+    mScanner = new Scanner;
+    setControlsEnable();
+
+    connect(mScanner, &Scanner::found, addFile);
+    mScanner->start(dir);
+    delete mScanner;
+    mScanner = nullptr;
+
+    setControlsEnable();
+    QApplication::restoreOverrideCursor();
 }
