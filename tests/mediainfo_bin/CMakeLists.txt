@@ -9,6 +9,14 @@ set(ZENLIB_STATIC        "ZenLib/Project/GNU/Library/.libs/libzen.a")
 set(MEDIAINFOLIB_STATIC  "MediaInfoLib/Project/GNU/Library/.libs/libmediainfo.a")
 set(MEDIAINFO_OUT        "${CMAKE_BINARY_DIR}/tests/mediainfo")
 
+# set(BUILD_PATH "/opt/homebrew/bin:/opt/homebrew/opt/m4/bin:/usr/bin:/bin:/usr/sbin:/sbin")
+
+set(PATH $ENV{PATH})
+
+if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+    set(PATH "${PATH}:/opt/homebrew/bin")
+endif()
+
 # ==========================================
 # 1. ZenLib
 # ==========================================
@@ -21,7 +29,7 @@ ExternalProject_Add(
 
     EXCLUDE_FROM_ALL  ON
     BUILD_IN_SOURCE   ON
-    CONFIGURE_COMMAND cd "Project/GNU/Library" && ./autogen.sh > /dev/null 2>&1 && ./configure --quiet --enable-static --disable-shared --enable-silent-rules
+    CONFIGURE_COMMAND export PATH=${PATH} && cd Project/GNU/Library && ./autogen.sh 2>&1 && ./configure --quiet --enable-static --disable-shared --enable-silent-rules
     BUILD_COMMAND     cd "Project/GNU/Library" && make --silent -j4
     INSTALL_COMMAND   ""
 
@@ -41,7 +49,7 @@ ExternalProject_Add(
 
     EXCLUDE_FROM_ALL  ON
     BUILD_IN_SOURCE   ON
-    CONFIGURE_COMMAND cd "Project/GNU/Library" && ./autogen.sh > /dev/null 2>&1 && ./configure --quiet --enable-static --enable-silent-rules
+    CONFIGURE_COMMAND export PATH=${PATH} && cd Project/GNU/Library && ./autogen.sh 2>&1 && ./configure --quiet --enable-static --enable-silent-rules --enable-staticlibs
     BUILD_COMMAND     cd "Project/GNU/Library" && make --silent -j4
     INSTALL_COMMAND   ""
 
@@ -62,7 +70,7 @@ ExternalProject_Add(
 
     EXCLUDE_FROM_ALL  ON
     BUILD_IN_SOURCE   ON
-    CONFIGURE_COMMAND cd "Project/GNU/CLI" && ./autogen.sh > /dev/null 2>&1 && ./configure --quiet --enable-staticlibs --enable-silent-rules
+    CONFIGURE_COMMAND export PATH=${PATH} && cd "Project/GNU/CLI" && ./autogen.sh 2>&1 && ./configure --quiet --enable-staticlibs --enable-silent-rules --enable-staticlibs
     BUILD_COMMAND     cd "Project/GNU/CLI" && make --silent -j4
 
     INSTALL_COMMAND   ${CMAKE_COMMAND} -E copy "Project/GNU/CLI/mediainfo" "${MEDIAINFO_OUT}"
