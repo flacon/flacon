@@ -94,5 +94,7 @@
 	<key>SUFeedURL</key>
         <string>@MAC_UPDATE_URL@</string>
 
+	<key>UIDesignRequiresCompatibility</key>
+	<true/>
 </dict>
 </plist>
