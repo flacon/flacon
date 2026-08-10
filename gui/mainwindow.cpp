@@ -129,10 +129,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(tagAlbumEdit, &QLineEdit::textEdited, this, &MainWindow::setAlbumTag);
 
     connect(tagStartNumEdit, &MultiValuesSpinBox::editingFinished, this, &MainWindow::setStartTrackNum);
-    connect(tagStartNumEdit, qOverload<int>(&MultiValuesSpinBox::valueChanged),
-            this, &MainWindow::setStartTrackNum);
-
-    connect(trackView, &TrackView::customContextMenuRequested, this, &MainWindow::trackViewMenu);
+    connect(tagStartNumEdit, qOverload<int>(&MultiValuesSpinBox::valueChanged), this, &MainWindow::setStartTrackNum);
 
     connect(editTagsButton, &QPushButton::clicked, this, &MainWindow::openEditTagsDialog);
 
@@ -173,11 +170,11 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(codepageCombo, qOverload<int>(&QComboBox::currentIndexChanged),
             this, &MainWindow::setCodePage);
 
-    connect(trackView, &TrackView::selectCueFile, this, &MainWindow::setCueForDisc);
-    connect(trackView, &TrackView::selectAudioFile, this, &MainWindow::setAudioForDisc);
-    connect(trackView, &TrackView::showAudioMenu, this, &MainWindow::showDiskAudioFileMenu);
-    connect(trackView, &TrackView::selectCoverImage, this, &MainWindow::setCoverImage);
-    connect(trackView, &TrackView::downloadInfo, this, &MainWindow::downloadDiscInfo);
+    connect(trackView, &TrackView::selectCueFileRequiredd, this, &MainWindow::setCueForDisc);
+    connect(trackView, &TrackView::selectAudioFileRequiredd, this, &MainWindow::setAudioForDisc);
+    connect(trackView, &TrackView::editTagsRequiredd, this, &MainWindow::openEditDiskTagsDialog);
+    connect(trackView, &TrackView::selectCoverImageRequired, this, &MainWindow::setCoverImage);
+    connect(trackView, &TrackView::downloadInfoRequired, this, &MainWindow::downloadDiscInfo);
 
     connect(trackView->model(), &TrackViewModel::layoutChanged, this, &MainWindow::refreshEdits);
     connect(trackView->model(), &TrackViewModel::layoutChanged, this, &MainWindow::setControlsEnable);
@@ -916,86 +913,20 @@ void MainWindow::checkUpdates()
 /************************************************
  *
  ************************************************/
-void MainWindow::fillAudioMenu(Disc *disc, QMenu &menu)
-{
-    QAction *act;
-    if (disc->audioFiles().count() == 1) {
-        act = new QAction(tr("Select another audio file…", "context menu"), &menu);
-        connect(act, &QAction::triggered, this, [this, disc]() { this->setAudioForDisc(disc, 0); });
-        menu.addAction(act);
-    }
-    else {
-        int n = 0;
-        for (TrackPtrList &l : disc->tracksByFileTag()) {
-            QString msg;
-            if (l.count() == 1) {
-                msg = tr("Select another audio file for %1 track…", "context menu. Placeholders are track number")
-                              .arg(l.first()->trackNumTag());
-            }
-            else {
-                msg = tr("Select another audio file for tracks %1 to %2…", "context menu. Placeholders are track numbers")
-                              .arg(l.first()->trackNumTag())
-                              .arg(l.last()->trackNumTag());
-            }
-
-            act = new QAction(msg, &menu);
-            connect(act, &QAction::triggered, this, [this, disc, n]() { this->setAudioForDisc(disc, n); });
-            menu.addAction(act);
-
-            n++;
-        }
-    }
-}
-
-/************************************************
- *
- ************************************************/
-void MainWindow::trackViewMenu(const QPoint &pos)
-{
-    QModelIndex index = trackView->indexAt(pos);
-    if (!index.isValid())
-        return;
-
-    Disc *disc = trackView->model()->discByIndex(index);
-    if (!disc)
-        return;
-
-    QMenu    menu;
-    QAction *act = new QAction(tr("Edit tags…", "context menu"), &menu);
-    connect(act, &QAction::triggered, this, &MainWindow::openEditTagsDialog);
-    menu.addAction(act);
-
-    menu.addSeparator();
-    fillAudioMenu(disc, menu);
-
-    act = new QAction(tr("Select another CUE file…", "context menu"), &menu);
-    connect(act, &QAction::triggered, this, [this, disc]() { this->setCueForDisc(disc); });
-    menu.addAction(act);
-
-    act = new QAction(tr("Get data from Internet", "context menu"), &menu);
-    act->setEnabled(DataProvider::canDownload(*disc));
-    connect(act, &QAction::triggered, this, [this, disc]() { this->downloadDiscInfo(disc); });
-    menu.addAction(act);
-
-    menu.exec(trackView->viewport()->mapToGlobal(pos));
-}
-
-/************************************************
- *
- ************************************************/
-void MainWindow::showDiskAudioFileMenu(Disc *disc, const QPoint &pos)
-{
-    QMenu menu;
-    fillAudioMenu(disc, menu);
-    menu.exec(trackView->viewport()->mapToGlobal(pos));
-}
-
-/************************************************
- *
- ************************************************/
 void MainWindow::openEditTagsDialog()
 {
     TagEditor editor(trackView->selectedTracks(), this);
+    editor.exec();
+    refreshEdits();
+    setControlsEnable();
+}
+
+/************************************************
+ *
+ ************************************************/
+void MainWindow::openEditDiskTagsDialog(Disc *disk)
+{
+    TagEditor editor(disk->tracks(), this);
     editor.exec();
     refreshEdits();
     setControlsEnable();

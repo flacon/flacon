@@ -74,23 +74,30 @@ public slots:
     void updateAll();
 
 signals:
-    void selectCueFile(Disc *disc);
-    void showAudioMenu(Disc *disc, const QPoint &pos);
-    void selectAudioFile(Disc *disc, int audioFileNum);
-    void selectCoverImage(Disc *disc);
-    void downloadInfo(Disc *disc);
+    void selectCueFileRequiredd(Disc *disc);
+    void selectAudioFileRequiredd(Disc *disk, int audioFileNum);
+    void editTagsRequiredd(Disc *disk);
+    void selectCoverImageRequired(Disc *disc);
+    void downloadInfoRequired(Disc *disc);
 
 protected:
     void drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const override;
     void keyPressEvent(QKeyEvent *event) override;
 
 private slots:
-    void headerContextMenu(const QPoint &pos);
     void showHideColumn(bool show);
-
-    void showTrackMenu(const QModelIndex &index, const QRect &buttonRect);
-    void audioButtonClicked(const QModelIndex &index, int audioFileNum, const QRect &buttonRect);
     void emitSelectCoverImage(const QModelIndex &index);
+
+private:
+    void showHeaderContextMenu(const QPoint &pos);
+    void showContextMenu(const QPoint &pos);
+
+    void processTracksButtonClicked(const QModelIndex &index, const QRect &buttonRect);
+    void fillCueTracksMenu(Disc *disk, QMenu *menu);
+    void fillNoneCueTracksMenu(Disc *disk, QMenu *menu);
+
+    void processAudioButtonClicked(const QModelIndex &index, int audioFileNum, const QRect &buttonRect);
+    void fillCueAudioMenu(Disc *disk, QMenu *menu);
 
 private:
     TrackViewModel    *mModel;

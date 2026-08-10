@@ -96,9 +96,8 @@ private slots:
     void openLogViewDialog();
     void checkUpdates();
 
-    void trackViewMenu(const QPoint &pos);
-    void showDiskAudioFileMenu(Disc *disc, const QPoint &pos);
     void openEditTagsDialog();
+    void openEditDiskTagsDialog(Disc *disk);
 
     void removeSourceFiles();
 
@@ -129,7 +128,6 @@ private:
     QIcon loadMainIcon();
 
     void showErrorMessage(const QString &message) override;
-    void fillAudioMenu(Disc *disc, QMenu &menu);
 
     void showWarnings();
     void showErrors();

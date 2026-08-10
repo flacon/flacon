@@ -42,7 +42,7 @@
 #include <QDebug>
 
 static constexpr int SELECTION_MARK       = 4;
-static constexpr int MARGIN               = 6;
+static constexpr int MARGIN               = 12;
 static constexpr int TOP_PADDING          = 16;
 static constexpr int BOTTOM_PADDING       = 2;
 static constexpr int IMG_HEIGHT           = 60;
