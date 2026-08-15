@@ -32,8 +32,6 @@
 #include <QMap>
 #include <QVector>
 
-class Disc;
-class Track;
 class InputAudioFile;
 
 /**************************************

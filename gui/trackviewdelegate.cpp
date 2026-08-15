@@ -43,26 +43,26 @@
 
 static constexpr int SELECTION_MARK       = 4;
 static constexpr int MARGIN               = 12;
+static constexpr int PADDING              = 4;
 static constexpr int TOP_PADDING          = 16;
 static constexpr int BOTTOM_PADDING       = 2;
-static constexpr int IMG_HEIGHT           = 60;
+static constexpr int IMG_HEIGHT           = 80;
 static constexpr int MARK_HEIGHT          = 32;
 static constexpr int LINE_MARK_HEIGHT     = 22;
-static constexpr int BUTTON_SIZE          = 10;
-static constexpr int MAX_AUDIO_FILES_ROWS = 3;
+static constexpr int BUTTON_SIZE          = 16;
+static constexpr int MAX_AUDIO_FILES_ROWS = 2;
 
 struct TrackViewCacheItem
 {
     QRect trackBtn;
     QRect trackLbl;
 
-    QList<QRect> audioBtns;
-    QList<QRect> audioLbls;
+    QRect audioBtn;
+    QRect audioLbl;
 
     QRect markBtn;
     QRect coverRect;
-    bool  isWaiting     = false;
-    bool  audioShowMenu = false;
+    bool  isWaiting = false;
 };
 
 class TrackViewCache
@@ -129,8 +129,7 @@ TrackViewDelegate::TrackViewDelegate(TrackView *parent) :
     mCache(new TrackViewCache),
     mDownloadMovie(QSize(32, 32))
 {
-    mTrackBtnPix   = Pixmap("cue-button", BUTTON_SIZE, BUTTON_SIZE);
-    mAudioBtnPix   = Pixmap("audio-button", BUTTON_SIZE, BUTTON_SIZE);
+    mBtnPix        = Pixmap("pattern-button", BUTTON_SIZE, BUTTON_SIZE);
     mDiscErrorPix  = Pixmap("error", MARK_HEIGHT, MARK_HEIGHT);
     mDiscWarnPix   = Pixmap("warning", MARK_HEIGHT, MARK_HEIGHT);
     mTrackOkPix    = Pixmap("track-ok", LINE_MARK_HEIGHT, LINE_MARK_HEIGHT);
@@ -351,6 +350,9 @@ void TrackViewDelegate::paintTrack(QPainter *painter, const QStyleOptionViewItem
  ************************************************/
 void TrackViewDelegate::paintDisc(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
+    QStringList audioFiles      = index.data(TrackViewModel::RoleAudioFileName).toStringList();
+    int         audioLinesCount = audioFiles.count() > MAX_AUDIO_FILES_ROWS ? 1 : audioFiles.count();
+
     QRect paintRect = option.rect;
     paintRect.setLeft(0);
 
@@ -373,63 +375,42 @@ void TrackViewDelegate::paintDisc(QPainter *painter, const QStyleOptionViewItem 
     windowRect.adjust(0, titleRect.height() + 8, 0, 0);
 
     // Draw labels ...................................
-    QRect tmp        = windowRect;
-    QRect tLabelRect = drawLabel(tr("Tracks:"), tmp, painter);
-    tmp.adjust(0, tLabelRect.height() + 4, 0, 0);
+    QFontMetrics aLabelFm   = painter->fontMetrics();
+    QRect        aLabelRect = windowRect;
+    aLabelRect.setTop(aLabelRect.bottom() - aLabelFm.lineSpacing() * audioLinesCount);
+    aLabelRect = drawLabel(tr("Audio:"), aLabelRect, painter);
 
-    QRect aLabelRect = drawLabel(tr("Audio:"), tmp, painter);
-
-    windowRect.adjust(qMax(tLabelRect.width() + MARGIN, aLabelRect.width()), 0, 0, 0);
+    QRect tLabelRect = windowRect;
+    tLabelRect.setTop(aLabelRect.bottom() - aLabelRect.height() - aLabelFm.lineSpacing() - 5);
+    tLabelRect = drawLabel(tr("Tags:", "Disk item in disk table"), tLabelRect, painter);
+    windowRect.adjust(qMax(tLabelRect.width(), aLabelRect.width()) + PADDING, 0, 0, 0);
 
     // Draw files ....................................
-    tmp = windowRect;
+    QRect tmp = windowRect;
     tmp.setTop(tLabelRect.top());
     tmp.setHeight(tLabelRect.height());
     QRect tFileRect = drawFile(index.data(TrackViewModel::RoleTagSetTitle).toString(), tmp, painter);
     windowRect.setTop(aLabelRect.top());
 
-    QStringList audioFiles    = index.data(TrackViewModel::RoleAudioFileName).toStringList();
-    bool        showAudioMenu = audioFiles.count() > MAX_AUDIO_FILES_ROWS;
-    if (showAudioMenu) {
+    if (audioFiles.count() > MAX_AUDIO_FILES_ROWS) {
         audioFiles.clear();
         audioFiles << tr("Multiple files", "Disk preview, audio file placeholder");
     }
 
-    QList<QRect> aFileRects;
-    aFileRects.reserve(audioFiles.count());
-
-    tmp = windowRect;
-    tmp.setTop(aLabelRect.top());
-    tmp.setHeight(aLabelRect.height());
-
-    for (int i = 0; i < audioFiles.count(); ++i) {
-        QRect r = drawFile(audioFiles[i], tmp, painter);
-        aFileRects << r;
-        tmp.moveTop(r.bottom());
-    }
-
-    int left = tFileRect.right();
-    for (const QRect &r : aFileRects) {
-        left = qMax(left, r.right());
-    }
+    QRect aFilesRect = QRect(windowRect);
+    aFilesRect       = drawFile(audioFiles.join("\n"), aFilesRect, painter);
 
     // Draw buttons ..................................
-    windowRect.setLeft(left + MARGIN);
+    QRect tButtonRect(
+            std::max(aFilesRect.right(), tFileRect.right()) + PADDING,
+            tFileRect.top(),
+            tFileRect.height(),
+            tFileRect.height());
+    tButtonRect = drawButton(mBtnPix, tButtonRect, painter);
 
-    tmp = tFileRect;
-    tmp.setLeft(windowRect.left());
-    QRect tButtonRect = drawButton(mTrackBtnPix, tmp, painter);
-
-    QList<QRect> aButtonRects;
-    aFileRects.reserve(audioFiles.count());
-
-    for (int i = 0; i < audioFiles.count(); ++i) {
-        tmp = aFileRects[i];
-        tmp.moveLeft(windowRect.left());
-        QRect r = drawButton(showAudioMenu ? mTrackBtnPix : mAudioBtnPix, tmp, painter);
-        aButtonRects << r;
-        tmp.moveTop(r.bottom());
-    }
+    QRect aButtonRect = tButtonRect;
+    aButtonRect.moveTop(aFilesRect.top());
+    aButtonRect = drawButton(mBtnPix, aButtonRect, painter);
 
     // Draw download and warning mark ................
     bool  isWaiting = index.data(TrackViewModel::RoleIsDownloads).toBool();
@@ -445,14 +426,13 @@ void TrackViewDelegate::paintDisc(QPainter *painter, const QStyleOptionViewItem 
     // Fill cache ......................................
     TrackViewCacheItem *cache = mCache->item(index);
 
-    cache->coverRect     = imgRect;
-    cache->trackBtn      = tButtonRect;
-    cache->trackLbl      = tFileRect;
-    cache->audioBtns     = aButtonRects;
-    cache->audioLbls     = aFileRects;
-    cache->audioShowMenu = showAudioMenu;
-    cache->isWaiting     = isWaiting;
-    cache->markBtn       = markRect;
+    cache->coverRect = imgRect;
+    cache->trackBtn  = tButtonRect;
+    cache->trackLbl  = tFileRect;
+    cache->audioBtn  = aButtonRect;
+    cache->audioLbl  = aFilesRect;
+    cache->isWaiting = isWaiting;
+    cache->markBtn   = markRect;
 
     mDownloadMovie.setRunning(qobject_cast<TrackViewModel *>(mTrackView->model())->downloading());
 }
@@ -578,9 +558,9 @@ QSize TrackViewDelegate::sizeHint(const QStyleOptionViewItem &option, const QMod
     QSize res = QStyledItemDelegate::sizeHint(option, index);
 
     if (!index.parent().isValid()) {
-        if (!mDiscHeightHint) {
-            int h = 8;
 
+        if (!mDiscHeightHint) {
+            int   h         = 8;
             QFont titleFont = this->titleFont(option.font);
             QFont filesFont = this->filesFont(option.font);
             h += QFontMetrics(titleFont).height();
@@ -591,16 +571,6 @@ QSize TrackViewDelegate::sizeHint(const QStyleOptionViewItem &option, const QMod
         res.rheight() = mDiscHeightHint;
         if (index.row()) {
             res.rheight() += TOP_PADDING;
-        }
-
-        int n = index.data(TrackViewModel::RoleAudioFileName).toStringList().count();
-        if (n > 1 && n <= MAX_AUDIO_FILES_ROWS) {
-            if (!mAudioFileHeight) {
-                QFont filesFont  = this->filesFont(option.font);
-                mAudioFileHeight = QFontMetrics(filesFont).height();
-            }
-
-            res.rheight() += mAudioFileHeight * (n - 1);
         }
 
         if (index.column() == 0) {
@@ -632,42 +602,23 @@ bool TrackViewDelegate::editorEvent(QEvent *event, QAbstractItemModel *model, co
 
         TrackViewCacheItem *cache = mCache->item(index);
 
-        if (cache->trackLbl.contains(m)) {
-            if (event->type() == QEvent::MouseButtonRelease)
-                emit trackButtonClicked(index, cache->trackBtn);
-
+        if (cache->trackLbl.contains(m) || cache->trackBtn.contains(m)) {
+            emit trackButtonClicked(index, cache->trackBtn);
             return true;
         }
 
-        if (cache->trackBtn.contains(m)) {
-            if (event->type() == QEvent::MouseButtonRelease)
-                emit trackButtonClicked(index, cache->trackBtn);
-
+        if (cache->audioLbl.contains(m) || cache->audioBtn.contains(m)) {
+            emit audioButtonClicked(index, cache->audioBtn);
             return true;
-        }
-
-        for (int i = 0; i < cache->audioBtns.count(); ++i) {
-            if (cache->audioBtns[i].contains(m)) {
-                if (cache->audioShowMenu) {
-                    emit audioButtonClicked(index, -1, cache->audioBtns[i]);
-                }
-                else {
-                    emit audioButtonClicked(index, i, cache->audioBtns[i]);
-                }
-                return true;
-            }
         }
 
         if (cache->markBtn.contains(m)) {
-            if (event->type() == QEvent::MouseButtonRelease)
-                emit markClicked(index, cache->markBtn);
-
+            emit markClicked(index, cache->markBtn);
             return true;
         }
 
         if (cache->coverRect.contains(m)) {
-            if (event->type() == QEvent::MouseButtonRelease)
-                emit coverImageClicked(index);
+            emit coverImageClicked(index);
 
             return true;
         }
@@ -683,12 +634,14 @@ bool TrackViewDelegate::editorEvent(QEvent *event, QAbstractItemModel *model, co
  ************************************************/
 bool TrackViewDelegate::helpEvent(QHelpEvent *event, QAbstractItemView *view, const QStyleOptionViewItem &option, const QModelIndex &index)
 {
-    if (index.parent().isValid())
+    if (index.parent().isValid()) {
         return QStyledItemDelegate::helpEvent(event, view, option, index);
+    }
 
     TrackViewCacheItem *cache = mCache->item(index);
-    if (cache == nullptr)
+    if (cache == nullptr) {
         return true;
+    }
 
     QPoint m = event->pos() - option.rect.topLeft();
 
@@ -700,25 +653,10 @@ bool TrackViewDelegate::helpEvent(QHelpEvent *event, QAbstractItemView *view, co
         return true;
     }
 
-    if (cache->audioShowMenu) {
-        QStringList toolTip;
-        for (const QString &f : view->model()->data(index, TrackViewModel::RoleAudioFilePath).toStringList()) {
-            toolTip << "<li>" << f << "</li>";
-        }
-        QToolTip::showText(event->globalPos(), toolTip.join("\n"), view);
-    }
-    else {
-        for (int i = 0; i < cache->audioBtns.count(); ++i) {
-
-            if (cache->audioBtns[i].contains(m) || cache->audioLbls[i].contains(m)) {
-                QStringList files = view->model()->data(index, TrackViewModel::RoleAudioFilePath).toStringList();
-
-                if (i < files.count()) {
-                    QToolTip::showText(event->globalPos(), files[i], view);
-                }
-                return true;
-            }
-        }
+    if (cache->audioLbl.contains(m)) {
+        QString toolTip = view->model()->data(index, TrackViewModel::RoleAudioFilePath).toStringList().join("\n");
+        QToolTip::showText(event->globalPos(), toolTip, view);
+        return true;
     }
 
     if (cache->markBtn.contains(m)) {

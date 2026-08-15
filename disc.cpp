@@ -348,8 +348,29 @@ void Disc::addTrack(const InputAudioFile &file)
         mTracks.append(track);
     }
 
+    for (int i = 0; i < mTracks.size(); ++i) {
+        mTracks[i]->setIndex(i);
+    }
+
     updateLoadedTags();
     Project::instance()->emitLayoutChanged();
+}
+
+/**************************************
+ *
+ **************************************/
+void Disc::removeTrack(int trackIndex)
+{
+    assert(mCue == nullptr);
+    if (mCue) {
+        return;
+    }
+
+    mTracks.remove(trackIndex);
+
+    for (int i = 0; i < mTracks.size(); ++i) {
+        mTracks[i]->setIndex(i);
+    }
 }
 
 /**************************************

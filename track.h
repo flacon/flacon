@@ -69,6 +69,9 @@ public:
 
     bool preEmphased() const;
 
+protected:
+    void setIndex(int value) { mIndex = value; }
+
 public:
     // Tags
     QString tag(TrackTags::TagId tagId) const;

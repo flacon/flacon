@@ -69,6 +69,7 @@ public:
     bool        isMultiAudio() const;
 
     void addTrack(const InputAudioFile &file);
+    void removeTrack(int trackIndex);
 
     int  startTrackNum() const;
     void setStartTrackNum(TrackNum value);

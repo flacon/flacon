@@ -28,6 +28,7 @@
 #include <QDebug>
 #include <QMetaEnum>
 #include "inputaudiofile.h"
+#include "disc.h"
 
 #define GET(FIELD) !mUserTags.FIELD().isNull() ? mUserTags.FIELD() : mLoadedTags.FIELD();
 
@@ -37,7 +38,7 @@
 TagsId::TagsId(const InputAudioFile &audio)
 {
     uri   = audio.filePath();
-    title = "";
+    title = Disc::tr("Embedded tags");
 }
 
 /**************************************

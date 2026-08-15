@@ -74,11 +74,12 @@ public slots:
     void updateAll();
 
 signals:
-    void selectCueFileRequiredd(Disc *disc);
+    void selectCueFileRequiredd(Disc *disk);
     void selectAudioFileRequiredd(Disc *disk, int audioFileNum);
     void editTagsRequiredd(Disc *disk);
-    void selectCoverImageRequired(Disc *disc);
-    void downloadInfoRequired(Disc *disc);
+    void selectCoverImageRequired(Disc *disk);
+    void downloadInfoRequired(Disc *disk);
+    void removeTrackRequired(Disc *disk, int trackIndex);
 
 protected:
     void drawBranches(QPainter *painter, const QRect &rect, const QModelIndex &index) const override;
@@ -93,11 +94,10 @@ private:
     void showContextMenu(const QPoint &pos);
 
     void processTracksButtonClicked(const QModelIndex &index, const QRect &buttonRect);
-    void fillCueTracksMenu(Disc *disk, QMenu *menu);
-    void fillNoneCueTracksMenu(Disc *disk, QMenu *menu);
+    void fillTracksMenu(Disc *disk, QMenu *menu);
 
-    void processAudioButtonClicked(const QModelIndex &index, int audioFileNum, const QRect &buttonRect);
-    void fillCueAudioMenu(Disc *disk, QMenu *menu);
+    void processAudioButtonClicked(const QModelIndex &index, const QRect &buttonRect);
+    void fillAudioMenu(Disc *disk, QMenu *menu);
 
 private:
     TrackViewModel    *mModel;

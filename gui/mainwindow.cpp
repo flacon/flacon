@@ -175,6 +175,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(trackView, &TrackView::editTagsRequiredd, this, &MainWindow::openEditDiskTagsDialog);
     connect(trackView, &TrackView::selectCoverImageRequired, this, &MainWindow::setCoverImage);
     connect(trackView, &TrackView::downloadInfoRequired, this, &MainWindow::downloadDiscInfo);
+    connect(trackView, &TrackView::removeTrackRequired, this, &MainWindow::removeTrackFromDisk);
 
     connect(trackView->model(), &TrackViewModel::layoutChanged, this, &MainWindow::refreshEdits);
     connect(trackView->model(), &TrackViewModel::layoutChanged, this, &MainWindow::setControlsEnable);
@@ -791,7 +792,12 @@ void MainWindow::setAudioForDisc(Disc *disc, int audioFileNum)
         return;
     }
 
-    disc->setAudioFile(audio, audioFileNum);
+    if (disc->cue()) {
+        disc->setAudioFile(audio, audioFileNum);
+    }
+    else {
+        disc->addTrack(audio);
+    }
     trackView->update(*disc);
     Project::instance()->validator().revalidate();
 }
@@ -846,9 +852,17 @@ void MainWindow::addFileOrDir(const QString &fileName)
  ************************************************/
 void MainWindow::removeDiscs()
 {
-    QList<Disc *> discs = trackView->selectedDiscs();
-    if (discs.isEmpty())
+    removeDisks(trackView->selectedDiscs());
+}
+
+/************************************************
+
+ ************************************************/
+void MainWindow::removeDisks(const QList<Disc *> &discs)
+{
+    if (discs.isEmpty()) {
         return;
+    }
 
     int n = Project::instance()->indexOf(discs.first());
     Project::instance()->removeDisc(discs);
@@ -857,6 +871,24 @@ void MainWindow::removeDiscs()
     if (n > -1)
         trackView->selectDisc(Project::instance()->disc(n));
 
+    setControlsEnable();
+}
+
+/************************************************
+
+ ************************************************/
+void MainWindow::removeTrackFromDisk(Disc *disk, int trackIndex)
+{
+    if (disk->cue()) {
+        return;
+    }
+
+    if (disk->tracks().size() == 1) {
+        removeDisks({ disk });
+    }
+
+    trackView->updateAll();
+    disk->removeTrack(trackIndex);
     setControlsEnable();
 }
 

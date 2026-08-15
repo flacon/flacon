@@ -78,6 +78,8 @@ private slots:
     void downloadDiscInfo(Disc *disc);
 
     void removeDiscs();
+    void removeDisks(const QList<Disc *> &discs);
+    void removeTrackFromDisk(Disc *disk, int trackIndex);
 
     void setGenreTag();
     void setDateTag();
