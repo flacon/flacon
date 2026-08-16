@@ -91,6 +91,10 @@ private:
     QRect drawLabel(const QString &text, const QRect &rect, QPainter *painter) const;
     QRect drawFile(const QString &text, const QRect &rect, QPainter *painter) const;
     void  drawSelectionMark(QPainter *painter, const QRect &rect) const;
+
+    void drawBadge(bool hasCue, QPainter *painter, const QRect &rect) const;
+
+    QColor selectionColor() const;
 };
 
 #endif // TRACKVIEWDELEGATE_H

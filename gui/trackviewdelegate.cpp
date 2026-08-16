@@ -160,21 +160,28 @@ TrackViewDelegate::~TrackViewDelegate()
 /************************************************
 
  ************************************************/
-void TrackViewDelegate::drawSelectionMark(QPainter *painter, const QRect &rect) const
+QColor TrackViewDelegate::selectionColor() const
 {
-    QRect r = rect;
-    r.setWidth(SELECTION_MARK);
 #ifdef Q_OS_MAC
     QColor hi = mTrackView->palette().color(QPalette::Active, QPalette::Highlight);
     int    h, s, l;
     hi.getHsv(&h, &s, &l);
     s        = int(s * 0.6);
     QColor c = QColor::fromHsv(h, s, l);
-    c.setAlphaF(0.75);
-    painter->fillRect(r, c);
+    return c;
 #else
-    painter->fillRect(r, mTrackView->palette().highlight().color());
+    return mTrackView->palette().highlight().color();
 #endif
+}
+
+/************************************************
+
+ ************************************************/
+void TrackViewDelegate::drawSelectionMark(QPainter *painter, const QRect &rect) const
+{
+    QRect r = rect;
+    r.setWidth(SELECTION_MARK);
+    painter->fillRect(r, selectionColor());
 }
 
 /************************************************
@@ -374,6 +381,12 @@ void TrackViewDelegate::paintDisc(QPainter *painter, const QStyleOptionViewItem 
     QRect titleRect = drawTitle(painter, windowRect, index);
     windowRect.adjust(0, titleRect.height() + 8, 0, 0);
 
+    // Draw badge ....................................
+    bool  hasCue    = !index.data(TrackViewModel::RoleCueFilePath).toString().isEmpty();
+    QRect badgeRect = titleRect;
+    badgeRect.moveLeft(badgeRect.right() + 8);
+    drawBadge(hasCue, painter, badgeRect);
+
     // Draw labels ...................................
     QFontMetrics aLabelFm   = painter->fontMetrics();
     QRect        aLabelRect = windowRect;
@@ -548,6 +561,58 @@ QRect TrackViewDelegate::drawFile(const QString &text, const QRect &rect, QPaint
         res.setWidth(0);
     }
     return res;
+}
+
+/************************************************
+
+ ************************************************/
+void TrackViewDelegate::drawBadge(bool hasCue, QPainter *painter, const QRect &rect) const
+{
+    if (!rect.isValid() || rect.isEmpty()) {
+        return;
+    }
+
+    if (hasCue) {
+        return;
+    }
+
+    QString text = tr("TRACKS", "Tree view bage text");
+
+    painter->save();
+    painter->setRenderHint(QPainter::Antialiasing, true);
+
+    QFont font = painter->font();
+    font.setPointSize(qMax(6, font.pointSize() - 2));
+    font.setBold(true);
+    painter->setFont(font);
+
+    QFontMetrics fm(font);
+    int          paddingH = 8;
+    int          paddingV = 2;
+
+    int width  = fm.horizontalAdvance(text) + (paddingH * 2);
+    int height = fm.height() + (paddingV * 2);
+
+    QRectF badgeRect(0, 0, width, height);
+    badgeRect.moveCenter(rect.center());
+    badgeRect.moveLeft(rect.left());
+    badgeRect.adjust(0, 1, 0, 1);
+
+    QColor bgColor = selectionColor();
+
+    QPen pen(bgColor, 1.5);
+    pen.setCosmetic(true);
+    painter->setPen(pen);
+    painter->setBrush(bgColor);
+
+    qreal radius = badgeRect.height() / 2.0;
+    painter->drawRoundedRect(badgeRect, radius, radius);
+
+    QColor textColor = Qt::white;
+    painter->setPen(textColor);
+    painter->drawText(badgeRect, Qt::AlignCenter, text);
+
+    painter->restore();
 }
 
 /************************************************
