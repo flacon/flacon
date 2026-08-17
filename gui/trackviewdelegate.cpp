@@ -322,7 +322,7 @@ void TrackViewDelegate::paintTrack(QPainter *painter, const QStyleOptionViewItem
         opt.progress = progress;
         opt.text     = QStringLiteral("%1 %2%").arg(txt).arg(opt.progress);
 
-        QApplication::style()->drawControl(QStyle::CE_ProgressBarContents, &opt, painter);
+        QApplication::style()->drawControl(QStyle::CE_ProgressBar, &opt, painter);
         QApplication::style()->drawControl(QStyle::CE_ProgressBarLabel, &opt, painter);
     }
     else {
