@@ -30,7 +30,12 @@
 #include <QString>
 #include <QList>
 #include <QExplicitlySharedDataPointer>
-#include "converter/decoder.h"
+#include "textcodec.h"
+#include "tags.h"
+#include "inputaudiofiletags.h"
+extern "C" {
+#include "libavcodec/codec_id.h"
+}
 
 class InputAudioFile
 {
@@ -42,17 +47,18 @@ private:
         Data(const Data &other) = default;
 
     public:
-        QString   mFilePath;
-        QString   mFileName;
-        QString   mErrorString;
-        QString   mFormatName;
-        AVCodecID mFormatId      = AV_CODEC_ID_NONE;
-        quint32   mSampleRate    = 0;
-        int       mBitsPerSample = 0;
-        mSec      mDuration      = 0;
-        bool      mValid         = false;
-        bool      mCdQuality     = false;
-        uint      mChannelsCount = 0;
+        QString            mFilePath;
+        QString            mFileName;
+        QString            mErrorString;
+        QString            mFormatName;
+        AVCodecID          mFormatId      = AV_CODEC_ID_NONE;
+        quint32            mSampleRate    = 0;
+        int                mBitsPerSample = 0;
+        mSec               mDuration      = 0;
+        bool               mValid         = false;
+        bool               mCdQuality     = false;
+        uint               mChannelsCount = 0;
+        InputAudioFileTags mTags;
 
         void load(const QString &fileName);
     };
@@ -69,7 +75,6 @@ public:
 
     QString filePath() const { return mData->mFilePath; }
     QString fileName() const { return mData->mFileName; }
-    QString formatName() const { return mData->mFormatName; }
     QString errorString() const { return mData->mErrorString; }
 
     bool isNull() const { return mData->mFileName.isEmpty(); }
@@ -80,7 +85,13 @@ public:
     mSec duration() const { return mData->mDuration; }
     uint channelsCount() const { return mData->mChannelsCount; }
 
+    QString   formatName() const { return mData->mFormatName; }
+    AVCodecID formatId() const { return mData->mFormatId; }
+
     QByteArray readEmbeddedCue() const;
+
+    AlbumTags albumTags(const TextCodec &textCodec) const { return mData->mTags.albumTags(textCodec); }
+    TrackTags trackTags(const TextCodec &textCodec) const { return mData->mTags.trackTags(textCodec); }
 };
 
 using InputAudioFileList = QList<InputAudioFile>;

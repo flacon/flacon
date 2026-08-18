@@ -95,3 +95,5 @@ list(APPEND LIBRARIES ${YAML_CPP_LIBRARIES})
 
 target_link_libraries(${PROJECT_NAME} ${LIBRARIES} converter Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Test Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Network)
 add_test(${PROJECT_NAME} ${PROJECT_NAME})
+
+add_subdirectory(mediainfo_bin)

@@ -512,25 +512,25 @@ CBR módban beállítja az adott kimeneti bitrátát.
             <translation>Embed to audio files</translation>
         </message>
         <message>
-            <source>Insert &quot;Artist&quot;</source>
-            <translation>&quot;Előadó&quot; beszúrása</translation>
+            <source>Insert "Artist"</source>
+            <translation>"Előadó" beszúrása</translation>
         </message>
         <message>
-            <source>Insert &quot;Album title&quot;</source>
-            <translation>&quot;Albumcím&quot; beszúrása</translation>
+            <source>Insert "Album title"</source>
+            <translation>"Albumcím" beszúrása</translation>
         </message>
         <message>
-            <source>Insert &quot;Year&quot;</source>
-            <translation>&quot;Év&quot; beszúrása</translation>
+            <source>Insert "Year"</source>
+            <translation>"Év" beszúrása</translation>
         </message>
         <message>
-            <source>Insert &quot;Genre&quot;</source>
-            <translation>&quot;Műfaj&quot; beszúrása</translation>
+            <source>Insert "Genre"</source>
+            <translation>"Műfaj" beszúrása</translation>
         </message>
         <message>
-            <source>Use &quot;%1&quot;</source>
-            <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
-            <translation>&quot;%1&quot; használata</translation>
+            <source>Use "%1"</source>
+            <comment>Predefined CUE file name, string like 'Use "%a/%A/%n - %t.cue"'</comment>
+            <translation>"%1" használata</translation>
         </message>
         <message>
             <source>Extract to separate file</source>
@@ -601,9 +601,9 @@ Ez csak a fájl méretet befolyásolja. Minden beállítás veszteségmentes.</t
             <translation>CUE tags</translation>
         </message>
         <message>
-            <source>If the &quot;TITLE&quot; tag contains the artist's and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
+            <source>If the "TITLE" tag contains the artist's and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
             <extracomment>Checkbox tooltip on preferences dialog</extracomment>
-            <translation>If the &quot;TITLE&quot; tag contains the artist's and the track names combined by a separator character, the program will try to assign the appropriate tags.</translation>
+            <translation>If the "TITLE" tag contains the artist's and the track names combined by a separator character, the program will try to assign the appropriate tags.</translation>
         </message>
         <message>
             <source>Use heuristic definition of track performer</source>
@@ -681,11 +681,11 @@ Ez csak a fájl méretet befolyásolja. Minden beállítás veszteségmentes.</t
         <message>
             <source>You can browse to the destination directory. You can also input it manually.
 
-If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
-            <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
+If the path is left empty or starts with "." (dot), the result files will be placed in the same directory as the source.</source>
+            <comment>Main form tooltip for "Directory" edit</comment>
             <translation>Böngészni tudsz a célkönyvtárba. Manuálisan is beírhatod
 
-Ha az elérési útvonal üresen marad, vagy &quot;.&quot; (pont) lesz, az eredményfájlok ugyanabba a könyvtárba kerülnek, mint a forrás.</translation>
+Ha az elérési útvonal üresen marad, vagy "." (pont) lesz, az eredményfájlok ugyanabba a könyvtárba kerülnek, mint a forrás.</translation>
         </message>
         <message>
             <source>Pattern:</source>
@@ -697,7 +697,7 @@ Ha az elérési útvonal üresen marad, vagy &quot;.&quot; (pont) lesz, az eredm
         </message>
         <message>
             <source>Output format</source>
-            <comment>Main form tooltip for &quot;Format&quot; edit</comment>
+            <comment>Main form tooltip for "Format" edit</comment>
             <translation>Kimeneti formátum</translation>
         </message>
         <message>
@@ -950,7 +950,7 @@ Biztosan folytatni akarod?</translation>
         </message>
         <message>
             <source>%1 files</source>
-            <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
+            <comment>OpenFile dialog filter line, like "WAV files"</comment>
             <translation>%1 fájlok</translation>
         </message>
         <message>
@@ -960,7 +960,7 @@ Biztosan folytatni akarod?</translation>
         </message>
         <message>
             <source>All files</source>
-            <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
+            <comment>OpenFile dialog filter line like "All files"</comment>
             <translation>Minden fájl</translation>
         </message>
         <message>
@@ -974,13 +974,13 @@ Biztosan folytatni akarod?</translation>
             <translation>Audio-fájl kiválasztása</translation>
         </message>
         <message>
-            <source>&quot;%1&quot; was not set.</source>
+            <source>"%1" was not set.</source>
             <comment>Error message, %1 is an filename.</comment>
-            <translation>&quot;%1&quot; was not set.</translation>
+            <translation>"%1" was not set.</translation>
         </message>
         <message>
-            <source>Select directory</source>
-            <translation>Válassza ki a könyvtárat</translation>
+            <source>Add Folder</source>
+            <translation>Add Folder</translation>
         </message>
         <message>
             <source>Select another audio file…</source>
@@ -1018,9 +1018,9 @@ Biztosan folytatni akarod?</translation>
             <translation>The following files will be moved to the trash. Remove the following files?</translation>
         </message>
         <message>
-            <source>Disk %1 &quot;%2 - %3&quot;</source>
+            <source>Disk %1 "%2 - %3"</source>
             <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-            <translation>Disk %1 &quot;%2 - %3&quot;</translation>
+            <translation>Disk %1 "%2 - %3"</translation>
         </message>
         <message>
             <source>Disk %1</source>
@@ -1111,49 +1111,49 @@ Biztosan folytatni akarod?</translation>
     <context>
         <name>OutPatternButton</name>
         <message>
-            <source>Insert &quot;Track number&quot;</source>
-            <translation>&quot;Sávszám&quot; beszúrása</translation>
+            <source>Insert "Track number"</source>
+            <translation>"Sávszám" beszúrása</translation>
         </message>
         <message>
-            <source>Insert &quot;Total number of tracks&quot;</source>
-            <translation>&quot;Összesen sávszám&quot; beszúrása</translation>
+            <source>Insert "Total number of tracks"</source>
+            <translation>"Összesen sávszám" beszúrása</translation>
         </message>
         <message>
-            <source>Insert &quot;Album performer&quot;</source>
-            <translation>Insert &quot;Album performer&quot;</translation>
+            <source>Insert "Album performer"</source>
+            <translation>Insert "Album performer"</translation>
         </message>
         <message>
-            <source>Insert &quot;Album title&quot;</source>
-            <translation>&quot;Albumcím&quot; beszúrása</translation>
+            <source>Insert "Album title"</source>
+            <translation>"Albumcím" beszúrása</translation>
         </message>
         <message>
-            <source>Insert &quot;Track title&quot;</source>
-            <translation>&quot;Sávcím&quot; beszúrása</translation>
+            <source>Insert "Track title"</source>
+            <translation>"Sávcím" beszúrása</translation>
         </message>
         <message>
-            <source>Insert &quot;Year&quot;</source>
-            <translation>&quot;Év&quot; beszúrása</translation>
+            <source>Insert "Year"</source>
+            <translation>"Év" beszúrása</translation>
         </message>
         <message>
-            <source>Insert &quot;Genre&quot;</source>
-            <translation>&quot;Műfaj&quot; beszúrása</translation>
+            <source>Insert "Genre"</source>
+            <translation>"Műfaj" beszúrása</translation>
         </message>
         <message>
-            <source>Insert &quot;Disc number&quot;</source>
-            <translation>Insert &quot;Disc number&quot;</translation>
+            <source>Insert "Disc number"</source>
+            <translation>Insert "Disc number"</translation>
         </message>
         <message>
-            <source>Insert &quot;Total number of discs&quot;</source>
-            <translation>Insert &quot;Total number of discs&quot;</translation>
+            <source>Insert "Total number of discs"</source>
+            <translation>Insert "Total number of discs"</translation>
         </message>
         <message>
-            <source>Insert &quot;Catalog number&quot;</source>
-            <translation>Insert &quot;Catalog number&quot;</translation>
+            <source>Insert "Catalog number"</source>
+            <translation>Insert "Catalog number"</translation>
         </message>
         <message>
-            <source>Use &quot;%1&quot;</source>
-            <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
-            <translation>&quot;%1&quot; használata</translation>
+            <source>Use "%1"</source>
+            <comment>Predefined out file pattern, string like 'Use "%a/%A/%n - %t"'</comment>
+            <translation>"%1" használata</translation>
         </message>
     </context>
     <context>
@@ -1288,11 +1288,11 @@ Biztosan folytatni akarod?</translation>
         <message>
             <source>You can browse to the destination directory. You can also input it manually.
 
-If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
-            <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
+If the path is left empty or starts with "." (dot), the result files will be placed in the same directory as the source.</source>
+            <comment>Preferences form tooltip for "Directory" edit</comment>
             <translation>Böngészni tudsz a célkönyvtárba. Manuálisan is beírhatod
 
-Ha az elérési útvonal üresen marad, vagy &quot;.&quot; (pont) lesz, az eredményfájlok ugyanabba a könyvtárba kerülnek, mint a forrás.</translation>
+Ha az elérési útvonal üresen marad, vagy "." (pont) lesz, az eredményfájlok ugyanabba a könyvtárba kerülnek, mint a forrás.</translation>
         </message>
         <message>
             <source>Pattern:</source>
@@ -1430,9 +1430,9 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
             <translation>-</translation>
         </message>
         <message>
-            <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
+            <source>Are you sure you want to delete the profile "%1"?</source>
             <comment>Message box text</comment>
-            <translation>Are you sure you want to delete the profile &quot;%1&quot;?</translation>
+            <translation>Are you sure you want to delete the profile "%1"?</translation>
         </message>
         <message>
             <source>Delete the profile</source>
@@ -1495,12 +1495,12 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
             <translation>Nem lehet írni a CUE fájlt &lt;b&gt;%1&lt;/b&gt;:&lt;br&gt;%2</translation>
         </message>
         <message>
-            <source>I can't create directory &quot;%1&quot;.</source>
-            <translation>&quot;%1&quot; könyvtár nem hozható létre.</translation>
+            <source>I can't create directory "%1".</source>
+            <translation>"%1" könyvtár nem hozható létre.</translation>
         </message>
         <message>
-            <source>I can't write to directory &quot;%1&quot;.</source>
-            <translation>&quot;%1&quot; könyvtárba nem lehet írni.</translation>
+            <source>I can't write to directory "%1".</source>
+            <translation>"%1" könyvtárba nem lehet írni.</translation>
         </message>
         <message>
             <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. The CUE sheet has no FILE tag.</source>
@@ -1512,8 +1512,8 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
             <translation>Embedded on %1</translation>
         </message>
         <message>
-            <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-            <translation>&lt;b&gt;&quot;%1&quot;&lt;/b&gt; fájl nem létezik</translation>
+            <source>File &lt;b&gt;"%1"&lt;/b&gt; does not exist</source>
+            <translation>&lt;b&gt;"%1"&lt;/b&gt; fájl nem létezik</translation>
         </message>
         <message>
             <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</source>
@@ -1528,7 +1528,7 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
         <message>
             <source>you can't use 'ReplayGain' for files with sample rates above 48kHz. Metaflac doesn't support such files.</source>
             <comment>This string should begin with a lowercase letter. This is a part of the complex sentence.</comment>
-            <translation>Nem használhatsz &quot;ReplayGain&quot;-t olyan fájlok esetében, amelyek 48 kHz fölötti mintavételi gyakorisággal rendelkeznek. A Metaflac nem támogatja az ilyen fájlokat.</translation>
+            <translation>Nem használhatsz "ReplayGain"-t olyan fájlok esetében, amelyek 48 kHz fölötti mintavételi gyakorisággal rendelkeznek. A Metaflac nem támogatja az ilyen fájlokat.</translation>
         </message>
         <message>
             <source>Flacon</source>
@@ -1844,21 +1844,21 @@ Az album-nyereségelemzés használata megőrzi az albumon belüli hangerő elt�
             <translation>The same audio file is used for different tracks.</translation>
         </message>
         <message>
-            <source>Disk %1 &quot;%2 - %3&quot; will overwrite its own files.</source>
+            <source>Disk %1 "%2 - %3" will overwrite its own files.</source>
             <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-            <translation>Disk %1 &quot;%2 - %3&quot; will overwrite its own files.</translation>
+            <translation>Disk %1 "%2 - %3" will overwrite its own files.</translation>
         </message>
         <message>
-            <source>Disk %1 &quot;%2 - %3&quot; will overwrite the files of this disk.</source>
+            <source>Disk %1 "%2 - %3" will overwrite the files of this disk.</source>
             <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-            <translation>Disk %1 &quot;%2 - %3&quot; will overwrite the files of this disk.</translation>
+            <translation>Disk %1 "%2 - %3" will overwrite the files of this disk.</translation>
         </message>
         <message>
             <source>The output files of the disc are mixed with the files of disc %1.
-You could change the &quot;Start num&quot; for one of them.</source>
+You could change the "Start num" for one of them.</source>
             <comment>Error message, %1 is the disk description, artist and album for the disc, respectively</comment>
             <translation>The output files of the disc are mixed with the files of disc %1.
-You could change the &quot;Start num&quot; for one of them.</translation>
+You could change the "Start num" for one of them.</translation>
         </message>
         <message>
             <source>Disk %1 uses the same CUE file.</source>

@@ -57,14 +57,21 @@
 #include "qtbackports/movetotrash.h"
 #include "audiofilematcher.h"
 #include "patternexpander.h"
+#include "qwindowdebugger.h"
+#include "appconfig.h"
 
-#ifdef MAC_UPDATER
+#if MAC_UPDATER
 #include "updater/updater.h"
 #endif
 
 static constexpr auto SETTINGS_LASTDIR_KEY              = "Misc/LastDirectory";
 static constexpr auto SETTINGS_PATTERN_HISTORY_KEY      = "OutFiles/PatternHistory";
 static constexpr auto SETTINGS_OUTFILES_DIR_HISTORY_KEY = "OutFiles/DirectoryHistory";
+
+static QString lastDir()
+{
+    return GuiSettings().value(SETTINGS_LASTDIR_KEY, qgetenv("HOME")).toString();
+}
 
 /************************************************
 
@@ -76,6 +83,10 @@ MainWindow::MainWindow(QWidget *parent) :
     Messages::setHandler(this);
 
     setupUi(this);
+
+#ifdef QT_DEBUG
+    QWindowDebugger::start();
+#endif
 
     qApp->setWindowIcon(loadMainIcon());
     toolBar->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
@@ -118,10 +129,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(tagAlbumEdit, &QLineEdit::textEdited, this, &MainWindow::setAlbumTag);
 
     connect(tagStartNumEdit, &MultiValuesSpinBox::editingFinished, this, &MainWindow::setStartTrackNum);
-    connect(tagStartNumEdit, qOverload<int>(&MultiValuesSpinBox::valueChanged),
-            this, &MainWindow::setStartTrackNum);
-
-    connect(trackView, &TrackView::customContextMenuRequested, this, &MainWindow::trackViewMenu);
+    connect(tagStartNumEdit, qOverload<int>(&MultiValuesSpinBox::valueChanged), this, &MainWindow::setStartTrackNum);
 
     connect(editTagsButton, &QPushButton::clicked, this, &MainWindow::openEditTagsDialog);
 
@@ -162,11 +170,12 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(codepageCombo, qOverload<int>(&QComboBox::currentIndexChanged),
             this, &MainWindow::setCodePage);
 
-    connect(trackView, &TrackView::selectCueFile, this, &MainWindow::setCueForDisc);
-    connect(trackView, &TrackView::selectAudioFile, this, &MainWindow::setAudioForDisc);
-    connect(trackView, &TrackView::showAudioMenu, this, &MainWindow::showDiskAudioFileMenu);
-    connect(trackView, &TrackView::selectCoverImage, this, &MainWindow::setCoverImage);
-    connect(trackView, &TrackView::downloadInfo, this, &MainWindow::downloadDiscInfo);
+    connect(trackView, &TrackView::selectCueFileRequiredd, this, &MainWindow::setCueForDisc);
+    connect(trackView, &TrackView::selectAudioFileRequiredd, this, &MainWindow::setAudioForDisc);
+    connect(trackView, &TrackView::editTagsRequiredd, this, &MainWindow::openEditDiskTagsDialog);
+    connect(trackView, &TrackView::selectCoverImageRequired, this, &MainWindow::setCoverImage);
+    connect(trackView, &TrackView::downloadInfoRequired, this, &MainWindow::downloadDiscInfo);
+    connect(trackView, &TrackView::removeTrackRequired, this, &MainWindow::removeTrackFromDisk);
 
     connect(trackView->model(), &TrackViewModel::layoutChanged, this, &MainWindow::refreshEdits);
     connect(trackView->model(), &TrackViewModel::layoutChanged, this, &MainWindow::setControlsEnable);
@@ -348,7 +357,7 @@ void MainWindow::setCueForDisc(Disc *disc)
             dir = QFileInfo(disc->cueFilePath()).dir().absolutePath();
         }
         else {
-            dir = Settings::i()->value(SETTINGS_LASTDIR_KEY).toString();
+            dir = lastDir();
         }
     }
 
@@ -735,17 +744,16 @@ QString MainWindow::getOpenFileFilter(bool includeAudio, bool includeCue)
 void MainWindow::openAddFileDialog()
 {
     QString     flt       = getOpenFileFilter(true, true);
-    QString     lastDir   = Settings::i()->value(SETTINGS_LASTDIR_KEY).toString();
-    QStringList fileNames = QFileDialog::getOpenFileNames(this, tr("Add CUE or audio file", "OpenFile dialog title"), lastDir, flt);
+    QStringList fileNames = QFileDialog::getOpenFileNames(this, tr("Add CUE or audio file", "OpenFile dialog title"), lastDir(), flt);
 
     if (fileNames.isEmpty()) {
         return;
     }
 
-    Settings::i()->setValue(SETTINGS_LASTDIR_KEY, QFileInfo(fileNames.last()).dir().path());
+    GuiSettings().setValue(SETTINGS_LASTDIR_KEY, QFileInfo(fileNames.last()).dir().path());
 
     foreach (const QString &fileName, fileNames) {
-        addFileOrDir(fileName);
+        addFile(fileName);
     }
 }
 
@@ -767,7 +775,7 @@ void MainWindow::setAudioForDisc(Disc *disc, int audioFileNum)
             dir = QFileInfo(audioFiles[audioFileNum]).dir().absolutePath();
         }
         else {
-            dir = Settings::i()->value(SETTINGS_LASTDIR_KEY).toString();
+            dir = lastDir();
         }
     }
 
@@ -784,7 +792,12 @@ void MainWindow::setAudioForDisc(Disc *disc, int audioFileNum)
         return;
     }
 
-    disc->setAudioFile(audio, audioFileNum);
+    if (disc->cue()) {
+        disc->setAudioFile(audio, audioFileNum);
+    }
+    else {
+        disc->addTrack(audio);
+    }
     trackView->update(*disc);
     Project::instance()->validator().revalidate();
 }
@@ -825,47 +838,13 @@ void MainWindow::downloadDiscInfo(Disc *disc)
  ************************************************/
 void MainWindow::addFileOrDir(const QString &fileName)
 {
-    bool isFirst   = true;
-    bool showError = false;
-    auto addFile   = [&](const QString &file) {
-        try {
-            QFileInfo fi = QFileInfo(file);
-            DiscList  discs;
-            if (fi.size() > 102400)
-                discs << Project::instance()->addAudioFile(file);
-            else
-                discs << Project::instance()->addCueFile(file);
-
-            if (!discs.isEmpty() && isFirst) {
-                isFirst = false;
-                this->trackView->selectDisc(discs.first());
-            }
-        }
-
-        catch (FlaconError &err) {
-            if (showError)
-                showErrorMessage(err.what());
-        }
-    };
-
-    QApplication::setOverrideCursor(Qt::WaitCursor);
     QFileInfo fi = QFileInfo(fileName);
-
     if (fi.isDir()) {
-        mScanner = new Scanner;
-        setControlsEnable();
-        showError = false;
-        connect(mScanner, &Scanner::found, addFile);
-        mScanner->start(fi.absoluteFilePath());
-        delete mScanner;
-        mScanner = nullptr;
-        setControlsEnable();
+        scanDir(fi.absoluteFilePath());
     }
     else {
-        showError = true;
-        addFile(fileName);
+        addFile(fi.absoluteFilePath());
     }
-    QApplication::restoreOverrideCursor();
 }
 
 /************************************************
@@ -873,9 +852,17 @@ void MainWindow::addFileOrDir(const QString &fileName)
  ************************************************/
 void MainWindow::removeDiscs()
 {
-    QList<Disc *> discs = trackView->selectedDiscs();
-    if (discs.isEmpty())
+    removeDisks(trackView->selectedDiscs());
+}
+
+/************************************************
+
+ ************************************************/
+void MainWindow::removeDisks(const QList<Disc *> &discs)
+{
+    if (discs.isEmpty()) {
         return;
+    }
 
     int n = Project::instance()->indexOf(discs.first());
     Project::instance()->removeDisc(discs);
@@ -890,14 +877,32 @@ void MainWindow::removeDiscs()
 /************************************************
 
  ************************************************/
+void MainWindow::removeTrackFromDisk(Disc *disk, int trackIndex)
+{
+    if (disk->cue()) {
+        return;
+    }
+
+    if (disk->tracks().size() == 1) {
+        removeDisks({ disk });
+    }
+
+    trackView->updateAll();
+    disk->removeTrack(trackIndex);
+    setControlsEnable();
+}
+
+/************************************************
+
+ ************************************************/
 void MainWindow::openScanDialog()
 {
-    QString lastDir = Settings::i()->value(SETTINGS_LASTDIR_KEY).toString();
-    QString dir     = QFileDialog::getExistingDirectory(this, tr("Select directory"), lastDir);
+    GuiSettings settings;
+    QString     dir = QFileDialog::getExistingDirectory(this, tr("Add Folder"), lastDir());
 
     if (!dir.isEmpty()) {
-        Settings::i()->setValue(SETTINGS_LASTDIR_KEY, dir);
-        addFileOrDir(dir);
+        settings.setValue(SETTINGS_LASTDIR_KEY, dir);
+        scanDir(dir);
     }
 }
 
@@ -932,86 +937,9 @@ void MainWindow::openLogViewDialog()
  ************************************************/
 void MainWindow::checkUpdates()
 {
-#ifdef MAC_UPDATER
+#if MAC_UPDATER
     Updater::sharedUpdater().checkForUpdates("io.github.flacon");
 #endif
-}
-
-/************************************************
- *
- ************************************************/
-void MainWindow::fillAudioMenu(Disc *disc, QMenu &menu)
-{
-    QAction *act;
-    if (disc->audioFiles().count() == 1) {
-        act = new QAction(tr("Select another audio file…", "context menu"), &menu);
-        connect(act, &QAction::triggered, this, [this, disc]() { this->setAudioForDisc(disc, 0); });
-        menu.addAction(act);
-    }
-    else {
-        int n = 0;
-        for (TrackPtrList &l : disc->tracksByFileTag()) {
-            QString msg;
-            if (l.count() == 1) {
-                msg = tr("Select another audio file for %1 track…", "context menu. Placeholders are track number")
-                              .arg(l.first()->trackNumTag());
-            }
-            else {
-                msg = tr("Select another audio file for tracks %1 to %2…", "context menu. Placeholders are track numbers")
-                              .arg(l.first()->trackNumTag())
-                              .arg(l.last()->trackNumTag());
-            }
-
-            act = new QAction(msg, &menu);
-            connect(act, &QAction::triggered, this, [this, disc, n]() { this->setAudioForDisc(disc, n); });
-            menu.addAction(act);
-
-            n++;
-        }
-    }
-}
-
-/************************************************
- *
- ************************************************/
-void MainWindow::trackViewMenu(const QPoint &pos)
-{
-    QModelIndex index = trackView->indexAt(pos);
-    if (!index.isValid())
-        return;
-
-    Disc *disc = trackView->model()->discByIndex(index);
-    if (!disc)
-        return;
-
-    QMenu    menu;
-    QAction *act = new QAction(tr("Edit tags…", "context menu"), &menu);
-    connect(act, &QAction::triggered, this, &MainWindow::openEditTagsDialog);
-    menu.addAction(act);
-
-    menu.addSeparator();
-    fillAudioMenu(disc, menu);
-
-    act = new QAction(tr("Select another CUE file…", "context menu"), &menu);
-    connect(act, &QAction::triggered, this, [this, disc]() { this->setCueForDisc(disc); });
-    menu.addAction(act);
-
-    act = new QAction(tr("Get data from Internet", "context menu"), &menu);
-    act->setEnabled(DataProvider::canDownload(*disc));
-    connect(act, &QAction::triggered, this, [this, disc]() { this->downloadDiscInfo(disc); });
-    menu.addAction(act);
-
-    menu.exec(trackView->viewport()->mapToGlobal(pos));
-}
-
-/************************************************
- *
- ************************************************/
-void MainWindow::showDiskAudioFileMenu(Disc *disc, const QPoint &pos)
-{
-    QMenu menu;
-    fillAudioMenu(disc, menu);
-    menu.exec(trackView->viewport()->mapToGlobal(pos));
 }
 
 /************************************************
@@ -1020,6 +948,17 @@ void MainWindow::showDiskAudioFileMenu(Disc *disc, const QPoint &pos)
 void MainWindow::openEditTagsDialog()
 {
     TagEditor editor(trackView->selectedTracks(), this);
+    editor.exec();
+    refreshEdits();
+    setControlsEnable();
+}
+
+/************************************************
+ *
+ ************************************************/
+void MainWindow::openEditDiskTagsDialog(Disc *disk)
+{
+    TagEditor editor(disk->tracks(), this);
     editor.exec();
     refreshEdits();
     setControlsEnable();
@@ -1209,7 +1148,7 @@ void MainWindow::initActions()
 
     connect(actionRemoveSourceFiles, &QAction::triggered, this, &MainWindow::removeSourceFiles);
 
-#ifdef MAC_UPDATER
+#if MAC_UPDATER
     actionUpdates->setVisible(true);
     actionUpdates->setMenuRole(QAction::ApplicationSpecificRole);
 
@@ -1257,20 +1196,20 @@ void MainWindow::initStatusBar()
  ************************************************/
 void MainWindow::loadSettings()
 {
-    Settings *settings = Settings::i();
+    GuiSettings settings;
 
     // MainWindow geometry
-    int x      = settings->value("MainWindow/Left", geometry().left()).toInt();
-    int y      = settings->value("MainWindow/Top", geometry().top()).toInt();
-    int width  = settings->value("MainWindow/Width", QVariant(987)).toInt();
-    int height = settings->value("MainWindow/Height", QVariant(450)).toInt();
+    int x      = settings.value("MainWindow/Left", geometry().left()).toInt();
+    int y      = settings.value("MainWindow/Top", geometry().top()).toInt();
+    int width  = settings.value("MainWindow/Width", QVariant(987)).toInt();
+    int height = settings.value("MainWindow/Height", QVariant(450)).toInt();
     this->setGeometry(x, y, width, height);
 
-    splitter->restoreState(settings->value("MainWindow/Splitter").toByteArray());
-    trackView->header()->restoreState(settings->value("MainWindow/TrackViewV2").toByteArray());
+    splitter->restoreState(settings.value("MainWindow/Splitter").toByteArray());
+    trackView->header()->restoreState(settings.value("MainWindow/TrackView").toByteArray());
 
-    outDirEdit->setHistory(Settings::i()->value(SETTINGS_OUTFILES_DIR_HISTORY_KEY).toStringList());
-    outPatternEdit->setHistory(Settings::i()->value(SETTINGS_PATTERN_HISTORY_KEY).toStringList());
+    outDirEdit->setHistory(settings.value(SETTINGS_OUTFILES_DIR_HISTORY_KEY).toStringList());
+    outPatternEdit->setHistory(settings.value(SETTINGS_PATTERN_HISTORY_KEY).toStringList());
 }
 
 /************************************************
@@ -1278,17 +1217,17 @@ void MainWindow::loadSettings()
  ************************************************/
 void MainWindow::saveSettings()
 {
-    Settings *settings = Settings::i();
+    GuiSettings settings;
 
-    settings->setValue("MainWindow/Left", geometry().left());
-    settings->setValue("MainWindow/Top", geometry().top());
-    settings->setValue("MainWindow/Width", QVariant(size().width()));
-    settings->setValue("MainWindow/Height", QVariant(size().height()));
-    settings->setValue("MainWindow/Splitter", QVariant(splitter->saveState()));
-    settings->setValue("MainWindow/TrackViewV2", QVariant(trackView->header()->saveState()));
+    settings.setValue("MainWindow/Left", geometry().left());
+    settings.setValue("MainWindow/Top", geometry().top());
+    settings.setValue("MainWindow/Width", QVariant(size().width()));
+    settings.setValue("MainWindow/Height", QVariant(size().height()));
+    settings.setValue("MainWindow/Splitter", QVariant(splitter->saveState()));
+    settings.setValue("MainWindow/TrackView", QVariant(trackView->header()->saveState()));
 
-    Settings::i()->setValue(SETTINGS_OUTFILES_DIR_HISTORY_KEY, outDirEdit->history());
-    Settings::i()->setValue(SETTINGS_PATTERN_HISTORY_KEY, outPatternEdit->history());
+    settings.setValue(SETTINGS_OUTFILES_DIR_HISTORY_KEY, outDirEdit->history());
+    settings.setValue(SETTINGS_PATTERN_HISTORY_KEY, outPatternEdit->history());
 }
 
 /************************************************
@@ -1422,4 +1361,55 @@ void MainWindow::showErrors()
 void MainWindow::updateTotalProgress(double percent)
 {
     mTotalProgressLabel.setText(tr("%1% completed", "Status bar, progress text").arg(percent, 0, 'f', 0));
+}
+
+/************************************************
+ *
+ ************************************************/
+void MainWindow::addFile(const QString &file)
+{
+    try {
+        Disk *disc = Project::instance()->addFile(file, false);
+        if (disc) {
+            this->trackView->selectDisc(disc);
+        }
+    }
+    catch (FlaconError &err) {
+        showErrorMessage(err.what());
+    }
+}
+
+/************************************************
+ *
+ ************************************************/
+void MainWindow::scanDir(const QString &dir)
+{
+    bool isFirst = true;
+    auto addFile = [&](const QString file) {
+        QFileInfo fi = QFileInfo(file);
+
+        try {
+            Disc *disc = Project::instance()->addFile(file, false);
+
+            if (disc && isFirst) {
+                isFirst = false;
+                this->trackView->selectDisc(disc);
+            }
+        }
+        catch (FlaconError &err) {
+        }
+    };
+
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+
+    mScanner = new Scanner;
+    setControlsEnable();
+
+    connect(mScanner, &Scanner::found, addFile);
+    mScanner->start(dir);
+    delete mScanner;
+    mScanner = nullptr;
+
+    setControlsEnable();
+    QApplication::restoreOverrideCursor();
 }

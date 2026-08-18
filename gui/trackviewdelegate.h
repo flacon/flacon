@@ -53,7 +53,7 @@ public:
 
 signals:
     void trackButtonClicked(const QModelIndex &index, const QRect &buttonRect);
-    void audioButtonClicked(const QModelIndex &index, int fileNum, const QRect &buttonRect);
+    void audioButtonClicked(const QModelIndex &index, const QRect &buttonRect);
     void markClicked(const QModelIndex &index, const QRect &buttonRect);
     void coverImageClicked(const QModelIndex &index);
 
@@ -69,8 +69,7 @@ private:
     TrackViewCache *mCache;
 
     mutable QImage mNoCoverImg;
-    QPixmap        mTrackBtnPix;
-    QPixmap        mAudioBtnPix;
+    QPixmap        mBtnPix;
     QPixmap        mDiscErrorPix;
     QPixmap        mDiscWarnPix;
     QPixmap        mTrackOkPix;
@@ -92,6 +91,10 @@ private:
     QRect drawLabel(const QString &text, const QRect &rect, QPainter *painter) const;
     QRect drawFile(const QString &text, const QRect &rect, QPainter *painter) const;
     void  drawSelectionMark(QPainter *painter, const QRect &rect) const;
+
+    void drawBadge(bool hasCue, QPainter *painter, const QRect &rect) const;
+
+    QColor selectionColor() const;
 };
 
 #endif // TRACKVIEWDELEGATE_H

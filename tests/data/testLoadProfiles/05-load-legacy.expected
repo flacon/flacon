@@ -1,0 +1,164 @@
+[Profiles/AAC]
+    OutDirectory=~/Music/aac
+    OutPattern=aac-%a/{%y - }%A/%n - %t
+    Format=AAC
+    Name=Aac
+    BitsPerSample=16
+    SampleRate=44100
+    CreateCue=false
+    CueFileName = AAC %a %d - %A.cue
+    PregapType = AddToFirst
+    CoverFile/Mode=Scale
+    CoverFile/Size=600
+    CoverEmbed/Mode=Disable
+    CoverEmbed/Size=1024
+    EmbedCue=false
+    ReplayGain=Disable
+    Tags\WriteSingleDiskNum=false
+    Encoder/Bitrate=128
+    Encoder/Quality=90
+    Encoder/UseQuality=false
+
+
+[Profiles/FLAC]
+    OutDirectory=~/Music/flac
+    OutPattern=flac-%a/{%y - }%A/%n - %t
+    Format=FLAC
+    Name=Flac
+    ReplayGain=Track
+    BitsPerSample=16
+    SampleRate=44100
+    CreateCue=true
+    CueFileName = FLAC %a %d - %A.cue
+    PregapType = Extract
+    CoverFile/Mode=OrigSize
+    CoverFile/Size=600
+    CoverEmbed/Mode=Scale
+    CoverEmbed/Size=800
+    EmbedCue=false
+    Tags\WriteSingleDiskNum=true
+    Encoder/Compression=3
+
+
+[Profiles/MP3]
+    OutDirectory=~/Music/mp3
+    OutPattern=mp3-%a/{%y - }%A/%n - %t
+    Format = MP3
+    Name = Mp3
+    ReplayGain=Album
+    BitsPerSample=16
+    SampleRate=44100
+    CreateCue=false
+    CueFileName = MP3 %a %d - %A.cue
+    PregapType = Skip
+    CoverFile/Mode=Scale
+    CoverFile/Size=600
+    CoverEmbed/Mode=Disable
+    CoverEmbed/Size=1024
+    EmbedCue=false
+    Tags\WriteSingleDiskNum=false
+    Encoder/Preset=vbrStandard
+    Encoder/Bitrate=320
+    Encoder/Quality=4
+
+
+[Profiles/OGG]
+    OutDirectory=~/Music/ogg
+    OutPattern=ogg-%a/{%y - }%A/%n - %t
+    Format = OGG
+    Name = Ogg
+    ReplayGain=Disable
+    Encoder/UseQuality=false
+    BitsPerSample=16
+    SampleRate=44100
+    CreateCue=true
+    CueFileName = OGG %a %d - %A.cue
+    PregapType = AddToFirst
+    CoverFile/Mode=Scale
+    CoverFile/Size=600
+    CoverEmbed/Mode=Disable
+    CoverEmbed/Size=1024
+    EmbedCue=false
+    Tags\WriteSingleDiskNum=true
+    Encoder/MaxBitrate=1
+    Encoder/MinBitrate=1
+    Encoder/NormBitrate=1
+    Encoder/Quality=2
+
+
+[Profiles/OPUS]
+    OutDirectory=~/Music/opus
+    OutPattern=opus-%a/{%y - }%A/%n - %t
+    Name = Opus
+    Format = OPUS
+    BitsPerSample=16
+    SampleRate=44100
+    CreateCue=false
+    CueFileName = OPUS %a %d - %A.cue
+    PregapType = Extract
+    CoverFile/Mode=Scale
+    CoverFile/Size=600
+    CoverEmbed/Mode=Disable
+    CoverEmbed/Size=1024
+    EmbedCue=false
+    ReplayGain=Disable
+    Tags\WriteSingleDiskNum=false
+    Encoder/Bitrate=128
+    Encoder/BitrateType=VBR
+
+
+[Profiles/WV]
+    OutDirectory=~/Music/wv
+    OutPattern=wv-%a/{%y - }%A/%n - %t
+    Name = WV
+    Format = WV
+    ReplayGain=Track
+    BitsPerSample=16
+    SampleRate=44100
+    CreateCue=true
+    CueFileName = WV %a %d - %A.cue
+    PregapType = Skip
+    CoverFile/Mode=Scale
+    CoverFile/Size=600
+    CoverEmbed/Mode=Disable
+    CoverEmbed/Size=1024
+    EmbedCue=false
+    Tags\WriteSingleDiskNum=true
+    Encoder/Compression=2
+
+
+[Profiles/WAV]
+    OutDirectory=~/Music/wav
+    OutPattern=wav-%a/{%y - }%A/%n - %t
+    Format=WAV
+    Name=Wav
+    BitsPerSample=16
+    SampleRate=44100
+    CreateCue=true
+    CueFileName = WAV %a %d - %A.cue
+    PregapType = AddToFirst
+    CoverFile/Mode=Scale
+    CoverFile/Size=600
+    EmbedCue=false
+    ReplayGain=Disable
+    Tags\WriteSingleDiskNum=false
+
+
+[Profiles/ALAC]
+    OutDirectory=~/Music/flac
+    OutPattern=flac-%a/{%y - }%A/%n - %t
+    Format=ALAC
+    Name=Alac
+    ReplayGain=Disable
+    BitsPerSample=16
+    SampleRate=44100
+    CreateCue=true
+    CueFileName = FLAC %a %d - %A.cue
+    PregapType = Extract
+    CoverFile/Mode=OrigSize
+    CoverFile/Size=600
+    CoverEmbed/Mode=Scale
+    CoverEmbed/Size=800
+    EmbedCue=false
+    Tags\WriteSingleDiskNum=true
+    Encoder/Compression=1

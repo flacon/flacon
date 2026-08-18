@@ -25,11 +25,21 @@
 
 #include "types.h"
 #include "tags.h"
-#include "disc.h"
 #include <QDebug>
 #include <QMetaEnum>
+#include "inputaudiofile.h"
+#include "disc.h"
 
 #define GET(FIELD) !mUserTags.FIELD().isNull() ? mUserTags.FIELD() : mLoadedTags.FIELD();
+
+/**************************************
+ *
+ **************************************/
+TagsId::TagsId(const InputAudioFile &audio)
+{
+    uri   = audio.filePath();
+    title = Disc::tr("Embedded tags");
+}
 
 /**************************************
  * AlbumTags
@@ -110,12 +120,45 @@ void Tags::resize(int size)
     mTracks.resize(size);
 }
 
+/************************************************
+ *
+ ************************************************/
+Tags &Tags::operator=(const AlbumTags &albumTags)
+{
+    for (AlbumTags::TagId tagId : AlbumTags::allTagId()) {
+        setTag(tagId, albumTags.tag(tagId));
+    }
+
+    return *this;
+}
+
+/**************************************
+ *
+ **************************************/
+QDebug operator<<(QDebug debug, const Tags &tags)
+{
+    QDebugStateSaver saver(debug);
+    debug.nospace() << "AlbumTags{ ";
+    for (AlbumTags::TagId tagId : AlbumTags::allTagId()) {
+        debug.nospace() << tagId << ": " << tags.tag(tagId);
+    }
+    debug.nospace() << "} ";
+
+    int i = -1;
+    for (const Tags::Track &track : tags.tracks()) {
+        i++;
+        debug.nospace() << "Track " << i;
+        qDebug() << track;
+    }
+
+    return debug;
+}
+
 /**************************************
  *
  **************************************/
 QDebug operator<<(QDebug debug, const Tags::Track &track)
 {
-
     QDebugStateSaver saver(debug);
     debug.nospace()
             << "TrackTags {"

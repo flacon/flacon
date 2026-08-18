@@ -53,7 +53,7 @@ public:
     QList<Track *> tracks() const { return mTracks; }
     bool           isEmpty() const { return mTracks.isEmpty(); }
 
-    Cue     cue() const { return mCue; }
+    Cue    *cue() const { return mCue; }
     void    setCue(const Cue &cue);
     QString cueFilePath() const;
 
@@ -68,6 +68,9 @@ public:
     void        setAudioFile(const InputAudioFile &file, int fileNum);
     bool        isMultiAudio() const;
 
+    void addTrack(const InputAudioFile &file);
+    void removeTrack(int trackIndex);
+
     int  startTrackNum() const;
     void setStartTrackNum(TrackNum value);
 
@@ -80,6 +83,7 @@ public:
     void          activateTagSet(const QString &uri);
 
     void addInternetTags(const QVector<InternetTags> &tags);
+    bool addInternetTags(const InternetTags &newTags);
 
     void searchCoverImage(bool replaceExisting = false);
 
@@ -123,18 +127,16 @@ public:
 
 private:
     QList<Track *> mTracks;
-    Cue            mCue;
+    Cue           *mCue = nullptr;
 
-    Tags mCueUserTags;
-    Tags mUserTags;
-    Tags mLoadedTags;
+    AlbumTags mAlbumLoadedTags;
+    AlbumTags mAlbumUserTags;
 
     TextCodec mTextCodec = TextCodecUtf8();
 
     QVector<TagSet> mTagSets;
 
     QList<InternetTags> mInternetTags;
-    QList<Tags>         mInternetUserTags;
     int                 mInternetTagsIndex = -1;
 
     InputAudioFile mAudioFile;
@@ -146,8 +148,8 @@ private:
 
     int distance(const InternetTags &other);
 
-    void syncTagsFromTracks();
-    void syncTagsToTracks();
+    void resetUserTags();
+    void updateLoadedTags();
 };
 
 typedef QList<Disc *> DiscList;

@@ -194,7 +194,7 @@ void Discogs::processResults()
         n++;
         TagsId tagsId;
 
-        tagsId.uri = QStringLiteral("https://discogs.com/Artist=%1&Album=%2&num=%3").arg(mRequestArtist, mRequestAlbum).arg(n);
+        tagsId.uri = QStringLiteral("https://discogs.com/Artist=%1&Album=%2&num=%3").arg(mRequestArtist, mRequestAlbum).arg(n).toLower();
         if (mResult.size() == 1) {
             tagsId.title = QStringLiteral("%1 / %2   [ Discogs ]").arg(mRequestArtist, mRequestAlbum);
         }

@@ -32,20 +32,15 @@ endif()
 project(flacon)
 
 
-set(MAJOR_VERSION 12)
+set(MAJOR_VERSION 13)
 set(MINOR_VERSION 0)
-set(PATCH_VERSION 0)
+set(PATCH_VERSION 2)
 #set(BETA_VERSION beta1)
 
-set(FLACON_VERSION ${MAJOR_VERSION}.${MINOR_VERSION}.${PATCH_VERSION})
+set(APP_VERSION ${MAJOR_VERSION}.${MINOR_VERSION}.${PATCH_VERSION})
 if (BETA_VERSION)
-    set(FLACON_VERSION ${FLACON_VERSION}-${BETA_VERSION})
+    set(APP_VERSION ${APP_VERSION}-${BETA_VERSION})
 endif()
-
-add_definitions(-DFLACON_MAJOR_VERSION=\"${MAJOR_VERSION}\")
-add_definitions(-DFLACON_MINOR_VERSION=\"${MINOR_VERSION}\")
-add_definitions(-DFLACON_PATCH_VERSION=\"${PATCH_VERSION}\")
-add_definitions(-DFLACON_VERSION=\"${FLACON_VERSION}\")
 
 set (CMAKE_CXX_STANDARD 17)
 
@@ -64,7 +59,7 @@ else()
     set(IS_TAG_RELEASE "false")
 endif()
 
-status_message("${PROJECT_NAME} ver. ${FLACON_VERSION}")
+status_message("${PROJECT_NAME} ver. ${APP_VERSION}")
 status_message(" ")
 
 if ( ${CMAKE_SYSTEM_NAME} STREQUAL "Darwin" )
@@ -78,18 +73,15 @@ endif()
 
 
 if ( MAC_BUNDLE )
-    add_definitions(-DMAC_BUNDLE)
-    add_definitions(-DBUNDLED_PROGRAMS)
-    add_definitions(-DMAC_UPDATER)
+    set(BUNDLED_PROGRAMS ON)
+    set(MAC_UPDATER ON)
 
 elseif ( FLATPAK_BUNDLE )
-    add_definitions(-DFLATPAK_BUNDLE)
-    add_definitions(-DBUNDLED_PROGRAMS)
-    add_definitions(-DDISABLE_TMP_DIR)
+    set(BUNDLED_PROGRAMS ON)
+    set(DISABLE_TMP_DIR ON)
 
 elseif ( APPIMAGE_BUNDLE )
-    add_definitions(-DAPPIMAGE_BUNDLE)
-    add_definitions(-DBUNDLED_PROGRAMS)
+    set(BUNDLED_PROGRAMS ON)
 
 endif()
 
@@ -105,6 +97,7 @@ set(HEADERS
     project.h
     settings.h
     inputaudiofile.h
+    inputaudiofiletags.h
     scanner.h
     patternexpander.h
     profiles.h
@@ -124,9 +117,8 @@ set(HEADERS
     gui/trackview.h
     gui/trackviewmodel.h
     gui/trackviewdelegate.h
-    gui/aboutdialog/aboutdialog.h
-    gui/coverdialog/coverdialog.h
-    gui/coverdialog/asynclistwidgetitem.h
+
+    gui/qwindowdebugger.h
  )
 
 set(SOURCES
@@ -141,6 +133,7 @@ set(SOURCES
     project.cpp
     settings.cpp
     inputaudiofile.cpp
+    inputaudiofiletags.cpp
     scanner.cpp
     patternexpander.cpp
     profiles.cpp
@@ -152,9 +145,6 @@ set(SOURCES
     runconsole.cpp
     commandlineparser.cpp
 
-    gui/aboutdialog/aboutdialog.cpp
-    gui/coverdialog/coverdialog.cpp
-    gui/coverdialog/asynclistwidgetitem.cpp
 )
 
 if (APPLE)
@@ -162,7 +152,7 @@ if (APPLE)
 endif()
 
 
-configure_file(appconfig.h.in appconfig.h)
+
 
 include(internet/module.cmake)
 include(gui/module.cmake)
@@ -191,8 +181,6 @@ set(DATA_DIR
 set(TRANSLATIONS_DIR
     "${DATA_DIR}/translations"
 )
-add_definitions(-DTRANSLATIONS_DIR=\"${TRANSLATIONS_DIR}\")
-
 
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}
@@ -209,15 +197,12 @@ include_directories(
 #*******************************************
 include("cmake/macos.cmake")
 
-option(USE_QT5 "Try to use the Qt5." ON)
-option(USE_QT6 "Try to use the Qt6." ON)
+option(USE_QT5 "Try to use the Qt5." OFF)
 
-if (USE_QT5 AND USE_QT6)
-    find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-elseif (USE_QT6)
-    find_package(QT NAMES Qt6 REQUIRED COMPONENTS Widgets)
-elseif (USE_QT5)
+if (USE_QT5)
     find_package(QT NAMES Qt5 REQUIRED COMPONENTS Widgets)
+else()
+    find_package(QT NAMES Qt6 REQUIRED COMPONENTS Widgets)
 endif()
 message(STATUS "Using Qt version ${QT_VERSION}")
 
@@ -342,11 +327,10 @@ configure_file(
     @ONLY
 )
 
-add_custom_command(TARGET ${PROJECT_NAME}
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
     COMMAND gzip -c -n ${CMAKE_CURRENT_BINARY_DIR}/flacon.1 > ${CMAKE_CURRENT_BINARY_DIR}/flacon.1.gz
 )
 
-string(REPLACE "/lib/cmake/Qt5Core" "" QT_DIR "${Qt5Core_DIR}")
 
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
     set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "Flacon")
@@ -356,25 +340,41 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
     install(FILES   ${CMAKE_CURRENT_BINARY_DIR}/Info.plist  DESTINATION Flacon.app/Contents)
     install(FILES   images/mainicon/Flacon.icns             DESTINATION Flacon.app/Contents/Resources)
 
+    get_target_property(QT_COCOA_PLUGIN Qt6::QCocoaIntegrationPlugin LOCATION)
+    get_filename_component(QT_PLUGINS_DIR "${QT_COCOA_PLUGIN}/../../" ABSOLUTE)
+
     set(QT_PLUGINS
-        "bearer/libqgenericbearer.dylib"
-        "iconengines/libqsvgicon.dylib"
-        "imageformats/libqgif.dylib"
-        "imageformats/libqicns.dylib"
-        "imageformats/libqico.dylib"
-        "imageformats/libqjpeg.dylib"
         "platforms/libqcocoa.dylib"
         "styles/libqmacstyle.dylib"
+
+        "iconengines/libqsvgicon.dylib"
+        "imageformats/libqgif.dylib"
+        "imageformats/libqico.dylib"
+        "imageformats/libqjpeg.dylib"
+        "imageformats/libqsvg.dylib"
+
+        "tls/libqsecuretransportbackend.dylib"
+        "tls/libqopensslbackend.dylib"
+        "tls/libqcertonlybackend.dylib"
     )
 
     foreach(plugin ${QT_PLUGINS})
-        get_filename_component(dest_dir "Flacon.app/Contents/PlugIns/${plugin}" DIRECTORY)
-        install(FILES "${QT_DIR}/plugins/${plugin}" DESTINATION "${dest_dir}")
+        get_filename_component(plugin_dir "${plugin}" DIRECTORY)
+        set(full_plugin_path "${QT_PLUGINS_DIR}/${plugin}")
+
+        install(FILES "${full_plugin_path}" DESTINATION "Flacon.app/Contents/PlugIns/${plugin_dir}")
     endforeach()
 
 
     set(BUNDLE_DIR "${CMAKE_BINARY_DIR}/Flacon.app")
-    set(DIRS ${CMAKE_PREFIX_PATH} $ENV{HOME}/Library/Frameworks)
+
+    set(BUNDLE_DIRS "")
+    foreach(prefix ${CMAKE_PREFIX_PATH})
+        list(APPEND BUNDLE_DIRS "${prefix}" "${prefix}/lib")
+    endforeach()
+    list(APPEND BUNDLE_DIRS "$ENV{HOME}/Library/Frameworks")
+
+    set(DIRS ${BUNDLE_DIRS})
     configure_file(cmake/macdelopy.cmake.in "${CMAKE_BINARY_DIR}/macdelopy.cmake" @ONLY)
     install(SCRIPT "${CMAKE_BINARY_DIR}/macdelopy.cmake")
 
@@ -402,7 +402,7 @@ add_tests(tests)
 
 # Add make dist target **************************
 if(NOT CPACK_PACKAGE_VERSION)
-    SET(CPACK_PACKAGE_VERSION "${FLACON_VERSION}")
+    SET(CPACK_PACKAGE_VERSION "${APP_VERSION}")
 endif()
 
 SET(CPACK_SOURCE_GENERATOR "TBZ2")
@@ -423,5 +423,7 @@ SET(CPACK_SOURCE_IGNORE_FILES ${CPACK_IGNORE_FILES})
 INCLUDE(CPack)
 # simulate autotools' "make dist"
 add_custom_target(dist COMMAND ${CMAKE_MAKE_PROGRAM} package_source)
+
+configure_file(appconfig.h.in appconfig.h)
 
 show_status()

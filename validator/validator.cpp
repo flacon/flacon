@@ -260,6 +260,10 @@ bool Validator::validateCue(const Disk *disk, QStringList &errors, QStringList &
 {
     Q_UNUSED(warnings)
 
+    if (!disk->cue()) {
+        return true;
+    }
+
     if (disk->tracks().count() == 0) {
         errors << tr("Cue file not set.");
         return false;
@@ -274,6 +278,10 @@ bool Validator::validateCue(const Disk *disk, QStringList &errors, QStringList &
 bool Validator::validateAudioFiles(const Disk *disk, QStringList &errors, QStringList &warnings)
 {
     Q_UNUSED(warnings)
+
+    if (!disk->cue()) {
+        return true;
+    }
 
     bool res = true;
 
@@ -482,7 +490,7 @@ bool Validator::validateDuplicateSourceFiles(const Disk *disk, QStringList &erro
             continue;
         }
 
-        if (d->cueFilePath() == disk->cueFilePath()) {
+        if (disk->cue() && d->cue() && d->cueFilePath() == disk->cueFilePath()) {
             warnings << tr("Disk %1 uses the same CUE file.",
                            "Warning message, %1 is the disk description, artist and album for the disc, respectively")
                                 .arg(diskString(n));

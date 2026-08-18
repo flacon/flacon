@@ -439,7 +439,7 @@ CBR 模式下，它指定特定的输出码率。
         <message>
             <source>I can't read %1 file</source>
             <comment>Encoder error. %1 is a file name.</comment>
-            <translation>我无法读取 &quot;%1&quot; 文件</translation>
+            <translation>我无法读取 "%1" 文件</translation>
         </message>
         <message>
             <source>I can't rename file:
@@ -512,24 +512,24 @@ CBR 模式下，它指定特定的输出码率。
             <translation>内嵌进音频文件</translation>
         </message>
         <message>
-            <source>Insert &quot;Artist&quot;</source>
+            <source>Insert "Artist"</source>
             <translation>插入“艺术家 ”</translation>
         </message>
         <message>
-            <source>Insert &quot;Album title&quot;</source>
+            <source>Insert "Album title"</source>
             <translation>插入“专辑名”</translation>
         </message>
         <message>
-            <source>Insert &quot;Year&quot;</source>
+            <source>Insert "Year"</source>
             <translation>插入“发行年”</translation>
         </message>
         <message>
-            <source>Insert &quot;Genre&quot;</source>
+            <source>Insert "Genre"</source>
             <translation>插入“风格”</translation>
         </message>
         <message>
-            <source>Use &quot;%1&quot;</source>
-            <comment>Predefined CUE file name, string like 'Use &quot;%a/%A/%n - %t.cue&quot;'</comment>
+            <source>Use "%1"</source>
+            <comment>Predefined CUE file name, string like 'Use "%a/%A/%n - %t.cue"'</comment>
             <translation>使用“%1”</translation>
         </message>
         <message>
@@ -601,7 +601,7 @@ This only affects the file size. All settings are lossless.</source>
             <translation>CUE tags</translation>
         </message>
         <message>
-            <source>If the &quot;TITLE&quot; tag contains the artist's and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
+            <source>If the "TITLE" tag contains the artist's and the track names combined by a separator character, the program will try to assign the appropriate tags.</source>
             <extracomment>Checkbox tooltip on preferences dialog</extracomment>
             <translation>如果“标题”标签包含了用分隔符分开的艺术家名和音轨名，程序会尝试分配合适的标签。</translation>
         </message>
@@ -681,11 +681,11 @@ This only affects the file size. All settings are lossless.</source>
         <message>
             <source>You can browse to the destination directory. You can also input it manually.
 
-If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
-            <comment>Main form tooltip for &quot;Directory&quot; edit</comment>
+If the path is left empty or starts with "." (dot), the result files will be placed in the same directory as the source.</source>
+            <comment>Main form tooltip for "Directory" edit</comment>
             <translation>您可以浏览来选择目标目录，也可手动输入。
 
-如果路径为空或以点开始 &quot;.&quot; (英文标点句号)，输出文件将被放置在与输入文件相同的目录里（相对路径）。</translation>
+如果路径为空或以点开始 "." (英文标点句号)，输出文件将被放置在与输入文件相同的目录里（相对路径）。</translation>
         </message>
         <message>
             <source>Pattern:</source>
@@ -697,7 +697,7 @@ If the path is left empty or starts with &quot;.&quot; (dot), the result files w
         </message>
         <message>
             <source>Output format</source>
-            <comment>Main form tooltip for &quot;Format&quot; edit</comment>
+            <comment>Main form tooltip for "Format" edit</comment>
             <translation>输出格式</translation>
         </message>
         <message>
@@ -950,7 +950,7 @@ Do you want to continue?</source>
         </message>
         <message>
             <source>%1 files</source>
-            <comment>OpenFile dialog filter line, like &quot;WAV files&quot;</comment>
+            <comment>OpenFile dialog filter line, like "WAV files"</comment>
             <translation>%1 文件</translation>
         </message>
         <message>
@@ -960,7 +960,7 @@ Do you want to continue?</source>
         </message>
         <message>
             <source>All files</source>
-            <comment>OpenFile dialog filter line like &quot;All files&quot;</comment>
+            <comment>OpenFile dialog filter line like "All files"</comment>
             <translation>全部文件</translation>
         </message>
         <message>
@@ -974,13 +974,13 @@ Do you want to continue?</source>
             <translation>选择音频文件</translation>
         </message>
         <message>
-            <source>&quot;%1&quot; was not set.</source>
+            <source>"%1" was not set.</source>
             <comment>Error message, %1 is an filename.</comment>
-            <translation>&quot;%1&quot; 未设置。</translation>
+            <translation>"%1" 未设置。</translation>
         </message>
         <message>
-            <source>Select directory</source>
-            <translation>选择目录</translation>
+            <source>Add Folder</source>
+            <translation>Add Folder</translation>
         </message>
         <message>
             <source>Select another audio file…</source>
@@ -1018,9 +1018,9 @@ Do you want to continue?</source>
             <translation>以下文件将会被移动到垃圾桶，确定要删除文件？</translation>
         </message>
         <message>
-            <source>Disk %1 &quot;%2 - %3&quot;</source>
+            <source>Disk %1 "%2 - %3"</source>
             <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-            <translation>光盘 %1 &quot;%2 - %3&quot;</translation>
+            <translation>光盘 %1 "%2 - %3"</translation>
         </message>
         <message>
             <source>Disk %1</source>
@@ -1111,48 +1111,48 @@ Do you want to continue?</source>
     <context>
         <name>OutPatternButton</name>
         <message>
-            <source>Insert &quot;Track number&quot;</source>
+            <source>Insert "Track number"</source>
             <translation>插入“轨道编号 ”</translation>
         </message>
         <message>
-            <source>Insert &quot;Total number of tracks&quot;</source>
+            <source>Insert "Total number of tracks"</source>
             <translation>插入“音轨总数 ”</translation>
         </message>
         <message>
-            <source>Insert &quot;Album performer&quot;</source>
-            <translation>Insert &quot;Album performer&quot;</translation>
+            <source>Insert "Album performer"</source>
+            <translation>Insert "Album performer"</translation>
         </message>
         <message>
-            <source>Insert &quot;Album title&quot;</source>
+            <source>Insert "Album title"</source>
             <translation>插入“专辑名”</translation>
         </message>
         <message>
-            <source>Insert &quot;Track title&quot;</source>
+            <source>Insert "Track title"</source>
             <translation>插入“音轨标题”</translation>
         </message>
         <message>
-            <source>Insert &quot;Year&quot;</source>
+            <source>Insert "Year"</source>
             <translation>插入“发行年”</translation>
         </message>
         <message>
-            <source>Insert &quot;Genre&quot;</source>
+            <source>Insert "Genre"</source>
             <translation>插入“风格”</translation>
         </message>
         <message>
-            <source>Insert &quot;Disc number&quot;</source>
+            <source>Insert "Disc number"</source>
             <translation>插入“光碟编号 ”</translation>
         </message>
         <message>
-            <source>Insert &quot;Total number of discs&quot;</source>
+            <source>Insert "Total number of discs"</source>
             <translation>插入“光碟总数 ”</translation>
         </message>
         <message>
-            <source>Insert &quot;Catalog number&quot;</source>
-            <translation>Insert &quot;Catalog number&quot;</translation>
+            <source>Insert "Catalog number"</source>
+            <translation>Insert "Catalog number"</translation>
         </message>
         <message>
-            <source>Use &quot;%1&quot;</source>
-            <comment>Predefined out file pattern, string like 'Use &quot;%a/%A/%n - %t&quot;'</comment>
+            <source>Use "%1"</source>
+            <comment>Predefined out file pattern, string like 'Use "%a/%A/%n - %t"'</comment>
             <translation>使用“%1”</translation>
         </message>
     </context>
@@ -1288,11 +1288,11 @@ Do you want to continue?</source>
         <message>
             <source>You can browse to the destination directory. You can also input it manually.
 
-If the path is left empty or starts with &quot;.&quot; (dot), the result files will be placed in the same directory as the source.</source>
-            <comment>Preferences form tooltip for &quot;Directory&quot; edit</comment>
+If the path is left empty or starts with "." (dot), the result files will be placed in the same directory as the source.</source>
+            <comment>Preferences form tooltip for "Directory" edit</comment>
             <translation>您可以浏览来选择目标目录，也可手动输入。
 
-如果路径为空或以点开始 &quot;.&quot; (英文标点句号)，输出文件将被放置在与输入文件相同的目录里（相对路径）。</translation>
+如果路径为空或以点开始 "." (英文标点句号)，输出文件将被放置在与输入文件相同的目录里（相对路径）。</translation>
         </message>
         <message>
             <source>Pattern:</source>
@@ -1430,7 +1430,7 @@ Using the album-gain analysis will preserve the volume differences within an alb
             <translation>-</translation>
         </message>
         <message>
-            <source>Are you sure you want to delete the profile &quot;%1&quot;?</source>
+            <source>Are you sure you want to delete the profile "%1"?</source>
             <comment>Message box text</comment>
             <translation>确定要删除配置文件“%1”？</translation>
         </message>
@@ -1495,11 +1495,11 @@ Using the album-gain analysis will preserve the volume differences within an alb
             <translation>无法创建&lt;b&gt;%1&lt;/b&gt;的CUE文件: %2 .</translation>
         </message>
         <message>
-            <source>I can't create directory &quot;%1&quot;.</source>
+            <source>I can't create directory "%1".</source>
             <translation>无法创建目录“%1”。</translation>
         </message>
         <message>
-            <source>I can't write to directory &quot;%1&quot;.</source>
+            <source>I can't write to directory "%1".</source>
             <translation>无法写入目录“%1”。</translation>
         </message>
         <message>
@@ -1512,8 +1512,8 @@ Using the album-gain analysis will preserve the volume differences within an alb
             <translation>内嵌在%1</translation>
         </message>
         <message>
-            <source>File &lt;b&gt;&quot;%1&quot;&lt;/b&gt; does not exist</source>
-            <translation>文件 &lt;b&gt;&quot;%1&quot;&lt;/b&gt; 不存在</translation>
+            <source>File &lt;b&gt;"%1"&lt;/b&gt; does not exist</source>
+            <translation>文件 &lt;b&gt;"%1"&lt;/b&gt; 不存在</translation>
         </message>
         <message>
             <source>&lt;b&gt;%1&lt;/b&gt; is not a valid CUE file. Incorrect track number on line %2.</source>
@@ -1845,18 +1845,18 @@ Using the album-gain analysis will preserve the volume differences within an alb
             <translation>不同的轨道使用了相同的音频文件。</translation>
         </message>
         <message>
-            <source>Disk %1 &quot;%2 - %3&quot; will overwrite its own files.</source>
+            <source>Disk %1 "%2 - %3" will overwrite its own files.</source>
             <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-            <translation>光盘 %1 &quot;%2 - %3&quot; 将会覆盖自己的源文件。</translation>
+            <translation>光盘 %1 "%2 - %3" 将会覆盖自己的源文件。</translation>
         </message>
         <message>
-            <source>Disk %1 &quot;%2 - %3&quot; will overwrite the files of this disk.</source>
+            <source>Disk %1 "%2 - %3" will overwrite the files of this disk.</source>
             <comment>Error message, %1, %2 and %3 is the number, artist and album for the disc, respectively</comment>
-            <translation>光盘 %1 &quot;%2 - %3&quot; 将会覆盖自己的这个光盘的文件。</translation>
+            <translation>光盘 %1 "%2 - %3" 将会覆盖自己的这个光盘的文件。</translation>
         </message>
         <message>
             <source>The output files of the disc are mixed with the files of disc %1.
-You could change the &quot;Start num&quot; for one of them.</source>
+You could change the "Start num" for one of them.</source>
             <comment>Error message, %1 is the disk description, artist and album for the disc, respectively</comment>
             <translation>这个光碟的输出文件将会和光碟%1混合。你可以调整它们中一个的起始值。</translation>
         </message>

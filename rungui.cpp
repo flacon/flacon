@@ -39,7 +39,7 @@ namespace {
 Q_LOGGING_CATEGORY(LOG, "User")
 }
 
-#ifdef MAC_UPDATER
+#if MAC_UPDATER
 #include "updater/updater.h"
 #endif
 
@@ -84,6 +84,11 @@ QString path(QLibraryInfo::LibraryPath p)
 int RunGui::run(int argc, char *argv[])
 {
     Application app(argc, argv);
+
+#if APPIMAGE_BUNDLE
+    addStyleSheet(":appimage/appimage.css");
+#endif
+
     translate(&app);
     CommandLineParser commandLineParser;
     commandLineParser.process(app);
@@ -114,7 +119,7 @@ int RunGui::run(int argc, char *argv[])
 
     window.show();
 
-#ifdef MAC_UPDATER
+#if MAC_UPDATER
     QTimer::singleShot(0, []() {
         Updater &updater = Updater::sharedUpdater();
         if (updater.automaticallyChecksForUpdates()) {
@@ -133,7 +138,7 @@ int RunGui::run(int argc, char *argv[])
  **************************************/
 void RunGui::translate(QApplication *app)
 {
-#ifdef MAC_BUNDLE
+#if MAC_BUNDLE
     QString appDir = LibraryInfo::path(QLibraryInfo::TranslationsPath);
 #elif APPIMAGE_BUNDLE
     QString appDir = LibraryInfo::path(QLibraryInfo::DataPath) + "/share/flacon/translations";
@@ -152,6 +157,15 @@ void RunGui::translate(QApplication *app)
     if (appTranslator->load(QStringLiteral("flacon_%2.qm").arg(locale)) || appTranslator->load(QStringLiteral("%1/flacon_%2.qm").arg(appDir, locale))) {
         app->installTranslator(appTranslator);
     }
+}
+
+void RunGui::addStyleSheet(const QString &cssFile)
+{
+    QFile f(cssFile);
+    if (f.open(QFile::ReadOnly)) {
+        qApp->setStyleSheet(qApp->styleSheet() + "\n" + f.readAll());
+    }
+    f.close();
 }
 
 /**************************************

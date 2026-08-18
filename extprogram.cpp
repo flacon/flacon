@@ -30,6 +30,7 @@
 #include <QDebug>
 #include "types.h"
 #include <QLoggingCategory>
+#include "appconfig.h"
 
 namespace {
 Q_LOGGING_CATEGORY(LOG, "ExtProgram")
@@ -44,7 +45,7 @@ static constexpr auto PATH_ENV_SEPARATOR = ';';
 static constexpr auto BINARY_EXT         = ".exe";
 
 #else
-#ifndef BUNDLED_PROGRAMS
+#if !BUNDLED_PROGRAMS
 static constexpr auto PATH_ENV_SEPARATOR = ':';
 static constexpr auto BINARY_EXT         = "";
 #endif
@@ -53,7 +54,7 @@ static constexpr auto BINARY_EXT         = "";
 ExtProgram::ExtProgram(const QString &name) :
     mName(name)
 {
-#ifdef BUNDLED_PROGRAMS
+#if BUNDLED_PROGRAMS
     mPath = QDir(qApp->applicationDirPath()).absoluteFilePath(name);
 #endif
 }
@@ -61,14 +62,14 @@ ExtProgram::ExtProgram(const QString &name) :
 void ExtProgram::setPath(const QString &path)
 {
     Q_UNUSED(path);
-#ifndef BUNDLED_PROGRAMS
+#if !BUNDLED_PROGRAMS
     mPath = path;
 #endif
 }
 
 QString ExtProgram::find() const
 {
-#ifdef BUNDLED_PROGRAMS
+#if BUNDLED_PROGRAMS
     return mPath;
 #else
     QStringList paths = QProcessEnvironment::systemEnvironment().value("PATH").split(PATH_ENV_SEPARATOR);

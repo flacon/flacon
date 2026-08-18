@@ -25,8 +25,9 @@
 
 #include "updatepage.h"
 #include "ui_updatepage.h"
+#include "appconfig.h"
 
-#ifdef MAC_UPDATER
+#if MAC_UPDATER
 
 #include "updater/updater.h"
 

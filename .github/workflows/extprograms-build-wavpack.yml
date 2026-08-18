@@ -1,0 +1,68 @@
+on:
+  workflow_call:
+    inputs:
+      arch:
+        required: true
+        type: string
+      osx_target:
+        required: true
+        type: string
+
+env:
+  PREFIX: "${{ github.workspace }}/build/usr"
+
+jobs:
+  wavpack:
+    runs-on: macos-latest
+
+    steps:
+
+    ##################################
+    #
+    - name: prepare
+      run: |
+        if [ "${{ inputs.arch }}" = "x86_64" ]; then
+          export "HOST=x86_64-apple-darwin"
+        elif [ "${{ inputs.arch }}" = "arm64" ]; then
+          export "HOST=aarch64-apple-darwin"
+        fi
+        echo "HOST=${HOST}" >> $GITHUB_ENV
+
+        export
+
+
+    ##################################
+    #
+    - name: Build wavpack
+      shell: bash
+      env:
+        VERSION: "5.9.0"
+      run: |
+        mkdir -p wavpack
+        curl -sSL "https://www.wavpack.com/wavpack-${{env.VERSION}}.tar.bz2" | tar xz --strip-components=1 -C wavpack
+        cd wavpack
+
+        ./configure \
+          --host="${{ env.HOST }}" \
+          --prefix="${{ env.PREFIX }}" \
+          --enable-static \
+          --disable-shared \
+          --disable-dependency-tracking \
+          PKG_CONFIG_PATH="${{ env.PREFIX }}/lib/pkgconfig" \
+          CPPFLAGS="-I${{ env.PREFIX }}/include" \
+          CFLAGS="-arch ${{ inputs.arch }} -mmacosx-version-min=${{ inputs.osx_target }} -Wno-implicit-function-declaration" \
+          LDFLAGS="-L${{ env.PREFIX }}/lib -arch ${{ inputs.arch }}"
+
+        make -j$(sysctl -n hw.ncpu)
+        make install
+
+
+     ##################################
+     #
+    - name: Upload artifact
+      uses: actions/upload-artifact@v7
+      with:
+        name: ext-${{ github.job }}-${{ inputs.arch }}
+        path: |
+          ${{ env.PREFIX }}/bin/wavpack
+          ${{ env.PREFIX }}/bin/wvunpack

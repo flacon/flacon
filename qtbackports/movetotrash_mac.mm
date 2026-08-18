@@ -27,6 +27,7 @@
 // SPDX-License-Identifier: LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only
 // Ported from https://code.qt.io/cgit/qt/qtbase.git/ at 2023.02.22
 
+#include "appconfig.h"
 #include "movetotrash.h"
 #ifdef Q_OS_MACOS // desktop macOS has a trash can
 

@@ -91,6 +91,8 @@ void InputAudioFile::Data::load(const QString &filePath)
         qCDebug(LOG) << mErrorString;
         mValid = false;
     }
+
+    mTags.load(mFilePath);
 }
 
 bool InputAudioFile::operator==(const InputAudioFile &other) const

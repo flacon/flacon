@@ -78,6 +78,8 @@ private slots:
     void downloadDiscInfo(Disc *disc);
 
     void removeDiscs();
+    void removeDisks(const QList<Disc *> &discs);
+    void removeTrackFromDisk(Disc *disk, int trackIndex);
 
     void setGenreTag();
     void setDateTag();
@@ -96,9 +98,8 @@ private slots:
     void openLogViewDialog();
     void checkUpdates();
 
-    void trackViewMenu(const QPoint &pos);
-    void showDiskAudioFileMenu(Disc *disc, const QPoint &pos);
     void openEditTagsDialog();
+    void openEditDiskTagsDialog(Disc *disk);
 
     void removeSourceFiles();
 
@@ -129,7 +130,6 @@ private:
     QIcon loadMainIcon();
 
     void showErrorMessage(const QString &message) override;
-    void fillAudioMenu(Disc *disc, QMenu &menu);
 
     void showWarnings();
     void showErrors();
@@ -137,6 +137,9 @@ private:
 
     bool showExitDialog();
     void setStartButtonAction(QAction *action);
+
+    void addFile(const QString &file);
+    void scanDir(const QString &dir);
 };
 
 #endif // MAINWINDOW_H

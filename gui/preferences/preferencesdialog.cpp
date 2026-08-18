@@ -34,6 +34,7 @@
 #include <QMessageBox>
 #include "../controls.h"
 #include "settings.h"
+#include "appconfig.h"
 
 #ifdef Q_OS_MAC
 static constexpr bool DIALOG_HAS_BUTTONS = false;
@@ -98,8 +99,9 @@ PreferencesDialog::PreferencesDialog(QWidget *parent) :
 
     // Restore saved size ..................
     fixLayout(this);
-    int width  = Settings::i()->value(SETTINGS_DIALOG_WIDTH_KEY).toInt();
-    int height = Settings::i()->value(SETTINGS_DIALOG_HEIGHT_KEY).toInt();
+    GuiSettings gui;
+    int         width  = gui.value(SETTINGS_DIALOG_WIDTH_KEY).toInt();
+    int         height = gui.value(SETTINGS_DIALOG_HEIGHT_KEY).toInt();
     resize(width, height);
 
     connect(ui->buttonBox, &QDialogButtonBox::accepted, this, [this]() {
@@ -127,12 +129,12 @@ void PreferencesDialog::initToolBar()
 
     Controls::arangeTollBarButtonsWidth(ui->toolBar);
 
-#ifndef MAC_UPDATER
+#if !MAC_UPDATER
     ui->actShowUpdatePage->setVisible(false);
     ui->updatePage->hide();
 #endif
 
-#ifdef BUNDLED_PROGRAMS
+#if BUNDLED_PROGRAMS
     ui->actShowProgramsPage->setVisible(false);
     ui->programsPage->hide();
 #endif
@@ -152,9 +154,10 @@ void PreferencesDialog::initToolBar()
  ************************************************/
 PreferencesDialog::~PreferencesDialog()
 {
-    Settings::i()->setValue(SETTINGS_DIALOG_WIDTH_KEY, size().width());
-    Settings::i()->setValue(SETTINGS_DIALOG_HEIGHT_KEY, size().height());
-    Settings::i()->sync();
+    GuiSettings gui;
+    gui.setValue(SETTINGS_DIALOG_WIDTH_KEY, size().width());
+    gui.setValue(SETTINGS_DIALOG_HEIGHT_KEY, size().height());
+    gui.sync();
 
     delete ui;
 }
@@ -188,7 +191,7 @@ void PreferencesDialog::setProfiles(const Profiles &profiles)
     ui->generalPage->setProxyUserName(p.proxyUserName());
     ui->generalPage->setProxyPassword(p.proxyPassword());
 
-#ifndef BUNDLED_PROGRAMS
+#if !BUNDLED_PROGRAMS
     // Programs page .......................
     ui->programsPage->load();
 #endif
@@ -292,7 +295,7 @@ bool PreferencesDialog::save()
     p.setProxyUserName(ui->generalPage->proxyUserName());
     p.setProxyPassword(ui->generalPage->proxyPassword());
 
-#ifndef BUNDLED_PROGRAMS
+#if !BUNDLED_PROGRAMS
     // Programs page .......................
     ui->programsPage->save();
 #endif

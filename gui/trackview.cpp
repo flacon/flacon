@@ -38,8 +38,6 @@
 
 #include <QDebug>
 
-#include "gui/tageditor/tageditor.h"
-
 /************************************************
 
  ************************************************/
@@ -49,14 +47,9 @@ TrackView::TrackView(QWidget *parent) :
     mDelegate = new TrackViewDelegate(this);
     setItemDelegate(mDelegate);
 
-    connect(mDelegate, &TrackViewDelegate::trackButtonClicked,
-            this, &TrackView::showTrackMenu);
-
-    connect(mDelegate, &TrackViewDelegate::audioButtonClicked,
-            this, &TrackView::audioButtonClicked);
-
-    connect(mDelegate, &TrackViewDelegate::coverImageClicked,
-            this, &TrackView::emitSelectCoverImage);
+    connect(mDelegate, &TrackViewDelegate::trackButtonClicked, this, &TrackView::processTracksButtonClicked);
+    connect(mDelegate, &TrackViewDelegate::audioButtonClicked, this, &TrackView::processAudioButtonClicked);
+    connect(mDelegate, &TrackViewDelegate::coverImageClicked, this, &TrackView::emitSelectCoverImage);
 
     mModel = new TrackViewModel(this);
     TrackView::setModel(mModel);
@@ -71,8 +64,8 @@ TrackView::TrackView(QWidget *parent) :
 
     header()->setContextMenuPolicy(Qt::CustomContextMenu);
 
-    connect(header(), &QHeaderView::customContextMenuRequested,
-            this, &TrackView::headerContextMenu);
+    connect(header(), &QHeaderView::customContextMenuRequested, this, &TrackView::showHeaderContextMenu);
+    connect(this, &TrackView::customContextMenuRequested, this, &TrackView::showContextMenu);
 }
 
 /************************************************
@@ -216,27 +209,6 @@ void TrackView::updateAll()
 /************************************************
 
  ************************************************/
-void TrackView::headerContextMenu(const QPoint &pos)
-{
-    QMenu menu;
-
-    for (int i = 1; i < model()->columnCount(QModelIndex()); ++i) {
-        QAction *act = new QAction(&menu);
-        act->setText(model()->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString());
-        act->setData(i);
-        act->setCheckable(true);
-        act->setChecked(!isColumnHidden(i));
-        connect(act, &QAction::toggled,
-                this, &TrackView::showHideColumn);
-        menu.addAction(act);
-    }
-
-    menu.exec(mapToGlobal(pos));
-}
-
-/************************************************
-
- ************************************************/
 void TrackView::showHideColumn(bool show)
 {
     QAction *act = qobject_cast<QAction *>(sender());
@@ -245,65 +217,14 @@ void TrackView::showHideColumn(bool show)
 }
 
 /************************************************
-
- ************************************************/
-void TrackView::showTrackMenu(const QModelIndex &index, const QRect &buttonRect)
-{
-    Disc *disc = mModel->discByIndex(index);
-    if (!disc)
-        return;
-
-    QMenu menu;
-    foreach (const TagsId &tags, disc->tagSets()) {
-        QAction *act = new QAction(tags.title, &menu);
-        act->setCheckable(true);
-        act->setChecked(tags.uri == disc->currentTagSet().uri);
-        connect(act, &QAction::triggered, [disc, tags]() { disc->activateTagSet(tags.uri); });
-        menu.addAction(act);
-    }
-
-    menu.addSeparator();
-
-    QAction *act;
-
-    act = new QAction(tr("Select another CUE file…"), &menu);
-    connect(act, &QAction::triggered, [this, disc] { this->selectCueFile(disc); });
-    menu.addAction(act);
-
-    act = new QAction(tr("Get data from Internet"), &menu);
-    act->setEnabled(DataProvider::canDownload(*disc));
-    connect(act, &QAction::triggered, [this, disc]() { emit downloadInfo(disc); });
-    menu.addAction(act);
-
-    QPoint vpPos = viewport()->pos() + visualRect(index).topLeft();
-    QPoint p     = buttonRect.bottomLeft() + vpPos + QPoint(0, 2);
-    menu.exec(mapToGlobal(p));
-}
-
-/************************************************
-
- ************************************************/
-void TrackView::audioButtonClicked(const QModelIndex &index, int audioFileNum, const QRect &buttonRect)
-{
-    Disc *disc = mModel->discByIndex(index);
-    if (disc) {
-        if (audioFileNum < 0) {
-            emit showAudioMenu(disc, buttonRect.bottomLeft());
-        }
-        else {
-            emit selectAudioFile(disc, audioFileNum);
-        }
-    }
-}
-
-/************************************************
  *
  ************************************************/
 void TrackView::emitSelectCoverImage(const QModelIndex &index)
 {
-    Disc *disc = mModel->discByIndex(index);
-    if (disc)
-        emit selectCoverImage(disc);
+    Disc *disk = mModel->discByIndex(index);
+    if (disk) {
+        emit selectCoverImageRequired(disk);
+    }
 }
 
 /************************************************
@@ -381,5 +302,191 @@ void TrackView::keyPressEvent(QKeyEvent *event)
 
         default:
             QTreeView::keyPressEvent(event);
+    }
+}
+
+/************************************************
+
+ ************************************************/
+void TrackView::showHeaderContextMenu(const QPoint &pos)
+{
+    QMenu menu;
+
+    for (int i = 1; i < model()->columnCount(QModelIndex()); ++i) {
+        QAction *act = new QAction(&menu);
+        act->setText(model()->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString());
+        act->setData(i);
+        act->setCheckable(true);
+        act->setChecked(!isColumnHidden(i));
+        connect(act, &QAction::toggled,
+                this, &TrackView::showHideColumn);
+        menu.addAction(act);
+    }
+
+    menu.exec(mapToGlobal(pos));
+}
+
+/************************************************
+
+ ************************************************/
+void TrackView::showContextMenu(const QPoint &pos)
+{
+    QModelIndex index = indexAt(pos);
+    if (!index.isValid()) {
+        return;
+    }
+
+    Disc *disk = model()->discByIndex(index);
+    if (!disk) {
+        return;
+    }
+
+    QMenu menu;
+
+    fillTracksMenu(disk, &menu);
+    menu.addSeparator();
+    fillAudioMenu(disk, &menu);
+
+    menu.exec(viewport()->mapToGlobal(pos));
+}
+
+/************************************************
+
+ ************************************************/
+void TrackView::processTracksButtonClicked(const QModelIndex &index, const QRect &buttonRect)
+{
+    Disc *disk = mModel->discByIndex(index);
+    if (!disk) {
+        return;
+    }
+
+    QMenu menu;
+    fillTracksMenu(disk, &menu);
+
+    QPoint vpPos = viewport()->pos() + visualRect(index).topLeft();
+    QPoint p     = buttonRect.bottomLeft() + vpPos + QPoint(0, 2);
+    menu.exec(mapToGlobal(p));
+}
+
+/************************************************
+
+ ************************************************/
+void TrackView::fillTracksMenu(Disc *disk, QMenu *menu)
+{
+    foreach (const TagsId &tags, disk->tagSets()) {
+        QAction *act = new QAction(tags.title, menu);
+        act->setCheckable(true);
+        act->setChecked(tags.uri == disk->currentTagSet().uri);
+        connect(act, &QAction::triggered, [disk, tags]() { disk->activateTagSet(tags.uri); });
+        menu->addAction(act);
+    }
+
+    menu->addSeparator();
+
+    QAction *act;
+
+    act = new QAction(tr("Get data from Internet"), menu);
+    act->setEnabled(DataProvider::canDownload(*disk));
+    connect(act, &QAction::triggered, [this, disk]() { emit downloadInfoRequired(disk); });
+    menu->addAction(act);
+
+    act = new QAction(tr("Edit tags…", "context menu"), menu);
+    connect(act, &QAction::triggered, this, [this, disk]() { emit editTagsRequiredd(disk); });
+    menu->addAction(act);
+
+    menu->addSeparator();
+
+    QString title = disk->cue() ? tr("Change CUE file…") : tr("Set CUE file…", "Context menu item");
+    act           = new QAction(title, menu);
+    connect(act, &QAction::triggered, [this, disk] { emit this->selectCueFileRequiredd(disk); });
+    menu->addAction(act);
+}
+
+/************************************************
+
+ ************************************************/
+void TrackView::processAudioButtonClicked(const QModelIndex &index, const QRect &buttonRect)
+{
+    Disc *disk = mModel->discByIndex(index);
+
+    if (!disk) {
+        return;
+    }
+
+    QMenu menu;
+    fillAudioMenu(disk, &menu);
+
+    if (!menu.isEmpty()) {
+        QPoint vpPos = viewport()->pos() + visualRect(index).topLeft();
+        QPoint p     = buttonRect.bottomLeft() + vpPos + QPoint(0, 2);
+        menu.exec(mapToGlobal(p));
+    }
+}
+
+/************************************************
+ *
+ ************************************************/
+void TrackView::fillAudioMenu(Disc *disk, QMenu *menu)
+{
+    QAction *act;
+
+    if (!disk->cue()) {
+        act = new QAction(tr("Add audio file…", "context menu"), menu);
+        connect(act, &QAction::triggered, this, [this, disk]() { emit selectAudioFileRequiredd(disk, 0); });
+        menu->addAction(act);
+
+        menu->addSeparator();
+
+        if (disk->tracks().size() == 1) {
+            act = new QAction(tr("Remove audio file", "context menu."), menu);
+            connect(act, &QAction::triggered, this, [this, disk]() { emit removeTrackRequired(disk, 0); });
+            menu->addAction(act);
+        }
+        else {
+            QMenu *subMenu = new QMenu(tr("Remove audio file", "context menu"), menu);
+
+            for (const Track *t : disk->tracks()) {
+                act = new QAction(tr("%1 - %2", "context menu. %1 is track number, %2 is track title").arg(t->trackNumTag()).arg(t->titleTag()), subMenu);
+                connect(act, &QAction::triggered, this, [this, disk, t]() { emit removeTrackRequired(disk, t->index()); });
+                subMenu->addAction(act);
+            }
+
+            menu->addMenu(subMenu);
+        }
+        return;
+    }
+
+    QList<TrackPtrList> list = disk->tracksByFileTag();
+    if (list.size() == 1) {
+        // Change Audio File
+        act = new QAction(tr("Change audio file…", "context menu."), menu);
+        connect(act, &QAction::triggered, this, [this, disk]() { emit selectAudioFileRequiredd(disk, 0); });
+        menu->addAction(act);
+    }
+    else {
+        QMenu *subMenu = new QMenu(tr("Change audio file", "context menu"), menu);
+
+        int n = 0;
+        for (TrackPtrList &l : disk->tracksByFileTag()) {
+
+            QString msg;
+            if (l.count() == 1) {
+                msg = tr("For %1 track…", "context menu. Placeholders are track number")
+                              .arg(l.first()->trackNumTag());
+            }
+            else {
+                msg = tr("For tracks %1 to %2…", "context menu. Placeholders are track numbers")
+                              .arg(l.first()->trackNumTag())
+                              .arg(l.last()->trackNumTag());
+            }
+
+            act = new QAction(msg, subMenu);
+            connect(act, &QAction::triggered, this, [this, disk, n]() { emit selectAudioFileRequiredd(disk, n); });
+            subMenu->addAction(act);
+
+            n++;
+        }
+
+        menu->addMenu(subMenu);
     }
 }

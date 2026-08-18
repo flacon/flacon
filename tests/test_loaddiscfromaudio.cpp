@@ -37,6 +37,7 @@
 #include "../project.h"
 #include "discspec.h"
 #include "tools.h"
+#include "converter/decoder.h"
 
 namespace {
 class TestProject : public Project

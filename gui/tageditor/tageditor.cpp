@@ -74,8 +74,9 @@ TagEditor::TagEditor(const QList<Track *> &tracks, QWidget *parent) :
 
     updateWidgets();
 
-    int width  = Settings::i()->value(TAG_EDIT_DIALOG_WIDTH_KEY).toInt();
-    int height = Settings::i()->value(TAG_EDIT_DIALOG_HEIGHT_KEY).toInt();
+    GuiSettings settings;
+    int         width  = settings.value(TAG_EDIT_DIALOG_WIDTH_KEY).toInt();
+    int         height = settings.value(TAG_EDIT_DIALOG_HEIGHT_KEY).toInt();
     resize(width, height);
 }
 
@@ -84,9 +85,10 @@ TagEditor::TagEditor(const QList<Track *> &tracks, QWidget *parent) :
  ************************************************/
 TagEditor::~TagEditor()
 {
-    Settings::i()->setValue(TAG_EDIT_DIALOG_WIDTH_KEY, size().width());
-    Settings::i()->setValue(TAG_EDIT_DIALOG_HEIGHT_KEY, size().height());
-    Settings::i()->sync();
+    GuiSettings settings;
+    settings.setValue(TAG_EDIT_DIALOG_WIDTH_KEY, size().width());
+    settings.setValue(TAG_EDIT_DIALOG_HEIGHT_KEY, size().height());
+    settings.sync();
 
     delete ui;
 }

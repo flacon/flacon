@@ -51,7 +51,6 @@ QHash<QString, QVariant> OutFormat_Ogg::defaultParameters() const
     res.insert("MinBitrate", "");
     res.insert("NormBitrate", "");
     res.insert("MaxBitrate", "");
-    res.insert("ReplayGain", gainTypeToString(GainType::Disable));
     return res;
 }
 
@@ -81,19 +80,19 @@ QStringList OutFormat_Ogg::encoderArgs(const Profile &profile, const QString &ou
     args << "--quiet";
 
     // Quality settings .........................................
-    if (profile.encoderValue("UseQuality").toBool()) {
-        args << "-q" << profile.encoderValue("Quality").toString();
+    if (profile.encoderValues()->value("UseQuality").toBool()) {
+        args << "-q" << profile.encoderValues()->value("Quality").toString();
     }
     else {
-        QString val = profile.encoderValue("NormBitrate").toString();
+        QString val = profile.encoderValues()->value("NormBitrate").toString();
         if (!val.isEmpty())
             args << "-b" << val;
 
-        val = profile.encoderValue("MinBitrate").toString();
+        val = profile.encoderValues()->value("MinBitrate").toString();
         if (!val.isEmpty())
             args << "-m" << val;
 
-        val = profile.encoderValue("MaxBitrate").toString();
+        val = profile.encoderValues()->value("MaxBitrate").toString();
         if (!val.isEmpty())
             args << "-M" << val;
     }

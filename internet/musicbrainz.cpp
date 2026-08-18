@@ -140,7 +140,9 @@ void MusicBrainz::releaseGroupsReady(QNetworkReply *reply)
             continue;
         }
 
-        QNetworkReply *reply = get(QNetworkRequest(QString(LOOKUP_URL).arg(id)));
+        QString url = QString(LOOKUP_URL).arg(id);
+        qCDebug(LOG) << "Get release info form" << url;
+        QNetworkReply *reply = get(QNetworkRequest(url));
         connect(reply, &QNetworkReply::finished, this, [this, reply]() { releasesReady(reply); });
     }
 
@@ -267,10 +269,12 @@ InternetTags MusicBrainz::parseTracksJson(const QJsonArray &tracks, const QStrin
         QString artist = t["artist-credit"][0]["name"].toString();
         res.setAlbum(album);
 
+        int trackNum = t["position"].toInt(n + 1);
+
         InternetTags::Track &track = res.tracks()[n];
 
         track.setTitle(trackTitle);
-        track.setTrackNum(n);
+        track.setTrackNum(trackNum);
         track.setDate(getDate(t));
         track.setPerformer(artist);
         track.setGenre(getGenre(t));
@@ -290,7 +294,7 @@ void MusicBrainz::processResults()
     for (InternetTags &t : mResult) {
         n++;
         TagsId tagsId;
-        tagsId.uri = QStringLiteral("https://musicbrainz.org/artis=%1&album=%2&num=%3").arg(mRequestArtist, mRequestAlbum).arg(n);
+        tagsId.uri = QStringLiteral("https://musicbrainz.org/artis=%1&album=%2&num=%3").arg(mRequestArtist, mRequestAlbum).arg(n).toLower();
         if (mResult.size() == 1) {
             tagsId.title = QStringLiteral("%1 / %2   [ MusicBrainz ]").arg(mRequestArtist, mRequestAlbum);
         }

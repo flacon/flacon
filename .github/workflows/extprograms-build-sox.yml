@@ -1,0 +1,67 @@
+on:
+  workflow_call:
+    inputs:
+      arch:
+        required: true
+        type: string
+      osx_target:
+        required: true
+        type: string
+
+env:
+  PREFIX: "${{ github.workspace }}/build/usr"
+
+jobs:
+  sox:
+    runs-on: macos-latest
+
+    steps:
+
+    ##################################
+    #
+    - name: prepare
+      run: |
+        if [ "${{ inputs.arch }}" = "x86_64" ]; then
+          export "HOST=x86_64-apple-darwin"
+        elif [ "${{ inputs.arch }}" = "arm64" ]; then
+          export "HOST=aarch64-apple-darwin"
+        fi
+        echo "HOST=${HOST}" >> $GITHUB_ENV
+
+        export
+
+
+    ##################################
+    #
+    - name: Build sox
+      shell: bash
+      env:
+        VERSION: "14.4.2"
+      run: |
+        mkdir -p sox
+        curl -sSL "https://downloads.sourceforge.net/project/sox/sox/${{env.VERSION}}/sox-${{env.VERSION}}.tar.gz" | tar xz --strip-components=1 -C sox
+        cd sox
+
+        ./configure \
+          --host="${{ env.HOST }}" \
+          --prefix="${{ env.PREFIX }}" \
+          --enable-static \
+          --disable-shared \
+          --without-png \
+          PKG_CONFIG_PATH="${{ env.PREFIX }}/lib/pkgconfig" \
+          CPPFLAGS="-I${{ env.PREFIX }}/include" \
+          CFLAGS="-arch ${{ inputs.arch }} -mmacosx-version-min=${{ inputs.osx_target }} -Wno-implicit-function-declaration -Wno-incompatible-function-pointer-types" \
+          LDFLAGS="-L${{ env.PREFIX }}/lib -arch ${{ inputs.arch }}"
+
+        make -j$(sysctl -n hw.ncpu)
+        make install
+
+
+    ##################################
+    #
+    - name: Upload artifact
+      uses: actions/upload-artifact@v7
+      with:
+        name: ext-${{ github.job }}-${{ inputs.arch }}
+        path: |
+          ${{ env.PREFIX }}/bin/sox

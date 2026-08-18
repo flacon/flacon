@@ -41,5 +41,14 @@ static constexpr auto GITHUB_REF_TYPE = "$ENV{GITHUB_REF_TYPE}";
 static constexpr auto GITHUB_REF_NAME = "$ENV{GITHUB_REF_NAME}";
 static constexpr bool IS_TAG_RELEASE  = @IS_TAG_RELEASE@;
 
+#cmakedefine01 FLATPAK_BUNDLE
+#cmakedefine01 APPIMAGE_BUNDLE
+#cmakedefine01 MAC_BUNDLE
+#cmakedefine01 BUNDLED_PROGRAMS
+#cmakedefine01 MAC_UPDATER
+#cmakedefine01 DISABLE_TMP_DIR
+
+static constexpr auto TRANSLATIONS_DIR = "@TRANSLATIONS_DIR@";
+
 // clang-format on
 #endif // APPCONFIG_H

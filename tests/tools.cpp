@@ -35,6 +35,7 @@
 #include "../cue.h"
 #include "../disc.h"
 #include "wavheader.h"
+#include "converter/decoder.h"
 
 class HashDevice : public QIODevice
 {
@@ -629,7 +630,7 @@ Mediainfo::Mediainfo(const QString &fileName) :
 
     QProcess proc;
     proc.setEnvironment(QStringList("LANG=en_US.UTF-8"));
-    proc.start("mediainfo", args);
+    proc.start(qApp->applicationDirPath() + "/mediainfo", args);
     proc.waitForFinished();
     if (proc.exitCode() != 0) {
         QString err = QString::fromLocal8Bit(proc.readAll());

@@ -32,6 +32,7 @@
 #include <QLoggingCategory>
 #include "extprocess.h"
 #include "formats_out/metadatawriter.h"
+#include "appconfig.h"
 
 namespace {
 Q_LOGGING_CATEGORY(LOG, "Encoder")
@@ -69,7 +70,7 @@ QProcess *Encoder::createEncoderProcess()
     res->setProgram(prog->path());
     res->setArguments(args);
 
-#ifdef MAC_BUNDLE
+#if MAC_BUNDLE
     res->setEnvironment(QStringList("LANG=en_US.UTF-8"));
 #endif
 

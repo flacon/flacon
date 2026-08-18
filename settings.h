@@ -28,6 +28,7 @@
 
 #include <QSettings>
 #include "profiles.h"
+#include "appconfig.h"
 
 class OutFormat;
 
@@ -65,6 +66,12 @@ private:
     BitsPerSample readBitsPerSample(const QString &key, BitsPerSample def) const;
     SampleRate    readSampleRate(const QString &key, SampleRate def) const;
     uint          readThreadsCount(const QString &key, uint def) const;
+};
+
+class GuiSettings : public QSettings
+{
+public:
+    GuiSettings();
 };
 
 #endif // SETTINGS_H

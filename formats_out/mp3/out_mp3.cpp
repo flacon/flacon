@@ -55,7 +55,6 @@ QHash<QString, QVariant> OutFormat_Mp3::defaultParameters() const
     res.insert("Preset", VBR_STATDARD);
     res.insert("Bitrate", 320);
     res.insert("Quality", 4);
-    res.insert("ReplayGain", gainTypeToString(GainType::Disable));
     return res;
 }
 
@@ -85,7 +84,7 @@ QStringList OutFormat_Mp3::encoderArgs(const Profile &profile, const QString &ou
     args << "--silent";
 
     // Settings .................................................
-    QString preset = profile.encoderValue("Preset").toString();
+    QString preset = profile.encoderValues()->value("Preset").toString();
 
     if (preset == VBR_MEDIUM) {
         args << "--preset"
@@ -109,20 +108,20 @@ QStringList OutFormat_Mp3::encoderArgs(const Profile &profile, const QString &ou
 
     else if (preset == CBR_KBPS) {
         args << "--preset"
-             << "cbr" << profile.encoderValue("Bitrate").toString();
+             << "cbr" << profile.encoderValues()->value("Bitrate").toString();
     }
 
     else if (preset == ABR_KBPS) {
-        args << "--preset" << profile.encoderValue("Bitrate").toString();
+        args << "--preset" << profile.encoderValues()->value("Bitrate").toString();
     }
 
     else if (preset == VBR_QUALITY) {
-        int quality = profile.encoderValue("Quality").toInt();
+        int quality = profile.encoderValues()->value("Quality").toInt();
         args << "-V" << QStringLiteral("%1").arg(9 - quality);
     }
 
     // ReplayGain ...............................................
-    if (strToGainType(profile.encoderValue("ReplayGain").toString()) != GainType::Track) {
+    if (profile.gainType() != GainType::Track) {
         args << "--noreplaygain";
     }
 

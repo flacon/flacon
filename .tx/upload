@@ -47,6 +47,8 @@ def push():
 #
 if __name__ == "__main__":
     try:
+        tx.load_config()
+
         shutil.rmtree(TMP_DIR, ignore_errors=True)
         os.makedirs(TMP_DIR, exist_ok=True)
 

@@ -34,6 +34,7 @@
 #include "json_struct.h"
 #include "tools.h"
 #include <filesystem>
+#include "converter/decoder.h"
 
 namespace {
 
