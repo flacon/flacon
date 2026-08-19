@@ -110,6 +110,7 @@ set(HEADERS
     rungui.h
     runconsole.h
     commandlineparser.h
+    inputformat.h
 
     gui/icon.h
     gui/mainwindow.h
@@ -144,6 +145,7 @@ set(SOURCES
     rungui.cpp
     runconsole.cpp
     commandlineparser.cpp
+    inputformat.cpp
 
 )
 

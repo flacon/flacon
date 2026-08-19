@@ -49,15 +49,6 @@ class Decoder : public QObject
 {
     Q_OBJECT
 public:
-    struct Format
-    {
-        QString name;
-        QString ext;
-    };
-
-    static QList<Format> allFormats();
-    static QStringList   allFormatsExts();
-
     enum class LogLevel {
         Silent,
         Error,

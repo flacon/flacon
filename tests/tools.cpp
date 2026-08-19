@@ -575,7 +575,9 @@ static QByteArray readCue(const QString &fileName, bool skipEmptyLines)
 {
 
     QFile file(fileName);
-    file.open(QFile::ReadOnly);
+    if (!file.open(QFile::ReadOnly)) {
+        return {};
+    }
 
     QByteArray res;
     res.reserve(file.size());
@@ -647,9 +649,10 @@ Mediainfo::Mediainfo(const QString &fileName) :
 void Mediainfo::save(const QString &fileName)
 {
     QFile file(fileName);
-    file.open(QIODevice::WriteOnly);
-    file.write(mJsonDoc.toJson(QJsonDocument::Indented));
-    file.close();
+    if (file.open(QIODevice::WriteOnly)) {
+        file.write(mJsonDoc.toJson(QJsonDocument::Indented));
+        file.close();
+    }
 }
 
 /************************************************

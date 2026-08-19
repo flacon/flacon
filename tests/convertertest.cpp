@@ -531,9 +531,7 @@ QStringList ConverterTest::readFile(const QString &fileName)
 {
     QStringList res;
     QFile       file(fileName);
-    file.open(QIODevice::ReadOnly);
-
-    if (!file.isOpen()) {
+    if (!file.open(QIODevice::ReadOnly)) {
         FAIL(QStringLiteral("Can't open file %1: %2").arg(file.fileName(), file.errorString()).toLocal8Bit().data());
         return res;
     }
@@ -554,10 +552,9 @@ QStringList ConverterTest::readFile(const QString &fileName)
 void ConverterTest::writeFile(const QStringList &strings, const QString &fileName)
 {
     QFile file(fileName);
-    file.open(QIODevice::WriteOnly);
-
-    if (!file.isOpen())
+    if (!file.open(QIODevice::WriteOnly)) {
         QFAIL(QStringLiteral("Can't open file %1: %2").arg(file.fileName(), file.errorString()).toLocal8Bit().data());
+    }
 
     foreach (const QString &string, strings) {
         file.write(string.toLocal8Bit());
@@ -570,7 +567,10 @@ void ConverterTest::writeFile(const QStringList &strings, const QString &fileNam
 void ConverterTest::createStartSh(const QString fileName, const QString flaconBin, const QStringList &args) const
 {
     QFile file(fileName);
-    file.open(QIODevice::WriteOnly);
+    if (!file.open(QIODevice::WriteOnly)) {
+        QFAIL(QStringLiteral("Can't open file %1: %2").arg(file.fileName(), file.errorString()).toLocal8Bit().data());
+    }
+
     file.write("\"" + flaconBin.toLocal8Bit() + "\"");
     for (QString a : args) {
         a.replace("\"", "\\\"");
@@ -619,7 +619,10 @@ void ConverterTest::printFile(const QString &fileName, bool printHeader)
         out << QStringLiteral("───────────────────────────────────────────────────────────────────────\n");
     }
     QFile f(fileName);
-    f.open(QFile::ReadOnly);
+    if (!f.open(QFile::ReadOnly)) {
+        QFAIL(QStringLiteral("Can't open file %1: %2").arg(f.fileName(), f.errorString()).toLocal8Bit().data());
+    }
+
     out << f.readAll();
     out << "\n";
 

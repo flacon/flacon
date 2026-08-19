@@ -37,12 +37,15 @@ using TagsMap = QMap<QString, QVariant>;
 
 static void createCue(const QString &fileName)
 {
-    QFile f(fileName);
-    f.open(QFile::WriteOnly);
-    f.write("FILE 'in.wav' WAVE\n");
-    f.write("TRACK 01 AUDIO\n");
-    f.write("INDEX 00 00:00:00\n");
-    f.close();
+    QFile file(fileName);
+    if (!file.open(QFile::WriteOnly | QFile::Truncate)) {
+        QFAIL(QStringLiteral("Can't open file %1: %2").arg(file.fileName(), file.errorString()).toLocal8Bit().data());
+    }
+
+    file.write("FILE 'in.wav' WAVE\n");
+    file.write("TRACK 01 AUDIO\n");
+    file.write("INDEX 00 00:00:00\n");
+    file.close();
 }
 
 static QJsonObject readSpec(const QString &specFileName)

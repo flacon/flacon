@@ -65,7 +65,9 @@ TestFlacon::TestFlacon(QObject *parent) :
 void TestFlacon::writeTextFile(const QString &fileName, const QString &content)
 {
     QFile file(fileName);
-    file.open(QFile::WriteOnly | QFile::Truncate);
+    if (!file.open(QFile::WriteOnly | QFile::Truncate)) {
+        QFAIL(QStringLiteral("Can't open file %1: %2").arg(file.fileName(), file.errorString()).toLocal8Bit().data());
+    }
     file.write(content.toLocal8Bit());
     file.close();
 }
@@ -76,7 +78,10 @@ void TestFlacon::writeTextFile(const QString &fileName, const QString &content)
 void TestFlacon::writeTextFile(const QString &fileName, const QStringList &content)
 {
     QFile file(fileName);
-    file.open(QFile::WriteOnly | QFile::Truncate);
+    if (!file.open(QFile::WriteOnly | QFile::Truncate)) {
+        QFAIL(QStringLiteral("Can't open file %1: %2").arg(file.fileName(), file.errorString()).toLocal8Bit().data());
+    }
+
     for (int i = 0; i < content.count(); ++i) {
         file.write(content.at(i).toLocal8Bit());
         file.write("\n");
@@ -405,9 +410,7 @@ QStringList TestFlacon::readFile(const QString &fileName)
 {
     QStringList res;
     QFile       file(fileName);
-    file.open(QIODevice::ReadOnly);
-
-    if (!file.isOpen()) {
+    if (!file.open(QFile::ReadOnly)) {
         FAIL(QStringLiteral("Can't open file %1: %2").arg(file.fileName(), file.errorString()).toLocal8Bit().data());
         return res;
     }
@@ -428,10 +431,9 @@ QStringList TestFlacon::readFile(const QString &fileName)
 void TestFlacon::writeFile(const QStringList &strings, const QString &fileName)
 {
     QFile file(fileName);
-    file.open(QIODevice::WriteOnly);
-
-    if (!file.isOpen())
+    if (!file.open(QIODevice::WriteOnly)) {
         QFAIL(QStringLiteral("Can't open file %1: %2").arg(file.fileName(), file.errorString()).toLocal8Bit().data());
+    }
 
     foreach (const QString &string, strings) {
         file.write(string.toLocal8Bit());

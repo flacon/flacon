@@ -139,7 +139,7 @@ void Cue::read(const CueData &data)
         mMutiplyAudio = false;
 
         QString prev;
-        for (const Track &track : qAsConst(mTracks)) {
+        for (const Track &track : std::as_const(mTracks)) {
             QString s = QString::fromUtf8(track.fileTag());
 
             if (s != prev) {
@@ -160,7 +160,7 @@ void Cue::read(const CueData &data)
 void Cue::validate()
 {
     bool hasFileTag = false;
-    for (const Track &t : qAsConst(mTracks)) {
+    for (const Track &t : std::as_const(mTracks)) {
         hasFileTag = hasFileTag || !t.fileTag().isEmpty();
     }
 

@@ -24,7 +24,6 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "decoder.h"
-#include "../cue.h"
 
 #include <QIODevice>
 #include <QLoggingCategory>
@@ -142,39 +141,6 @@ public:
 /************************************************
  *
  ************************************************/
-QList<Decoder::Format>
-Decoder::allFormats()
-{
-    // clang-format off
-    return {
-        // name         file ext
-        { "APE",        "ape"  },
-        { "FLAC",       "flac" },
-        { "TTA",        "tta"  },
-        { "MP3",        "mp3"  },
-        { "WAV",        "wav"  },
-        { "WAVE64",     "w64"  },
-        { "WavPack",    "wv"   },
-    };
-    // clang-format on
-}
-
-/************************************************
- *
- ************************************************/
-QStringList Decoder::allFormatsExts()
-{
-    QStringList res;
-    for (auto fmt : Conv::Decoder::allFormats()) {
-        res << QStringLiteral("*.%1").arg(fmt.ext);
-    }
-
-    return res;
-}
-
-/************************************************
- *
- ************************************************/
 Decoder::LogLevel Decoder::logLevel()
 {
     int avLevel = av_log_get_level();
@@ -203,8 +169,6 @@ void Decoder::setLogLevel(LogLevel value)
     // clang-format on
 }
 
-static const int MAX_BUF_SIZE  = 4096;
-static const int READ_DELAY    = 1000;
 static const int UNKNOWN_COUNT = std::numeric_limits<int>::max();
 
 class RaiiPacketUnref

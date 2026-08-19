@@ -54,7 +54,9 @@ QFile &operator<<(QFile &file, const int &value)
 static void write(const Cue &cue, const QString &fileName)
 {
     QFile f(fileName);
-    f.open(QFile::WriteOnly | QFile::Truncate);
+    if (!f.open(QFile::WriteOnly | QFile::Truncate)) {
+        QFAIL(QStringLiteral("Can't open file %1: %2").arg(f.fileName(), f.errorString()).toLocal8Bit().data());
+    }
 
     int t = -1;
     for (const Cue::Track &track : cue.tracks()) {

@@ -24,10 +24,7 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "scanner.h"
-#include "converter/decoder.h"
-#include "inputaudiofile.h"
-
-#include "project.h"
+#include "inputformat.h"
 
 #include <QStringList>
 #include <QSet>
@@ -53,7 +50,7 @@ void Scanner::start(const QString &startDir)
     mActive = true;
     mAbort  = false;
 
-    QStringList exts = Conv::Decoder::allFormatsExts();
+    QStringList exts = InputFormat::allFileExts();
 
     QQueue<QString> query;
     query << startDir;
