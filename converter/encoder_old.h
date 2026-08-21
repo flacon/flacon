@@ -1,5 +1,5 @@
-#ifndef ENCODER_H
-#define ENCODER_H
+#ifndef ENCODER_OLD_H
+#define ENCODER_OLD_H
 
 /* BEGIN_COMMON_COPYRIGHT_HEADER
  * (c)LGPL2+
@@ -26,25 +26,22 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
+#include <QProcess>
+
 #include "worker.h"
 #include "../profiles.h"
 #include "coverimage.h"
 #include "replaygain.h"
 
-struct AVCodecContext;
-struct AVFormatContext;
-struct AVFilterGraph;
-struct AVFilterContext;
-struct AVStream;
-
 namespace Conv {
 
-class Encoder : public Worker
+class Encoder_OLD : public Worker
 {
     Q_OBJECT
 public:
-    explicit Encoder(QObject *parent = nullptr);
-    ~Encoder();
+    explicit Encoder_OLD(QObject *parent = nullptr);
+
+    const OutFormat *outFormat() const { return mProfile.outFormat(); }
 
     const Profile   &profile() const { return mProfile; }
     const ConvTrack &track() const { return mTrack; }
@@ -52,55 +49,52 @@ public:
     QString          inputFile() const { return mInputFile; }
     const QString   &embeddedCue() const { return mEmbeddedCue; }
 
-    void setProfile(const Profile &profile) { mProfile = profile; };
+    void setProfile(const Profile &profile);
     void setTrack(const ConvTrack &track) { mTrack = track; }
     void setInputFile(const QString &value) { mInputFile = value; }
     void setOutFile(const QString &value) { mOutFile = value; }
     void setEmbeddedCue(const QString &value) { mEmbeddedCue = value; }
 
     const CoverImage &coverImage() const { return mCoverImage; }
-    void              setCoverImage(const CoverImage &value) { mCoverImage = value; }
+    void              setCoverImage(const CoverImage &value);
 
+public slots:
     void run() override;
 
 signals:
     void trackReady(const Conv::ConvTrack &track, const QString &outFileName, const ReplayGain::Result &trackGain);
 
+private slots:
+    void processBytesWritten(qint64 bytes);
+
 private:
-    Profile    mProfile;
-    ConvTrack  mTrack;
-    QString    mInputFile;
-    QString    mOutFile;
-    QString    mEmbeddedCue;
+    Profile   mProfile;
+    ConvTrack mTrack;
+    QString   mInputFile;
+    QString   mOutFile;
+    QString   mEmbeddedCue;
+
     CoverImage mCoverImage;
 
     bool                  mReplayGainEnabled = false;
     ReplayGain::TrackGain mTrackGain;
 
-    void writeMetadata() const;
+    quint64 mTotal    = 0;
+    quint64 mReady    = 0;
+    int     mProgress = 0;
 
-private:
-    AVFormatContext *mInFmtCtx = nullptr;
-    AVCodecContext  *mDecCtx   = nullptr;
+    void readInputFile(QProcess *process);
+    void copyFile();
 
-    AVCodecContext  *mEncCtx    = nullptr;
-    AVFormatContext *mOutFmtCtx = nullptr;
+    QProcess *createEncoderProcess();
+    QProcess *createRasmpler(const QString &outFile);
+    QProcess *createDemph(const QString &outFile);
+    void      writeMetadata() const;
 
-    AVFilterGraph   *mFilterGraph = nullptr;
-    AVFilterContext *mFiltSrcCtx  = nullptr;
-    AVFilterContext *mFiltSinkCtx = nullptr;
-
-    AVStream *mInStream  = nullptr;
-    AVStream *mOutStream = nullptr;
-
-    int mAudioStreamIdx = -1;
-
-    void setupInput();
-    void setupEncoder(AVCodecID formatId, int bitsPerSample, int sampleRate);
-    void setupOutput();
-    void setupFilterGraph(bool deemph);
-    void encode();
+    QStringList resamplerArgs(int bitsPerSample, int sampleRate, const QString &outFile);
+    QStringList deemphasisArgs(const QString &outFile);
+    void        stopProcesses(QList<QProcess *> procs);
 };
 
 } // namespace
-#endif // ENCODER_H
+#endif // ENCODER_OLD_H

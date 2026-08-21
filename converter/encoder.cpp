@@ -24,27 +24,111 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "encoder.h"
-#include "profiles.h"
-
-#include <QFileInfo>
-#include <QDir>
-#include <QDebug>
-#include <QLoggingCategory>
-#include "extprocess.h"
+#include <QString>
+#include <QCoreApplication>
 #include "formats_out/metadatawriter.h"
-#include "appconfig.h"
 
+extern "C" {
+#include <libavformat/avformat.h>
+#include <libavcodec/avcodec.h>
+#include <libavfilter/avfilter.h>
+#include <libavfilter/buffersrc.h>
+#include <libavfilter/buffersink.h>
+#include <libavutil/opt.h>
+#include <libavutil/channel_layout.h>
+}
+
+#include <QLoggingCategory>
 namespace {
 Q_LOGGING_CATEGORY(LOG, "Encoder")
 }
 
 using namespace Conv;
 
-const quint64 MIN_BUF_SIZE = 4 * 1024;
-const quint64 MAX_BUF_SIZE = 1024 * 1024;
+namespace {
+/**************************************
+ *
+ **************************************/
+QString ffErrorStr(int errNum, const QString &contextMessage)
+{
+    char errBuf[AV_ERROR_MAX_STRING_SIZE] = { 0 };
+    av_strerror(errNum, errBuf, sizeof(errBuf));
+    return QString("%1 (%2)").arg(contextMessage, QString::fromUtf8(errBuf));
+}
+
+/**************************************
+ *
+ **************************************/
+AVSampleFormat selectBestSampleFormat(const AVCodec *encoder, int reqBps)
+{
+    const AVSampleFormat *supportedFmts = nullptr;
+
+#if LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(61, 3, 100)
+    int numFmts = 0;
+    avcodec_get_supported_config(nullptr, encoder, AV_CODEC_CONFIG_SAMPLE_FORMAT, 0,
+                                 reinterpret_cast<const void **>(&supportedFmts), &numFmts);
+#else
+    supportedFmts = encoder->sample_fmts;
+#endif
+
+    // If the encoder accepts absolutely any format (rare, but it happens in PCM)
+    if (!supportedFmts) {
+        return (reqBps > 16) ? AV_SAMPLE_FMT_S32 : AV_SAMPLE_FMT_S16;
+    }
+
+    QList<AVSampleFormat> preferred;
+
+    if (reqBps > 16) {
+        // We look for 32-bit int, then float, then planar versions
+        preferred << AV_SAMPLE_FMT_S32 << AV_SAMPLE_FMT_S32P
+                  << AV_SAMPLE_FMT_FLT << AV_SAMPLE_FMT_FLTP
+                  << AV_SAMPLE_FMT_S16 << AV_SAMPLE_FMT_S16P;
+    }
+    else {
+        // We look for a 16-bit int, then a planar, then the rest
+        preferred << AV_SAMPLE_FMT_S16 << AV_SAMPLE_FMT_S16P
+                  << AV_SAMPLE_FMT_FLT << AV_SAMPLE_FMT_FLTP
+                  << AV_SAMPLE_FMT_S32 << AV_SAMPLE_FMT_S32P;
+    }
+
+    for (AVSampleFormat fmt : preferred) {
+        for (const AVSampleFormat *p = supportedFmts; *p != -1; ++p) {
+            if (*p == fmt) {
+                return fmt;
+            }
+        }
+    }
+
+    return supportedFmts[0];
+}
+
+}
+
+/**************************************
+ *
+ **************************************/
+// void configureEncoderParams(AVCodecContext *encCtx) const
+// {
+//     switch (encCtx->codec_id) {
+//         case AV_CODEC_ID_FLAC: {
+//             // int quality = mProfile.outFormat()->quality(mProfile); // 0-8 или 0-12
+//             int quality = 10;
+//             av_opt_set_int(encCtx->priv_data, "compression_level", quality, 0);
+//             break;
+//         }
+//         case AV_CODEC_ID_MP3: {
+//             // e.g., VBR vs CBR, quality, bitrate
+//             // av_opt_set_int(encCtx->priv_data, "compression_level", quality, 0);
+//             // encCtx->bit_rate = ...
+//             break;
+//         }
+//         default:
+//             break;
+//     }
+// }
 
 /************************************************
- *
+
  ************************************************/
 Encoder::Encoder(QObject *parent) :
     Worker(parent)
@@ -52,202 +136,86 @@ Encoder::Encoder(QObject *parent) :
 }
 
 /************************************************
- *
+
  ************************************************/
-QProcess *Encoder::createEncoderProcess()
+Encoder::~Encoder()
 {
-    ExtProgram *prog = mProfile.outFormat()->encoderProgram(mProfile);
-    if (!prog) {
-        return nullptr;
-    }
+    // clang-format off
+    if (mFilterGraph) avfilter_graph_free(&mFilterGraph);
+    if (mDecCtx)      avcodec_free_context(&mDecCtx);
+    if (mEncCtx)      avcodec_free_context(&mEncCtx);
+    if (mInFmtCtx)    avformat_close_input(&mInFmtCtx);
 
-    QStringList args = mProfile.outFormat()->encoderArgs(mProfile, mOutFile);
-
-    qCDebug(LOG) << "Start encoder:" << debugProgramArgs(prog->path(), args);
-
-    QProcess *res = new ExtProcess();
-    res->setObjectName("encoder");
-    res->setProgram(prog->path());
-    res->setArguments(args);
-
-#if MAC_BUNDLE
-    res->setEnvironment(QStringList("LANG=en_US.UTF-8"));
-#endif
-
-    return res;
-}
-
-/************************************************
- *
- ************************************************/
-QProcess *Encoder::createRasmpler(const QString &outFile)
-{
-    const InputAudioFile &audio = mTrack.audioFile();
-
-    int bps  = calcQuality(audio.bitsPerSample(), mProfile.bitsPerSample(), mProfile.outFormat()->maxBitPerSample());
-    int rate = calcQuality(audio.sampleRate(), mProfile.sampleRate(), mProfile.outFormat()->maxSampleRate());
-
-    qCDebug(LOG) << "Input audio: bitsPerSample =" << audio.bitsPerSample() << " sampleRate =" << audio.sampleRate();
-    qCDebug(LOG) << "Required:    bitsPerSample =" << bps << " sampleRate =" << rate;
-
-    if (bps == audio.bitsPerSample() && rate == audio.sampleRate()) {
-        qCDebug(LOG) << "Resampling is not required";
-        return nullptr;
-    }
-
-    ExtProgram *prog = ExtProgram::sox();
-    QStringList args = resamplerArgs(bps, rate, outFile);
-
-    qCDebug(LOG) << "Start resampler:" << debugProgramArgs(prog->path(), args);
-
-    QProcess *res = new ExtProcess();
-    res->setObjectName("resampler");
-    res->setProgram(prog->path());
-    res->setArguments(args);
-    return res;
-}
-
-/************************************************
-
-************************************************/
-QProcess *Encoder::createDemph(const QString &outFile)
-{
-    if (!mTrack.preEmphased()) {
-        qCDebug(LOG) << "DeEmphasis is not required";
-        return nullptr;
-    }
-
-    // sample rate must be 44100 (audio-CD) or 48000 (DAT)
-    int rate = mTrack.audioFile().sampleRate();
-    if (rate != 44100 && rate != 48000) {
-        qCDebug(LOG) << "DeEmphasis disabled, sample rate must be 44100 (audio-CD) or 48000 (DAT)";
-        return nullptr;
-    }
-
-    ExtProgram *prog = ExtProgram::sox();
-    QStringList args = deemphasisArgs(outFile);
-
-    qCDebug(LOG) << "Start deEmphasis:" << debugProgramArgs(prog->path(), args);
-
-    QProcess *res = new ExtProcess();
-    res->setObjectName("deemphasis");
-    res->setProgram(prog->path());
-    res->setArguments(args);
-    return res;
-}
-
-/**************************************
-
- **************************************/
-void Encoder::stopProcesses(QList<QProcess *> procs)
-{
-    for (QProcess *p : procs) {
-        try {
-            p->closeWriteChannel();
-            p->terminate();
-            p->waitForFinished(-1);
-            delete p;
+    if (mOutFmtCtx) {
+        if (!(mOutFmtCtx->oformat->flags & AVFMT_NOFILE)) {
+            avio_closep(&mOutFmtCtx->pb);
         }
-        catch (...) {
-        }
-    }
+        avformat_free_context(mOutFmtCtx);
+    };
+    // clang-format on
 }
 
 /************************************************
 
  ************************************************/
-void Encoder::run()
+void Conv::Encoder::run()
 {
     mReplayGainEnabled = mProfile.gainType() != GainType::Disable;
 
     emit trackProgress(track(), TrackState::Encoding, 0);
 
-    QList<QProcess *> procs;
-
-    QProcess *encoder = createEncoderProcess();
-    if (encoder) {
-        procs.insert(0, encoder);
-    }
-
-    QProcess *resampler = createRasmpler(procs.isEmpty() ? mOutFile : "-");
-    if (resampler) {
-
-        procs.insert(0, resampler);
-    }
-
-    QProcess *demph = createDemph(procs.isEmpty() ? mOutFile : "-");
-    if (demph) {
-        procs.insert(0, demph);
-    }
-
-    if (procs.isEmpty()) {
-        //------------------------------------------------
-        // The output file format is WAV and no preprocessing is required,
-        // so just rename/copy the file.
-        qCDebug(LOG) << "Copy file: in = " << inputFile() << "out = " << outFile();
-        copyFile();
-        emit trackProgress(track(), TrackState::Encoding, 100);
-        emit trackReady(track(), outFile(), ReplayGain::Result());
-        return;
-    }
-
-    QObject keeper(this);
-    //------------------------------------------------
     try {
-        for (int i = 0; i < procs.count(); ++i) {
-            QProcess *proc = procs[i];
-            proc->setParent(&keeper);
-        }
 
-        // We start all processes connected by a pipe
-        for (int i = 0; i < procs.count() - 1; ++i) {
-            QProcess *proc = procs[i];
-            proc->setStandardOutputProcess(procs[i + 1]);
-        }
+        const InputAudioFile &audio = mTrack.audioFile();
 
-        connect(procs.first(), &QProcess::bytesWritten, this, &Encoder::processBytesWritten);
+        AVCodecID formatId = AV_CODEC_ID_FLAC;
 
-        for (QProcess *proc : procs) {
-            proc->start();
-            proc->waitForStarted();
-        }
+        int  bitsPerSample = calcQuality(audio.bitsPerSample(), mProfile.bitsPerSample(), mProfile.outFormat()->maxBitPerSample());
+        int  sampleRate    = calcQuality(audio.sampleRate(), mProfile.sampleRate(), mProfile.outFormat()->maxSampleRate());
+        bool deemph        = false;
 
-        readInputFile(procs.first());
-
-        for (QProcess *p : procs) {
-            p->closeWriteChannel();
-            p->waitForFinished(-1);
-        }
-
-        for (QProcess *p : procs) {
-            if (p->exitCode() != 0) {
-                throw FlaconError(QString::fromLocal8Bit(p->readAllStandardError()));
+        if (mTrack.preEmphased()) {
+            // sample rate must be 44100 (audio-CD) or 48000 (DAT)
+            int rate = mTrack.audioFile().sampleRate();
+            if (rate == 44100 || rate == 48000) {
+                deemph = true;
+            }
+            else {
+                qCDebug(LOG) << "DeEmphasis disabled, sample rate must be 44100 (audio-CD) or 48000 (DAT)";
             }
         }
 
+        setupInput();
+        setupEncoder(formatId, bitsPerSample, sampleRate);
+        setupOutput();
+        setupFilterGraph(deemph);
+        encode();
+
         deleteFile(mInputFile);
+
         writeMetadata();
 
+        emit trackProgress(track(), TrackState::Encoding, 100);
         emit trackReady(track(), outFile(), mTrackGain.result());
     }
+
     catch (const Abort &) {
-        stopProcesses(procs);
         deleteFile(mInputFile);
-
-        qCDebug(LOG) << "Encoder job was aborted on track" << track().trackNumTag();
+        deleteFile(mOutFile);
+        qCDebug(LOG) << "FFEncoder job was aborted on track" << track().trackNumTag();
     }
-    catch (const FlaconError &err) {
-        stopProcesses(procs);
-        deleteFile(mInputFile);
 
-        QString msg = tr("Track %1. Encoder error:", "Track error message, %1 is a track number").arg(track().trackNumTag()) + "<pre>" + err.what() + "</pre>";
-        emit    error(track(), msg);
+    catch (const FlaconError &err) {
+        deleteFile(mInputFile);
+        deleteFile(mOutFile);
+
+        QString msg = tr("Track %1. Encoder error:", "Track error message, %1 is a track number")
+                              .arg(track().trackNumTag())
+                + "<pre>" + err.what() + "</pre>";
+        emit error(track(), msg);
     }
 }
 
-/************************************************
- *
- ************************************************/
 void Encoder::writeMetadata() const
 {
     MetadataWriter *writer = mProfile.outFormat()->createMetadataWriter(mProfile, outFile());
@@ -268,116 +236,317 @@ void Encoder::writeMetadata() const
     delete writer;
 }
 
-/************************************************
-
- ************************************************/
-void Encoder::processBytesWritten(qint64 bytes)
+/**************************************
+ *
+ **************************************/
+void Encoder::setupInput()
 {
-    mReady += bytes;
-    int p = ((mReady * 100.0) / mTotal);
-    if (p != mProgress) {
-        mProgress = p;
-        emit trackProgress(track(), TrackState::Encoding, mProgress);
+    int ret = avformat_open_input(&mInFmtCtx, mInputFile.toUtf8().constData(), nullptr, nullptr);
+    if (ret < 0) {
+        throw FlaconError(ffErrorStr(ret, tr("Cannot open input audio file: %1").arg(mInputFile)));
+    }
+
+    ret = avformat_find_stream_info(mInFmtCtx, nullptr);
+    if (ret < 0) {
+        throw FlaconError(ffErrorStr(ret, tr("Cannot find stream information in input file.")));
+    }
+
+    mAudioStreamIdx = av_find_best_stream(mInFmtCtx, AVMEDIA_TYPE_AUDIO, -1, -1, nullptr, 0);
+    if (mAudioStreamIdx < 0) {
+        throw FlaconError(tr("No audio stream found in input file."));
+    }
+
+    mInStream              = mInFmtCtx->streams[mAudioStreamIdx];
+    const AVCodec *decoder = avcodec_find_decoder(mInStream->codecpar->codec_id);
+    if (!decoder) {
+        throw FlaconError(tr("Unsupported input audio codec."));
+    }
+
+    mDecCtx = avcodec_alloc_context3(decoder);
+    avcodec_parameters_to_context(mDecCtx, mInStream->codecpar);
+    if (avcodec_open2(mDecCtx, decoder, nullptr) < 0) {
+        throw FlaconError(tr("Could not open input audio decoder."));
     }
 }
 
-/************************************************
-
- ************************************************/
-void Encoder::setProfile(const Profile &profile)
+/**************************************
+ *
+ **************************************/
+void Encoder::setupEncoder(AVCodecID formatId, int bitsPerSample, int sampleRate)
 {
-    mProfile = profile;
-}
 
-/************************************************
+    // const AVCodec *encoder = avcodec_find_encoder_by_name("flac");
+    const AVCodec *encoder = avcodec_find_encoder(formatId);
 
- ************************************************/
-void Encoder::setCoverImage(const CoverImage &value)
-{
-    mCoverImage = value;
-}
-
-/************************************************
-
- ************************************************/
-void Encoder::readInputFile(QProcess *process)
-{
-    qCDebug(LOG) << "Read " << inputFile() << "file";
-    QFile file(inputFile());
-    if (!file.open(QFile::ReadOnly)) {
-        emit error(track(), tr("I can't read %1 file", "Encoder error. %1 is a file name.").arg(inputFile()));
+    if (!encoder) {
+        throw FlaconError(QString("Encoder for %1 is not available in system libavcodec.").arg(formatId));
     }
 
-    mProgress = -1;
-    mTotal    = file.size();
+    mEncCtx = avcodec_alloc_context3(encoder);
 
-    quint64    bufSize = qBound(MIN_BUF_SIZE, mTotal / 200, MAX_BUF_SIZE);
-    QByteArray buf;
+    mEncCtx->sample_rate = sampleRate;
+    av_channel_layout_copy(&mEncCtx->ch_layout, &mDecCtx->ch_layout);
 
-    while (!file.atEnd()) {
-        Abort::check();
-        buf = file.read(bufSize);
-        process->write(buf);
-        if (mReplayGainEnabled) {
-            mTrackGain.add(buf.constData(), buf.size());
+    mEncCtx->sample_fmt = selectBestSampleFormat(encoder, bitsPerSample);
+
+    const AVCodecDescriptor *desc = avcodec_descriptor_get(formatId);
+    if (desc && (desc->props & AV_CODEC_PROP_LOSSLESS)) {
+        mEncCtx->bits_per_raw_sample = bitsPerSample;
+    }
+
+    mEncCtx->time_base.num = 1;
+    mEncCtx->time_base.den = mEncCtx->sample_rate;
+
+    // configureEncoderParams .......
+    // ..............................
+
+    if (avcodec_open2(mEncCtx, encoder, nullptr) < 0) {
+        throw FlaconError(tr("Failed to open audio encoder context."));
+    }
+}
+
+/**************************************
+ *
+ **************************************/
+void Encoder::setupOutput()
+{
+    int ret = avformat_alloc_output_context2(&mOutFmtCtx, nullptr, nullptr, mOutFile.toUtf8().constData());
+    if (ret < 0 || !mOutFmtCtx) {
+        throw FlaconError(QString("Could not create output format context for %1").arg(mOutFile));
+    }
+
+    mOutStream = avformat_new_stream(mOutFmtCtx, nullptr);
+    avcodec_parameters_from_context(mOutStream->codecpar, mEncCtx);
+    mOutStream->time_base = mEncCtx->time_base;
+
+    if (!(mOutFmtCtx->oformat->flags & AVFMT_NOFILE)) {
+        ret = avio_open(&mOutFmtCtx->pb, mOutFile.toUtf8().constData(), AVIO_FLAG_WRITE);
+        if (ret < 0) {
+            throw FlaconError(ffErrorStr(ret, tr("Cannot open output file %1 for writing").arg(mOutFile)));
         }
     }
-}
 
-/************************************************
-
- ************************************************/
-void Encoder::copyFile()
-{
-    QFile srcFile(inputFile());
-    bool  res = srcFile.rename(outFile());
-
-    if (!res) {
-        emit error(track(),
-                   tr("I can't rename file:\n%1 to %2\n%3").arg(inputFile(), outFile(), srcFile.errorString()));
+    ret = avformat_write_header(mOutFmtCtx, nullptr);
+    if (ret < 0) {
+        throw FlaconError(ffErrorStr(ret, "Failed to write header to output file."));
     }
 }
 
-/************************************************
-
- ************************************************/
-QStringList Encoder::resamplerArgs(int bitsPerSample, int sampleRate, const QString &outFile)
+/**************************************
+ *
+ **************************************/
+void Encoder::setupFilterGraph(bool deemph)
 {
-    QStringList args;
-
-    args << "--type"
-         << "wav";
-
-    args << "-"; // Read from STDIN
-    if (bitsPerSample) {
-        args << "-b" << QStringLiteral("%1").arg(bitsPerSample);
+    int ret      = 0;
+    mFilterGraph = avfilter_graph_alloc();
+    if (!mFilterGraph) {
+        throw FlaconError(ffErrorStr(AVERROR(ENOMEM), "Failed to configure audio filter graph."));
     }
 
-    args << "--type"
-         << "wav";
-    args << outFile;
+    const AVFilter *abuffer     = avfilter_get_by_name("abuffer");
+    const AVFilter *abuffersink = avfilter_get_by_name("abuffersink");
 
-    if (sampleRate) {
-        args << "rate";
-        args << "-v"; // very high quality
-        args << QStringLiteral("%1").arg(sampleRate);
+    AVRational timeBase = mInStream->time_base.num > 0 ? mInStream->time_base : AVRational { 1, mDecCtx->sample_rate };
+
+    char chLayoutStr[64] = { 0 };
+    av_channel_layout_describe(&mDecCtx->ch_layout, chLayoutStr, sizeof(chLayoutStr));
+
+    QString srcArgs = QString("sample_rate=%1:sample_fmt=%2:time_base=%3/%4:channel_layout='%5'")
+                              .arg(mDecCtx->sample_rate)
+                              .arg(av_get_sample_fmt_name(mDecCtx->sample_fmt))
+                              .arg(timeBase.num)
+                              .arg(timeBase.den)
+                              .arg(chLayoutStr);
+
+    ret = avfilter_graph_create_filter(&mFiltSrcCtx, abuffer, "in", srcArgs.toUtf8().constData(), nullptr, mFilterGraph);
+    if (ret < 0) {
+        throw FlaconError(ffErrorStr(ret, "Failed to configure audio filter graph."));
     }
 
-    return args;
+    ret = avfilter_graph_create_filter(&mFiltSinkCtx, abuffersink, "out", nullptr, nullptr, mFilterGraph);
+    if (ret < 0) {
+        throw FlaconError(ffErrorStr(ret, "Failed to configure audio filter graph."));
+    }
+
+    // We construct a filter chain: [deemph] -> [aformat]
+    QStringList filters;
+
+    if (deemph) {
+        filters << QString("deemph=sample_rate=%1").arg(mDecCtx->sample_rate);
+    }
+
+    // Force all three output parameters (sample_fmts, sample_rates, channel_layouts).
+    // The aformat filter will automatically insert aresample if necessary.
+    char outChLayoutStr[64] = { 0 };
+    av_channel_layout_describe(&mEncCtx->ch_layout, outChLayoutStr, sizeof(outChLayoutStr));
+
+    filters << QString("aformat=sample_fmts=%1:sample_rates=%2:channel_layouts='%3'")
+                       .arg(av_get_sample_fmt_name(mEncCtx->sample_fmt))
+                       .arg(mEncCtx->sample_rate)
+                       .arg(outChLayoutStr);
+
+    QString filterSpec = filters.join(",");
+
+    AVFilterInOut *inputs  = avfilter_inout_alloc();
+    AVFilterInOut *outputs = avfilter_inout_alloc();
+
+    outputs->name       = av_strdup("in");
+    outputs->filter_ctx = mFiltSrcCtx;
+    outputs->pad_idx    = 0;
+    outputs->next       = nullptr;
+
+    inputs->name       = av_strdup("out");
+    inputs->filter_ctx = mFiltSinkCtx;
+    inputs->pad_idx    = 0;
+    inputs->next       = nullptr;
+
+    ret = avfilter_graph_parse_ptr(mFilterGraph, filterSpec.toUtf8().constData(), &inputs, &outputs, nullptr);
+    avfilter_inout_free(&inputs);
+    avfilter_inout_free(&outputs);
+
+    if (ret < 0) {
+        throw FlaconError(ffErrorStr(ret, "Failed to configure audio filter graph."));
+    }
+
+    ret = avfilter_graph_config(mFilterGraph, nullptr);
+    if (ret < 0) {
+        throw FlaconError(ffErrorStr(ret, "Failed to configure audio filter graph."));
+    }
+
+    if (mEncCtx->frame_size > 0) {
+        av_buffersink_set_frame_size(mFiltSinkCtx, mEncCtx->frame_size);
+    }
 }
 
-/************************************************
-
- ************************************************/
-QStringList Encoder::deemphasisArgs(const QString &outFile)
+/**************************************
+ *
+ **************************************/
+void Encoder::encode()
 {
-    QStringList args;
+    AVPacket *inPacket      = av_packet_alloc();
+    AVPacket *outPacket     = av_packet_alloc();
+    AVFrame  *decodedFrame  = av_frame_alloc();
+    AVFrame  *filteredFrame = av_frame_alloc();
 
-    // clang-format off
-    args << "--type" << "wav" << "-"; // Read from STDIN
-    args << "--type" << "wav" << outFile;
-    args << "deemph";
-    // clang-format on
+    auto cleanup = qScopeGuard([&]() {
+        av_packet_free(&inPacket);
+        av_packet_free(&outPacket);
+        av_frame_free(&decodedFrame);
+        av_frame_free(&filteredFrame);
+    });
 
-    return args;
+    auto sendFrameToEncoder = [&](AVFrame *frame) {
+        int eRet = avcodec_send_frame(mEncCtx, frame);
+        if (eRet < 0) {
+            throw FlaconError(ffErrorStr(eRet, tr("Error sending frame to encoder.")));
+        }
+
+        while (eRet >= 0) {
+            eRet = avcodec_receive_packet(mEncCtx, outPacket);
+            if (eRet == AVERROR(EAGAIN) || eRet == AVERROR_EOF)
+                break;
+
+            if (eRet < 0) {
+                throw FlaconError(ffErrorStr(eRet, "Error encoding audio frame."));
+            }
+
+            av_packet_rescale_ts(outPacket, mEncCtx->time_base, mOutStream->time_base);
+            outPacket->stream_index = mOutStream->index;
+
+            eRet = av_interleaved_write_frame(mOutFmtCtx, outPacket);
+            if (eRet < 0) {
+                throw FlaconError(ffErrorStr(eRet, "Error writing encoded packet to disk."));
+            }
+            av_packet_unref(outPacket);
+        }
+    };
+
+    auto processFilterSink = [&]() {
+        while (true) {
+            int fRet = av_buffersink_get_frame(mFiltSinkCtx, filteredFrame);
+            if (fRet == AVERROR(EAGAIN) || fRet == AVERROR_EOF) {
+                break;
+            }
+
+            if (fRet < 0) {
+                throw FlaconError(ffErrorStr(fRet, tr("Error pulling frame from filter graph.")));
+            }
+
+            sendFrameToEncoder(filteredFrame);
+            av_frame_unref(filteredFrame);
+        }
+    };
+
+    int64_t totalSamples     = (mInFmtCtx->duration * mDecCtx->sample_rate) / AV_TIME_BASE;
+    int64_t processedSamples = 0;
+    int     lastProgress     = 0;
+
+    while (av_read_frame(mInFmtCtx, inPacket) >= 0) {
+        Abort::check();
+
+        if (inPacket->stream_index == mAudioStreamIdx) {
+            int ret = avcodec_send_packet(mDecCtx, inPacket);
+            if (ret < 0)
+                throw FlaconError(ffErrorStr(ret, "Error decoding audio packet."));
+
+            while (ret >= 0) {
+                ret = avcodec_receive_frame(mDecCtx, decodedFrame);
+                if (ret == AVERROR(EAGAIN) || ret == AVERROR_EOF) {
+                    break;
+                }
+
+                if (ret < 0) {
+                    throw FlaconError(ffErrorStr(ret, tr("Error decoding audio frame.")));
+                }
+
+                // ReplayGain ..............
+                if (mReplayGainEnabled && decodedFrame->nb_samples > 0) {
+                    int bytesPerSample = av_get_bytes_per_sample(mDecCtx->sample_fmt);
+                    int dataSize       = decodedFrame->nb_samples * mDecCtx->ch_layout.nb_channels * bytesPerSample;
+                    mTrackGain.add(reinterpret_cast<const char *>(decodedFrame->data[0]), dataSize);
+                }
+
+                // Progress ................
+                processedSamples += decodedFrame->nb_samples;
+                if (totalSamples > 0) {
+                    int p = static_cast<int>((processedSamples * 100) / totalSamples);
+                    if (p != lastProgress) {
+                        lastProgress = p;
+                        emit trackProgress(track(), TrackState::Encoding, lastProgress);
+                    }
+                }
+
+                // Resampling / DeEmphasis
+                ret = av_buffersrc_add_frame_flags(mFiltSrcCtx, decodedFrame, AV_BUFFERSRC_FLAG_KEEP_REF);
+                if (ret < 0) {
+                    throw FlaconError(ffErrorStr(ret, "Error feeding filter graph."));
+                }
+
+                processFilterSink();
+                av_frame_unref(decodedFrame);
+            }
+        }
+        av_packet_unref(inPacket);
+    }
+
+    // Flushing the decoder, filter, and encoder
+    avcodec_send_packet(mDecCtx, nullptr);
+    while (avcodec_receive_frame(mDecCtx, decodedFrame) >= 0) {
+        int ret = av_buffersrc_add_frame_flags(mFiltSrcCtx, decodedFrame, AV_BUFFERSRC_FLAG_KEEP_REF);
+        if (ret < 0) {
+            throw FlaconError(ffErrorStr(ret, "Error feeding audio frame to filter graph."));
+        }
+        processFilterSink();
+        av_frame_unref(decodedFrame);
+    }
+
+    int ret = av_buffersrc_add_frame_flags(mFiltSrcCtx, nullptr, 0); // Flush filter
+    if (ret < 0) {
+        throw FlaconError(ffErrorStr(ret, tr("Error flushing filter graph.")));
+    }
+    processFilterSink();
+
+    sendFrameToEncoder(nullptr); // Flush encoder
+
+    av_write_trailer(mOutFmtCtx);
 }

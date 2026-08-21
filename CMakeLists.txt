@@ -251,6 +251,7 @@ pkg_check_modules(LIBAV REQUIRED IMPORTED_TARGET
     libavformat
     libavcodec
     libavutil
+    libavfilter
 )
 include_directories(${LIBAV_INCLUDE_DIRS})
 list(APPEND LIBRARIES PkgConfig::LIBAV)

@@ -28,6 +28,7 @@
 #include <QUuid>
 
 #include "splitter.h"
+#include "encoder_old.h"
 #include "encoder.h"
 #include "cuecreator.h"
 #include "inputaudiofile.h"
@@ -278,34 +279,66 @@ void DiscPipeline::startEncoder(const ConvTrack &track, const QString &inputFile
     QFileInfo trackFile(mProfile.resultFilePath(&track));
     QString   outFile = QDir(mTmpDir->path()).filePath(QFileInfo(inputFile).baseName() + ".encoded." + trackFile.suffix());
 
-    Encoder *encoder = new Encoder();
-    encoder->setInputFile(inputFile);
-    encoder->setOutFile(outFile);
-    encoder->setTrack(track);
-    encoder->setProfile(mProfile);
-    encoder->setEmbeddedCue(mEmbeddedCue);
-    encoder->setCoverImage(mCoverImage);
+    if (mProfile.outFormat()->id() == "FLAC") {
+        FFEncoder *encoder = new FFEncoder();
+        encoder->setInputFile(inputFile);
+        encoder->setOutFile(outFile);
+        encoder->setTrack(track);
+        encoder->setProfile(mProfile);
+        encoder->setEmbeddedCue(mEmbeddedCue);
+        encoder->setCoverImage(mCoverImage);
 
-    QPointer<WorkerThread> thread = new WorkerThread(encoder, this);
-    thread->setObjectName(QStringLiteral("%1 encoder track %2").arg(track.disc()->cueFilePath()).arg(track.index()));
+        QPointer<WorkerThread> thread = new WorkerThread(encoder, this);
+        thread->setObjectName(QStringLiteral("%1 encoder track %2").arg(track.disc()->cueFilePath()).arg(track.index()));
 
-    connect(this, &DiscPipeline::stopAllThreads, thread, &Conv::WorkerThread::deleteLater);
-    connect(encoder, &Encoder::trackProgress, this, &DiscPipeline::trackProgress);
-    connect(encoder, &Encoder::error, this, &DiscPipeline::trackError);
+        connect(this, &DiscPipeline::stopAllThreads, thread, &Conv::WorkerThread::deleteLater);
+        connect(encoder, &Worker::trackProgress, this, &DiscPipeline::trackProgress);
+        connect(encoder, &Worker::error, this, &DiscPipeline::trackError);
 
-    // Replaygain ...............................
-    if (mProfile.gainType() != GainType::Disable) {
-        connect(encoder, &Encoder::trackReady, this, &DiscPipeline::writeGain);
+        // Replaygain ...............................
+        if (mProfile.gainType() != GainType::Disable) {
+            connect(encoder, &FFEncoder::trackReady, this, &DiscPipeline::writeGain);
+        }
+        else {
+            connect(encoder, &FFEncoder::trackReady, this, &DiscPipeline::trackDone);
+        }
+        // ..........................................
+
+        connect(thread, &Conv::WorkerThread::finished, this, &DiscPipeline::threadFinished);
+
+        mThreads << thread;
+        thread->start();
     }
     else {
-        connect(encoder, &Encoder::trackReady, this, &DiscPipeline::trackDone);
+        Encoder_OLD *encoder = new Encoder_OLD();
+        encoder->setInputFile(inputFile);
+        encoder->setOutFile(outFile);
+        encoder->setTrack(track);
+        encoder->setProfile(mProfile);
+        encoder->setEmbeddedCue(mEmbeddedCue);
+        encoder->setCoverImage(mCoverImage);
+
+        QPointer<WorkerThread> thread = new WorkerThread(encoder, this);
+        thread->setObjectName(QStringLiteral("%1 encoder track %2").arg(track.disc()->cueFilePath()).arg(track.index()));
+
+        connect(this, &DiscPipeline::stopAllThreads, thread, &Conv::WorkerThread::deleteLater);
+        connect(encoder, &Worker::trackProgress, this, &DiscPipeline::trackProgress);
+        connect(encoder, &Worker::error, this, &DiscPipeline::trackError);
+
+        // Replaygain ...............................
+        if (mProfile.gainType() != GainType::Disable) {
+            connect(encoder, &Encoder_OLD::trackReady, this, &DiscPipeline::writeGain);
+        }
+        else {
+            connect(encoder, &Encoder_OLD::trackReady, this, &DiscPipeline::trackDone);
+        }
+        // ..........................................
+
+        connect(thread, &Conv::WorkerThread::finished, this, &DiscPipeline::threadFinished);
+
+        mThreads << thread;
+        thread->start();
     }
-    // ..........................................
-
-    connect(thread, &Conv::WorkerThread::finished, this, &DiscPipeline::threadFinished);
-
-    mThreads << thread;
-    thread->start();
 }
 
 /************************************************
@@ -315,7 +348,15 @@ void DiscPipeline::writeGain(const ConvTrack &track, const QString &fileName, co
 {
     qCDebug(LOG) << "Write track gain: " << fileName << "gain:" << trackGain.gain() << "peak:" << track;
 
-    MetadataWriter *writer = mProfile.outFormat()->createMetadataWriter(mProfile, fileName);
+    MetadataWriter *writer = nullptr;
+    try {
+        writer = mProfile.outFormat()->createMetadataWriter(mProfile, fileName);
+    }
+    catch (const FlaconError &err) {
+        emit trackError(track, err.what());
+        return;
+    }
+
     writer->setTrackReplayGain(trackGain.gain(), trackGain.peak());
     writer->save();
     delete writer;
