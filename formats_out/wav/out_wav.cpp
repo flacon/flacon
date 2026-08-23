@@ -71,6 +71,21 @@ QStringList OutFormat_Wav::encoderArgs(const Profile &, const QString &) const
 }
 
 /************************************************
+
+ ************************************************/
+AVCodecID OutFormat_Wav::avCodecId() const
+{
+    return AV_CODEC_ID_PCM_S16LE;
+}
+
+/************************************************
+
+ ************************************************/
+void OutFormat_Wav::setAvCodecParams(const Profile &, AVCodecContext *) const
+{
+}
+
+/************************************************
  *
  ************************************************/
 MetadataWriter *OutFormat_Wav::createMetadataWriter(const Profile &profile, const QString &filePath) const

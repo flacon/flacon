@@ -402,11 +402,11 @@ void Encoder::setupFilterGraph(bool deemph)
         throw FlaconError(ffErrorStr(ret, "Failed to configure audio filter graph."));
     }
 
-    // We construct a filter chain: [deemph] -> [aformat]
+    // We construct a filter chain: [aemphasis] -> [aformat]
     QStringList filters;
 
     if (deemph) {
-        filters << QString("deemph=sample_rate=%1").arg(mDecCtx->sample_rate);
+        filters << QStringLiteral("aemphasis=type=cd");
     }
 
     // Force all three output parameters (sample_fmts, sample_rates, channel_layouts).
