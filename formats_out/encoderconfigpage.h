@@ -52,6 +52,7 @@ public:
     static QString losslessCompressionToolTip(int min, int max);
     static void    setLosslessToolTip(QSlider *widget);
     static void    setLosslessToolTip(QSpinBox *widget);
+    static void    initSpinBox(const QSlider *slider, QSpinBox *spinBox);
 
     static QString lossyCompressionToolTip(int min, int max);
     static void    setLossyToolTip(QSlider *widget);

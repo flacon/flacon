@@ -110,6 +110,16 @@ void EncoderConfigPage::setLosslessToolTip(QSpinBox *widget)
 /************************************************
 
  ************************************************/
+void EncoderConfigPage::initSpinBox(const QSlider *slider, QSpinBox *spinBox)
+{
+    spinBox->setMinimum(slider->minimum());
+    spinBox->setMaximum(slider->maximum());
+    spinBox->setToolTip(slider->toolTip());
+}
+
+/************************************************
+
+ ************************************************/
 void EncoderConfigPage::fillBitrateComboBox(QComboBox *comboBox, const QList<int> &bitrates)
 {
     foreach (int bitrate, bitrates) {

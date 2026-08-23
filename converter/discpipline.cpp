@@ -279,8 +279,8 @@ void DiscPipeline::startEncoder(const ConvTrack &track, const QString &inputFile
     QFileInfo trackFile(mProfile.resultFilePath(&track));
     QString   outFile = QDir(mTmpDir->path()).filePath(QFileInfo(inputFile).baseName() + ".encoded." + trackFile.suffix());
 
-    if (mProfile.outFormat()->id() == "FLAC") {
-        FFEncoder *encoder = new FFEncoder();
+    if (mProfile.outFormat()->avCodecId() != AV_CODEC_ID_NONE) {
+        Encoder *encoder = new Encoder();
         encoder->setInputFile(inputFile);
         encoder->setOutFile(outFile);
         encoder->setTrack(track);
@@ -297,10 +297,10 @@ void DiscPipeline::startEncoder(const ConvTrack &track, const QString &inputFile
 
         // Replaygain ...............................
         if (mProfile.gainType() != GainType::Disable) {
-            connect(encoder, &FFEncoder::trackReady, this, &DiscPipeline::writeGain);
+            connect(encoder, &Encoder::trackReady, this, &DiscPipeline::writeGain);
         }
         else {
-            connect(encoder, &FFEncoder::trackReady, this, &DiscPipeline::trackDone);
+            connect(encoder, &Encoder::trackReady, this, &DiscPipeline::trackDone);
         }
         // ..........................................
 

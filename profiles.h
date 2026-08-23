@@ -32,6 +32,7 @@
 
 #include "formats_out/outformat.h"
 #include "types.h"
+#include "track.h"
 
 class QSettings;
 

@@ -29,6 +29,11 @@
 #include "flacmetadatawriter.h"
 #include <QDebug>
 
+extern "C" {
+#include <libavcodec/avcodec.h>
+#include <libavutil/opt.h>
+}
+
 static constexpr int MATAFLAC_MAX_SAMPLE_RATE = 192 * 1000;
 
 /************************************************
@@ -90,28 +95,18 @@ EncoderConfigPage *OutFormat_Flac::configPage(QWidget *parent) const
 /************************************************
 
  ************************************************/
-ExtProgram *OutFormat_Flac::encoderProgram(const Profile &) const
+AVCodecID OutFormat_Flac::avCodecId() const
 {
-    return ExtProgram::flac();
+    return AV_CODEC_ID_FLAC;
 }
 
-/************************************************
-
- ************************************************/
-QStringList OutFormat_Flac::encoderArgs(const Profile &profile, const QString &outFile) const
+/**************************************
+ * See https://ffmpeg.org/ffmpeg-codecs.html#flac-2
+ **************************************/
+void OutFormat_Flac::setAvCodecParams(const Profile &profile, AVCodecContext *codecContext) const
 {
-    QStringList args;
-
-    args << "--force";  // Force overwriting of output files.
-    args << "--silent"; // Suppress progress indicator
-
-    // Settings .................................................
-    // Compression parametr really looks like --compression-level-N
-    args << QStringLiteral("--compression-level-%1").arg(profile.encoderValues()->value("Compression").toString());
-
-    args << "-";
-    args << "-o" << outFile;
-    return args;
+    int compression = profile.encoderValues()->value("Compression").toInt();
+    av_opt_set_int(codecContext, "compression_level", compression, 0);
 }
 
 /************************************************
@@ -130,8 +125,12 @@ ConfigPage_Flac::ConfigPage_Flac(QWidget *parent) :
 {
     setupUi(this);
 
+    // See https://ffmpeg.org/ffmpeg-codecs.html#flac-2
+    flacCompressionSlider->setMinimum(0);
+    flacCompressionSlider->setMaximum(12);
     setLosslessToolTip(flacCompressionSlider);
-    flacCompressionSpin->setToolTip(flacCompressionSlider->toolTip());
+
+    initSpinBox(flacCompressionSlider, flacCompressionSpin);
 }
 
 /************************************************

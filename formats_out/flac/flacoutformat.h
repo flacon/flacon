@@ -45,8 +45,11 @@ public:
 
     MetadataWriter *createMetadataWriter(const Profile &profile, const QString &filePath) const override;
 
-    ExtProgram *encoderProgram(const Profile &profile) const override;
-    QStringList encoderArgs(const Profile &profile, const QString &outFile) const override;
+    ExtProgram *encoderProgram(const Profile &) const override { return nullptr; }
+    QStringList encoderArgs(const Profile &, const QString &) const override { return {}; }
+
+    AVCodecID avCodecId() const override;
+    void      setAvCodecParams(const Profile &profile, AVCodecContext *codecContext) const override;
 };
 
 class ConfigPage_Flac : public EncoderConfigPage, private Ui::flacConfigPage

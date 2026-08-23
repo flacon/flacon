@@ -66,6 +66,22 @@ static void createWavFile(const QString &fileName, const int duration)
 /************************************************
  *
  ************************************************/
+static QString findProgram(const QString &name)
+{
+    QStringList paths = QProcessEnvironment::systemEnvironment().value("PATH").split(PATH_ENV_SEPARATOR);
+
+    foreach (QString path, paths) {
+        QFileInfo fi(path + QDir::separator() + name + BINARY_EXT);
+        if (fi.exists() && fi.isExecutable()) {
+            return fi.absoluteFilePath();
+        }
+    }
+    return "";
+}
+
+/************************************************
+ *
+ ************************************************/
 void TestFlacon::initTestCase()
 {
     initTypes();
@@ -74,15 +90,15 @@ void TestFlacon::initTestCase()
     findPrograms();
 
     const auto PROGS = {
-        ExtProgram::mac(),
-        ExtProgram::flac(),
-        ExtProgram::wavpack(),
-        ExtProgram::ttaenc(),
+        "mac",
+        "flac",
+        "wavpack",
+        "ttaenc",
     };
 
-    for (auto &p : PROGS) {
-        if (p->path().isEmpty()) {
-            QFAIL(QStringLiteral("%1 program not found").arg(p->name()).toLocal8Bit());
+    for (auto &prog : PROGS) {
+        if (findProgram(prog).isEmpty()) {
+            QFAIL(QStringLiteral("%1 program not found").arg(prog).toLocal8Bit());
         }
     }
 

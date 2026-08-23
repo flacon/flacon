@@ -35,63 +35,27 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#ifndef REPLAYGAIN_H
-#define REPLAYGAIN_H
+#ifndef REPLAYGAIN_OLD_H
+#define REPLAYGAIN_OLD_H
 
 #include <array>
+#include "replaygain.h"
 #include <QMetaType>
 
 namespace ReplayGain {
 
-class Result
-{
-    friend class TrackGain;
-    friend class AlbumGain;
-
-    friend class TrackGain_OLD;
-
-public:
-    Result();
-    Result(const Result &other);
-
-    float gain() const;
-    float peak() const { return mPeak; }
-
-    using Histogram = std::array<uint32_t, 12000>;
-    const Histogram &histogram() const { return mHistogram; }
-
-    bool isNull() const { return mPeak == 0.0; }
-
-protected:
-    Result(const Histogram &histogram, float peak) :
-        mHistogram(histogram),
-        mPeak(peak)
-    {
-    }
-
-    Histogram mHistogram = { 0 };
-    float     mPeak      = 0.0;
-};
-
-class TrackGain
+class TrackGain_OLD
 {
     friend class AlbumGain;
 
 public:
-    TrackGain();
-    virtual ~TrackGain();
-
-    void init(int numChannels, uint32_t sampleRate, uint32_t bitsPerSample);
-    void calc();
+    TrackGain_OLD();
+    virtual ~TrackGain_OLD();
 
     /// Adds the first length chars of data to the replaygain.
     void add(const char *data, size_t size);
 
     Result result() const { return mResult; }
-
-    int      numChannels() const;
-    uint32_t sampleRate() const;
-    uint32_t bitsPerSample() const;
 
 private:
     class Engine;
@@ -99,18 +63,6 @@ private:
     Engine *mEngine = nullptr;
 };
 
-class AlbumGain
-{
-public:
-    void   add(const Result &trackGain);
-    Result result() const { return mResult; }
-
-private:
-    Result mResult;
-};
-
 } // namespace
 
-Q_DECLARE_METATYPE(ReplayGain::Result)
-
-#endif // REPLAYGAIN_H
+#endif // REPLAYGAIN_OLD_H

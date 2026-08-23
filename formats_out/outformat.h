@@ -29,9 +29,12 @@
 #include <QStringList>
 #include <QHash>
 #include <QVariant>
-#include "track.h"
 #include "types.h"
 #include "extprogram.h"
+
+extern "C" {
+#include <libavcodec/codec_id.h>
+}
 
 namespace Conv {
 class Encoder;
@@ -41,6 +44,7 @@ class EncoderConfigPage;
 class Profile;
 
 class MetadataWriter;
+struct AVCodecContext;
 
 class OutFormat
 {
@@ -68,6 +72,13 @@ public:
     virtual QStringList encoderArgs(const Profile &profile, const QString &outFile) const = 0;
 
     virtual MetadataWriter *createMetadataWriter(const Profile &profile, const QString &filePath) const = 0;
+
+    virtual AVCodecID avCodecId() const { return AV_CODEC_ID_NONE; }
+    virtual void      setAvCodecParams(const Profile &profile, AVCodecContext *codecContext) const
+    {
+        Q_UNUSED(profile);
+        Q_UNUSED(codecContext);
+    }
 
 protected:
     QString       mId;

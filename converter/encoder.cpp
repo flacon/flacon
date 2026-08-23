@@ -102,30 +102,44 @@ AVSampleFormat selectBestSampleFormat(const AVCodec *encoder, int reqBps)
     return supportedFmts[0];
 }
 
+/************************************************
+ * av_opt_next returns the next option. Passing nullptr returns the first option.
+ ************************************************/
+[[maybe_unused]] void printAllCodecOptions(const AVCodecContext *encCtx)
+{
+    auto print = [](const AVOption *opt) {
+        if (opt->type == AV_OPT_TYPE_CONST) {
+            return;
+        }
+
+        QString name = QString::fromUtf8(opt->name);
+        QString help = opt->help ? QString::fromUtf8(opt->help) : QString();
+
+        qDebug() << "Option:" << name
+                 << "| Help:" << help
+                 << "| Min:" << opt->min
+                 << "| Max:" << opt->max
+                 << "| Default:" << opt->default_val.i64;
+    };
+
+    if (!encCtx || !encCtx->priv_data) {
+        return;
+    }
+
+    const AVOption *opt = nullptr;
+
+    qDebug() << " Common options:";
+    while ((opt = av_opt_next(encCtx, opt)) != nullptr) {
+        print(opt);
+    }
+
+    qDebug() << " Custom options:";
+    while ((opt = av_opt_next(encCtx->priv_data, opt)) != nullptr) {
+        print(opt);
+    }
 }
 
-/**************************************
- *
- **************************************/
-// void configureEncoderParams(AVCodecContext *encCtx) const
-// {
-//     switch (encCtx->codec_id) {
-//         case AV_CODEC_ID_FLAC: {
-//             // int quality = mProfile.outFormat()->quality(mProfile); // 0-8 или 0-12
-//             int quality = 10;
-//             av_opt_set_int(encCtx->priv_data, "compression_level", quality, 0);
-//             break;
-//         }
-//         case AV_CODEC_ID_MP3: {
-//             // e.g., VBR vs CBR, quality, bitrate
-//             // av_opt_set_int(encCtx->priv_data, "compression_level", quality, 0);
-//             // encCtx->bit_rate = ...
-//             break;
-//         }
-//         default:
-//             break;
-//     }
-// }
+} // namespace
 
 /************************************************
 
@@ -168,11 +182,15 @@ void Conv::Encoder::run()
 
         const InputAudioFile &audio = mTrack.audioFile();
 
-        AVCodecID formatId = AV_CODEC_ID_FLAC;
+        AVCodecID formatId = mProfile.outFormat()->avCodecId();
 
         int  bitsPerSample = calcQuality(audio.bitsPerSample(), mProfile.bitsPerSample(), mProfile.outFormat()->maxBitPerSample());
         int  sampleRate    = calcQuality(audio.sampleRate(), mProfile.sampleRate(), mProfile.outFormat()->maxSampleRate());
         bool deemph        = false;
+
+        if (mReplayGainEnabled) {
+            mTrackGain.init(audio.channelsCount(), bitsPerSample, sampleRate);
+        }
 
         if (mTrack.preEmphased()) {
             // sample rate must be 44100 (audio-CD) or 48000 (DAT)
@@ -185,11 +203,26 @@ void Conv::Encoder::run()
             }
         }
 
+        if (formatId == AV_CODEC_ID_PCM_S16LE) {
+            // clang-format off
+            switch (bitsPerSample) {
+                case 8:  formatId = AV_CODEC_ID_PCM_U8;    break;
+                case 16: formatId = AV_CODEC_ID_PCM_S16LE; break;
+                case 24: formatId = AV_CODEC_ID_PCM_S24LE; break;
+                case 32: formatId = AV_CODEC_ID_PCM_S32LE; break;
+            }
+            // clang-format on
+        }
+
         setupInput();
         setupEncoder(formatId, bitsPerSample, sampleRate);
         setupOutput();
         setupFilterGraph(deemph);
         encode();
+
+        if (mReplayGainEnabled) {
+            mTrackGain.calc();
+        }
 
         deleteFile(mInputFile);
 
@@ -298,6 +331,7 @@ void Encoder::setupEncoder(AVCodecID formatId, int bitsPerSample, int sampleRate
     mEncCtx->time_base.den = mEncCtx->sample_rate;
 
     // configureEncoderParams .......
+    mProfile.outFormat()->setAvCodecParams(mProfile, mEncCtx);
     // ..............................
 
     if (avcodec_open2(mEncCtx, encoder, nullptr) < 0) {
@@ -472,6 +506,14 @@ void Encoder::encode()
                 throw FlaconError(ffErrorStr(fRet, tr("Error pulling frame from filter graph.")));
             }
 
+            // ReplayGain ..............
+            if (mReplayGainEnabled && filteredFrame->nb_samples > 0) {
+                int bytesPerSample = av_get_bytes_per_sample(mDecCtx->sample_fmt);
+                int dataSize       = filteredFrame->nb_samples * mDecCtx->ch_layout.nb_channels * bytesPerSample;
+
+                mTrackGain.add(reinterpret_cast<const char *>(filteredFrame->data[0]), dataSize);
+            }
+
             sendFrameToEncoder(filteredFrame);
             av_frame_unref(filteredFrame);
         }
@@ -481,6 +523,7 @@ void Encoder::encode()
     int64_t processedSamples = 0;
     int     lastProgress     = 0;
 
+    int N = 0;
     while (av_read_frame(mInFmtCtx, inPacket) >= 0) {
         Abort::check();
 
@@ -497,13 +540,6 @@ void Encoder::encode()
 
                 if (ret < 0) {
                     throw FlaconError(ffErrorStr(ret, tr("Error decoding audio frame.")));
-                }
-
-                // ReplayGain ..............
-                if (mReplayGainEnabled && decodedFrame->nb_samples > 0) {
-                    int bytesPerSample = av_get_bytes_per_sample(mDecCtx->sample_fmt);
-                    int dataSize       = decodedFrame->nb_samples * mDecCtx->ch_layout.nb_channels * bytesPerSample;
-                    mTrackGain.add(reinterpret_cast<const char *>(decodedFrame->data[0]), dataSize);
                 }
 
                 // Progress ................

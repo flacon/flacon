@@ -127,7 +127,6 @@ QList<ExtProgram *> ExtProgram::allPrograms()
     QList<ExtProgram *> res;
     res << alacenc();
     res << faac();
-    res << flac();
     res << lame();
     res << mac();
     res << oggenc();
@@ -174,7 +173,6 @@ QProcess *ExtProgram::open(const QStringList &args, QObject *parent) const
 // clang-format off
 ExtProgram *ExtProgram::alacenc() { static ExtProgram res(__FUNCTION__); return &res; }
 ExtProgram *ExtProgram::faac()    { static ExtProgram res(__FUNCTION__); return &res; }
-ExtProgram *ExtProgram::flac()    { static ExtProgram res(__FUNCTION__); return &res; }
 ExtProgram *ExtProgram::lame()    { static ExtProgram res(__FUNCTION__); return &res; }
 ExtProgram *ExtProgram::mac()     { static ExtProgram res(__FUNCTION__); return &res; }
 ExtProgram *ExtProgram::oggenc()  { static ExtProgram res(__FUNCTION__); return &res; }

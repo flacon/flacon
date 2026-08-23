@@ -31,7 +31,7 @@
 #include "worker.h"
 #include "../profiles.h"
 #include "coverimage.h"
-#include "replaygain.h"
+#include "replaygain_old.h"
 
 namespace Conv {
 
@@ -76,15 +76,15 @@ private:
 
     CoverImage mCoverImage;
 
-    bool                  mReplayGainEnabled = false;
-    ReplayGain::TrackGain mTrackGain;
+    bool                      mReplayGainEnabled = false;
+    ReplayGain::TrackGain_OLD mTrackGain;
 
     quint64 mTotal    = 0;
     quint64 mReady    = 0;
     int     mProgress = 0;
-
-    void readInputFile(QProcess *process);
-    void copyFile();
+    int     N         = 0;
+    void    readInputFile(QProcess *process);
+    void    copyFile();
 
     QProcess *createEncoderProcess();
     QProcess *createRasmpler(const QString &outFile);

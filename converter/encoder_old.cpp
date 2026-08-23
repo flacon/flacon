@@ -319,6 +319,10 @@ void Encoder_OLD::readInputFile(QProcess *process)
         buf = file.read(bufSize);
         process->write(buf);
         if (mReplayGainEnabled) {
+            if (N == 0 && mTrack.index() == 0) {
+                N++;
+                qDebug() << "@@@" << buf.first(20).toHex(' ');
+            }
             mTrackGain.add(buf.constData(), buf.size());
         }
     }

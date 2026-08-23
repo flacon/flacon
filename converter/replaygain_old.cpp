@@ -35,10 +35,12 @@
  *
  * END_COMMON_COPYRIGHT_HEADER */
 
-#include "replaygain.h"
+#include "replaygain_old.h"
 #include "types.h"
 #include <QDebug>
 #include <cmath>
+#include <QBuffer>
+#include "converter/wavheader.h"
 
 static void registerQtMetaTypes()
 {
@@ -57,7 +59,7 @@ using namespace ReplayGain;
 
 static constexpr int YULE_ORDER   = 10;
 static constexpr int BUTTER_ORDER = 2;
-static constexpr int MAX_CHAN_NUM = 2;
+static constexpr int NAX_CHAN_NUM = 2;
 
 #define DEBUG_LEVELS 0
 #define DEBUG_FLOATS 0
@@ -259,7 +261,7 @@ static constexpr int32_t FILTER[] = {
 };
 
 static constexpr int NUM_TERMS = ((int)(sizeof(FILTER) / sizeof(FILTER[0])));
-
+namespace {
 class Decimator
 {
 public:
@@ -275,11 +277,12 @@ private:
         int index            = 0;
     };
 
-    ChanState mChanState[MAX_CHAN_NUM];
+    ChanState mChanState[NAX_CHAN_NUM];
     int       mChan        = 0;
     const int mNumChannels = 0;
     const int mRatio       = 0;
 };
+}
 
 /************************************************
  *
@@ -326,7 +329,7 @@ bool Decimator::run(int32_t sample, int32_t *res)
 /************************************************
  *
  ************************************************/
-class TrackGain::Engine
+class TrackGain_OLD::Engine
 {
 public:
     Engine(Result &result);
@@ -334,8 +337,9 @@ public:
 
     WavType type = WavType(0);
 
-    void init(int numChannels, uint32_t bitsPerSample, uint32_t sampleRate);
+    size_t loadHeader(const char *data, size_t size);
 
+    uint addBytes(const char *data, size_t size);
     void add_int8(const char *data, size_t size);
     void add_int16(const char *data, size_t size);
     void add_int24(const char *data, size_t size);
@@ -351,9 +355,16 @@ public:
 public:
     Result &mResult;
 
+    bool       mHeaderReady = false;
+    QByteArray mHeaderData;
+
     int      mNumChannels   = 0;
     uint32_t mSampleRate    = 0;
     uint16_t mBitsPerSample = 0;
+    size_t   mRemains       = 0;
+
+    uint     mIntSampleIndex = 0;
+    uint32_t mIntSample      = 0;
 
     Decimator *mDecimator = nullptr;
 
@@ -378,7 +389,7 @@ public:
 /************************************************
  *
  ************************************************/
-TrackGain::Engine::Engine(Result &result) :
+TrackGain_OLD::Engine::Engine(Result &result) :
     mResult(result)
 {
 }
@@ -386,20 +397,32 @@ TrackGain::Engine::Engine(Result &result) :
 /************************************************
  *
  ************************************************/
-TrackGain::Engine::~Engine()
+size_t TrackGain_OLD::Engine::loadHeader(const char *data, size_t size)
 {
-    delete[] mFloatSamples;
-    delete mDecimator;
-}
+    size_t prev = mHeaderData.size();
 
-/************************************************
- *
- ************************************************/
-void TrackGain::Engine::init(int numChannels, uint32_t bitsPerSample, uint32_t inSampleRate)
-{
-    mNumChannels   = numChannels;
-    mSampleRate    = inSampleRate;
-    mBitsPerSample = bitsPerSample;
+    Conv::WavHeader header;
+
+    try {
+        // Read ............................
+        mHeaderData.append(data, size);
+
+        QBuffer buf(&mHeaderData);
+        buf.open(QBuffer::ReadOnly);
+        header = Conv::WavHeader(&buf);
+
+        mHeaderData.clear();
+        mHeaderReady = true;
+    }
+    catch (FlaconError &err) {
+        return size;
+    }
+
+    // Initialize ......................
+    mNumChannels   = header.numChannels();
+    mSampleRate    = header.sampleRate();
+    mBitsPerSample = header.bitsPerSample();
+    mRemains       = header.dataSize();
 
     if (mNumChannels > 2) {
         throw FlaconError("can't handle multichannel files yet!");
@@ -411,7 +434,7 @@ void TrackGain::Engine::init(int numChannels, uint32_t bitsPerSample, uint32_t i
         sampleRate /= 4;
     }
 
-    mFloatSamplesMaxSize = sampleRate / 20 * MAX_CHAN_NUM; // 2 - is always stereo
+    mFloatSamplesMaxSize = sampleRate / 20 * NAX_CHAN_NUM; // 2 - is always stereo
     mFloatSamples        = new float[mFloatSamplesMaxSize];
 
     // Initialize filters;
@@ -426,23 +449,33 @@ void TrackGain::Engine::init(int numChannels, uint32_t bitsPerSample, uint32_t i
     }
 
     if (!mYuleCoeffA) {
-        throw FlaconError(QStringLiteral("sample rate of %1 is not supported!").arg(inSampleRate));
+        throw FlaconError(QStringLiteral("sample rate of %1 is not supported!").arg(header.sampleRate()));
     }
 
     // clang-format off
-    switch (mBitsPerSample) {
-        case 8:  type = WavType::Int8;  break;
-        case 16: type = WavType::Int16; break;
-        case 24: type = WavType::Int24; break;
-        case 32: type = WavType::Int32; break;
-    }
+        switch (mBitsPerSample) {
+            case 8:  type = WavType::Int8;  break;
+            case 16: type = WavType::Int16; break;
+            case 24: type = WavType::Int24; break;
+            case 32: type = WavType::Int32; break;
+        }
     // clang-format on
+
+    return header.dataStartPos() - prev;
 }
 
 /************************************************
  *
  ************************************************/
-inline void TrackGain::Engine::addFloatSample(uint32_t in)
+TrackGain_OLD::Engine::~Engine()
+{
+    delete[] mFloatSamples;
+}
+
+/************************************************
+ *
+ ************************************************/
+inline void TrackGain_OLD::Engine::addFloatSample(uint32_t in)
 {
     int32_t sample = 0;
     float   factor = 0;
@@ -502,59 +535,155 @@ inline void TrackGain::Engine::addFloatSample(uint32_t in)
 /************************************************
  *
  ************************************************/
-void TrackGain::Engine::add_int8(const char *data, size_t size)
+uint TrackGain_OLD::Engine::addBytes(const char *data, size_t size)
+{
+    const uint intSampleSize = mBitsPerSample / 8;
+
+    size_t cnt = std::min(size, size_t(intSampleSize - mIntSampleIndex)) % intSampleSize;
+    if (cnt == 0) {
+        return 0;
+    }
+
+    for (size_t i = 0; i < cnt; ++i) {
+        mIntSample      = (mIntSample & ~(0xFF << (mIntSampleIndex * 8))) | (data[i] << mIntSampleIndex * 8);
+        mIntSampleIndex = (mIntSampleIndex + 1) % (intSampleSize);
+    }
+
+    if (mIntSampleIndex == 0) {
+        addFloatSample(mIntSample);
+        mIntSample = 0;
+    }
+
+    return cnt;
+}
+
+/************************************************
+ *
+ ************************************************/
+void TrackGain_OLD::Engine::add_int8(const char *data, size_t size)
 {
     for (size_t i = 0; i < size; ++i) {
         addFloatSample(uint8_t(data[i]));
     }
-}
 
-/************************************************
- *
- ************************************************/
-void TrackGain::Engine::add_int16(const char *data, size_t size)
-{
-    using T      = uint16_t;
-    size_t   cnt = size / sizeof(T);
-    const T *d   = (const T *)(data);
+    mRemains -= size;
 
-    for (size_t i = 0; i < cnt; ++i) {
-        addFloatSample(d[i]);
+    if (mRemains == 0 && mFloatSamplesIndex != 0) {
+        calc(mFloatSamplesIndex);
     }
 }
 
 /************************************************
  *
  ************************************************/
-void TrackGain::Engine::add_int24(const char *data, size_t size)
+void TrackGain_OLD::Engine::add_int16(const char *data, size_t size)
 {
-    size_t      cnt = size / 3;
-    const auto *d   = reinterpret_cast<const uint8_t *>(data);
+    {
+        size_t cnt = addBytes(data, size);
+        data += cnt;
+        size -= cnt;
+        mRemains -= cnt;
+    }
 
-    for (size_t i = 0; i < cnt; ++i) {
-        uint32_t sample = uint32_t(d[i * 3]) | (uint32_t(d[i * 3 + 1]) << 8) | (uint32_t(d[i * 3 + 2]) << 16);
-        addFloatSample(sample);
+    {
+        using T    = uint16_t;
+        size_t cnt = size / sizeof(T);
+
+        const T *d = (const T *)(data);
+        for (size_t i = 0; i < cnt; ++i) {
+            addFloatSample(d[i]);
+        }
+
+        data += cnt * sizeof(T);
+        size -= cnt * sizeof(T);
+        mRemains -= cnt * sizeof(T);
+    }
+
+    if (size) {
+        size_t cnt = addBytes(data, size);
+        mRemains -= cnt;
+    }
+
+    if (mRemains == 0 && mFloatSamplesIndex != 0) {
+        calc(mFloatSamplesIndex);
     }
 }
 
 /************************************************
  *
  ************************************************/
-void TrackGain::Engine::add_int32(const char *data, size_t size)
+void TrackGain_OLD::Engine::add_int24(const char *data, size_t size)
 {
-    using T    = uint32_t;
-    size_t cnt = size / sizeof(T);
+    {
+        size_t cnt = addBytes(data, size);
+        data += cnt;
+        size -= cnt;
+        mRemains -= cnt;
+    }
 
-    const T *d = (const T *)(data);
-    for (size_t i = 0; i < cnt; ++i) {
-        addFloatSample(d[i]);
+    {
+        size_t cnt = size / 3;
+
+        for (size_t i = 0; i < cnt; ++i) {
+            uint32_t sample = *(const uint32_t *)(data + i * 3);
+            addFloatSample(sample);
+        }
+
+        data += cnt * 3;
+        size -= cnt * 3;
+        mRemains -= cnt * 3;
+    }
+
+    if (size) {
+        size_t cnt = addBytes(data, size);
+        mRemains -= cnt;
+    }
+
+    if (mRemains == 0 && mFloatSamplesIndex != 0) {
+        calc(mFloatSamplesIndex);
     }
 }
 
 /************************************************
  *
  ************************************************/
-void TrackGain::Engine::calc(uint32_t count)
+void TrackGain_OLD::Engine::add_int32(const char *data, size_t size)
+{
+    {
+        size_t cnt = addBytes(data, size);
+        data += cnt;
+        size -= cnt;
+        mRemains -= cnt;
+    }
+
+    {
+        using T    = uint32_t;
+        size_t cnt = size / sizeof(T);
+
+        const T *d = (const T *)(data);
+        for (size_t i = 0; i < cnt; ++i) {
+            addFloatSample(d[i]);
+        }
+
+        data += cnt * sizeof(T);
+        size -= cnt * sizeof(T);
+        mRemains -= cnt * sizeof(T);
+    }
+
+    if (size) {
+        size_t cnt = addBytes(data, size);
+        mRemains -= cnt;
+    }
+
+    if (mRemains == 0 && mFloatSamplesIndex != 0) {
+        calc(mFloatSamplesIndex);
+    }
+}
+
+/************************************************
+ *
+ ************************************************/
+void TrackGain_OLD::Engine::calc(uint32_t count)
 {
     calcStereoPeak(count);
     yuleFilterStereoSamples(mFloatSamples, count);
@@ -579,7 +708,7 @@ void TrackGain::Engine::calc(uint32_t count)
 /************************************************
  * Update largest absolute sample value
  ************************************************/
-void TrackGain::Engine::calcStereoPeak(uint32_t count)
+void TrackGain_OLD::Engine::calcStereoPeak(uint32_t count)
 {
     for (uint32_t i = 0; i < count; ++i) {
         mResult.mPeak = std::max(mResult.mPeak, std::abs(mFloatSamples[i]));
@@ -589,7 +718,7 @@ void TrackGain::Engine::calcStereoPeak(uint32_t count)
 /************************************************
  * Optimized mplementation of 10th-order IIR stereo filter
  ************************************************/
-void TrackGain::Engine::yuleFilterStereoSamples(float *samples, uint32_t size)
+void TrackGain_OLD::Engine::yuleFilterStereoSamples(float *samples, uint32_t size)
 {
     size = size / 2;
     double left, right;
@@ -647,9 +776,9 @@ void TrackGain::Engine::yuleFilterStereoSamples(float *samples, uint32_t size)
 }
 
 /************************************************
- * Optimized implementation of 2nd-order IIR stereo filter
+ * Optimized mplementation of 2nd-order IIR stereo filter
  ************************************************/
-void TrackGain::Engine::butterFilterStereoSamples(float *samples, uint32_t size)
+void TrackGain_OLD::Engine::butterFilterStereoSamples(float *samples, uint32_t size)
 {
     size = size / 2;
     double left, right;
@@ -694,7 +823,7 @@ void TrackGain::Engine::butterFilterStereoSamples(float *samples, uint32_t size)
  * Calculate stereo rms level. Minimum value is about -100 dB for digital silence. The 90 dB
  * offset is to compensate for the normalized float range and 3 dB is for stereo samples.
  ************************************************/
-double TrackGain::Engine::calcStereoRms(float *samples, uint32_t size) const
+double TrackGain_OLD::Engine::calcStereoRms(float *samples, uint32_t size) const
 {
     double sum = 1e-16;
 
@@ -708,7 +837,7 @@ double TrackGain::Engine::calcStereoRms(float *samples, uint32_t size) const
 /************************************************
  *
  ************************************************/
-TrackGain::TrackGain() :
+TrackGain_OLD::TrackGain_OLD() :
     mEngine(new Engine(mResult))
 {
 }
@@ -716,7 +845,7 @@ TrackGain::TrackGain() :
 /************************************************
  *
  ************************************************/
-TrackGain::~TrackGain()
+TrackGain_OLD::~TrackGain_OLD()
 {
     delete mEngine;
 }
@@ -724,26 +853,21 @@ TrackGain::~TrackGain()
 /************************************************
  *
  ************************************************/
-void TrackGain::init(int numChannels, uint32_t sampleRate, uint32_t bitsPerSample)
+void TrackGain_OLD::add(const char *data, size_t size)
 {
-    mEngine->init(numChannels, sampleRate, bitsPerSample);
-}
+    if (!mEngine->mHeaderReady) {
+        size_t pos = mEngine->loadHeader(data, size);
 
-/************************************************
- *
- ************************************************/
-void TrackGain::calc()
-{
-    if (mEngine->mFloatSamplesIndex != 0) {
-        mEngine->calc(mEngine->mFloatSamplesIndex);
+        if (pos >= size) {
+            return;
+        }
+
+        size -= pos;
+        data += pos;
     }
-}
 
-/************************************************
- *
- ************************************************/
-void TrackGain::add(const char *data, size_t size)
-{
+    size = std::min(size, mEngine->mRemains);
+
     if (size) {
         // clang-format off
         switch (mEngine->type) {
@@ -754,94 +878,4 @@ void TrackGain::add(const char *data, size_t size)
         }
         // clang-format on
     }
-}
-
-/************************************************
- *
- ************************************************/
-int TrackGain::numChannels() const
-{
-    return mEngine->mNumChannels;
-}
-
-/************************************************
- *
- ************************************************/
-uint32_t TrackGain::sampleRate() const
-{
-    return mEngine->mSampleRate;
-}
-
-/************************************************
- *
- ************************************************/
-uint32_t TrackGain::bitsPerSample() const
-{
-    return mEngine->mBitsPerSample;
-}
-
-/************************************************
- *
- ************************************************/
-void AlbumGain::add(const Result &trackGain)
-{
-    Result::Histogram       &albumHistogram = mResult.mHistogram;
-    const Result::Histogram &trackHistogram = trackGain.histogram();
-
-    for (size_t i = 0; i < albumHistogram.size(); ++i) {
-        albumHistogram[i] += trackHistogram[i];
-    }
-
-    mResult.mPeak = std::max(mResult.mPeak, trackGain.peak());
-}
-
-/************************************************
- *
- ************************************************/
-Result::Result()
-{
-    registerQtMetaTypes();
-}
-
-/************************************************
- *
- ************************************************/
-Result::Result(const Result &other) :
-    mHistogram(other.mHistogram),
-    mPeak(other.mPeak)
-{
-    registerQtMetaTypes();
-}
-
-/************************************************
- * Calculate the ReplayGain value from the specified loudness histogram; clip to -24 / +64 dB
- ************************************************/
-float Result::gain() const
-{
-    uint32_t loud_count    = 0;
-    uint32_t total_windows = 0;
-    float    unclipped_gain;
-    size_t   i;
-
-    for (i = 0; i < mHistogram.size(); i++) {
-        total_windows += mHistogram[i];
-    }
-
-    while (i--) {
-        if ((loud_count += mHistogram[i]) * 20 >= total_windows) {
-            break;
-        }
-    }
-
-    unclipped_gain = (float)(64.54 - i / 100.0);
-
-    if (unclipped_gain > 64.0) {
-        return 64.0;
-    }
-
-    if (unclipped_gain < -24.0) {
-        return -24.0;
-    }
-
-    return unclipped_gain;
 }
