@@ -92,8 +92,9 @@ jobs:
         echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
         sudo apt-get -y update
         sudo apt-get -y --no-install-recommends install build-essential pkg-config cmake
-        sudo apt-get -y  --no-install-recommends install libgl1-mesa-dev qt6-base-dev qt6-tools-dev-tools qt6-tools-dev qt6-l10n-tools qt6-l10n-tools qmake6 qt6-xdgdesktopportal-platformtheme
-        sudo apt-get -y  --no-install-recommends install libuchardet-dev libtag1-dev
+        sudo apt-get -y --no-install-recommends install libgl1-mesa-dev qt6-base-dev qt6-tools-dev-tools qt6-tools-dev qt6-l10n-tools qt6-l10n-tools qmake6 qt6-xdgdesktopportal-platformtheme
+        sudo apt-get -y --no-install-recommends install libuchardet-dev libtag1-dev
+        sudo apt-get -y --no-install-recommends install libavcodec-dev libavformat-dev libavfilter-dev libavutil-dev
         sudo ln -sf /usr/lib/qt6/bin/qmake /usr/bin/qmake
 
 
