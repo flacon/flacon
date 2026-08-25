@@ -154,6 +154,14 @@ jobs:
 
     ###################################
     #
+    - name: Download FFAudio
+      run: |
+        git clone  --depth 1 https://github.com/SokoloffA/FFAudio.git FFAudio
+        echo "FFAUDIO_DIR=${{ runner.temp }}/FFAudio" >> $GITHUB_ENV
+
+
+    ###################################
+    #
     - name: Build uchardet
       working-directory: ${{ env.PREFIX }}
       run: |
@@ -204,13 +212,16 @@ jobs:
         #QT_CMAKE_DIR=$(find "${{ env.PREFIX }}/qt" -name "Qt6Config.cmake" -exec dirname {} \;)
         QT_ROOT_DIR=$(find "${{ env.PREFIX }}/qt" -name "Qt6Config.cmake" | sed 's|/lib/cmake/Qt6/Qt6Config.cmake||')
         echo "*******************************"
-        echo "QT_ROOT_DIR: '${QT_ROOT_DIR}'"
+        echo "QT_ROOT_DIR:  '${QT_ROOT_DIR}'"
+        echo "$FFAUDIO DIR: '${FFAUDIO_DIR}'"
         echo "*******************************"
 
         cmake \
+          -DCMAKE_BUILD_TYPE=Release \
           -DBUILD_TESTS=No \
           -DMAC_BUNDLE=Yes \
           -DCMAKE_PREFIX_PATH="${QT_ROOT_DIR};${{ env.PREFIX }}" \
+          -DCMAKE_FRAMEWORK_PATH="${{ env.FFAUDIO_DIR }}" \
           -DCMAKE_INSTALL_PREFIX=build \
           -DCMAKE_OSX_DEPLOYMENT_TARGET=${{ env.OSX_DEPLOYMENT_TARGET }} \
           -DCMAKE_OSX_ARCHITECTURES=${{ inputs.arch }} \
