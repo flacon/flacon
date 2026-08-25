@@ -72,21 +72,50 @@ inline int copyChannelLayout(AVCodecContext *dst, const AVCodecContext *src)
 #if HAS_AV_CHANNEL_LAYOUT
     return av_channel_layout_copy(&dst->ch_layout, &src->ch_layout);
 #else
-    dst->channel_layout = src->channel_layout;
+    uint64_t layout = src->channel_layout;
+    if (!layout) {
+        layout = av_get_default_channel_layout(src->channels);
+    }
+    dst->channel_layout = layout;
     dst->channels       = src->channels;
     return 0;
 #endif
 }
 
 /**************************************
- *
+ * https://ffmpeg.org/ffmpeg-utils.html#channel-layout-syntax
  **************************************/
 inline void describeChannelLayout(const AVCodecContext *ctx, char *buf, size_t buf_size)
 {
 #if HAS_AV_CHANNEL_LAYOUT
-    av_channel_layout_describe(&ctx->ch_layout, buf, buf_size);
+    uint64_t mask = 0;
+
+    if (ctx->ch_layout.order == AV_CHANNEL_ORDER_NATIVE && ctx->ch_layout.u.mask != 0) {
+        mask = ctx->ch_layout.u.mask;
+    }
+    else {
+        AVChannelLayout defLayout;
+        av_channel_layout_default(&defLayout, ctx->ch_layout.nb_channels);
+
+        if (defLayout.order == AV_CHANNEL_ORDER_NATIVE) {
+            mask = defLayout.u.mask;
+        }
+        av_channel_layout_uninit(&defLayout);
+    }
+
+    if (mask != 0) {
+        snprintf(buf, buf_size, "0x%" PRIx64, mask);
+    }
+    else {
+        av_channel_layout_describe(&ctx->ch_layout, buf, buf_size);
+    }
 #else
-    av_get_channel_layout_string(buf, static_cast<int>(buf_size), ctx->channels, ctx->channel_layout);
+    uint64_t layout = ctx->channel_layout;
+    if (!layout) {
+        layout = av_get_default_channel_layout(ctx->channels);
+    }
+
+    snprintf(buf, buf_size, "0x%" PRIx64, layout);
 #endif
 }
 } // namespace

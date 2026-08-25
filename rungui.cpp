@@ -31,6 +31,10 @@
 #include "commandlineparser.h"
 #include "appconfig.h"
 
+extern "C" {
+#include <libavcodec/version.h>
+}
+
 #include <QLibraryInfo>
 #include <QTranslator>
 #include <QLoggingCategory>
@@ -101,6 +105,7 @@ int RunGui::run(int argc, char *argv[])
 
     qCDebug(LOG) << "Start flacon " << APP_VERSION;
     qCDebug(LOG) << "git info: " << APP_GIT_COMMIT_HASH << " " << APP_GIT_COMMIT_DATE;
+    qCDebug(LOG) << "AVCodec version:" << QString("%1.%2.%3").arg(AV_VERSION_MAJOR(LIBAVCODEC_VERSION_INT)).arg(AV_VERSION_MINOR(LIBAVCODEC_VERSION_INT)).arg(AV_VERSION_MICRO(LIBAVCODEC_VERSION_INT));
 
     if (!commandLineParser.config().isEmpty()) {
         Settings::setFileName(commandLineParser.config());
