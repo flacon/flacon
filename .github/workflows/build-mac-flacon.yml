@@ -154,14 +154,6 @@ jobs:
 
     ###################################
     #
-    - name: Download FFAudio
-      run: |
-        git clone  --depth 1 https://github.com/SokoloffA/FFAudio.git FFAudio
-        echo "FFAUDIO_DIR=${{ runner.temp }}/FFAudio" >> $GITHUB_ENV
-
-
-    ###################################
-    #
     - name: Build uchardet
       working-directory: ${{ env.PREFIX }}
       run: |
@@ -190,6 +182,15 @@ jobs:
             -DBUILD_SHARED_LIBS=ON
           cmake --build taglib/build -j$(sysctl -n hw.ncpu)
           cmake --install taglib/build
+
+
+    ###################################
+    #
+    - name: Install FFAudio
+      run: |
+        git clone  --depth 1 https://github.com/SokoloffA/FFAudio.git -b flacon FFAudio
+        mkdir -p ${HOME}/Library/Frameworks
+        cp -a FFAudio/FFAudio.xcframework/macos-arm64_x86_64/FFAudio.framework ${HOME}/Library/Frameworks
 
 
     ###################################

@@ -247,14 +247,54 @@ find_package(Iconv REQUIRED)
 set(LIBRARIES ${LIBRARIES} ${Iconv_LIBRARIES})
 
 # FFMPEG ..............................
-pkg_check_modules(LIBAV REQUIRED IMPORTED_TARGET
-    libavcodec
-    libavfilter
-    libavformat
-    libavutil
-)
-include_directories(${LIBAV_INCLUDE_DIRS})
-list(APPEND LIBRARIES PkgConfig::LIBAV)
+if ( NOT MAC_BUNDLE )
+    pkg_check_modules(LIBAV REQUIRED IMPORTED_TARGET
+        libavcodec
+        libavfilter
+        libavformat
+        libavutil
+    )
+    include_directories(${LIBAV_INCLUDE_DIRS})
+    list(APPEND LIBRARIES PkgConfig::LIBAV)
+else()
+    find_package(FFAudio REQUIRED)
+    message("*********************")
+    message("FFAUDIO_INCLUDE_DIR: ${FFAUDIO_INCLUDE_DIR}")
+    message("*********************")
+    #include_directories(${FFAUDIO_INCLUDE_DIR})
+    list(APPEND LIBRARIES FFAudio::FFAudio)
+
+#    include(FindPackageHandleStandardArgs)
+
+#    find_library(FFAUDIO_LIBRARY
+#        NAMES FFAudio
+#        HINTS ${CMAKE_FRAMEWORK_PATH}
+#    )
+
+#    find_path(FFAUDIO_INCLUDE_DIR
+#        NAMES FFAudio.h libavcodec/avcodec.h
+#        HINTS ${FFAUDIO_LIBRARY}/Headers
+#              ${CMAKE_FRAMEWORK_PATH}/FFAudio.framework/Headers
+#    )
+
+#    find_package_handle_standard_args(FFAudio DEFAULT_MSG FFAUDIO_LIBRARY FFAUDIO_INCLUDE_DIR)
+
+#    if (FFAudio_FOUND)
+#        include_directories(${FFAUDIO_INCLUDE_DIR})
+#        list(APPEND LIBRARIES ${FFAUDIO_LIBRARY})
+#    endif()
+
+#    find_path(FFAUDIO_INCLUDE_DIR FFAudio.h)
+#    find_library(FFAUDIO_LIBRARY NAMES FFAudio)
+
+#    find_package_handle_standard_args(FFAudio DEFAULT_MSG FFAUDIO_INCLUDE_DIR FFAUDIO_LIBRARY)
+    #mark_as_advanced(SPARKLE_INCLUDE_DIR SPARKLE_LIBRARY)
+
+
+    #find_package(FFAudio REQUIRED)
+
+    #set(LIBRARIES ${LIBRARIES} ${FFAUDIO_LIBRARY})
+endif()
 
 if (APPLE)
     FIND_LIBRARY(COCOA_LIBRARY Cocoa)
