@@ -23,8 +23,6 @@ env:
   UCHARDET_VERSION:     "0.0.8"
   SPARKLE_VERSION:      "1.26.0"
 
-
-
 jobs:
   ###################################
   build-alacenc:
@@ -191,6 +189,8 @@ jobs:
         git clone  --depth 1 https://github.com/SokoloffA/FFAudio.git -b flacon FFAudio
         mkdir -p ${HOME}/Library/Frameworks
         cp -a FFAudio/FFAudio.xcframework/macos-arm64_x86_64/FFAudio.framework ${HOME}/Library/Frameworks
+        ls -l ${HOME}/Library/Frameworks/FFAudio.framework/Resources/
+        ls -l ${HOME}/Library/Frameworks/FFAudio.framework/Resources/*
 
 
     ###################################
