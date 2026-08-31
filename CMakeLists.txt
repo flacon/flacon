@@ -247,14 +247,20 @@ find_package(Iconv REQUIRED)
 set(LIBRARIES ${LIBRARIES} ${Iconv_LIBRARIES})
 
 # FFMPEG ..............................
-pkg_check_modules(LIBAV REQUIRED IMPORTED_TARGET
-    libavformat
-    libavcodec
-    libavutil
-    libavfilter
-)
-include_directories(${LIBAV_INCLUDE_DIRS})
-list(APPEND LIBRARIES PkgConfig::LIBAV)
+if ( NOT MAC_BUNDLE )
+    pkg_check_modules(LIBAV REQUIRED IMPORTED_TARGET
+        libavcodec
+        libavfilter
+        libavformat
+        libavutil
+    )
+    include_directories(${LIBAV_INCLUDE_DIRS})
+    list(APPEND LIBRARIES PkgConfig::LIBAV)
+else()
+    find_package(FFAudio REQUIRED)
+    include_directories(${FFAUDIO_INCLUDE_DIR})
+    list(APPEND LIBRARIES FFAudio::FFAudio)
+endif()
 
 if (APPLE)
     FIND_LIBRARY(COCOA_LIBRARY Cocoa)

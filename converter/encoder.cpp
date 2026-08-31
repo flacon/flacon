@@ -35,8 +35,8 @@ extern "C" {
 #include <libavfilter/buffersrc.h>
 #include <libavfilter/buffersink.h>
 #include <libavutil/opt.h>
-#include <libavutil/channel_layout.h>
 }
+#include "avcompat.h"
 
 #include <QLoggingCategory>
 namespace {
@@ -318,7 +318,7 @@ void Encoder::setupEncoder(AVCodecID formatId, int bitsPerSample, int sampleRate
     mEncCtx = avcodec_alloc_context3(encoder);
 
     mEncCtx->sample_rate = sampleRate;
-    av_channel_layout_copy(&mEncCtx->ch_layout, &mDecCtx->ch_layout);
+    AvCompat::copyChannelLayout(mEncCtx, mDecCtx);
 
     mEncCtx->sample_fmt = selectBestSampleFormat(encoder, bitsPerSample);
 
@@ -383,7 +383,7 @@ void Encoder::setupFilterGraph(bool deemph)
     AVRational timeBase = mInStream->time_base.num > 0 ? mInStream->time_base : AVRational { 1, mDecCtx->sample_rate };
 
     char chLayoutStr[64] = { 0 };
-    av_channel_layout_describe(&mDecCtx->ch_layout, chLayoutStr, sizeof(chLayoutStr));
+    AvCompat::describeChannelLayout(mDecCtx, chLayoutStr, sizeof(chLayoutStr));
 
     QString srcArgs = QString("sample_rate=%1:sample_fmt=%2:time_base=%3/%4:channel_layout='%5'")
                               .arg(mDecCtx->sample_rate)
@@ -412,7 +412,7 @@ void Encoder::setupFilterGraph(bool deemph)
     // Force all three output parameters (sample_fmts, sample_rates, channel_layouts).
     // The aformat filter will automatically insert aresample if necessary.
     char outChLayoutStr[64] = { 0 };
-    av_channel_layout_describe(&mEncCtx->ch_layout, outChLayoutStr, sizeof(outChLayoutStr));
+    AvCompat::describeChannelLayout(mEncCtx, outChLayoutStr, sizeof(outChLayoutStr));
 
     filters << QString("aformat=sample_fmts=%1:sample_rates=%2:channel_layouts='%3'")
                        .arg(av_get_sample_fmt_name(mEncCtx->sample_fmt))
@@ -509,7 +509,7 @@ void Encoder::encode()
             // ReplayGain ..............
             if (mReplayGainEnabled && filteredFrame->nb_samples > 0) {
                 int bytesPerSample = av_get_bytes_per_sample(mDecCtx->sample_fmt);
-                int dataSize       = filteredFrame->nb_samples * mDecCtx->ch_layout.nb_channels * bytesPerSample;
+                int dataSize       = filteredFrame->nb_samples * AvCompat::getChannelsNum(mDecCtx) * bytesPerSample;
 
                 mTrackGain.add(reinterpret_cast<const char *>(filteredFrame->data[0]), dataSize);
             }
@@ -523,7 +523,6 @@ void Encoder::encode()
     int64_t processedSamples = 0;
     int     lastProgress     = 0;
 
-    int N = 0;
     while (av_read_frame(mInFmtCtx, inPacket) >= 0) {
         Abort::check();
 

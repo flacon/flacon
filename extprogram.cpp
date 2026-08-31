@@ -128,13 +128,10 @@ QList<ExtProgram *> ExtProgram::allPrograms()
     res << alacenc();
     res << faac();
     res << lame();
-    res << mac();
     res << oggenc();
     res << opusenc();
     res << sox();
-    res << ttaenc();
     res << wavpack();
-    res << wvunpack();
     return res;
 }
 
@@ -174,11 +171,8 @@ QProcess *ExtProgram::open(const QStringList &args, QObject *parent) const
 ExtProgram *ExtProgram::alacenc() { static ExtProgram res(__FUNCTION__); return &res; }
 ExtProgram *ExtProgram::faac()    { static ExtProgram res(__FUNCTION__); return &res; }
 ExtProgram *ExtProgram::lame()    { static ExtProgram res(__FUNCTION__); return &res; }
-ExtProgram *ExtProgram::mac()     { static ExtProgram res(__FUNCTION__); return &res; }
 ExtProgram *ExtProgram::oggenc()  { static ExtProgram res(__FUNCTION__); return &res; }
 ExtProgram *ExtProgram::opusenc() { static ExtProgram res(__FUNCTION__); return &res; }
 ExtProgram *ExtProgram::sox()     { static ExtProgram res(__FUNCTION__); return &res; }
-ExtProgram *ExtProgram::ttaenc()  { static ExtProgram res(__FUNCTION__); return &res; }
 ExtProgram *ExtProgram::wavpack() { static ExtProgram res(__FUNCTION__); return &res; }
-ExtProgram *ExtProgram::wvunpack(){ static ExtProgram res(__FUNCTION__); return &res; }
 // clang-format on

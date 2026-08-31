@@ -48,6 +48,7 @@ set(HEADERS
     replaygain.h
     replaygain_old.h
     totalprogresscounter.h
+    avcompat.h
 )
 
 set(SOURCES

@@ -59,13 +59,10 @@ public:
     static ExtProgram *alacenc();
     static ExtProgram *faac();
     static ExtProgram *lame();
-    static ExtProgram *mac();
     static ExtProgram *oggenc();
     static ExtProgram *opusenc();
     static ExtProgram *sox();
-    static ExtProgram *ttaenc();
     static ExtProgram *wavpack();
-    static ExtProgram *wvunpack();
 };
 
 #endif // EXTPROGRAM_H

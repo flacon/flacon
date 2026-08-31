@@ -23,8 +23,6 @@ env:
   UCHARDET_VERSION:     "0.0.8"
   SPARKLE_VERSION:      "1.26.0"
 
-
-
 jobs:
   ###################################
   build-alacenc:
@@ -186,6 +184,15 @@ jobs:
 
     ###################################
     #
+    - name: Install FFAudio
+      run: |
+        git clone  --depth 1 https://github.com/SokoloffA/FFAudio.git -b flacon FFAudio
+        mkdir -p ${HOME}/Library/Frameworks
+        cp -a FFAudio/FFAudio.xcframework/macos-arm64_x86_64/FFAudio.framework ${HOME}/Library/Frameworks
+
+
+    ###################################
+    #
     - name: Install Saprkle
       shell: bash
       run: |
@@ -205,12 +212,15 @@ jobs:
         QT_ROOT_DIR=$(find "${{ env.PREFIX }}/qt" -name "Qt6Config.cmake" | sed 's|/lib/cmake/Qt6/Qt6Config.cmake||')
         echo "*******************************"
         echo "QT_ROOT_DIR: '${QT_ROOT_DIR}'"
+        echo "FFAUDIO DIR: '${FFAUDIO_DIR}'"
         echo "*******************************"
 
         cmake \
+          -DCMAKE_BUILD_TYPE=Release \
           -DBUILD_TESTS=No \
           -DMAC_BUNDLE=Yes \
           -DCMAKE_PREFIX_PATH="${QT_ROOT_DIR};${{ env.PREFIX }}" \
+          -DCMAKE_FRAMEWORK_PATH="${{ env.FFAUDIO_DIR }}" \
           -DCMAKE_INSTALL_PREFIX=build \
           -DCMAKE_OSX_DEPLOYMENT_TARGET=${{ env.OSX_DEPLOYMENT_TARGET }} \
           -DCMAKE_OSX_ARCHITECTURES=${{ inputs.arch }} \
