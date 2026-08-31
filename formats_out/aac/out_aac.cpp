@@ -27,6 +27,11 @@
 #include "inputaudiofile.h"
 #include "../metadatawriter.h"
 
+extern "C" {
+#include <libavcodec/avcodec.h>
+#include <libavutil/opt.h>
+}
+
 /************************************************
 
  ************************************************/
@@ -61,29 +66,24 @@ EncoderConfigPage *OutFormat_Aac::configPage(QWidget *parentr) const
 /************************************************
 
  ************************************************/
-ExtProgram *OutFormat_Aac::encoderProgram(const Profile &) const
+AVCodecID OutFormat_Aac::avCodecId() const
 {
-    return ExtProgram::faac();
+    return AV_CODEC_ID_AAC;
 }
 
 /************************************************
-
+ * See https://ffmpeg.org/ffmpeg-codecs.html#aac
  ************************************************/
-QStringList OutFormat_Aac::encoderArgs(const Profile &profile, const QString &outFile) const
+void OutFormat_Aac::setAvCodecParams(const Profile &profile, AVCodecContext *codecContext) const
 {
-    QStringList args;
-
-    args << "-w"; // Wrap  AAC  data  in  an MP4 container.
-
-    // Quality settings .........................................
-    if (profile.encoderValues()->value("UseQuality").toBool())
-        args << "-q" << profile.encoderValues()->value("Quality").toString();
-    else
-        args << "-b" << profile.encoderValues()->value("Bitrate").toString();
-
-    args << "-o" << outFile;
-    args << "-";
-    return args;
+    if (profile.encoderValues()->value("UseQuality").toBool()) {
+        int quality = profile.encoderValues()->value("Quality").toInt();
+        av_opt_set_int(codecContext, "global_quality", quality, 0);
+    }
+    else {
+        int bitrate = profile.encoderValues()->value("Bitrate").toInt() * 1024;
+        av_opt_set_int(codecContext, "b", bitrate, 0);
+    }
 }
 
 /************************************************

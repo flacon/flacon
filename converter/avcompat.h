@@ -65,12 +65,40 @@ inline int getChannelsNum(const AVFrame *frame)
 }
 
 /**************************************
+ * Returns a layout with real per-channel semantics: if the source layout
+ * is unspecified, or malformed (NATIVE order with an empty mask),
+ * substitutes the standard layout for that channel count.
+ * CUSTOM and AMBISONIC layouts carry meaningful per-channel data
+ * and are left untouched.
+ * Caller owns `out` and must call av_channel_layout_uninit() on it.
+ **************************************/
+inline void normalizeChannelLayout(const AVChannelLayout &src, AVChannelLayout *out)
+{
+    bool needsDefault = (src.order == AV_CHANNEL_ORDER_UNSPEC)
+            || (src.order == AV_CHANNEL_ORDER_NATIVE && src.u.mask == 0);
+
+    if (needsDefault) {
+        av_channel_layout_default(out, src.nb_channels);
+    }
+    else {
+        av_channel_layout_copy(out, &src);
+    }
+}
+
+/**************************************
  *
  **************************************/
 inline int copyChannelLayout(AVCodecContext *dst, const AVCodecContext *src)
 {
 #if HAS_AV_CHANNEL_LAYOUT
-    return av_channel_layout_copy(&dst->ch_layout, &src->ch_layout);
+    AVChannelLayout normalized = {};
+    normalizeChannelLayout(src->ch_layout, &normalized);
+
+    av_channel_layout_uninit(&dst->ch_layout);
+    int ret = av_channel_layout_copy(&dst->ch_layout, &normalized);
+    av_channel_layout_uninit(&normalized);
+    return ret;
+
 #else
     uint64_t layout = src->channel_layout;
     if (!layout) {
@@ -88,26 +116,14 @@ inline int copyChannelLayout(AVCodecContext *dst, const AVCodecContext *src)
 inline void describeChannelLayout(const AVCodecContext *ctx, char *buf, size_t buf_size)
 {
 #if HAS_AV_CHANNEL_LAYOUT
-    uint64_t mask = 0;
+    AVChannelLayout normalized = {};
+    normalizeChannelLayout(ctx->ch_layout, &normalized);
 
-    if (ctx->ch_layout.order == AV_CHANNEL_ORDER_NATIVE && ctx->ch_layout.u.mask != 0) {
-        mask = ctx->ch_layout.u.mask;
+    if (normalized.order == AV_CHANNEL_ORDER_NATIVE && normalized.u.mask != 0) {
+        snprintf(buf, buf_size, "0x%" PRIx64, normalized.u.mask);
     }
     else {
-        AVChannelLayout defLayout;
-        av_channel_layout_default(&defLayout, ctx->ch_layout.nb_channels);
-
-        if (defLayout.order == AV_CHANNEL_ORDER_NATIVE) {
-            mask = defLayout.u.mask;
-        }
-        av_channel_layout_uninit(&defLayout);
-    }
-
-    if (mask != 0) {
-        snprintf(buf, buf_size, "0x%" PRIx64, mask);
-    }
-    else {
-        av_channel_layout_describe(&ctx->ch_layout, buf, buf_size);
+        av_channel_layout_describe(&normalized, buf, buf_size);
     }
 #else
     uint64_t layout = ctx->channel_layout;

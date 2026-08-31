@@ -57,7 +57,6 @@ protected:
 
 public:
     static ExtProgram *alacenc();
-    static ExtProgram *faac();
     static ExtProgram *lame();
     static ExtProgram *oggenc();
     static ExtProgram *opusenc();

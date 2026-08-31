@@ -68,13 +68,26 @@ public:
     virtual QHash<QString, QVariant> defaultParameters() const         = 0;
     virtual EncoderConfigPage       *configPage(QWidget *parent) const = 0;
 
-    virtual ExtProgram *encoderProgram(const Profile &profile) const                      = 0;
-    virtual QStringList encoderArgs(const Profile &profile, const QString &outFile) const = 0;
+    virtual ExtProgram *encoderProgram(const Profile &profile) const
+    {
+        Q_UNUSED(profile)
+        return nullptr;
+    }
+
+    virtual QStringList encoderArgs(const Profile &profile, const QString &outFile) const
+    {
+        Q_UNUSED(profile)
+        Q_UNUSED(outFile)
+        return {};
+    }
 
     virtual MetadataWriter *createMetadataWriter(const Profile &profile, const QString &filePath) const = 0;
 
-    virtual AVCodecID avCodecId() const { return AV_CODEC_ID_NONE; }
-    virtual void      setAvCodecParams(const Profile &profile, AVCodecContext *codecContext) const
+    virtual AVCodecID avCodecId() const
+    {
+        return AV_CODEC_ID_NONE;
+    }
+    virtual void setAvCodecParams(const Profile &profile, AVCodecContext *codecContext) const
     {
         Q_UNUSED(profile);
         Q_UNUSED(codecContext);

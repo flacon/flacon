@@ -43,8 +43,8 @@ public:
     virtual BitsPerSample maxBitPerSample() const override { return BitsPerSample::Bit_32; }
     virtual SampleRate    maxSampleRate() const override { return SampleRate::Hz_192000; }
 
-    ExtProgram *encoderProgram(const Profile &profile) const override;
-    QStringList encoderArgs(const Profile &profile, const QString &outFile) const override;
+    AVCodecID avCodecId() const override;
+    void      setAvCodecParams(const Profile &profile, AVCodecContext *codecContext) const override;
 
     MetadataWriter *createMetadataWriter(const Profile &profile, const QString &filePath) const override;
 };

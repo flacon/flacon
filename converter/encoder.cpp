@@ -318,7 +318,11 @@ void Encoder::setupEncoder(AVCodecID formatId, int bitsPerSample, int sampleRate
     mEncCtx = avcodec_alloc_context3(encoder);
 
     mEncCtx->sample_rate = sampleRate;
-    AvCompat::copyChannelLayout(mEncCtx, mDecCtx);
+
+    int ret = AvCompat::copyChannelLayout(mEncCtx, mDecCtx);
+    if (ret < 0) {
+        throw FlaconError(ffErrorStr(ret, "Failed to copy channel layout."));
+    }
 
     mEncCtx->sample_fmt = selectBestSampleFormat(encoder, bitsPerSample);
 
@@ -334,8 +338,9 @@ void Encoder::setupEncoder(AVCodecID formatId, int bitsPerSample, int sampleRate
     mProfile.outFormat()->setAvCodecParams(mProfile, mEncCtx);
     // ..............................
 
-    if (avcodec_open2(mEncCtx, encoder, nullptr) < 0) {
-        throw FlaconError(tr("Failed to open audio encoder context."));
+    ret = avcodec_open2(mEncCtx, encoder, nullptr);
+    if (ret < 0) {
+        throw FlaconError(ffErrorStr(ret, "Failed to open audio encoder context."));
     }
 }
 
