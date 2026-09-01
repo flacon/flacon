@@ -64,6 +64,7 @@ inline int getChannelsNum(const AVFrame *frame)
 #endif
 }
 
+#if HAS_AV_CHANNEL_LAYOUT
 /**************************************
  * Returns a layout with real per-channel semantics: if the source layout
  * is unspecified, or malformed (NATIVE order with an empty mask),
@@ -84,6 +85,7 @@ inline void normalizeChannelLayout(const AVChannelLayout &src, AVChannelLayout *
         av_channel_layout_copy(out, &src);
     }
 }
+#endif
 
 /**************************************
  *
