@@ -27,6 +27,11 @@
 #include "mp3metadatawriter.h"
 #include <QDebug>
 
+extern "C" {
+#include <libavcodec/avcodec.h>
+#include <libavutil/opt.h>
+}
+
 static constexpr char VBR_MEDIUM[]   = "vbrMedium";
 static constexpr char VBR_STATDARD[] = "vbrStandard";
 static constexpr char VBR_EXTRIME[]  = "vbrExtreme";
@@ -69,67 +74,49 @@ EncoderConfigPage *OutFormat_Mp3::configPage(QWidget *parent) const
 /************************************************
 
  ************************************************/
-ExtProgram *OutFormat_Mp3::encoderProgram(const Profile &) const
+AVCodecID OutFormat_Mp3::avCodecId() const
 {
-    return ExtProgram::lame();
+    return AV_CODEC_ID_MP3;
 }
 
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Mp3::encoderArgs(const Profile &profile, const QString &outFile) const
+void OutFormat_Mp3::setAvCodecParams(const Profile &profile, AVCodecContext *codecContext) const
 {
-    QStringList args;
-
-    args << "--silent";
-
-    // Settings .................................................
+    void   *priv   = codecContext->priv_data;
     QString preset = profile.encoderValues()->value("Preset").toString();
 
     if (preset == VBR_MEDIUM) {
-        args << "--preset"
-             << "medium";
+        // LAME --preset medium ≈ VBR V4
+        av_opt_set_int(priv, "q", 4, 0);
     }
-
     else if (preset == VBR_STATDARD) {
-        args << "--preset"
-             << "standard";
+        // LAME --preset standard ≈ VBR V2
+        av_opt_set_int(priv, "q", 2, 0);
     }
-
     else if (preset == VBR_EXTRIME) {
-        args << "--preset"
-             << "extreme";
+        // LAME --preset extreme ≈ VBR V0
+        av_opt_set_int(priv, "q", 0, 0);
     }
-
     else if (preset == CBR_INSANE) {
-        args << "--preset"
-             << "insane";
+        // LAME --preset insane = 320 kbps CBR
+        codecContext->bit_rate = 320000;
     }
-
     else if (preset == CBR_KBPS) {
-        args << "--preset"
-             << "cbr" << profile.encoderValues()->value("Bitrate").toString();
+        int kbps               = profile.encoderValues()->value("Bitrate").toInt();
+        codecContext->bit_rate = kbps * 1000;
     }
-
     else if (preset == ABR_KBPS) {
-        args << "--preset" << profile.encoderValues()->value("Bitrate").toString();
+        int kbps = profile.encoderValues()->value("Bitrate").toInt();
+        av_opt_set_int(priv, "abr", 1, 0); // Enables ABR mode in libmp3lame
+        codecContext->bit_rate = kbps * 1000;
     }
-
     else if (preset == VBR_QUALITY) {
         int quality = profile.encoderValues()->value("Quality").toInt();
-        args << "-V" << QStringLiteral("%1").arg(9 - quality);
+        int vbrVal  = 9 - quality; // 0 is the highest quality, 9 is the lowest.
+        av_opt_set_int(priv, "q", vbrVal, 0);
     }
-
-    // ReplayGain ...............................................
-    if (profile.gainType() != GainType::Track) {
-        args << "--noreplaygain";
-    }
-
-    // Files ....................................................
-    args << "-";
-    args << outFile;
-
-    return args;
 }
 
 /************************************************

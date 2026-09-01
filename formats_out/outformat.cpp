@@ -94,6 +94,19 @@ OutFormat *OutFormat::formatForId(const QString &id)
 }
 
 /************************************************
+ *
+ ************************************************/
+OutFormat *OutFormat::formatForExt(const QString &fileExt)
+{
+    foreach (OutFormat *format, allFormats()) {
+        if (format->ext() == fileExt)
+            return format;
+    }
+
+    return nullptr;
+}
+
+/************************************************
 
  ************************************************/
 bool OutFormat::check(const Profile &profile, QStringList *errors) const

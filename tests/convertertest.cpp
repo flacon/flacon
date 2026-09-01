@@ -507,8 +507,9 @@ bool ConverterTest::checkReplayGain()
                     act = d;
                 }
 
-                double delta = 0;
-                if (QFileInfo(file).suffix() == "m4a") {
+                double     delta = 0;
+                OutFormat *f     = OutFormat::formatForExt(QFileInfo(file).suffix());
+                if (f && f->options().testAnyFlag(FormatOption::Lossless) == false) {
                     delta = 0.8;
                 }
 

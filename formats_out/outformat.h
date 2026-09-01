@@ -52,6 +52,7 @@ public:
     static QList<OutFormat *> allFormats();
     static QStringList        allFormatsId();
     static OutFormat         *formatForId(const QString &id);
+    static OutFormat         *formatForExt(const QString &fileExt);
     virtual ~OutFormat() { }
 
     QString       id() const { return mId; }
