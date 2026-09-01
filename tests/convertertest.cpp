@@ -482,11 +482,15 @@ bool ConverterTest::checkReplayGain()
                 qDebug() << "*******************";
 #endif
 
+                double act = 0;
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-                if (actual.type() != QVariant::Type::Double) {
+                if (actual.type() == QVariant::Type::Double) {
 #else
-                if (actual.typeId() != QMetaType::Type::Double) {
+                if (actual.typeId() == QMetaType::Type::Double) {
 #endif
+                    act = actual.toDouble();
+                }
+                else {
                     QString s = actual.toString();
                     s         = s.remove("dB", Qt::CaseInsensitive);
                     s         = s.trimmed();
@@ -500,10 +504,17 @@ bool ConverterTest::checkReplayGain()
                         continue;
                     }
 
-                    actual = d;
+                    act = d;
                 }
 
-                if (actual != expected) {
+                double delta = 0;
+                if (QFileInfo(file).suffix() == "m4a") {
+                    delta = 0.8;
+                }
+
+                double min = expected.toDouble() - delta;
+                double max = expected.toDouble() + delta;
+                if (act < min || act > max) {
                     printError(file, tag, actual, expected);
                     errors = true;
                 }

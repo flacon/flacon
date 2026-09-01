@@ -57,22 +57,6 @@ EncoderConfigPage *OutFormat_Wav::configPage(QWidget *) const
 /************************************************
 
  ************************************************/
-ExtProgram *OutFormat_Wav::encoderProgram(const Profile &) const
-{
-    return nullptr;
-}
-
-/************************************************
-
- ************************************************/
-QStringList OutFormat_Wav::encoderArgs(const Profile &, const QString &) const
-{
-    return {};
-}
-
-/************************************************
-
- ************************************************/
 AVCodecID OutFormat_Wav::avCodecId() const
 {
     return AV_CODEC_ID_PCM_S16LE;
