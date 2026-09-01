@@ -29,6 +29,11 @@
 #include "oggmetadatawriter.h"
 #include <QByteArray>
 
+extern "C" {
+#include <libavcodec/avcodec.h>
+#include <libavutil/opt.h>
+}
+
 /************************************************
 
  ************************************************/
@@ -65,42 +70,38 @@ EncoderConfigPage *OutFormat_Ogg::configPage(QWidget *parent) const
 /************************************************
 
  ************************************************/
-ExtProgram *OutFormat_Ogg::encoderProgram(const Profile &) const
+AVCodecID OutFormat_Ogg::avCodecId() const
 {
-    return ExtProgram::oggenc();
+    return AV_CODEC_ID_VORBIS;
 }
 
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Ogg::encoderArgs(const Profile &profile, const QString &outFile) const
+void OutFormat_Ogg::setAvCodecParams(const Profile &profile, AVCodecContext *codecContext) const
 {
-    QStringList args;
-
-    args << "--quiet";
-
     // Quality settings .........................................
     if (profile.encoderValues()->value("UseQuality").toBool()) {
-        args << "-q" << profile.encoderValues()->value("Quality").toString();
+        double quality = profile.encoderValues()->value("Quality").toDouble();
+
+        av_opt_set_double(codecContext->priv_data, "qscale", quality, 0);
     }
     else {
-        QString val = profile.encoderValues()->value("NormBitrate").toString();
-        if (!val.isEmpty())
-            args << "-b" << val;
+        QString normVal = profile.encoderValues()->value("NormBitrate").toString();
+        if (!normVal.isEmpty()) {
+            codecContext->bit_rate = normVal.toInt() * 1000; // bps
+        }
 
-        val = profile.encoderValues()->value("MinBitrate").toString();
-        if (!val.isEmpty())
-            args << "-m" << val;
+        QString minVal = profile.encoderValues()->value("MinBitrate").toString();
+        if (!minVal.isEmpty()) {
+            codecContext->rc_min_rate = minVal.toInt() * 1000; // bps
+        }
 
-        val = profile.encoderValues()->value("MaxBitrate").toString();
-        if (!val.isEmpty())
-            args << "-M" << val;
+        QString maxVal = profile.encoderValues()->value("MaxBitrate").toString();
+        if (!maxVal.isEmpty()) {
+            codecContext->rc_max_rate = maxVal.toInt() * 1000; // bps
+        }
     }
-
-    // Files ....................................................
-    args << "-o" << outFile;
-    args << "-";
-    return args;
 }
 
 /************************************************
