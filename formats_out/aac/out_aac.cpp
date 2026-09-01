@@ -81,7 +81,7 @@ void OutFormat_Aac::setAvCodecParams(const Profile &profile, AVCodecContext *cod
         av_opt_set_int(codecContext, "global_quality", quality, 0);
     }
     else {
-        int bitrate = profile.encoderValues()->value("Bitrate").toInt() * 1024;
+        int bitrate = profile.encoderValues()->value("Bitrate").toInt() * 1000; // bps
         av_opt_set_int(codecContext, "b", bitrate, 0);
     }
 }
