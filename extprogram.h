@@ -56,7 +56,6 @@ protected:
     explicit ExtProgram(const QString &name);
 
 public:
-    static ExtProgram *alacenc();
     static ExtProgram *lame();
     static ExtProgram *oggenc();
     static ExtProgram *opusenc();

@@ -125,7 +125,6 @@ bool ExtProgram::check(QStringList *errors) const
 QList<ExtProgram *> ExtProgram::allPrograms()
 {
     QList<ExtProgram *> res;
-    res << alacenc();
     res << lame();
     res << oggenc();
     res << opusenc();
@@ -167,7 +166,6 @@ QProcess *ExtProgram::open(const QStringList &args, QObject *parent) const
 }
 
 // clang-format off
-ExtProgram *ExtProgram::alacenc() { static ExtProgram res(__FUNCTION__); return &res; }
 ExtProgram *ExtProgram::lame()    { static ExtProgram res(__FUNCTION__); return &res; }
 ExtProgram *ExtProgram::oggenc()  { static ExtProgram res(__FUNCTION__); return &res; }
 ExtProgram *ExtProgram::opusenc() { static ExtProgram res(__FUNCTION__); return &res; }

@@ -27,6 +27,11 @@
 #include "alacconfigpage.h"
 #include "../metadatawriter.h"
 
+extern "C" {
+#include <libavcodec/avcodec.h>
+#include <libavutil/opt.h>
+}
+
 /************************************************
  *
  ************************************************/
@@ -59,28 +64,18 @@ EncoderConfigPage *OutFormat_Alac::configPage(QWidget *parent) const
 /************************************************
  *
  ************************************************/
-ExtProgram *OutFormat_Alac::encoderProgram(const Profile &) const
+AVCodecID OutFormat_Alac::avCodecId() const
 {
-    return ExtProgram::alacenc();
+    return AV_CODEC_ID_ALAC;
 }
 
 /************************************************
  *
  ************************************************/
-QStringList OutFormat_Alac::encoderArgs(const Profile &profile, const QString &outFile) const
+void OutFormat_Alac::setAvCodecParams(const Profile &profile, AVCodecContext *codecContext) const
 {
-    QStringList args;
-
-    args << "--quiet"; // Produce no output to stderr
-
-    // Settings .................................................
-    if (profile.encoderValues()->value("Compression").toInt() == 0) {
-        args << QStringLiteral("--fast");
-    }
-
-    args << "-";
-    args << outFile;
-    return args;
+    int compression = profile.encoderValues()->value("Compression").toInt();
+    av_opt_set_int(codecContext, "compression_level", compression, 0);
 }
 
 /************************************************

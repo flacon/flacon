@@ -32,8 +32,10 @@ AlacConfigPage::AlacConfigPage(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    ui->compressionSlider->setMinimum(0);
+    ui->compressionSlider->setMaximum(2);
     setLosslessToolTip(ui->compressionSlider);
-    ui->compressionSpin->setToolTip(ui->compressionSlider->toolTip());
+    initSpinBox(ui->compressionSlider, ui->compressionSpin);
 }
 
 AlacConfigPage::~AlacConfigPage()

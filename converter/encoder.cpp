@@ -128,6 +128,7 @@ AVSampleFormat selectBestSampleFormat(const AVCodec *encoder, int reqBps)
 
     const AVOption *opt = nullptr;
 
+    qDebug() << "**************************************************";
     qDebug() << " Common options:";
     while ((opt = av_opt_next(encCtx, opt)) != nullptr) {
         print(opt);
@@ -137,6 +138,7 @@ AVSampleFormat selectBestSampleFormat(const AVCodec *encoder, int reqBps)
     while ((opt = av_opt_next(encCtx->priv_data, opt)) != nullptr) {
         print(opt);
     }
+    qDebug() << "**************************************************";
 }
 
 } // namespace
@@ -336,7 +338,8 @@ void Encoder::setupEncoder(AVCodecID formatId, int bitsPerSample, int sampleRate
 
     // configureEncoderParams .......
     mProfile.outFormat()->setAvCodecParams(mProfile, mEncCtx);
-    // ..............................
+    // printAllCodecOptions(mEncCtx);
+    //  ..............................
 
     ret = avcodec_open2(mEncCtx, encoder, nullptr);
     if (ret < 0) {
