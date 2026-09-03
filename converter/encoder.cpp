@@ -309,24 +309,25 @@ void Encoder::setupInput()
  **************************************/
 void Encoder::setupEncoder(AVCodecID formatId, int bitsPerSample, int sampleRate)
 {
+    const AVCodec *codec = avcodec_find_encoder(formatId);
 
-    // const AVCodec *encoder = avcodec_find_encoder_by_name("flac");
-    const AVCodec *encoder = avcodec_find_encoder(formatId);
+    if (!codec) {
+        throw FlaconError(QString("Codec for %1 is not available in system libavcodec.").arg(formatId));
+    }
 
-    if (!encoder) {
+    mEncCtx = avcodec_alloc_context3(codec);
+    if (!mEncCtx) {
         throw FlaconError(QString("Encoder for %1 is not available in system libavcodec.").arg(formatId));
     }
 
-    mEncCtx = avcodec_alloc_context3(encoder);
-
-    mEncCtx->sample_rate = sampleRate;
+    mEncCtx->sample_rate = selectBestSampleRate(codec, sampleRate);
 
     int ret = AvCompat::copyChannelLayout(mEncCtx, mDecCtx);
     if (ret < 0) {
         throw FlaconError(ffErrorStr(ret, "Failed to copy channel layout."));
     }
 
-    mEncCtx->sample_fmt = selectBestSampleFormat(encoder, bitsPerSample);
+    mEncCtx->sample_fmt = selectBestSampleFormat(codec, bitsPerSample);
 
     const AVCodecDescriptor *desc = avcodec_descriptor_get(formatId);
     if (desc && (desc->props & AV_CODEC_PROP_LOSSLESS)) {
@@ -341,7 +342,7 @@ void Encoder::setupEncoder(AVCodecID formatId, int bitsPerSample, int sampleRate
     // printAllCodecOptions(mEncCtx);
     //  ..............................
 
-    ret = avcodec_open2(mEncCtx, encoder, nullptr);
+    ret = avcodec_open2(mEncCtx, codec, nullptr);
     if (ret < 0) {
         throw FlaconError(ffErrorStr(ret, "Failed to open audio encoder context."));
     }
@@ -592,4 +593,35 @@ void Encoder::encode()
     sendFrameToEncoder(nullptr); // Flush encoder
 
     av_write_trailer(mOutFmtCtx);
+}
+
+/**************************************
+ *
+ **************************************/
+int Encoder::selectBestSampleRate(const AVCodec *codec, int preferredRate) const
+{
+    std::vector<int> supportedSamplerates = AvCompat::getSupportedSamplerates(codec);
+
+    // If supportedSamplerates is empty, the codec supports any sample rates
+    if (supportedSamplerates.empty()) {
+        return preferredRate;
+    }
+
+    int res     = 0;
+    int minDiff = INT_MAX;
+
+    for (const int rate : supportedSamplerates) {
+
+        if (rate == preferredRate) {
+            return preferredRate;
+        }
+
+        int diff = std::abs(rate - preferredRate);
+        if (diff < minDiff) {
+            minDiff = diff;
+            res     = rate;
+        }
+    }
+
+    return res;
 }

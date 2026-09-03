@@ -27,6 +27,11 @@
 #include "opusmetadatawriter.h"
 #include <QDebug>
 
+extern "C" {
+#include <libavcodec/avcodec.h>
+#include <libavutil/opt.h>
+}
+
 static const constexpr char *BITRATE_TYPE_KEY = "BitrateType";
 static const constexpr char *BITRATE_KEY      = "Bitrate";
 
@@ -63,34 +68,33 @@ EncoderConfigPage *OutFormat_Opus::configPage(QWidget *parent) const
 /************************************************
 
  ************************************************/
-ExtProgram *OutFormat_Opus::encoderProgram(const Profile &) const
+AVCodecID OutFormat_Opus::avCodecId() const
 {
-    return ExtProgram::opusenc();
+    return AV_CODEC_ID_OPUS;
 }
 
 /************************************************
 
  ************************************************/
-QStringList OutFormat_Opus::encoderArgs(const Profile &profile, const QString &outFile) const
+void OutFormat_Opus::setAvCodecParams(const Profile &profile, AVCodecContext *codecContext) const
 {
-    QStringList args;
+    void *priv = codecContext->priv_data;
 
-    args << "--quiet";
+    int bitrateKbps        = profile.encoderValues()->value(BITRATE_KEY).toInt();
+    codecContext->bit_rate = bitrateKbps * 1000;
 
     QString type = profile.encoderValues()->value(BITRATE_TYPE_KEY).toString();
-    if (type == "VBR")
-        args << "--vbr";
 
-    if (type == "CVBR")
-        args << "--cvbr";
-
-    args << "--bitrate" << profile.encoderValues()->value(BITRATE_KEY).toString();
-
-    // Files ....................................................
-    args << "-";
-    args << outFile;
-
-    return args;
+    if (type == "VBR") {
+        av_opt_set_int(priv, "vbr", 1, 0); // 1 = "on"
+    }
+    else if (type == "CVBR") {
+        av_opt_set_int(priv, "vbr", 2, 0); // 2 = "constrained"
+    }
+    else {
+        // Hard CBR (if CBR support appears)
+        av_opt_set_int(priv, "vbr", 0, 0); // 0 = "off"
+    }
 }
 
 /************************************************

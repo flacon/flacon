@@ -26,6 +26,8 @@
 #ifndef AVCOMPAT_H
 #define AVCOMPAT_H
 
+#include <vector>
+
 extern "C" {
 #include <libavformat/avformat.h>
 #include <libavcodec/avcodec.h>
@@ -136,5 +138,53 @@ inline void describeChannelLayout(const AVCodecContext *ctx, char *buf, size_t b
     snprintf(buf, buf_size, "0x%" PRIx64, layout);
 #endif
 }
+
+/**************************************
+ *
+ **************************************/
+inline std::vector<int> getSupportedSamplerates(const AVCodec *codec)
+{
+    std::vector<int> res;
+
+#if LIBAVCODEC_VERSION_INT >= AV_VERSION_INT(61, 3, 100) // FFmpeg 7.0+
+    const void *outConfigs     = nullptr;
+    int         numSamplerates = 0;
+
+    // Requesting supported sampling rates
+    int ret = avcodec_get_supported_config(
+            nullptr,
+            codec,
+            AV_CODEC_CONFIG_SAMPLE_RATE,
+            0,
+            reinterpret_cast<const void **>(&outConfigs),
+            &numSamplerates);
+
+    if (ret < 0 || !outConfigs || numSamplerates == 0) {
+        return {};
+    }
+
+    const auto *samplerates = static_cast<const int *>(outConfigs);
+
+    res.reserve(numSamplerates);
+    for (int i = 0; i < numSamplerates && samplerates[i] != 0; ++i) {
+        res.push_back(samplerates[i]);
+    }
+
+#else // FFmpeg < 7.0
+    if (!codec->supported_samplerates) {
+        return {};
+    }
+
+    const int *p = codec->supported_samplerates;
+
+    while (*p) {
+        res.push_back(*p);
+        p++;
+    }
+
+#endif
+    return res;
+}
+
 } // namespace
 #endif // AVCOMPAT_H

@@ -36,6 +36,7 @@ struct AVFormatContext;
 struct AVFilterGraph;
 struct AVFilterContext;
 struct AVStream;
+struct AVCodec;
 
 namespace Conv {
 
@@ -100,6 +101,8 @@ private:
     void setupOutput();
     void setupFilterGraph(bool deemph);
     void encode();
+
+    int selectBestSampleRate(const AVCodec *codec, int preferredRate) const;
 };
 
 } // namespace
