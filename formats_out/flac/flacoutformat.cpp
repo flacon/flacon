@@ -34,8 +34,6 @@ extern "C" {
 #include <libavutil/opt.h>
 }
 
-static constexpr int MATAFLAC_MAX_SAMPLE_RATE = 192 * 1000;
-
 /************************************************
  *
  ************************************************/
@@ -45,33 +43,6 @@ OutFormat_Flac::OutFormat_Flac()
     mExt     = "flac";
     mName    = "FLAC";
     mOptions = FormatOption::Lossless | FormatOption::SupportGain | FormatOption::SupportEmbeddedCue | FormatOption::SupportEmbeddedImage;
-}
-
-/************************************************
-
- ************************************************/
-bool OutFormat_Flac::check(const Profile &profile, QStringList *errors) const
-{
-    bool res = OutFormat::check(profile, errors);
-
-    if (profile.gainType() == GainType::Disable) {
-        return res;
-    }
-
-    for (int i = 0; i < Project::instance()->count(); ++i) {
-        const Disc *const disc = Project::instance()->disc(i);
-
-        for (const InputAudioFile &audioFile : disc->audioFiles()) {
-            if (calcSampleRate(audioFile.sampleRate(), profile.sampleRate()) > MATAFLAC_MAX_SAMPLE_RATE) {
-                *errors << QObject::tr("you can't use 'ReplayGain' for files with sample rates above 48kHz. Metaflac doesn't support such files.",
-                                       "This string should begin with a lowercase letter. This is a part of the complex sentence.");
-                res = false;
-                break;
-            }
-        }
-    }
-
-    return res;
 }
 
 /************************************************

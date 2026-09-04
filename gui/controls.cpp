@@ -27,7 +27,6 @@
 #include "project.h"
 #include "icon.h"
 #include "patternexpander.h"
-#include "extprogram.h"
 
 #include <QtGlobal>
 #include <QMenu>
@@ -758,67 +757,6 @@ void MultiValuesComboBox::setMultiValue(QSet<QString> value)
         if (lineEdit())
             lineEdit()->setPlaceholderText(tr("Multiple values"));
     }
-}
-
-/************************************************
-
- ************************************************/
-ProgramEdit::ProgramEdit(ExtProgram *program, QWidget *parent) :
-    QLineEdit(parent),
-    mProgram(program)
-{
-    setText(mProgram->path());
-
-    mBtn = new QToolButton(this);
-    mBtn->setText("…");
-    mBtn->setIcon(Icon("folder"));
-    mBtn->setStyleSheet("QToolButton { border: none; padding: 0px; }");
-    mBtn->setCursor(Qt::ArrowCursor);
-
-    connect(mBtn, &QToolButton::clicked, this, &ProgramEdit::openDialog);
-}
-
-/************************************************
-
- ************************************************/
-void ProgramEdit::find()
-{
-    if (text().isEmpty()) {
-        setText(mProgram->find());
-    }
-}
-
-/************************************************
-
- ************************************************/
-void ProgramEdit::resizeEvent(QResizeEvent *)
-{
-    int   frameWidth = style()->pixelMetric(QStyle::PM_DefaultFrameWidth);
-    QRect btnRect    = QRect(QPoint(0, 0), QSize(rect().height(), rect().height()));
-
-    btnRect.moveCenter(rect().center());
-    btnRect.moveRight(rect().right());
-
-    btnRect.adjust(frameWidth + 4, frameWidth + 4, -frameWidth - 4, -frameWidth - 4);
-
-    mBtn->setGeometry(btnRect);
-}
-
-/************************************************
-
- ************************************************/
-void ProgramEdit::openDialog()
-{
-    QString flt = tr("%1 program",
-                     "This is part of filter for 'select program' dialog. %1 is a name of required program. Example: 'flac program (flac)'")
-                          .arg(mProgram->name())
-            + QStringLiteral(" (%1);;").arg(mProgram->name()) + tr("All files", "This is part of filter for 'select program' dialog. 'All files (*)'") + " (*)";
-
-    QString fileName = !text().isEmpty() ? text() : "/usr/bin/" + mProgram->name();
-
-    fileName = QFileDialog::getOpenFileName(this, tr("Select program file"), fileName, flt);
-    if (!fileName.isEmpty())
-        setText(fileName);
 }
 
 /************************************************

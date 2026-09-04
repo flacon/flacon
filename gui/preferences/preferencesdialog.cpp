@@ -134,11 +134,6 @@ void PreferencesDialog::initToolBar()
     ui->updatePage->hide();
 #endif
 
-#if BUNDLED_PROGRAMS
-    ui->actShowProgramsPage->setVisible(false);
-    ui->programsPage->hide();
-#endif
-
     QList<QAction *> acts = ui->toolBar->actions();
     for (int i = 0; i < acts.length(); ++i) {
         QAction *act = acts[i];
@@ -190,11 +185,6 @@ void PreferencesDialog::setProfiles(const Profiles &profiles)
     ui->generalPage->setProxyPort(p.proxyPort());
     ui->generalPage->setProxyUserName(p.proxyUserName());
     ui->generalPage->setProxyPassword(p.proxyPassword());
-
-#if !BUNDLED_PROGRAMS
-    // Programs page .......................
-    ui->programsPage->load();
-#endif
 }
 
 /************************************************
@@ -294,11 +284,6 @@ bool PreferencesDialog::save()
     p.setProxyPort(ui->generalPage->proxyPort());
     p.setProxyUserName(ui->generalPage->proxyUserName());
     p.setProxyPassword(ui->generalPage->proxyPassword());
-
-#if !BUNDLED_PROGRAMS
-    // Programs page .......................
-    ui->programsPage->save();
-#endif
 
     emit accepted();
     return true;

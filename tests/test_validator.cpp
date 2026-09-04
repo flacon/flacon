@@ -30,10 +30,8 @@
 #include "flacontest.h"
 #include "types.h"
 #include "validator/validator.h"
-#include "settings.h"
 #include "json_struct.h"
 #include "tools.h"
-#include <filesystem>
 #include "converter/decoder.h"
 
 namespace {
@@ -116,7 +114,6 @@ void TestFlacon::testValidator()
         TestSettings settings(cfgFile);
 
         Profile profile = settings.readProfile(settings.readCurrentProfileId());
-        settings.readExtPrograms();
 
         Validator validator;
         validator.setProfile(&profile);

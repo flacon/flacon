@@ -26,7 +26,6 @@
 #include "validator.h"
 #include <QDebug>
 #include <QDateTime>
-#include "extprogram.h"
 #include <QDir>
 
 static constexpr int VALIDATE_DELAY_MS = 50;
@@ -214,14 +213,7 @@ bool Validator::validateProfile()
         return false;
     }
 
-    QStringList errs;
-
-    ExtProgram::sox()->check(&errs);
-    mProfile->outFormat()->check(*mProfile, &errs);
-
-    mGlobalErrors << errs;
-
-    return errs.isEmpty();
+    return true;
 }
 
 /************************************************

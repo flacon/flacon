@@ -34,7 +34,6 @@ class OutFormat_Flac : public OutFormat
 {
 public:
     OutFormat_Flac();
-    bool check(const Profile &profile, QStringList *errors) const override;
 
     QHash<QString, QVariant> defaultParameters() const override;
     EncoderConfigPage       *configPage(QWidget *parent) const override;

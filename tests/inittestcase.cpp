@@ -87,8 +87,6 @@ void TestFlacon::initTestCase()
     initTypes();
     Settings::setFileName(TEST_OUT_DIR "/flacon.conf");
 
-    findPrograms();
-
     const auto PROGS = {
         "mac",
         "flac",
@@ -148,16 +146,6 @@ void TestFlacon::initTestCase()
     wait_24x96_flac.waitForFinished();
     wait_24x96_wv.waitForFinished();
     wait_24x96_tta.waitForFinished();
-}
-
-/************************************************
- *
- ************************************************/
-void TestFlacon::findPrograms()
-{
-    for (auto p : ExtProgram::allPrograms()) {
-        p->setPath(p->find());
-    }
 }
 
 /************************************************

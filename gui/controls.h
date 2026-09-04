@@ -319,31 +319,6 @@ private:
 #define ItemsLabel QLabel
 
 /************************************************
-
- ************************************************/
-class ProgramEdit : public QLineEdit
-{
-    Q_OBJECT
-public:
-    ProgramEdit(ExtProgram *program, QWidget *parent = nullptr);
-
-    ExtProgram *program() const { return mProgram; }
-
-public slots:
-    void find();
-
-protected:
-    void resizeEvent(QResizeEvent *event);
-
-private slots:
-    void openDialog();
-
-private:
-    ExtProgram  *mProgram;
-    QToolButton *mBtn;
-};
-
-/************************************************
  *
  ************************************************/
 class HistoryComboBox : public QComboBox

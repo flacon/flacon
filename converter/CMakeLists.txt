@@ -38,7 +38,6 @@ set(HEADERS
     decoder.h
     converter.h
     splitter.h
-    encoder_old.h
     encoder.h
     worker.h
     discpipline.h
@@ -57,7 +56,6 @@ set(SOURCES
     decoder.cpp
     converter.cpp
     splitter.cpp
-    encoder_old.cpp
     encoder.cpp
     worker.cpp
     discpipline.cpp

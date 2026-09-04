@@ -105,16 +105,3 @@ OutFormat *OutFormat::formatForExt(const QString &fileExt)
 
     return nullptr;
 }
-
-/************************************************
-
- ************************************************/
-bool OutFormat::check(const Profile &profile, QStringList *errors) const
-{
-    ExtProgram *prog = encoderProgram(profile);
-    if (!prog) {
-        return true;
-    }
-
-    return prog->check(errors);
-}

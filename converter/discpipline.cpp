@@ -28,7 +28,6 @@
 #include <QUuid>
 
 #include "splitter.h"
-#include "encoder_old.h"
 #include "encoder.h"
 #include "cuecreator.h"
 #include "inputaudiofile.h"
@@ -279,66 +278,34 @@ void DiscPipeline::startEncoder(const ConvTrack &track, const QString &inputFile
     QFileInfo trackFile(mProfile.resultFilePath(&track));
     QString   outFile = QDir(mTmpDir->path()).filePath(QFileInfo(inputFile).baseName() + ".encoded." + trackFile.suffix());
 
-    if (mProfile.outFormat()->avCodecId() != AV_CODEC_ID_NONE) {
-        Encoder *encoder = new Encoder();
-        encoder->setInputFile(inputFile);
-        encoder->setOutFile(outFile);
-        encoder->setTrack(track);
-        encoder->setProfile(mProfile);
-        encoder->setEmbeddedCue(mEmbeddedCue);
-        encoder->setCoverImage(mCoverImage);
+    Encoder *encoder = new Encoder();
+    encoder->setInputFile(inputFile);
+    encoder->setOutFile(outFile);
+    encoder->setTrack(track);
+    encoder->setProfile(mProfile);
+    encoder->setEmbeddedCue(mEmbeddedCue);
+    encoder->setCoverImage(mCoverImage);
 
-        QPointer<WorkerThread> thread = new WorkerThread(encoder, this);
-        thread->setObjectName(QStringLiteral("%1 encoder track %2").arg(track.disc()->cueFilePath()).arg(track.index()));
+    QPointer<WorkerThread> thread = new WorkerThread(encoder, this);
+    thread->setObjectName(QStringLiteral("%1 encoder track %2").arg(track.disc()->cueFilePath()).arg(track.index()));
 
-        connect(this, &DiscPipeline::stopAllThreads, thread, &Conv::WorkerThread::deleteLater);
-        connect(encoder, &Worker::trackProgress, this, &DiscPipeline::trackProgress);
-        connect(encoder, &Worker::error, this, &DiscPipeline::trackError);
+    connect(this, &DiscPipeline::stopAllThreads, thread, &Conv::WorkerThread::deleteLater);
+    connect(encoder, &Worker::trackProgress, this, &DiscPipeline::trackProgress);
+    connect(encoder, &Worker::error, this, &DiscPipeline::trackError);
 
-        // Replaygain ...............................
-        if (mProfile.gainType() != GainType::Disable) {
-            connect(encoder, &Encoder::trackReady, this, &DiscPipeline::writeGain);
-        }
-        else {
-            connect(encoder, &Encoder::trackReady, this, &DiscPipeline::trackDone);
-        }
-        // ..........................................
-
-        connect(thread, &Conv::WorkerThread::finished, this, &DiscPipeline::threadFinished);
-
-        mThreads << thread;
-        thread->start();
+    // Replaygain ...............................
+    if (mProfile.gainType() != GainType::Disable) {
+        connect(encoder, &Encoder::trackReady, this, &DiscPipeline::writeGain);
     }
     else {
-        Encoder_OLD *encoder = new Encoder_OLD();
-        encoder->setInputFile(inputFile);
-        encoder->setOutFile(outFile);
-        encoder->setTrack(track);
-        encoder->setProfile(mProfile);
-        encoder->setEmbeddedCue(mEmbeddedCue);
-        encoder->setCoverImage(mCoverImage);
-
-        QPointer<WorkerThread> thread = new WorkerThread(encoder, this);
-        thread->setObjectName(QStringLiteral("%1 encoder track %2").arg(track.disc()->cueFilePath()).arg(track.index()));
-
-        connect(this, &DiscPipeline::stopAllThreads, thread, &Conv::WorkerThread::deleteLater);
-        connect(encoder, &Worker::trackProgress, this, &DiscPipeline::trackProgress);
-        connect(encoder, &Worker::error, this, &DiscPipeline::trackError);
-
-        // Replaygain ...............................
-        if (mProfile.gainType() != GainType::Disable) {
-            connect(encoder, &Encoder_OLD::trackReady, this, &DiscPipeline::writeGain);
-        }
-        else {
-            connect(encoder, &Encoder_OLD::trackReady, this, &DiscPipeline::trackDone);
-        }
-        // ..........................................
-
-        connect(thread, &Conv::WorkerThread::finished, this, &DiscPipeline::threadFinished);
-
-        mThreads << thread;
-        thread->start();
+        connect(encoder, &Encoder::trackReady, this, &DiscPipeline::trackDone);
     }
+    // ..........................................
+
+    connect(thread, &Conv::WorkerThread::finished, this, &DiscPipeline::threadFinished);
+
+    mThreads << thread;
+    thread->start();
 }
 
 /************************************************

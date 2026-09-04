@@ -138,7 +138,6 @@ void TestFlacon::testLoadDiscFromAudioErrors()
     }
 
     QLoggingCategory::setFilterRules("");
-    findPrograms();
 }
 
 void TestFlacon::testLoadDiscFromAudioErrors_data()

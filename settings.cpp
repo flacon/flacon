@@ -24,13 +24,9 @@
  * END_COMMON_COPYRIGHT_HEADER */
 
 #include "settings.h"
-#include "extprogram.h"
 #include "appconfig.h"
 
-static constexpr auto PROFILES_GROUP = "Profiles";
-#if !BUNDLED_PROGRAMS
-static constexpr auto PROGRAMS_GROUP = "Programs";
-#endif
+static constexpr auto PROFILES_GROUP                 = "Profiles";
 static constexpr auto CURRENT_PROFILE_ID             = "OutFiles/Profile";
 static constexpr auto KNOWN_FORMATS_KEY              = "KnownFormats";
 static constexpr auto PROFILE_NAME_KEY               = "Name";
@@ -400,36 +396,6 @@ void Settings::writeCurrentProfileId(const QString &profileId)
 {
     setValue(CURRENT_PROFILE_ID, profileId);
 }
-
-#if !BUNDLED_PROGRAMS
-/************************************************
- *
- ************************************************/
-void Settings::readExtPrograms() const
-{
-    for (ExtProgram *p : ExtProgram::allPrograms()) {
-        auto key = QStringLiteral("%1/%2").arg(PROGRAMS_GROUP, p->name());
-
-        QString path = value(key).toString();
-        if (path.isEmpty()) {
-            path = p->find();
-        }
-        p->setPath(path);
-    }
-}
-
-/************************************************
- *
- ************************************************/
-void Settings::writeExtPrograms()
-{
-    remove(PROGRAMS_GROUP);
-    for (ExtProgram *p : ExtProgram::allPrograms()) {
-        auto key = QStringLiteral("%1/%2").arg(PROGRAMS_GROUP, p->name());
-        setValue(key, p->path());
-    }
-}
-#endif
 
 /************************************************
  * GuiSettings

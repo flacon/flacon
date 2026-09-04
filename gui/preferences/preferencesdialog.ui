@@ -64,25 +64,6 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="stackedWidget_Page3">
-       <layout class="QVBoxLayout" name="verticalLayout_5">
-        <property name="leftMargin">
-         <number>0</number>
-        </property>
-        <property name="topMargin">
-         <number>0</number>
-        </property>
-        <property name="rightMargin">
-         <number>0</number>
-        </property>
-        <property name="bottomMargin">
-         <number>0</number>
-        </property>
-        <item>
-         <widget class="ProgramsPage" name="programsPage" native="true"/>
-        </item>
-       </layout>
-      </widget>
       <widget class="QWidget" name="stackedWidget_Page4">
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <property name="leftMargin">
@@ -134,7 +115,6 @@
    </attribute>
    <addaction name="actShowProfilesPage"/>
    <addaction name="actShowGeneralPage"/>
-   <addaction name="actShowProgramsPage"/>
    <addaction name="actShowUpdatePage"/>
   </widget>
   <action name="actShowProfilesPage">
@@ -187,12 +167,6 @@
    <class>UpdatePage</class>
    <extends>QWidget</extends>
    <header>updatepage.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>ProgramsPage</class>
-   <extends>QWidget</extends>
-   <header>programspage.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

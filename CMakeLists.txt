@@ -103,7 +103,6 @@ set(HEADERS
     profiles.h
     audiofilematcher.h
     sync.h
-    extprogram.h
     uchardetect.h
     textcodec.h
     appconfig.h.in
@@ -139,7 +138,6 @@ set(SOURCES
     patternexpander.cpp
     profiles.cpp
     audiofilematcher.cpp
-    extprogram.cpp
     uchardetect.cpp
     textcodec.cpp
     rungui.cpp

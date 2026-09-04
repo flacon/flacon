@@ -48,11 +48,6 @@ public:
     QString readCurrentProfileId() const;
     void    writeCurrentProfileId(const QString &profileId);
 
-#if !BUNDLED_PROGRAMS
-    void readExtPrograms() const;
-    void writeExtPrograms();
-#endif
-
 protected:
     explicit Settings(const QString &organization, const QString &application);
     explicit Settings(const QString &fileName);
