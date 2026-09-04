@@ -34,7 +34,6 @@ extern "C" {
 #include <libavformat/avformat.h>
 #include <libavcodec/avcodec.h>
 }
-#include "avcompat.h"
 
 namespace {
 Q_LOGGING_CATEGORY(LOG, "Decoder")
@@ -332,14 +331,8 @@ void Decoder::open(const QString &fileName)
         throw FlaconError(tr("The audio file may be corrupted or an unsupported audio format.", "Error message."));
     }
 
-    mWavHeader = FFWavHeader(mDecoderContext);
-
-    if (mWavHeader.bitsPerSample() == 24) {
-        mWriteFrame = av_sample_fmt_is_planar(mDecoderContext->sample_fmt) ? writePlanarFrame24Bit : writeInterleavedFrame24Bit;
-    }
-    else {
-        mWriteFrame = av_sample_fmt_is_planar(mDecoderContext->sample_fmt) ? writePlanarFrame : writeInterleavedFrame;
-    }
+    mWavHeader  = FFWavHeader(mDecoderContext);
+    mWriteFrame = AvCompat::selectFrameWriter(mWavHeader.bitsPerSample(), mDecoderContext->sample_fmt);
 
     return;
 }
@@ -481,80 +474,6 @@ uint64_t Decoder::extract(const CueTime &startTime, const CueTime &endTime, QIOD
 
     emit progress(100);
     return res;
-}
-
-/************************************************
- *
- ************************************************/
-uint64_t Decoder::writeInterleavedFrame(AVFrame *frame, QByteArray *buf)
-{
-    int     sampleSize = av_get_bytes_per_sample((AVSampleFormat)frame->format);
-    int     channels   = AvCompat::getChannelsNum(frame);
-    int64_t size       = frame->nb_samples * channels * sampleSize;
-
-    buf->append(reinterpret_cast<char *>(frame->data[0]), size);
-    return size;
-}
-
-/************************************************
- *
- ************************************************/
-uint64_t Decoder::writePlanarFrame(AVFrame *frame, QByteArray *buf)
-{
-    int     sampleSize = av_get_bytes_per_sample((AVSampleFormat)frame->format);
-    int     channels   = AvCompat::getChannelsNum(frame);
-    int64_t size       = frame->nb_samples * channels * sampleSize;
-    buf->reserve(buf->size() + size);
-
-    for (int i = 0; i < frame->nb_samples; ++i) {
-        for (int ch = 0; ch < channels; ++ch) {
-            buf->append(reinterpret_cast<char *>(frame->data[ch] + i * sampleSize), sampleSize);
-        }
-    }
-
-    return size;
-}
-
-/************************************************
- *
- ************************************************/
-uint64_t Decoder::writeInterleavedFrame24Bit(AVFrame *frame, QByteArray *buf)
-{
-    const uint32_t *src = reinterpret_cast<const uint32_t *>(frame->data[0]);
-
-    int      totalSamples = frame->nb_samples * AvCompat::getChannelsNum(frame);
-    uint64_t size         = totalSamples * 3;
-    buf->resize(buf->size() + size);
-
-    uint8_t *dst = reinterpret_cast<uint8_t *>(buf->data() + buf->size() - size);
-    for (int i = 0; i < totalSamples; ++i) {
-        uint32_t sample = src[i]; // little-endian
-        *dst++          = (sample >> 8) & 0xFF;
-        *dst++          = (sample >> 16) & 0xFF;
-        *dst++          = (sample >> 24) & 0xFF;
-    }
-
-    return size;
-}
-
-/************************************************
- *
- ************************************************/
-uint64_t Decoder::writePlanarFrame24Bit(AVFrame *frame, QByteArray *buf)
-{
-    int      sampleSize   = av_get_bytes_per_sample((AVSampleFormat)frame->format);
-    int      channels     = AvCompat::getChannelsNum(frame);
-    int      totalSamples = frame->nb_samples * channels;
-    uint64_t size         = totalSamples * 3;
-    buf->reserve(buf->size() + size);
-
-    for (int i = 0; i < frame->nb_samples; ++i) {
-        for (int ch = 0; ch < channels; ++ch) {
-            buf->append(reinterpret_cast<char *>(frame->data[ch] + i * sampleSize) + 1, 3);
-        }
-    }
-
-    return size;
 }
 
 /************************************************

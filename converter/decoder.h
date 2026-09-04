@@ -31,6 +31,8 @@
 #include <QString>
 #include <QByteArray>
 #include "../types.h"
+#include "avcompat.h"
+
 extern "C" {
 #include "libavcodec/codec_id.h"
 }
@@ -97,12 +99,7 @@ private:
 
     bool readFrame();
 
-    static uint64_t writeInterleavedFrame(AVFrame *frame, QByteArray *buf);
-    static uint64_t writeInterleavedFrame24Bit(AVFrame *frame, QByteArray *buf);
-    static uint64_t writePlanarFrame(AVFrame *frame, QByteArray *buf);
-    static uint64_t writePlanarFrame24Bit(AVFrame *frame, QByteArray *buf);
-
-    std::function<uint64_t(AVFrame *, QByteArray *)> mWriteFrame = nullptr;
+    AvCompat::FrameWriterFunc mWriteFrame = nullptr;
 
     uint64_t aproximateBytes(const CueTime &endTime) const;
 };

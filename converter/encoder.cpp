@@ -471,6 +471,10 @@ void Encoder::encode()
     AVFrame  *decodedFrame  = av_frame_alloc();
     AVFrame  *filteredFrame = av_frame_alloc();
 
+    QByteArray replayGainData;
+
+    AvCompat::FrameWriterFunc writeFrame = AvCompat::selectFrameWriter(mEncCtx->bits_per_raw_sample, mEncCtx->sample_fmt);
+
     auto cleanup = qScopeGuard([&]() {
         av_packet_free(&inPacket);
         av_packet_free(&outPacket);
@@ -517,10 +521,9 @@ void Encoder::encode()
 
             // ReplayGain ..............
             if (mReplayGainEnabled && filteredFrame->nb_samples > 0) {
-                int bytesPerSample = av_get_bytes_per_sample(mDecCtx->sample_fmt);
-                int dataSize       = filteredFrame->nb_samples * AvCompat::getChannelsNum(mDecCtx) * bytesPerSample;
-
-                mTrackGain.add(reinterpret_cast<const char *>(filteredFrame->data[0]), dataSize);
+                replayGainData.clear();
+                writeFrame(filteredFrame, &replayGainData);
+                mTrackGain.add(replayGainData.constData(), replayGainData.size());
             }
 
             sendFrameToEncoder(filteredFrame);
@@ -604,13 +607,16 @@ int Encoder::selectBestSampleRate(const AVCodec *codec, int preferredRate) const
 
     // If supportedSamplerates is empty, the codec supports any sample rates
     if (supportedSamplerates.empty()) {
+        qCDebug(LOG) << "The codec supports any sample rates";
         return preferredRate;
     }
 
     int res     = 0;
     int minDiff = INT_MAX;
 
+    qCDebug(LOG) << "The codec supports the following sample rates:";
     for (const int rate : supportedSamplerates) {
+        qCDebug(LOG) << "  * " << rate;
 
         if (rate == preferredRate) {
             return preferredRate;

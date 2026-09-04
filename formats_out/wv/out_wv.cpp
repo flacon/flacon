@@ -26,6 +26,10 @@
 #include "out_wv.h"
 #include <QDebug>
 #include "wvmetadatawriter.h"
+extern "C" {
+#include <libavcodec/avcodec.h>
+#include <libavutil/opt.h>
+}
 
 static const constexpr char *COMPRESSION_KEY = "Compression";
 
@@ -58,42 +62,21 @@ EncoderConfigPage *OutFormat_Wv::configPage(QWidget *parent) const
     return new ConfigPage_Wv(parent);
 }
 
-/************************************************
-
- ************************************************/
-ExtProgram *OutFormat_Wv::encoderProgram(const Profile &) const
+/**************************************
+ *
+ **************************************/
+AVCodecID OutFormat_Wv::avCodecId() const
 {
-    return ExtProgram::wavpack();
+    return AV_CODEC_ID_WAVPACK;
 }
 
-/************************************************
-
- ************************************************/
-QStringList OutFormat_Wv::encoderArgs(const Profile &profile, const QString &outFile) const
+/**************************************
+ * https://ffmpeg.org/ffmpeg-codecs.html#wavpack
+ **************************************/
+void OutFormat_Wv::setAvCodecParams(const Profile &profile, AVCodecContext *codecContext) const
 {
-    QStringList args;
-
-    args << "-q"; // Suppress progress indicator
-
-    // Quality Settings .........................
     int compression = profile.encoderValues()->value(COMPRESSION_KEY).toInt();
-    switch (compression) {
-        case 0:
-            args << "-f";
-            break;
-        case 1:
-            args << "-h";
-            break;
-        case 2:
-            args << "-hh";
-            break;
-    }
-
-    // Files ....................................
-    args << "-";
-    args << "-o" << outFile;
-
-    return args;
+    av_opt_set_int(codecContext, "compression_level", compression, 0);
 }
 
 /************************************************
@@ -112,8 +95,11 @@ ConfigPage_Wv::ConfigPage_Wv(QWidget *parent) :
 {
     setupUi(this);
 
+    wvCompressionSlider->setMinimum(0);
+    wvCompressionSlider->setMaximum(3);
     setLosslessToolTip(wvCompressionSlider);
-    wvCompressionSpin->setToolTip(wvCompressionSlider->toolTip());
+
+    initSpinBox(wvCompressionSlider, wvCompressionSpin);
 }
 
 /************************************************

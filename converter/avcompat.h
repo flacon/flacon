@@ -27,6 +27,7 @@
 #define AVCOMPAT_H
 
 #include <vector>
+#include <QByteArray>
 
 extern "C" {
 #include <libavformat/avformat.h>
@@ -184,6 +185,95 @@ inline std::vector<int> getSupportedSamplerates(const AVCodec *codec)
 
 #endif
     return res;
+}
+
+using FrameWriterFunc = uint64_t (*)(AVFrame *frame, QByteArray *buf);
+
+/************************************************
+ *
+ ************************************************/
+inline uint64_t writeInterleavedFrame(AVFrame *frame, QByteArray *buf)
+{
+    int     sampleSize = av_get_bytes_per_sample((AVSampleFormat)frame->format);
+    int     channels   = AvCompat::getChannelsNum(frame);
+    int64_t size       = frame->nb_samples * channels * sampleSize;
+
+    buf->append(reinterpret_cast<char *>(frame->data[0]), size);
+    return size;
+}
+
+/************************************************
+ *
+ ************************************************/
+inline uint64_t writePlanarFrame(AVFrame *frame, QByteArray *buf)
+{
+    int     sampleSize = av_get_bytes_per_sample((AVSampleFormat)frame->format);
+    int     channels   = AvCompat::getChannelsNum(frame);
+    int64_t size       = frame->nb_samples * channels * sampleSize;
+    buf->reserve(buf->size() + size);
+
+    for (int i = 0; i < frame->nb_samples; ++i) {
+        for (int ch = 0; ch < channels; ++ch) {
+            buf->append(reinterpret_cast<char *>(frame->data[ch] + i * sampleSize), sampleSize);
+        }
+    }
+
+    return size;
+}
+
+/************************************************
+ *
+ ************************************************/
+inline uint64_t writeInterleavedFrame24Bit(AVFrame *frame, QByteArray *buf)
+{
+    const uint32_t *src = reinterpret_cast<const uint32_t *>(frame->data[0]);
+
+    int      totalSamples = frame->nb_samples * AvCompat::getChannelsNum(frame);
+    uint64_t size         = totalSamples * 3;
+    buf->resize(buf->size() + size);
+
+    uint8_t *dst = reinterpret_cast<uint8_t *>(buf->data() + buf->size() - size);
+    for (int i = 0; i < totalSamples; ++i) {
+        uint32_t sample = src[i]; // little-endian
+        *dst++          = (sample >> 8) & 0xFF;
+        *dst++          = (sample >> 16) & 0xFF;
+        *dst++          = (sample >> 24) & 0xFF;
+    }
+
+    return size;
+}
+
+/************************************************
+ *
+ ************************************************/
+inline uint64_t writePlanarFrame24Bit(AVFrame *frame, QByteArray *buf)
+{
+    int      sampleSize   = av_get_bytes_per_sample((AVSampleFormat)frame->format);
+    int      channels     = AvCompat::getChannelsNum(frame);
+    int      totalSamples = frame->nb_samples * channels;
+    uint64_t size         = totalSamples * 3;
+    buf->reserve(buf->size() + size);
+
+    for (int i = 0; i < frame->nb_samples; ++i) {
+        for (int ch = 0; ch < channels; ++ch) {
+            buf->append(reinterpret_cast<char *>(frame->data[ch] + i * sampleSize) + 1, 3);
+        }
+    }
+
+    return size;
+}
+
+/************************************************
+ *
+ ************************************************/
+inline FrameWriterFunc selectFrameWriter(int bitsPerSample, AVSampleFormat sampleFmt)
+{
+    if (bitsPerSample == 24) {
+        return av_sample_fmt_is_planar(sampleFmt) ? writePlanarFrame24Bit : writeInterleavedFrame24Bit;
+    }
+    else {
+        return av_sample_fmt_is_planar(sampleFmt) ? writePlanarFrame : writeInterleavedFrame;
+    }
 }
 
 } // namespace
