@@ -24,92 +24,11 @@ env:
   SPARKLE_VERSION:      "1.26.0"
 
 jobs:
-  ###################################
-  build-alacenc:
-    uses: ./.github/workflows/extprograms-build-alacenc.yml
-    with:
-      arch: ${{ inputs.arch }}
-      osx_target: ${{ inputs.osx_target }}
-
-  ###################################
-  build-faac:
-    uses: ./.github/workflows/extprograms-build-faac.yml
-    with:
-      arch: ${{ inputs.arch }}
-      osx_target: ${{ inputs.osx_target }}
-
-  ###################################
-  build-flac:
-    uses: ./.github/workflows/extprograms-build-flac.yml
-    with:
-      arch: ${{ inputs.arch }}
-      osx_target: ${{ inputs.osx_target }}
-
-  ###################################
-  build-lame:
-    uses: ./.github/workflows/extprograms-build-lame.yml
-    with:
-      arch: ${{ inputs.arch }}
-      osx_target: ${{ inputs.osx_target }}
-
-  ###################################
-  build-monkeyaudio:
-    uses: ./.github/workflows/extprograms-build-monkeyaudio.yml
-    with:
-      arch: ${{ inputs.arch }}
-      osx_target: ${{ inputs.osx_target }}
-
-  ###################################
-  build-vorbis-tools:
-    uses: ./.github/workflows/extprograms-build-vorbis-tools.yml
-    with:
-      arch: ${{ inputs.arch }}
-      osx_target: ${{ inputs.osx_target }}
-
-  ###################################
-  build-opus-tools:
-    uses: ./.github/workflows/extprograms-build-opus-tools.yml
-    with:
-      arch: ${{ inputs.arch }}
-      osx_target: ${{ inputs.osx_target }}
-
-  ###################################
-  build-sox:
-    uses: ./.github/workflows/extprograms-build-sox.yml
-    with:
-      arch: ${{ inputs.arch }}
-      osx_target: ${{ inputs.osx_target }}
-
-  ###################################
-  build-ttaenc:
-    uses: ./.github/workflows/extprograms-build-ttaenc.yml
-    with:
-      arch: ${{ inputs.arch }}
-      osx_target: ${{ inputs.osx_target }}
-
-  ###################################
-  build-wavpack:
-    uses: ./.github/workflows/extprograms-build-wavpack.yml
-    with:
-      arch: ${{ inputs.arch }}
-      osx_target: ${{ inputs.osx_target }}
 
   ###################################
   #
   build-Flacon:
     runs-on: macos-latest
-
-    needs:
-      - build-alacenc
-      - build-faac
-      - build-flac
-      - build-lame
-      - build-monkeyaudio
-      - build-vorbis-tools
-      - build-opus-tools
-      - build-sox
-      - build-ttaenc
-      - build-wavpack
 
     steps:
     - uses: actions/checkout@v6

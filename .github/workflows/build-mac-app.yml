@@ -115,11 +115,6 @@ jobs:
         "${{github.workspace}}/.github/workflows/lipo-app" x86_64/Flacon.app arm64/Flacon.app Flacon.app
 
 
-    - name: Check external programs
-      run: |
-        ${{github.workspace}}/scripts/check-extprograms.sh . Flacon.app/Contents/MacOS
-
-
     - name: Check libraries
       shell: bash
       working-directory: ${{github.workspace}}

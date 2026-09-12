@@ -113,117 +113,6 @@ jobs:
 
     ###################################
     #
-    - name: Build alacenc
-      shell: bash
-      working-directory: ${{env.BUILD_DIR}}
-      run: |
-        git clone --depth 1 https://github.com/flacon/alacenc.git --branch v0.4.1 alacenc || true
-        cd alacenc
-        cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${APP_DIR}/usr .
-        make -j$(nproc)
-        make install
-
-
-    ###################################
-    #
-    - name: Build mac
-      shell: bash
-      working-directory: ${{env.BUILD_DIR}}
-      run: |
-        sudo apt-get -y install yasm
-        git clone --depth 1 https://github.com/SokoloffA/monkeyaudio.git mac || true
-        cd mac
-        ./configure --prefix=${APP_DIR}/usr --mandir=/usr/share/man --infodir=/usr/share/info LDFLAGS="-Wl,-z,defs" --enable-assembly=yes
-        make -j$(nproc)
-        make install
-
-
-    ###################################
-    #
-    - name: Build ttaenc
-      shell: bash
-      working-directory: ${{env.BUILD_DIR}}
-      run: |
-        git clone --depth 1 https://github.com/SokoloffA/ttaenc.git ttaenc || true
-        cd ttaenc
-        make -j$(nproc)
-        install -d "${APP_DIR}/usr/bin"
-        install ttaenc "${APP_DIR}/usr/bin"
-
-
-    ###################################
-    #
-    - name: Install faac
-      shell: bash
-      working-directory: ${{env.BUILD_DIR}}
-      run: |
-        sudo apt install -y faac
-        cp -f /usr/bin/faac "${APP_DIR}/usr/bin/"
-
-
-    ###################################
-    #
-    - name: Install flac
-      shell: bash
-      working-directory: ${{env.BUILD_DIR}}
-      run: |
-        sudo apt install -y flac
-        cp -f /usr/bin/flac "${APP_DIR}/usr/bin/"
-
-
-    ###################################
-    #
-    - name: Install lame
-      shell: bash
-      working-directory: ${{env.BUILD_DIR}}
-      run: |
-        sudo apt install -y lame
-        cp -f /usr/bin/lame "${APP_DIR}/usr/bin/"
-
-
-    ###################################
-    #
-    - name: Install oggenc
-      shell: bash
-      working-directory: ${{env.BUILD_DIR}}
-      run: |
-        sudo apt install -y vorbis-tools
-        cp -f /usr/bin/oggenc "${APP_DIR}/usr/bin/"
-
-
-    ###################################
-    #
-    - name: Install opus
-      shell: bash
-      working-directory: ${{env.BUILD_DIR}}
-      run: |
-        sudo apt install -y opus-tools
-        cp -f /usr/bin/opusenc "${APP_DIR}/usr/bin/"
-
-
-    ###################################
-    #
-    - name: Install sox
-      shell: bash
-      working-directory: ${{env.BUILD_DIR}}
-      run: |
-        sudo apt install -y sox
-        cp -f /usr/bin/sox "${APP_DIR}/usr/bin/"
-
-
-    ###################################
-    #
-    - name: Install wavpack
-      shell: bash
-      working-directory: ${{env.BUILD_DIR}}
-      run: |
-        sudo apt install -y wavpack
-        cp -f /usr/bin/wavpack  "${APP_DIR}/usr/bin/"
-        cp -f /usr/bin/wvunpack "${APP_DIR}/usr/bin/"
-
-
-    ###################################
-    #
     - name: Create AppImage file
       working-directory: ${{env.BUILD_DIR}}
       env:
@@ -257,7 +146,6 @@ jobs:
       run: |
         sudo apt-get -y install --no-install-recommends  libfile-mimeinfo-perl desktop-file-utils
         .github/workflows/appdir-lint.sh "${APP_DIR}"
-        scripts/check-extprograms.sh . "${APP_DIR}/usr/bin"
 
 
     ###################################
