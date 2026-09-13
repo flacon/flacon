@@ -176,6 +176,8 @@ Encoder::~Encoder()
  ************************************************/
 void Conv::Encoder::run()
 {
+    av_log_set_level(AV_LOG_INFO);
+
     mReplayGainEnabled = mProfile.gainType() != GainType::Disable;
 
     emit trackProgress(track(), TrackState::Encoding, 0);
@@ -344,6 +346,7 @@ void Encoder::setupEncoder(AVCodecID formatId, int bitsPerSample, int sampleRate
 
     ret = avcodec_open2(mEncCtx, codec, nullptr);
     if (ret < 0) {
+        qCWarning(LOG) << ffErrorStr(ret, "");
         throw FlaconError(ffErrorStr(ret, "Failed to open audio encoder context."));
     }
 }
@@ -354,7 +357,13 @@ void Encoder::setupEncoder(AVCodecID formatId, int bitsPerSample, int sampleRate
 void Encoder::setupOutput()
 {
     int ret = avformat_alloc_output_context2(&mOutFmtCtx, nullptr, nullptr, mOutFile.toUtf8().constData());
-    if (ret < 0 || !mOutFmtCtx) {
+    if (ret < 0) {
+        qCWarning(LOG) << ffErrorStr(ret, "");
+        QString msg = ffErrorStr(ret, "Could not create output format context for %1").arg(mOutFile);
+        throw FlaconError(msg);
+    }
+
+    if (!mOutFmtCtx) {
         throw FlaconError(QString("Could not create output format context for %1").arg(mOutFile));
     }
 

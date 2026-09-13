@@ -26,3 +26,4 @@ PVS.tasks
 __pycache__
 .ropeproject
 BUILD/
+.qtcreator
