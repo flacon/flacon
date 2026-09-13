@@ -591,7 +591,9 @@ void TrackViewModel::discDataChanged(const Disc *disc)
 
     QModelIndex index1 = index(*disc, 0);
     QModelIndex index2 = index(*disc, columnCount);
-    emit        dataChanged(index1, index2);
+    if (index1.isValid() && index2.isValid()) {
+        emit dataChanged(index1, index2);
+    }
 }
 
 /************************************************

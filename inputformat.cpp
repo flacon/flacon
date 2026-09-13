@@ -40,6 +40,7 @@ const QList<InputFormat> InputFormat::allFormats()
         { "WAVE64",     "w64"  },
         { "WavPack",    "wv"   },
         { "WAV",        "wav"  },
+        { "TAK",        "tak"  },
     };
     // clang-format on
     return list;
