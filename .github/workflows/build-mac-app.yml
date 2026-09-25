@@ -4,28 +4,50 @@ on: [push]
 
 
 jobs:
-  build-arm64:
-    uses: ./.github/workflows/build-mac-flacon.yml
-    name: arm64
-    with:
-      arch: arm64
+  build-flacon-arch:
+      strategy:
+        matrix:
+          include:
+            - prefix: "Flacon"
+              qt_version: "6.10.3"
+              arch: "arm64"
 
-  build-x86_64:
-    uses: ./.github/workflows/build-mac-flacon.yml
-    name: x86_64
-    with:
-      arch: x86_64
+            - prefix: "Flacon"
+              qt_version: "6.10.3"
+              arch: "x86_64"
+
+            - prefix: "FlaconLegacy"
+              qt_version: "6.5.3"
+              arch: "arm64"
+
+            - prefix: "FlaconLegacy"
+              qt_version: "6.5.3"
+              arch: "x86_64"
+
+      uses: ./.github/workflows/build-mac-flacon.yml
+      name: ${{ matrix.prefix }} (${{ matrix.arch }})
+      with:
+        arch: ${{ matrix.arch }}
+        qt_version: ${{ matrix.qt_version }}
+        artifact_prefix: ${{ matrix.prefix }}
 
 
   flacon-app:
     runs-on: macos-latest
 
     needs:
-      - build-arm64
-      - build-x86_64
+      - build-flacon-arch
+
+    strategy:
+      matrix:
+        include:
+          - prefix: "Flacon"
+          - prefix: "FlaconLegacy"
+
+    name: ${{ matrix.prefix }} App Bundle
 
     env:
-      APP_NAME: Flacon
+      APP_NAME: ${{ matrix.prefix }}
       CODE_SIGN_IDENTITY: "Developer ID Application: Alex Sokolov (635H9TYSZJ)"
       APP_PATH: "${{ github.workspace }}/Flacon.app"
 

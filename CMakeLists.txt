@@ -270,6 +270,18 @@ if ( MAC_BUNDLE )
     set(HEADERS ${HEADERS} updater/updater.h )
     set(SOURCES ${SOURCES} updater/updater.mm )
 
+    if(NOT CMAKE_OSX_DEPLOYMENT_TARGET)
+        get_target_property(QT_MIN_MACOS Qt6::Core QT_DARWIN_MIN_DEPLOYMENT_TARGET)
+
+        message(STATUS "Qt minimum macOS deployment target: ${QT_MIN_MACOS}")
+        if(QT_MIN_MACOS)
+            set(CMAKE_OSX_DEPLOYMENT_TARGET "${QT_MIN_MACOS}" CACHE STRING "Minimum macOS deployment target" FORCE)
+        else()
+            set(CMAKE_OSX_DEPLOYMENT_TARGET "11.0" CACHE STRING "Minimum macOS deployment target" FORCE)
+        endif()
+        message(STATUS "Plist minimum macOS deployment target: ${CMAKE_OSX_DEPLOYMENT_TARGET}")
+    endif()
+
 
     set(MAC_UPDATE_URL "https://flacon.github.io/download/feed.xml" CACHE STRING "The URL of updates appcast for MacOS")
     CREATE_PLIST_FILE(misc/Info.plist.in ${CMAKE_CURRENT_BINARY_DIR}/Info.plist)

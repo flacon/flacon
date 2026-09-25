@@ -4,11 +4,16 @@ on:
   workflow_call:
     inputs:
       arch:
+        type: string
         required: true
+
+      qt_version:
         type: string
-      osx_target:
+        required: true
+
+      artifact_prefix:
         type: string
-        default: "10.15"
+        default: "Flacon"
 
 env:
   FLACON_PROGRAMS:  flacon-programs-${{ inputs.arch }}
@@ -16,9 +21,7 @@ env:
   BUILD_DIR:        ${{github.workspace}}/build/
   PREFIX:           ${{ github.workspace }}/build/usr/
 
-  OSX_DEPLOYMENT_TARGET: "10.15"
-
-  QT_VERSION:           "6.10.3"
+  QT_VERSION:           "${{ inputs.qt_version }}"
   TAGLIB_VERSION:       "2.3.1"
   UCHARDET_VERSION:     "0.0.8"
   SPARKLE_VERSION:      "1.26.0"
@@ -79,7 +82,6 @@ jobs:
             -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
             -DCMAKE_INSTALL_PREFIX="${{ env.PREFIX }}" \
             -DCMAKE_OSX_ARCHITECTURES=${{ inputs.arch }} \
-            -DCMAKE_OSX_DEPLOYMENT_TARGET=${{ env.OSX_DEPLOYMENT_TARGET }} \
             -DBUILD_BINARY=OFF
           cmake --build uchardet/build -j$(sysctl -n hw.ncpu)
           cmake --install uchardet/build
@@ -95,7 +97,6 @@ jobs:
           cmake -S taglib -B taglib/build \
             -DCMAKE_INSTALL_PREFIX="${{ env.PREFIX }}" \
             -DCMAKE_OSX_ARCHITECTURES=${{ inputs.arch }} \
-            -DCMAKE_OSX_DEPLOYMENT_TARGET=${{ env.OSX_DEPLOYMENT_TARGET }} \
             -DBUILD_SHARED_LIBS=ON
           cmake --build taglib/build -j$(sysctl -n hw.ncpu)
           cmake --install taglib/build
@@ -141,7 +142,6 @@ jobs:
           -DCMAKE_PREFIX_PATH="${QT_ROOT_DIR};${{ env.PREFIX }}" \
           -DCMAKE_FRAMEWORK_PATH="${{ env.FFAUDIO_DIR }}" \
           -DCMAKE_INSTALL_PREFIX=build \
-          -DCMAKE_OSX_DEPLOYMENT_TARGET=${{ env.OSX_DEPLOYMENT_TARGET }} \
           -DCMAKE_OSX_ARCHITECTURES=${{ inputs.arch }} \
           -DOPENGL_agl_LIBRARY="" \
           -Bbuild \
