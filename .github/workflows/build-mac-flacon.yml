@@ -21,10 +21,13 @@ env:
   BUILD_DIR:        ${{github.workspace}}/build/
   PREFIX:           ${{ github.workspace }}/build/usr/
 
-  QT_VERSION:           "${{ inputs.qt_version }}"
-  TAGLIB_VERSION:       "2.3.1"
-  UCHARDET_VERSION:     "0.0.8"
-  SPARKLE_VERSION:      "1.26.0"
+  QT_VERSION:       "${{ inputs.qt_version }}"
+  CMAKE_USE_QT5:    ${{ startsWith(inputs.qt_version, '5.') && '-DUSE_QT5=ON' || '' }}
+  TAGLIB_VERSION:   "2.3.1"
+  UCHARDET_VERSION: "0.0.8"
+  SPARKLE_VERSION:  "1.26.0"
+
+
 
 jobs:
 
@@ -82,6 +85,7 @@ jobs:
             -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
             -DCMAKE_INSTALL_PREFIX="${{ env.PREFIX }}" \
             -DCMAKE_OSX_ARCHITECTURES=${{ inputs.arch }} \
+            -DCMAKE_OSX_DEPLOYMENT_TARGET=10.15 \
             -DBUILD_BINARY=OFF
           cmake --build uchardet/build -j$(sysctl -n hw.ncpu)
           cmake --install uchardet/build
@@ -97,6 +101,7 @@ jobs:
           cmake -S taglib -B taglib/build \
             -DCMAKE_INSTALL_PREFIX="${{ env.PREFIX }}" \
             -DCMAKE_OSX_ARCHITECTURES=${{ inputs.arch }} \
+            -DCMAKE_OSX_DEPLOYMENT_TARGET=10.15 \
             -DBUILD_SHARED_LIBS=ON
           cmake --build taglib/build -j$(sysctl -n hw.ncpu)
           cmake --install taglib/build
@@ -139,6 +144,7 @@ jobs:
           -DCMAKE_BUILD_TYPE=Release \
           -DBUILD_TESTS=No \
           -DMAC_BUNDLE=Yes \
+          ${{ env.CMAKE_USE_QT5 }} \
           -DCMAKE_PREFIX_PATH="${QT_ROOT_DIR};${{ env.PREFIX }}" \
           -DCMAKE_FRAMEWORK_PATH="${{ env.FFAUDIO_DIR }}" \
           -DCMAKE_INSTALL_PREFIX=build \
@@ -195,7 +201,7 @@ jobs:
     #
     - name: Prepare artifacts
       run : |
-        tar -C ${{github.workspace}}/build -cf ${{github.workspace}}/Flacon-${{ inputs.arch }}.tar Flacon.app
+        tar -C ${{github.workspace}}/build -cf ${{github.workspace}}/${{ inputs.artifact_prefix }}-${{ inputs.arch }}.tar Flacon.app
 
 
     ###################################
@@ -203,5 +209,5 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v7
       with:
-        name: Flacon-${{ inputs.arch }}
-        path: ${{github.workspace}}/Flacon-${{ inputs.arch }}.tar
+        name: ${{ inputs.artifact_prefix }}-${{ inputs.arch }}
+        path: ${{github.workspace}}/${{ inputs.artifact_prefix }}-${{ inputs.arch }}.tar
