@@ -6,8 +6,8 @@ on: [push]
 jobs:
   build-flacon-arch:
       strategy:
+        fail-fast: false
         matrix:
-          fail-fast: false
           include:
             - prefix: "Flacon"
               qt_version: "6.10.3"
