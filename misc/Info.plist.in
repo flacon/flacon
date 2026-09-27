@@ -30,7 +30,7 @@
 	<true/>
 	
 	<key>LSMinimumSystemVersion</key>
-	<string>11.0.0</string>
+	<string>@CMAKE_OSX_DEPLOYMENT_TARGET@</string>
 
 	<key>NSHighResolutionCapable</key>
 	<true/>
