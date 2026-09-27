@@ -1,4 +1,4 @@
-name: Build Flacon
+name: Build FlaconLegacy
 
 on:
   workflow_call:
@@ -6,68 +6,57 @@ on:
       arch:
         required: true
         type: string
-      osx_target:
-        type: string
-        default: "10.15"
 
 env:
+  BREW_DIR:         /opt/flacon-homebrew/${{ inputs.arch }}
+  ARM_BREW_DIR:     /opt/flacon-homebrew/arm64
+  X86_BREW_DIR:     /opt/flacon-homebrew/x86_64
   FLACON_PROGRAMS:  flacon-programs-${{ inputs.arch }}
   BUNDLE_DIR:       ${{github.workspace}}/build/Flacon.app
-  BUILD_DIR:        ${{github.workspace}}/build/
   PREFIX:           ${{ github.workspace }}/build/usr/
 
   OSX_DEPLOYMENT_TARGET: "10.15"
 
-  QT_VERSION:           "6.10.3"
   TAGLIB_VERSION:       "2.3.1"
   UCHARDET_VERSION:     "0.0.8"
   SPARKLE_VERSION:      "1.26.0"
 
 jobs:
-
-  ###################################
-  #
-  build-Flacon:
+  build:
     runs-on: macos-latest
 
     steps:
     - uses: actions/checkout@v6
 
-
-    ###################################
-    #
-    - name: Prepare
-      run: |
-        if [ "${{ inputs.arch }}" = "x86_64" ]; then
-          export "HOST=x86_64-apple-darwin"
-        elif [ "${{ inputs.arch }}" = "arm64" ]; then
-          export "HOST=aarch64-apple-darwin"
-        fi
-        echo "HOST=${HOST}" >> $GITHUB_ENV
-
-        export
-        mkdir -p "${{ env.PREFIX }}"
-        mkdir -p "${{ env.BUNDLE_DIR }}/Contents/MacOS"
-
-
-
-    ###################################
-    #
     - name: Check license
       run: ./scripts/checkLicense.sh .
 
+    # - name: Install tools
+    #   shell: bash
+    #   run: |
+    #     git clone https://github.com/flacon/flacon.third-party.git ${HOME}/flacon.third-party
+    #     mkdir -p ${HOME}/bin/
+    #     cp ${HOME}/flacon.third-party/bin/* ${HOME}/bin/
 
-    ###################################
-    #
-    - name: Install Qt ${{ env.QT_VERSION }}
+    - name: Install homebrew arm64
+      shell: bash
       run: |
-        pip install aqtinstall
-        echo "** Qt versions ****************************"
-        aqt list-qt mac desktop
-        echo "*******************************************"
-        aqt list-qt mac desktop --modules ${{ env.QT_VERSION }} clang_64
-        aqt install-qt mac desktop ${{ env.QT_VERSION }} -O "${{ env.PREFIX }}/qt"
+        curl -s -L https://github.com/flacon/flacon.third-party/releases/download/v0.1/flacon-homebrew-arm64.tgz > ${HOME}/flacon-homebrew-arm64.tgz
+        sudo tar xf ${HOME}/flacon-homebrew-arm64.tgz -C /
 
+
+    - name: Install homebrew x86_64
+      shell: bash
+      run: |
+        curl -s -L https://github.com/flacon/flacon.third-party/releases/download/v0.1/flacon-homebrew-x86_64.tgz > ${HOME}/flacon-homebrew-x86_64.tgz
+        sudo tar xf ${HOME}/flacon-homebrew-x86_64.tgz -C /
+
+
+    - name: Fixing homebrew Qt binaries
+      shell: bash
+      run: |
+        rm -rf ${ARM_BREW_DIR}/opt/qt5/bin/
+        ln -s ${X86_BREW_DIR}/opt/qt5/bin/ ${ARM_BREW_DIR}/opt/qt5/bin
 
     ###################################
     #
@@ -101,7 +90,7 @@ jobs:
           cmake --install taglib/build
 
 
-    ###################################
+   ###################################
     #
     - name: Install FFAudio
       run: |
@@ -126,9 +115,10 @@ jobs:
       shell: bash
       working-directory: ${{github.workspace}}
       run: |
+        #export PKG_CONFIG_PATH="${BREW_DIR}/lib/pkgconfig"
         export PKG_CONFIG_PATH="${{ env.PREFIX }}/lib/pkgconfig:${{ env.PREFIX }}/share/pkgconfig"
-        #QT_CMAKE_DIR=$(find "${{ env.PREFIX }}/qt" -name "Qt6Config.cmake" -exec dirname {} \;)
-        QT_ROOT_DIR=$(find "${{ env.PREFIX }}/qt" -name "Qt6Config.cmake" | sed 's|/lib/cmake/Qt6/Qt6Config.cmake||')
+        QT_ROOT_DIR=${BREW_DIR}/opt/qt5/lib/cmake
+
         echo "*******************************"
         echo "QT_ROOT_DIR: '${QT_ROOT_DIR}'"
         echo "FFAUDIO DIR: '${FFAUDIO_DIR}'"
@@ -138,48 +128,24 @@ jobs:
           -DCMAKE_BUILD_TYPE=Release \
           -DBUILD_TESTS=No \
           -DMAC_BUNDLE=Yes \
+          -DUSE_QT5=ON \
           -DCMAKE_PREFIX_PATH="${QT_ROOT_DIR};${{ env.PREFIX }}" \
           -DCMAKE_FRAMEWORK_PATH="${{ env.FFAUDIO_DIR }}" \
           -DCMAKE_INSTALL_PREFIX=build \
           -DCMAKE_OSX_ARCHITECTURES=${{ inputs.arch }} \
-          -DOPENGL_agl_LIBRARY="" \
           -Bbuild \
           ${{github.workspace}}
 
-
-        echo "== macdelopy.cmake ======================"
-        cat  "build/macdelopy.cmake"
-        echo "== cmake_install.cmake =================="
-        cat  "build/cmake_install.cmake"
-        echo "========================================="
-
-        cmake --build build -j$(sysctl -n hw.ncpu)
-        cmake --install build
+        make -Cbuild -j 8
+        make -Cbuild install
 
 
-    ###################################
-    #
-    # - name: Download external programs
-    #   uses: actions/download-artifact@v8
-    #   with:
-    #     pattern: ext-*-${{ inputs.arch }}
-    #     path: ${{ env.BUNDLE_DIR }}/Contents/MacOS
-    #     merge-multiple: true
-
-    ###################################
-    #
-    # - name: Fix and check external programs
-    #   working-directory: ${{env.BUNDLE_DIR}}
+    # - name: Copy third-party binaries and libraries
+    #   shell: bash
+    #   working-directory: ${{github.workspace}}
     #   run: |
-    #     chmod a+x "Contents/MacOS/"*
-
-    #     echo "========================================="
-    #     file "Contents/MacOS/"*
-    #     otool -L "Contents/MacOS/"*
-
-    #     echo "========================================="
-    #     file "Contents/Frameworks/"*
-
+    #     curl -s -L https://github.com/flacon/flacon.third-party/releases/download/v0.1/flacon-programs-${{inputs.arch}}.tgz > ${HOME}/flacon-programs-${{inputs.arch}}.tgz
+    #     sudo tar xf ${HOME}/flacon-programs-${{inputs.arch}}.tgz -C ${BUNDLE_DIR}/Contents --strip 1
 
     ###################################
     #
@@ -204,3 +170,22 @@ jobs:
       with:
         name: Flacon-${{ inputs.arch }}
         path: ${{github.workspace}}/Flacon-${{ inputs.arch }}.tar
+
+
+
+    # - name: Check libraries
+    #   shell: bash
+    #   working-directory: ${{github.workspace}}
+    #   run: |
+    #     ${HOME}/bin/macdeploy.py check-libs ${BUNDLE_DIR}/
+
+
+    # - name: Prepare artifacts
+    #   run : |
+    #     tar -C ${{github.workspace}}/build -cf ${{github.workspace}}/Flacon-${{ inputs.arch }}.tar Flacon.app
+
+    # - name: Upload artifact
+    #   uses: actions/upload-artifact@v7
+    #   with:
+    #     name: Flacon-Legacy-${{ inputs.arch }}
+    #     path: ${{github.workspace}}/Flacon-${{ inputs.arch }}.tar
