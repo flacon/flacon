@@ -212,6 +212,17 @@ else()
 endif()
 message(STATUS "Using Qt version ${QT_VERSION}")
 
+if (APPLE)
+    set(QT_TARGET "Qt${QT_VERSION_MAJOR}::Gui")
+    if (TARGET ${QT_TARGET})
+        get_target_property(_qt_gui_libs ${QT_TARGET} INTERFACE_LINK_LIBRARIES)
+        if (_qt_gui_libs)
+            list(REMOVE_ITEM _qt_gui_libs "-framework AGL" "/System/Library/Frameworks/AGL.framework")
+            set_target_properties(${QT_TARGET} PROPERTIES INTERFACE_LINK_LIBRARIES "${_qt_gui_libs}")
+        endif()
+    endif()
+endif()
+
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
