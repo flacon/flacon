@@ -366,7 +366,7 @@ void Disc::removeTrack(int trackIndex)
         return;
     }
 
-    mTracks.remove(trackIndex);
+    mTracks.removeAt(trackIndex);
 
     for (int i = 0; i < mTracks.size(); ++i) {
         mTracks[i]->setIndex(i);

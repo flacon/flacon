@@ -45,7 +45,6 @@ set(HEADERS
     coverimage.h
     extprocess.h
     replaygain.h
-    replaygain_old.h
     totalprogresscounter.h
     avcompat.h
 )
@@ -63,7 +62,6 @@ set(SOURCES
     coverimage.cpp
     extprocess.cpp
     replaygain.cpp
-    replaygain_old.cpp
     totalprogresscounter.cpp
 )
 
