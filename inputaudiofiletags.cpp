@@ -32,7 +32,13 @@
 static QByteArray getString(const TagLib::PropertyMap properties, const char *key)
 {
     if (properties.contains(key) && !properties[key].isEmpty()) {
-        TagLib::ByteVector bv = properties[key].front().data(TagLib::String::Latin1);
+        const TagLib::String str = properties[key].front();
+        if (str.isLatin1()) {
+            TagLib::ByteVector bv = str.data(TagLib::String::Latin1);
+            return QByteArray(bv.data(), static_cast<int>(bv.size()));
+        }
+
+        TagLib::ByteVector bv = str.data(TagLib::String::UTF8);
         return QByteArray(bv.data(), static_cast<int>(bv.size()));
     }
     return QByteArray();

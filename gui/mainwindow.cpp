@@ -566,6 +566,7 @@ void MainWindow::setCodePage()
         foreach (Disc *disc, discs)
             disc->setCodecName(codepage);
     }
+    emit trackView->model()->layoutChanged();
 }
 
 /************************************************
