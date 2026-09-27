@@ -4,51 +4,28 @@ on: [push]
 
 
 jobs:
-  build-flacon-arch:
-      strategy:
-        fail-fast: false
-        matrix:
-          include:
-            - prefix: "Flacon"
-              qt_version: "6.10.3"
-              arch: "arm64"
+  build-arm64:
+    uses: ./.github/workflows/build-mac-flacon.yml
+    name: arm64
+    with:
+      arch: arm64
 
-            - prefix: "Flacon"
-              qt_version: "6.10.3"
-              arch: "x86_64"
-
-            - prefix: "FlaconLegacy"
-              qt_version: "6.4.3"
-              arch: "arm64"
-
-            - prefix: "FlaconLegacy"
-              qt_version: "6.4.3"
-              arch: "x86_64"
-
-      uses: ./.github/workflows/build-mac-flacon.yml
-      name: ${{ matrix.prefix }} (${{ matrix.arch }})
-      with:
-        arch: ${{ matrix.arch }}
-        qt_version: ${{ matrix.qt_version }}
-        artifact_prefix: ${{ matrix.prefix }}
+  build-x86_64:
+    uses: ./.github/workflows/build-mac-flacon.yml
+    name: x86_64
+    with:
+      arch: x86_64
 
 
   flacon-app:
     runs-on: macos-latest
 
     needs:
-      - build-flacon-arch
-
-    strategy:
-      matrix:
-        include:
-          - prefix: "Flacon"
-          - prefix: "FlaconLegacy"
-
-    name: ${{ matrix.prefix }} App Bundle
+      - build-arm64
+      - build-x86_64
 
     env:
-      APP_NAME: ${{ matrix.prefix }}
+      APP_NAME: Flacon
       CODE_SIGN_IDENTITY: "Developer ID Application: Alex Sokolov (635H9TYSZJ)"
       APP_PATH: "${{ github.workspace }}/Flacon.app"
 
@@ -105,7 +82,7 @@ jobs:
     - name: Download arm64
       uses: actions/download-artifact@v8
       with:
-        name: ${{ matrix.prefix }}-arm64
+        name: Flacon-arm64
 
 
     - name: Extract arm64
@@ -114,13 +91,13 @@ jobs:
       shell: bash
       run: |
         mkdir -p ${{ env.ARCH }}
-        tar xvf ${{ matrix.prefix }}-${{env.ARCH}}.tar -C ${{env.ARCH}}
+        tar xvf Flacon-${{env.ARCH}}.tar -C ${{env.ARCH}}
 
 
     - name: Download x86_64
       uses: actions/download-artifact@v8
       with:
-        name: ${{ matrix.prefix }}-x86_64
+        name: Flacon-x86_64
 
 
     - name: Extract x86_64
@@ -129,7 +106,7 @@ jobs:
       shell: bash
       run: |
         mkdir -p ${{ env.ARCH }}
-        tar xvf ${{ matrix.prefix }}-${{env.ARCH}}.tar -C ${{env.ARCH}}
+        tar xvf Flacon-${{env.ARCH}}.tar -C ${{env.ARCH}}
 
 
     - name: Create universal application
