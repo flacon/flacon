@@ -18,11 +18,11 @@ jobs:
               arch: "x86_64"
 
             - prefix: "FlaconLegacy"
-              qt_version: "5.15.2"
+              qt_version: "6.4.3"
               arch: "arm64"
 
             - prefix: "FlaconLegacy"
-              qt_version: "5.15.2"
+              qt_version: "6.4.3"
               arch: "x86_64"
 
       uses: ./.github/workflows/build-mac-flacon.yml
