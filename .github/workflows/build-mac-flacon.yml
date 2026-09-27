@@ -22,6 +22,7 @@ env:
   PREFIX:           ${{ github.workspace }}/build/usr/
 
   QT_VERSION:       "${{ inputs.qt_version }}"
+  QT_MAJOR_VERSION: "${{ startsWith(inputs.qt_version, '5.') && '5' || '6' }}"
   CMAKE_USE_QT5:    ${{ startsWith(inputs.qt_version, '5.') && '-DUSE_QT5=ON' || '' }}
   TAGLIB_VERSION:   "2.3.1"
   UCHARDET_VERSION: "0.0.8"
@@ -133,7 +134,7 @@ jobs:
       working-directory: ${{github.workspace}}
       run: |
         export PKG_CONFIG_PATH="${{ env.PREFIX }}/lib/pkgconfig:${{ env.PREFIX }}/share/pkgconfig"
-        QT_ROOT_DIR=$(find "${{ env.PREFIX }}/qt" -name "Qt*Config.cmake" | head -n 1 | sed -E 's|/lib/cmake/Qt[56]/Qt[56]Config\.cmake||')
+        QT_ROOT_DIR=$(find "${{ env.PREFIX }}/qt" -name "Qt${{ env.QT_MAJOR_VERSION }}Config.cmake" | head -n 1 | sed "s|/lib/cmake/Qt${{ env.QT_MAJOR_VERSION }}/Qt${{ env.QT_MAJOR_VERSION }}Config\.cmake||")
         echo "*******************************"
         echo "QT_ROOT_DIR: '${QT_ROOT_DIR}'"
         echo "FFAUDIO DIR: '${FFAUDIO_DIR}'"
