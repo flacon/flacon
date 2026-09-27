@@ -1,23 +1,23 @@
-name: Build MacOs
+name: Build MacOs Legacy
 
 on: [push]
 
 
 jobs:
   build-arm64:
-    uses: ./.github/workflows/build-mac-flacon.yml
+    uses: ./.github/workflows/build-legacy-mac-flacon.yml
     name: arm64
     with:
       arch: arm64
 
   build-x86_64:
-    uses: ./.github/workflows/build-mac-flacon.yml
+    uses: ./.github/workflows/build-legacy-mac-flacon.yml
     name: x86_64
     with:
       arch: x86_64
 
 
-  flacon-app:
+  flacon-app-legacy:
     runs-on: macos-latest
 
     needs:
@@ -50,7 +50,7 @@ jobs:
         export "DMG_PATH=${{ github.workspace }}/${DMG_NAME}"
         echo   "DMG_PATH=${DMG_PATH}" >> ${GITHUB_ENV}
 
-        export "ARTIFACT_NAME=Flacon-${RELEASE_VERSION}.dmg"
+        export "ARTIFACT_NAME=Flacon-Legacy-${RELEASE_VERSION}.dmg"
         echo   "ARTIFACT_NAME=${ARTIFACT_NAME}" >> ${GITHUB_ENV}
 
         echo "--------------------------------------------"

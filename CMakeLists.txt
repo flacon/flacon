@@ -270,6 +270,18 @@ if ( MAC_BUNDLE )
     set(HEADERS ${HEADERS} updater/updater.h )
     set(SOURCES ${SOURCES} updater/updater.mm )
 
+    if(NOT CMAKE_OSX_DEPLOYMENT_TARGET)
+        get_target_property(QT_MIN_MACOS Qt${QT_VERSION_MAJOR}::Core QT_DARWIN_MIN_DEPLOYMENT_TARGET)
+
+        message(STATUS "Qt minimum macOS deployment target: ${QT_MIN_MACOS}")
+        if(QT_MIN_MACOS)
+            set(CMAKE_OSX_DEPLOYMENT_TARGET "${QT_MIN_MACOS}" CACHE STRING "Minimum macOS deployment target" FORCE)
+        else()
+            set(CMAKE_OSX_DEPLOYMENT_TARGET "10.0" CACHE STRING "Minimum macOS deployment target" FORCE)
+        endif()
+        message(STATUS "Plist minimum macOS deployment target: ${CMAKE_OSX_DEPLOYMENT_TARGET}")
+    endif()
+
 
     set(MAC_UPDATE_URL "https://flacon.github.io/download/feed.xml" CACHE STRING "The URL of updates appcast for MacOS")
     CREATE_PLIST_FILE(misc/Info.plist.in ${CMAKE_CURRENT_BINARY_DIR}/Info.plist)
@@ -347,7 +359,7 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
     install(FILES   ${CMAKE_CURRENT_BINARY_DIR}/Info.plist  DESTINATION Flacon.app/Contents)
     install(FILES   images/mainicon/Flacon.icns             DESTINATION Flacon.app/Contents/Resources)
 
-    get_target_property(QT_COCOA_PLUGIN Qt6::QCocoaIntegrationPlugin LOCATION)
+    get_target_property(QT_COCOA_PLUGIN Qt${QT_VERSION_MAJOR}::QCocoaIntegrationPlugin LOCATION)
     get_filename_component(QT_PLUGINS_DIR "${QT_COCOA_PLUGIN}/../../" ABSOLUTE)
 
     set(QT_PLUGINS
@@ -359,11 +371,15 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
         "imageformats/libqico.dylib"
         "imageformats/libqjpeg.dylib"
         "imageformats/libqsvg.dylib"
-
-        "tls/libqsecuretransportbackend.dylib"
-        "tls/libqopensslbackend.dylib"
-        "tls/libqcertonlybackend.dylib"
     )
+
+    if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
+        list(APPEND QT_PLUGINS
+            "tls/libqsecuretransportbackend.dylib"
+            "tls/libqopensslbackend.dylib"
+            "tls/libqcertonlybackend.dylib"
+        )
+    endif()
 
     foreach(plugin ${QT_PLUGINS})
         get_filename_component(plugin_dir "${plugin}" DIRECTORY)
