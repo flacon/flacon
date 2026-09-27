@@ -22,7 +22,7 @@ env:
   SPARKLE_VERSION:      "1.26.0"
 
 jobs:
-  build:
+  build-legacy:
     runs-on: macos-latest
 
     steps:

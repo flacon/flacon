@@ -17,7 +17,7 @@ jobs:
       arch: x86_64
 
 
-  flacon-app:
+  flacon-app-legacy:
     runs-on: macos-latest
 
     needs:
