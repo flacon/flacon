@@ -26,6 +26,7 @@
 #include "encoder.h"
 #include <QString>
 #include <QCoreApplication>
+#include <QScopeGuard>
 #include "formats_out/metadatawriter.h"
 
 extern "C" {
