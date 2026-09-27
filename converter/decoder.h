@@ -40,8 +40,8 @@ extern "C" {
 class QIODevice;
 class QProcess;
 class QFile;
-class AVFormatContext;
-class AVCodecContext;
+struct AVFormatContext;
+struct AVCodecContext;
 struct AVFrame;
 struct AVPacket;
 
