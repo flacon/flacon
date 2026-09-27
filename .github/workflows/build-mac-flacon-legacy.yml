@@ -28,8 +28,21 @@ jobs:
     steps:
     - uses: actions/checkout@v6
 
-    - name: Check license
-      run: ./scripts/checkLicense.sh .
+
+    ###################################
+    #
+    - name: Prepare
+      run: |
+        if [ "${{ inputs.arch }}" = "x86_64" ]; then
+          export "HOST=x86_64-apple-darwin"
+        elif [ "${{ inputs.arch }}" = "arm64" ]; then
+          export "HOST=aarch64-apple-darwin"
+        fi
+        echo "HOST=${HOST}" >> $GITHUB_ENV
+
+        export
+        mkdir -p "${{ env.PREFIX }}"
+        mkdir -p "${{ env.BUNDLE_DIR }}/Contents/MacOS"
 
     # - name: Install tools
     #   shell: bash

@@ -1,4 +1,4 @@
-name: Build MacOs Bundle
+name: Build Legacy MacOs Bundle
 
 on: [push]
 
