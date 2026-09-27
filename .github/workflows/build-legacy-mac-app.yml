@@ -5,13 +5,13 @@ on: [push]
 
 jobs:
   build-arm64:
-    uses: ./.github/workflows/build-mac-flacon-legacy.yml
+    uses: ./.github/workflows/build-legacy-mac-flacon.yml
     name: arm64
     with:
       arch: arm64
 
   build-x86_64:
-    uses: ./.github/workflows/build-mac-flacon-legacy.yml
+    uses: ./.github/workflows/build-legacy-mac-flacon.yml
     name: x86_64
     with:
       arch: x86_64
@@ -108,17 +108,18 @@ jobs:
         mkdir -p ${{ env.ARCH }}
         tar xvf Flacon-${{env.ARCH}}.tar -C ${{env.ARCH}}
 
+
     - name: Create universal application
       shell: bash
       run: |
-        lipo-app x86_64/Flacon.app arm64/Flacon.app Flacon.app
+        "${{github.workspace}}/.github/workflows/lipo-app" x86_64/Flacon.app arm64/Flacon.app Flacon.app
 
 
     - name: Check libraries
       shell: bash
       working-directory: ${{github.workspace}}
       run: |
-        ${HOME}/bin/macdeploy.py check-libs Flacon.app
+        "${{github.workspace}}/.github/workflows/macdeploy.py" check-libs Flacon.app
 
 
     - name: Sign application

@@ -1,4 +1,4 @@
-name: Build FlaconLegacy
+name: Build Legacy Flacon
 
 on:
   workflow_call:
