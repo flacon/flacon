@@ -388,11 +388,15 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
         "imageformats/libqico.dylib"
         "imageformats/libqjpeg.dylib"
         "imageformats/libqsvg.dylib"
-
-        "tls/libqsecuretransportbackend.dylib"
-        "tls/libqopensslbackend.dylib"
-        "tls/libqcertonlybackend.dylib"
     )
+
+    if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
+        list(APPEND QT_PLUGINS
+            "tls/libqsecuretransportbackend.dylib"
+            "tls/libqopensslbackend.dylib"
+            "tls/libqcertonlybackend.dylib"
+        )
+    endif()
 
     foreach(plugin ${QT_PLUGINS})
         get_filename_component(plugin_dir "${plugin}" DIRECTORY)
