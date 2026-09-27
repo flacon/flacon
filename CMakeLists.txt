@@ -197,11 +197,11 @@ include_directories(
 #*******************************************
 include("cmake/macos.cmake")
 
-if (APPLE)
-    # AGL.framework has been removed from the macOS SDK (Xcode 15 and later).
-    # We forcefully clear the variable so that CMake/Qt do not attempt to link it.
-    set(OPENGL_agl_LIBRARY "" CACHE STRING "Path to AGL library" FORCE)
-endif()
+# if (APPLE)
+#     # AGL.framework has been removed from the macOS SDK (Xcode 15 and later).
+#     # We forcefully clear the variable so that CMake/Qt do not attempt to link it.
+#     set(OPENGL_agl_LIBRARY "" CACHE STRING "Path to AGL library" FORCE)
+# endif()
 
 option(USE_QT5 "Try to use the Qt5." OFF)
 
@@ -212,16 +212,16 @@ else()
 endif()
 message(STATUS "Using Qt version ${QT_VERSION}")
 
-if (APPLE)
-    set(QT_TARGET "Qt${QT_VERSION_MAJOR}::Gui")
-    if (TARGET ${QT_TARGET})
-        get_target_property(_qt_gui_libs ${QT_TARGET} INTERFACE_LINK_LIBRARIES)
-        if (_qt_gui_libs)
-            list(REMOVE_ITEM _qt_gui_libs "-framework AGL" "/System/Library/Frameworks/AGL.framework")
-            set_target_properties(${QT_TARGET} PROPERTIES INTERFACE_LINK_LIBRARIES "${_qt_gui_libs}")
-        endif()
-    endif()
-endif()
+# if (APPLE)
+#     set(QT_TARGET "Qt${QT_VERSION_MAJOR}::Gui")
+#     if (TARGET ${QT_TARGET})
+#         get_target_property(_qt_gui_libs ${QT_TARGET} INTERFACE_LINK_LIBRARIES)
+#         if (_qt_gui_libs)
+#             list(REMOVE_ITEM _qt_gui_libs "-framework AGL" "/System/Library/Frameworks/AGL.framework")
+#             set_target_properties(${QT_TARGET} PROPERTIES INTERFACE_LINK_LIBRARIES "${_qt_gui_libs}")
+#         endif()
+#     endif()
+# endif()
 
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)

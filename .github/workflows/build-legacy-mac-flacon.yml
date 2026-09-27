@@ -44,12 +44,6 @@ jobs:
         mkdir -p "${{ env.PREFIX }}"
         mkdir -p "${{ env.BUNDLE_DIR }}/Contents/MacOS"
 
-    # - name: Install tools
-    #   shell: bash
-    #   run: |
-    #     git clone https://github.com/flacon/flacon.third-party.git ${HOME}/flacon.third-party
-    #     mkdir -p ${HOME}/bin/
-    #     cp ${HOME}/flacon.third-party/bin/* ${HOME}/bin/
 
     - name: Install homebrew arm64
       shell: bash
@@ -153,13 +147,6 @@ jobs:
         make -Cbuild install
 
 
-    # - name: Copy third-party binaries and libraries
-    #   shell: bash
-    #   working-directory: ${{github.workspace}}
-    #   run: |
-    #     curl -s -L https://github.com/flacon/flacon.third-party/releases/download/v0.1/flacon-programs-${{inputs.arch}}.tgz > ${HOME}/flacon-programs-${{inputs.arch}}.tgz
-    #     sudo tar xf ${HOME}/flacon-programs-${{inputs.arch}}.tgz -C ${BUNDLE_DIR}/Contents --strip 1
-
     ###################################
     #
     - name: Check libraries
@@ -183,22 +170,3 @@ jobs:
       with:
         name: Flacon-${{ inputs.arch }}
         path: ${{github.workspace}}/Flacon-${{ inputs.arch }}.tar
-
-
-
-    # - name: Check libraries
-    #   shell: bash
-    #   working-directory: ${{github.workspace}}
-    #   run: |
-    #     ${HOME}/bin/macdeploy.py check-libs ${BUNDLE_DIR}/
-
-
-    # - name: Prepare artifacts
-    #   run : |
-    #     tar -C ${{github.workspace}}/build -cf ${{github.workspace}}/Flacon-${{ inputs.arch }}.tar Flacon.app
-
-    # - name: Upload artifact
-    #   uses: actions/upload-artifact@v7
-    #   with:
-    #     name: Flacon-Legacy-${{ inputs.arch }}
-    #     path: ${{github.workspace}}/Flacon-${{ inputs.arch }}.tar

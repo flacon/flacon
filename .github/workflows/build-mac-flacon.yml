@@ -50,7 +50,6 @@ jobs:
         mkdir -p "${{ env.BUNDLE_DIR }}/Contents/MacOS"
 
 
-
     ###################################
     #
     - name: Check license
@@ -155,30 +154,6 @@ jobs:
 
         cmake --build build -j$(sysctl -n hw.ncpu)
         cmake --install build
-
-
-    ###################################
-    #
-    # - name: Download external programs
-    #   uses: actions/download-artifact@v8
-    #   with:
-    #     pattern: ext-*-${{ inputs.arch }}
-    #     path: ${{ env.BUNDLE_DIR }}/Contents/MacOS
-    #     merge-multiple: true
-
-    ###################################
-    #
-    # - name: Fix and check external programs
-    #   working-directory: ${{env.BUNDLE_DIR}}
-    #   run: |
-    #     chmod a+x "Contents/MacOS/"*
-
-    #     echo "========================================="
-    #     file "Contents/MacOS/"*
-    #     otool -L "Contents/MacOS/"*
-
-    #     echo "========================================="
-    #     file "Contents/Frameworks/"*
 
 
     ###################################
