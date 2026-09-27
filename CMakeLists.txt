@@ -359,7 +359,7 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
     install(FILES   ${CMAKE_CURRENT_BINARY_DIR}/Info.plist  DESTINATION Flacon.app/Contents)
     install(FILES   images/mainicon/Flacon.icns             DESTINATION Flacon.app/Contents/Resources)
 
-    get_target_property(QT_COCOA_PLUGIN Qt6::QCocoaIntegrationPlugin LOCATION)
+    get_target_property(QT_COCOA_PLUGIN Qt${QT_VERSION_MAJOR}::QCocoaIntegrationPlugin LOCATION)
     get_filename_component(QT_PLUGINS_DIR "${QT_COCOA_PLUGIN}/../../" ABSOLUTE)
 
     set(QT_PLUGINS
