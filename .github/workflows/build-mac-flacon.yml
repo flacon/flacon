@@ -133,8 +133,7 @@ jobs:
       working-directory: ${{github.workspace}}
       run: |
         export PKG_CONFIG_PATH="${{ env.PREFIX }}/lib/pkgconfig:${{ env.PREFIX }}/share/pkgconfig"
-        #QT_CMAKE_DIR=$(find "${{ env.PREFIX }}/qt" -name "Qt6Config.cmake" -exec dirname {} \;)
-        QT_ROOT_DIR=$(find "${{ env.PREFIX }}/qt" -name "Qt6Config.cmake" | sed 's|/lib/cmake/Qt6/Qt6Config.cmake||')
+        QT_ROOT_DIR=$(find "${{ env.PREFIX }}/qt" -name "Qt*Config.cmake" | head -n 1 | sed -E 's|/lib/cmake/Qt[56]/Qt[56]Config\.cmake||')
         echo "*******************************"
         echo "QT_ROOT_DIR: '${QT_ROOT_DIR}'"
         echo "FFAUDIO DIR: '${FFAUDIO_DIR}'"
