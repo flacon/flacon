@@ -197,6 +197,12 @@ include_directories(
 #*******************************************
 include("cmake/macos.cmake")
 
+if (APPLE)
+    # AGL.framework has been removed from the macOS SDK (Xcode 15 and later).
+    # We forcefully clear the variable so that CMake/Qt do not attempt to link it.
+    set(OPENGL_agl_LIBRARY "" CACHE STRING "Path to AGL library" FORCE)
+endif()
+
 option(USE_QT5 "Try to use the Qt5." OFF)
 
 if (USE_QT5)
