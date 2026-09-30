@@ -43,7 +43,6 @@ set(HEADERS
     discpipline.h
     cuecreator.h
     coverimage.h
-    extprocess.h
     replaygain.h
     totalprogresscounter.h
     avcompat.h
@@ -60,7 +59,6 @@ set(SOURCES
     discpipline.cpp
     cuecreator.cpp
     coverimage.cpp
-    extprocess.cpp
     replaygain.cpp
     totalprogresscounter.cpp
 )

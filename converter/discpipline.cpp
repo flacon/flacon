@@ -83,7 +83,7 @@ WorkerThread::~WorkerThread()
     requestInterruption();
     quit();
     wait();
-    mWorker->deleteLater();
+    delete mWorker;
 }
 
 /************************************************
@@ -231,13 +231,14 @@ void DiscPipeline::startSplitter(const SplitterRequest &request)
     Splitter *splitter = new Splitter(mDisc, request.tracks, request.outDir);
     splitter->setPregapType(request.pregapType);
     QPointer<WorkerThread> thread = new WorkerThread(splitter, this);
-    thread->setObjectName(QStringLiteral("%1 splitter").arg(mDisc->cueFilePath()));
+    thread->setObjectName(QStringLiteral("Splitter for %1").arg(mDisc->cueFilePath()));
 
     connect(this, &DiscPipeline::stopAllThreads, thread, &Conv::WorkerThread::deleteLater);
     connect(splitter, &Splitter::trackProgress, this, &DiscPipeline::trackProgress);
     connect(splitter, &Worker::error, this, &DiscPipeline::trackError);
     connect(splitter, &Splitter::trackReady, this, &DiscPipeline::addEncoderRequest);
     connect(thread, &Conv::WorkerThread::finished, this, &DiscPipeline::threadFinished);
+    connect(thread, &Conv::WorkerThread::finished, thread, &QObject::deleteLater);
 
     mThreads << thread;
     thread->start();
@@ -287,7 +288,7 @@ void DiscPipeline::startEncoder(const ConvTrack &track, const QString &inputFile
     encoder->setCoverImage(mCoverImage);
 
     QPointer<WorkerThread> thread = new WorkerThread(encoder, this);
-    thread->setObjectName(QStringLiteral("%1 encoder track %2").arg(track.disc()->cueFilePath()).arg(track.index()));
+    thread->setObjectName(QStringLiteral("Encoder track %2 %1").arg(track.disc()->cueFilePath()).arg(track.index()));
 
     connect(this, &DiscPipeline::stopAllThreads, thread, &Conv::WorkerThread::deleteLater);
     connect(encoder, &Worker::trackProgress, this, &DiscPipeline::trackProgress);
@@ -303,6 +304,7 @@ void DiscPipeline::startEncoder(const ConvTrack &track, const QString &inputFile
     // ..........................................
 
     connect(thread, &Conv::WorkerThread::finished, this, &DiscPipeline::threadFinished);
+    connect(thread, &Conv::WorkerThread::finished, thread, &QObject::deleteLater);
 
     mThreads << thread;
     thread->start();
