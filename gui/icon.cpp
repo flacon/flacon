@@ -97,6 +97,7 @@ public:
 private:
     QIcon &icon()
     {
+        qDebug() << "@@@ icon" << mDarkMode << mIconDark.themeName() << mIconLight.name();
         if (mDarkMode)
             return mIconDark;
         else
