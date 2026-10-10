@@ -108,9 +108,7 @@ jobs:
         aqt list-qt mac desktop
         echo "*******************************************"
         aqt list-qt mac desktop --modules ${{ env.QT_VERSION }} clang_64
-        ls -lh "/usr/local"
-        ls -lh "/usr/local/qt"
-        aqt install-qt mac desktop ${{ env.QT_VERSION }} -O "/usr/local/qt"
+        aqt install-qt mac desktop ${{ env.QT_VERSION }} -O "/opt/qt"
 
 
     ###################################
@@ -119,7 +117,7 @@ jobs:
       shell: bash
       working-directory: ${{env.BUILD_DIR}}
       run: |
-        QT_ROOT_DIR=$(find "${{ env.PREFIX }}/qt" -name "Qt6Config.cmake" | sed 's|/lib/cmake/Qt6/Qt6Config.cmake||')
+        QT_ROOT_DIR=$(find "/opt/qt" -name "Qt6Config.cmake" | sed 's|/lib/cmake/Qt6/Qt6Config.cmake||')
         mkdir flacon
         cd flacon
         cmake \
