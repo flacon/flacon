@@ -116,7 +116,10 @@ jobs:
         aqt list-qt ${{ matrix.aqt_host }} desktop --modules ${{ env.QT_VERSION }} ${{ matrix.aqt_arch }}
         echo "*******************************************"
         aqt install-qt ${{ matrix.aqt_host }} desktop ${{ env.QT_VERSION }} ${{ matrix.aqt_arch }} -O "/opt/qt"
-        pip uninstall -y aqtinstall
+        QMAKE_PATH=$(find "/opt/qt" -name "qmake" -type f | head -n 1)
+        QT_BIN_DIR=$(dirname "$QMAKE_PATH")
+        echo "PATH=$QT_BIN_DIR:$PATH" >> $GITHUB_ENV
+
 
 
     ###################################
@@ -125,12 +128,11 @@ jobs:
       shell: bash
       working-directory: ${{env.BUILD_DIR}}
       run: |
-        QT_ROOT_DIR=$(find "/opt/qt" -name "Qt6Config.cmake" | sed 's|/lib/cmake/Qt6/Qt6Config.cmake||')
+        # QT_ROOT_DIR=$(find "/opt/qt" -name "Qt6Config.cmake" | sed 's|/lib/cmake/Qt6/Qt6Config.cmake||')
         mkdir flacon
         cd flacon
         cmake \
           -DCMAKE_INSTALL_PREFIX=${APP_DIR}/usr \
-          -DCMAKE_PREFIX_PATH="${QT_ROOT_DIR}" \
           -DAPPIMAGE_BUNDLE=Yes \
           -DCMAKE_BUILD_TYPE=$BUILD_TYPE \
           $GITHUB_WORKSPACE
