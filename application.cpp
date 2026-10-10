@@ -56,8 +56,10 @@ bool Application::event(QEvent *event)
 #ifndef Q_OS_MAC
     if (event->type() == QEvent::ApplicationPaletteChange) {
         qWarning() << "@@@ QEvent::ApplicationPaletteChange ===================================";
-        qWarning() << "@@@ qApp->palette().window().color(): " << (qApp->palette().window().color().lightness() < qApp->palette().windowText().color().lightness());
-        qWarning() << "@@@ QGuiApplication::styleHints():    " << (QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark);
+        qWarning() << "@@@ mDarkMode:        " << mDarkMode;
+        qWarning() << "@@@ isDarkVisualMode: " << isDarkVisualMode;
+        qWarning() << "@@@ palette().color():" << (qApp->palette().window().color().lightness() < qApp->palette().windowText().color().lightness());
+        // qWarning() << "@@@ QGuiApplication::styleHints():    " << (QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark);
         qWarning() << "@@@ QEvent::ApplicationPaletteChange -----------------------------------";
         bool dark = isDarkVisualMode();
         if (dark != mDarkMode) {
