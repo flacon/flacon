@@ -9,6 +9,8 @@ env:
   LS_ALL: en_US.UTF-8
   LANGUAGE: en_US:en
 
+  QT_VERSION: "6.5.3"
+
 jobs:
   build:
     strategy:
@@ -92,10 +94,21 @@ jobs:
         echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
         sudo apt-get -y update
         sudo apt-get -y --no-install-recommends install build-essential pkg-config cmake
-        sudo apt-get -y --no-install-recommends install libgl1-mesa-dev qt6-base-dev qt6-tools-dev-tools qt6-tools-dev qt6-l10n-tools qt6-l10n-tools qmake6 qt6-xdgdesktopportal-platformtheme
+        # sudo apt-get -y --no-install-recommends install libgl1-mesa-dev qt6-base-dev qt6-tools-dev-tools qt6-tools-dev qt6-l10n-tools qt6-l10n-tools qmake6 qt6-xdgdesktopportal-platformtheme
         sudo apt-get -y --no-install-recommends install libuchardet-dev libtag1-dev
         sudo apt-get -y --no-install-recommends install libavcodec-dev libavformat-dev libavfilter-dev libavutil-dev
         sudo ln -sf /usr/lib/qt6/bin/qmake /usr/bin/qmake
+
+    ###################################
+    #
+    - name: Install Qt ${{ env.QT_VERSION }}
+      run: |
+        pip3 install aqtinstall
+        echo "** Qt versions ****************************"
+        aqt list-qt mac desktop
+        echo "*******************************************"
+        aqt list-qt mac desktop --modules ${{ env.QT_VERSION }} clang_64
+        aqt install-qt mac desktop ${{ env.QT_VERSION }} -O "/usr/local/qt"
 
 
     ###################################
@@ -104,9 +117,15 @@ jobs:
       shell: bash
       working-directory: ${{env.BUILD_DIR}}
       run: |
+        QT_ROOT_DIR=$(find "${{ env.PREFIX }}/qt" -name "Qt6Config.cmake" | sed 's|/lib/cmake/Qt6/Qt6Config.cmake||')
         mkdir flacon
         cd flacon
-        cmake -DCMAKE_INSTALL_PREFIX=${APP_DIR}/usr -DAPPIMAGE_BUNDLE=Yes -DCMAKE_BUILD_TYPE=$BUILD_TYPE $GITHUB_WORKSPACE
+        cmake \
+          -DCMAKE_INSTALL_PREFIX=${APP_DIR}/usr \
+          -DCMAKE_PREFIX_PATH="${QT_ROOT_DIR}" \
+          -DAPPIMAGE_BUNDLE=Yes \
+          -DCMAKE_BUILD_TYPE=$BUILD_TYPE \
+          $GITHUB_WORKSPACE
         make -j$(nproc)
         make install
 
