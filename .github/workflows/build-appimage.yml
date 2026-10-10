@@ -105,10 +105,10 @@ jobs:
       run: |
         pip3 install aqtinstall
         echo "** Qt versions ****************************"
-        aqt list-qt mac desktop
+        aqt list-qt linux desktop
         echo "*******************************************"
-        aqt list-qt mac desktop --modules ${{ env.QT_VERSION }} clang_64
-        aqt install-qt mac desktop ${{ env.QT_VERSION }} -O "/opt/qt"
+        aqt list-qt linux desktop --modules ${{ env.QT_VERSION }} clang_64
+        aqt install-qt linux desktop ${{ env.QT_VERSION }} -O "/opt/qt"
 
 
     ###################################
