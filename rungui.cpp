@@ -35,6 +35,7 @@ extern "C" {
 #include <libavcodec/version.h>
 }
 
+#include <QStyleHints>
 #include <QLibraryInfo>
 #include <QTranslator>
 #include <QLoggingCategory>
@@ -118,6 +119,10 @@ int RunGui::run(int argc, char *argv[])
     foreach (QString file, commandLineParser.files()) {
         window.addFileOrDir(file);
     }
+
+    QObject::connect(QGuiApplication::styleHints(), &QStyleHints::colorSchemeChanged, &app, [](Qt::ColorScheme scheme) {
+        qWarning() << "@@@ QStyleHints::colorSchemeChanged: " << (scheme == Qt::ColorScheme::Dark);
+    });
 
     QObject::connect(&app, &Application::openFile,
                      &window, &MainWindow::addFileOrDir);
