@@ -99,6 +99,7 @@ jobs:
         echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
         sudo apt-get -y update
         sudo apt-get -y --no-install-recommends install build-essential pkg-config cmake
+        sudo apt-get -y --no-install-recommends install libgl1-mesa-dev
         # sudo apt-get -y --no-install-recommends install libgl1-mesa-dev qt6-base-dev qt6-tools-dev-tools qt6-tools-dev qt6-l10n-tools qt6-l10n-tools qmake6 qt6-xdgdesktopportal-platformtheme
         sudo apt-get -y --no-install-recommends install libuchardet-dev libtag1-dev
         sudo apt-get -y --no-install-recommends install libavcodec-dev libavformat-dev libavfilter-dev libavutil-dev
@@ -110,11 +111,9 @@ jobs:
       run: |
         pip --no-cache-dir install aqtinstall
         echo "** Qt versions ****************************"
-        aqt list-qt linux desktop
-        echo "*******************************************"
-        # aqt list-qt linux_arm64 desktop --arch ${{ env.QT_VERSION }}
-        # echo "*******************************************"
-        # aqt list-qt ${{ matrix.aqt_host }} desktop --modules ${{ env.QT_VERSION }} ${{ matrix.aqt_arch }}
+        aqt list-qt ${{ matrix.aqt_host }} desktop
+        echo "** Qt modules *****************************"
+        aqt list-qt ${{ matrix.aqt_host }} desktop --modules ${{ env.QT_VERSION }} ${{ matrix.aqt_arch }}
         echo "*******************************************"
         aqt install-qt ${{ matrix.aqt_host }} desktop ${{ env.QT_VERSION }} ${{ matrix.aqt_arch }} -O "/opt/qt"
         pip uninstall -y aqtinstall
