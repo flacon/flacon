@@ -97,7 +97,7 @@ jobs:
         # sudo apt-get -y --no-install-recommends install libgl1-mesa-dev qt6-base-dev qt6-tools-dev-tools qt6-tools-dev qt6-l10n-tools qt6-l10n-tools qmake6 qt6-xdgdesktopportal-platformtheme
         sudo apt-get -y --no-install-recommends install libuchardet-dev libtag1-dev
         sudo apt-get -y --no-install-recommends install libavcodec-dev libavformat-dev libavfilter-dev libavutil-dev
-        sudo ln -sf /usr/lib/qt6/bin/qmake /usr/bin/qmake
+        # sudo ln -sf /usr/lib/qt6/bin/qmake /usr/bin/qmake
 
     ###################################
     #
@@ -108,6 +108,8 @@ jobs:
         aqt list-qt mac desktop
         echo "*******************************************"
         aqt list-qt mac desktop --modules ${{ env.QT_VERSION }} clang_64
+        ls -lh "/usr/local"
+        ls -lh "/usr/local/qt"
         aqt install-qt mac desktop ${{ env.QT_VERSION }} -O "/usr/local/qt"
 
 
