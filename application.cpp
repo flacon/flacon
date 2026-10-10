@@ -53,7 +53,9 @@ bool Application::event(QEvent *event)
         emit            openFile(e->file());
     }
 
+    qWarning() << "@@@ QEvent: " << event->type();
 #ifndef Q_OS_MAC
+
     if (event->type() == QEvent::ApplicationPaletteChange) {
         qWarning() << "@@@ QEvent::ApplicationPaletteChange ===================================";
         qWarning() << "@@@ mDarkMode:        " << mDarkMode;
