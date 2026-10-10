@@ -53,16 +53,17 @@ bool Application::event(QEvent *event)
         emit            openFile(e->file());
     }
 
+    qWarning() << "@@@ QEvent =============================================================";
     qWarning() << "@@@ QEvent: " << event->type();
+
+    qWarning() << "@@@ mDarkMode:        " << mDarkMode;
+    qWarning() << "@@@ isDarkVisualMode: " << isDarkVisualMode();
+    qWarning() << "@@@ palette().color():" << (qApp->palette().window().color().lightness() < qApp->palette().windowText().color().lightness());
+    qWarning() << "@@@ QEvent::ApplicationPaletteChange -----------------------------------";
+
 #ifndef Q_OS_MAC
 
     if (event->type() == QEvent::ApplicationPaletteChange) {
-        qWarning() << "@@@ QEvent::ApplicationPaletteChange ===================================";
-        qWarning() << "@@@ mDarkMode:        " << mDarkMode;
-        qWarning() << "@@@ isDarkVisualMode: " << isDarkVisualMode();
-        qWarning() << "@@@ palette().color():" << (qApp->palette().window().color().lightness() < qApp->palette().windowText().color().lightness());
-        // qWarning() << "@@@ QGuiApplication::styleHints():    " << (QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark);
-        qWarning() << "@@@ QEvent::ApplicationPaletteChange -----------------------------------";
         bool dark = isDarkVisualMode();
         if (dark != mDarkMode) {
             mDarkMode = isDarkVisualMode();
