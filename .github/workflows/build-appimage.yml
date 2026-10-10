@@ -112,8 +112,10 @@ jobs:
         echo "** Qt versions ****************************"
         aqt list-qt linux desktop
         echo "*******************************************"
-        aqt list-qt ${{ matrix.aqt_host }} desktop --modules ${{ env.QT_VERSION }} clang_64
+        aqt list-qt ${{ matrix.aqt_host }} desktop --modules ${{ env.QT_VERSION }} ${{ matrix.aqt_arch }}
+        echo "*******************************************"
         aqt install-qt ${{ matrix.aqt_host }} desktop ${{ env.QT_VERSION }} ${{ matrix.aqt_arch }} -O "/opt/qt"
+        pip uninstall -y aqtinstall
 
 
     ###################################
