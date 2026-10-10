@@ -77,6 +77,6 @@ bool Application::event(QEvent *event)
 #ifndef Q_OS_MAC
 bool Application::isDarkVisualMode() const
 {
-    return qApp->style()->palette().window().color().lightness() < qApp->style()->palette().windowText().color().lightness();
+    return qApp->palette().window().color().lightness() < qApp->palette().windowText().color().lightness();
 }
 #endif
