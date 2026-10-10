@@ -112,6 +112,8 @@ jobs:
         echo "** Qt versions ****************************"
         aqt list-qt linux desktop
         echo "*******************************************"
+        aqt list-qt linux_arm64 desktop --arch ${{ env.QT_VERSION }}
+        echo "*******************************************"
         aqt list-qt ${{ matrix.aqt_host }} desktop --modules ${{ env.QT_VERSION }} ${{ matrix.aqt_arch }}
         echo "*******************************************"
         aqt install-qt ${{ matrix.aqt_host }} desktop ${{ env.QT_VERSION }} ${{ matrix.aqt_arch }} -O "/opt/qt"
