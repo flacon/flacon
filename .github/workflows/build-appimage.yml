@@ -22,13 +22,18 @@ jobs:
             arch: amd64
             runner: ubuntu-22.04
             appimage_arch: x86_64
+            aqt_host: linux
+            aqt_arch: linux_gcc_64
             linuxdeploy_link:    https://github.com/linuxdeploy/linuxdeploy/releases/download/1-alpha-20251107-1/linuxdeploy-x86_64.AppImage
             linuxdeploy_qt_link: https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/1-alpha-20250213-1/linuxdeploy-plugin-qt-x86_64.AppImage
+
 
           - name: arm64
             arch: arm64
             runner: ubuntu-22.04-arm
             appimage_arch: aarch64
+            aqt_host: linux_arm64
+            aqt_arch: linux_gcc_arm64
             linuxdeploy_link:    https://github.com/linuxdeploy/linuxdeploy/releases/download/1-alpha-20251107-1/linuxdeploy-aarch64.AppImage
             linuxdeploy_qt_link: https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/1-alpha-20250213-1/linuxdeploy-plugin-qt-aarch64.AppImage
             qemu: true
@@ -103,12 +108,12 @@ jobs:
     #
     - name: Install Qt ${{ env.QT_VERSION }}
       run: |
-        pip3 install aqtinstall
+        pip --no-cache-dir install aqtinstall
         echo "** Qt versions ****************************"
         aqt list-qt linux desktop
         echo "*******************************************"
-        aqt list-qt linux desktop --modules ${{ env.QT_VERSION }} clang_64
-        aqt install-qt linux desktop ${{ env.QT_VERSION }} -O "/opt/qt"
+        aqt list-qt ${{ matrix.aqt_host }} desktop --modules ${{ env.QT_VERSION }} clang_64
+        aqt install-qt ${{ matrix.aqt_host }} desktop ${{ env.QT_VERSION }} ${{ matrix.aqt_arch }} -O "/opt/qt"
 
 
     ###################################
