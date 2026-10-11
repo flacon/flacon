@@ -90,6 +90,8 @@ protected:
         RoleDiscErrors,
 
         RolePlaceHolder,
+
+        RoleAlbumPerformer,
     };
 
 public slots:

@@ -407,7 +407,7 @@ QVariant TrackViewModel::discData(const Disc *disc, const QModelIndex &index, in
 
             case TrackView::ColumnArtist:
                 for (int i = 0; i < disc->tracks().count(); ++i)
-                    values << disc->albumTag();
+                    values << disc->tracks().at(i)->artistTag();
                 break;
 
             case TrackView::ColumnAlbum:
@@ -427,17 +427,18 @@ QVariant TrackViewModel::discData(const Disc *disc, const QModelIndex &index, in
 
     // clang-format off
     switch (role) {
-        case RoleItemType:      return DiscItem;
-        case RoleTagSetTitle:   return disc->currentTagSet().title;
-        case RoleAudioFileName: return disc->audioFileNames();
-        case RoleHasWarnings:   return Project::instance()->validator().diskHasWarnings(disc);
-        case RoleHasErrors:     return Project::instance()->validator().diskHasErrors(disc);
-        case RoleIsDownloads:   return mCache->downloadedDiscs.contains(index.row());
-        case RoleCoverImg:      return disc->coverImagePreview();
-        case RoleCueFilePath:   return disc->cueFilePath();
-        case RoleAudioFilePath: return disc->audioFilePaths();
-        case RoleDiscWarnings:  return Project::instance()->validator().diskWarnings(disc);
-        case RoleDiscErrors:    return Project::instance()->validator().diskErrors(disc);
+        case RoleItemType:       return DiscItem;
+        case RoleTagSetTitle:    return disc->currentTagSet().title;
+        case RoleAudioFileName:  return disc->audioFileNames();
+        case RoleHasWarnings:    return Project::instance()->validator().diskHasWarnings(disc);
+        case RoleHasErrors:      return Project::instance()->validator().diskHasErrors(disc);
+        case RoleIsDownloads:    return mCache->downloadedDiscs.contains(index.row());
+        case RoleCoverImg:       return disc->coverImagePreview();
+        case RoleCueFilePath:    return disc->cueFilePath();
+        case RoleAudioFilePath:  return disc->audioFilePaths();
+        case RoleDiscWarnings:   return Project::instance()->validator().diskWarnings(disc);
+        case RoleDiscErrors:     return Project::instance()->validator().diskErrors(disc);
+        case RoleAlbumPerformer: return disc->albumPerformerTag();
     }
     // clang-format on
 

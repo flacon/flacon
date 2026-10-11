@@ -384,7 +384,7 @@ void TrackViewDelegate::paintDisc(QPainter *painter, const QStyleOptionViewItem 
     // Draw badge ....................................
     bool  hasCue    = !index.data(TrackViewModel::RoleCueFilePath).toString().isEmpty();
     QRect badgeRect = titleRect;
-    badgeRect.moveLeft(badgeRect.right() + 8);
+    badgeRect.moveLeft(badgeRect.right() + 16);
     drawBadge(hasCue, painter, badgeRect);
 
     // Draw labels ...................................
@@ -482,16 +482,23 @@ QRect TrackViewDelegate::drawTitle(QPainter *painter, const QRect &windowRect, c
     painter->save();
     painter->setFont(titleFont);
     QString album  = index.sibling(index.row(), TrackView::ColumnAlbum).data().toString();
-    QString artist = index.sibling(index.row(), TrackView::ColumnArtist).data().toString();
+    QString artist = index.data(TrackViewModel::RoleAlbumPerformer).toString();
+    if (artist.isEmpty()) {
+        artist = index.sibling(index.row(), TrackView::ColumnArtist).data().toString();
+    }
 
     QString text;
     if (!album.isEmpty() || !artist.isEmpty()) {
         text = QStringLiteral("%1 / %2").arg(artist, album);
     }
+    else {
+        text = " ";
+    }
 
     QRect res;
     painter->drawText(windowRect, Qt::AlignLeft, text, &res);
     painter->restore();
+    res.setWidth(std::max(res.width(), 200));
     return res;
 }
 
