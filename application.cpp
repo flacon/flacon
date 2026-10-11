@@ -27,12 +27,14 @@
 #include <QFileOpenEvent>
 #include <QDebug>
 #include <QStyle>
+#include "gui/icon.h"
 
 Application::Application(int &argc, char **argv) :
     QApplication(argc, argv)
 {
     init();
     mDarkMode = isDarkVisualMode();
+    updateIcons();
 }
 
 Application::~Application()
@@ -53,21 +55,26 @@ bool Application::event(QEvent *event)
         emit            openFile(e->file());
     }
 
-#ifndef Q_OS_MAC
     if (event->type() == QEvent::ApplicationPaletteChange) {
         bool dark = isDarkVisualMode();
         if (dark != mDarkMode) {
             mDarkMode = isDarkVisualMode();
+            updateIcons();
             emit visualModeChanged();
         }
     }
-#endif
+
     return QApplication::event(event);
+}
+
+void Application::updateIcons() const
+{
+    Icon::setDarkMode(isDarkVisualMode());
 }
 
 #ifndef Q_OS_MAC
 bool Application::isDarkVisualMode() const
 {
-    return qApp->style()->standardPalette().window().color().lightness() < qApp->style()->standardPalette().windowText().color().lightness();
+    return qApp->palette().window().color().lightness() < qApp->palette().windowText().color().lightness();
 }
 #endif

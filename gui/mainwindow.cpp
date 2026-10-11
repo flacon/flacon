@@ -39,7 +39,6 @@
 #include "gui/tageditor/tageditor.h"
 #include "controls.h"
 #include "gui/icon.h"
-#include "application.h"
 #include "gui/messagebox/messagebox.h"
 #include "gui/logview/logview.h"
 
@@ -192,16 +191,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(Project::instance(), &Project::discChanged, this, &MainWindow::refreshEdits);
     connect(Project::instance(), &Project::discChanged, this, &MainWindow::setControlsEnable);
 
-    connect(Application::instance(), &Application::visualModeChanged,
-            []() {
-                Icon::setDarkMode(Application::instance()->isDarkVisualMode());
-            });
-
     Validator *validator = &Project::instance()->validator();
     connect(trackView->model(), &TrackViewModel::dataChanged, validator, &Validator::revalidate);
     connect(trackView->model(), &TrackViewModel::layoutChanged, validator, &Validator::revalidate);
-
-    Icon::setDarkMode(Application::instance()->isDarkVisualMode());
 
     loadSettings();
 

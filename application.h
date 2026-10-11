@@ -51,6 +51,8 @@ signals:
     void visualModeChanged();
 
 private:
+    void updateIcons() const;
+
 #ifdef Q_OS_MAC
     void init();
     void free();
