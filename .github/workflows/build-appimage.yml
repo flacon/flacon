@@ -9,7 +9,7 @@ env:
   LS_ALL: en_US.UTF-8
   LANGUAGE: en_US:en
 
-  QT_VERSION: "6.7.3"
+  QT_VERSION: "6.11.3"
 
 jobs:
   build:
