@@ -34,6 +34,7 @@ const QList<InputFormat> InputFormat::allFormats()
     static const QList<InputFormat> list = {
         // Name         File ext
         { "APE",        "ape"  },
+        { "ALAC",       "m4a"  },
         { "FLAC",       "flac" },
         { "TTA",        "tta"  },
         { "MP3",        "mp3"  },
