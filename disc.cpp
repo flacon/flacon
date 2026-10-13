@@ -350,6 +350,7 @@ void Disc::addTrack(const InputAudioFile &file)
 
     for (int i = 0; i < mTracks.size(); ++i) {
         mTracks[i]->setIndex(i);
+        mTracks[i]->setTrackNumTag(i + 1);
     }
 
     updateLoadedTags();
