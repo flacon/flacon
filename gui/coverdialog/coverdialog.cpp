@@ -93,7 +93,15 @@ void CoverDialog::setDisc(Disc *disc)
             this, &CoverDialog::close);
 
     ui->coverView->clear();
-    scan(QFileInfo(disc->cueFilePath()).absoluteDir().absolutePath());
+
+    if (disc->isEmpty()) {
+        return;
+    }
+
+    QString filePath = (disc->cue()) ? disc->cueFilePath() : disc->tracks().first()->audioFile().filePath();
+    QString startDir = QFileInfo(filePath).absoluteDir().absolutePath();
+
+    scan(startDir);
     ui->coverView->setGridSize(QSize(140, 160));
 }
 
